@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
+
+@layer components {
+    .hamburger > span {
+        @apply bg-white w-5 h-[2px] relative inline-block rounded-full
+    }
+    .hamburger > span::before,
+    .hamburger > span::after {
+        @apply content-[''] bg-white w-5 h-[2px] absolute rounded-full transition-all duration-300
+    }
+    .hamburger > span::before {
+       @apply -top-[6px] left-0;
+    }
+    .hamburger > span::after {
+         @apply top-[6px] left-0;
+    }
+    .hamburger_active {
+        @apply bg-white rounded-full
+    }
+    .hamburger_active > span {
+        @apply bg-transparent 
+    }
+    .hamburger_active > span::before {
+        @apply top-0 rotate-[135deg] bg-main-black
+    }
+    .hamburger_active > span::after {
+        @apply top-0 rotate-[-135deg] bg-main-black
+    }
+}
+
+@layer utilities {
+    var(--main-black) {
+        @apply fill-main-black
+    }
+}
