@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.9.11",
@@ -25,6 +26,8 @@
     "react-i18next": "^14.1.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "5.0.2",
+    "@parcel/watcher": "^2.4.1",
     "@tailwindcss/typography": "^0.5.12",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -33,6 +36,7 @@
     "eslint-config-next": "14.2.2",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.4.5",
+    "@graphql-codegen/client-preset": "4.2.5"
   }
 }
