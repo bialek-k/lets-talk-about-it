@@ -6,6 +6,13 @@ import Linkedin from '@/components/Linkedin/Linkedin';
 import MainLogo from '@/components/MainLogo/MainLogo';
 import { OpenNav } from '@/components/Header/Header';
 
+import { graphqlClient } from '@/lib/graphqlClient';
+import { aboutQuery } from '@/graphql/about';
+
+import { AboutRecord, MyQueryDocument } from '@/graphql/generated';
+import { About } from '@/components/About/About';
+import { request } from '@/lib/request';
+
 const i18nNamespaces = ['home'];
 
 export default async function Home({
@@ -14,6 +21,7 @@ export default async function Home({
   params: { locale: string };
 }) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
+  const { about } = await request(MyQueryDocument, { locale });
 
   return (
     <TranslationsProvider
@@ -45,6 +53,7 @@ export default async function Home({
           </div>
         </div>
       </main>
+      <About data={about} />
     </TranslationsProvider>
   );
 }
