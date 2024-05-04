@@ -19,6 +19,8 @@ const config: Config = {
       colors: {
         'main-black': '#0C0C0C',
         'main-yellow': '#E2FF02',
+        'main-white': '#F5F5F5',
+        'main-light-yello': '#F3FF99',
       },
       screens: {
         'desktop-media-max': { max: '1024px' }, // => @media (max-width: 1024px)

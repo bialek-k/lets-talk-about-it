@@ -6,10 +6,7 @@ import Linkedin from '@/components/Linkedin/Linkedin';
 import MainLogo from '@/components/MainLogo/MainLogo';
 import { OpenNav } from '@/components/Header/Header';
 
-import { graphqlClient } from '@/lib/graphqlClient';
-import { aboutQuery } from '@/graphql/about';
-
-import { AboutRecord, MyQueryDocument } from '@/graphql/generated';
+import { MyQueryDocument } from '@/graphql/generated';
 import { About } from '@/components/About/About';
 import { request } from '@/lib/request';
 

@@ -9,12 +9,20 @@ query MyQuery($locale: SiteLocale) {
       value
     }
     malgosiaImage {
-      responsiveImage {
+      responsiveImage(
+        imgixParams: { fit: crop, w: 300, h: 300, auto: format, q: 75 }
+      ) {
         alt
         base64
         bgColor
         title
+        aspectRatio
+        height
+        sizes
+        src
+        srcSet
         webpSrcSet
+        width
       }
     }
   }
