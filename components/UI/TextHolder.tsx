@@ -23,10 +23,16 @@ export const TextHolder = ({
     setIsExpanded(!isExpanded);
   };
 
+  const changeThemeTextColor = () => {
+    if (theme === 'light') {
+      return 'text-main-black ';
+    }
+    return 'text-main-white ';
+  };
+
   return (
     <div
-      className={`bg-main-${theme === 'light' ? 'white' : 'black'} text-main-${
-        theme === 'light' ? 'black' : 'white'
+      className={`bg-main-${theme === 'light' ? 'white' : 'black'} 
       } p-8 rounded-2xl border-4 border-[#E2FF00] w-full`}
     >
       <div
@@ -34,15 +40,24 @@ export const TextHolder = ({
         style={{ maxHeight: isExpanded ? '100%' : '298px' }}
       >
         {structuredText ? (
-          <div className="w-full ">
+          <div
+            className={`w-full ${
+              theme === 'dark'
+                ? 'text-main-white bg-main-black'
+                : 'text-main-black bg-main-white'
+            }`}
+          >
             <StructuredTextDocument data={text} />
           </div>
         ) : (
-          <p>{text}</p>
+          <>{text}</>
         )}
       </div>
       {readMore && (
-        <button className="text-white w-full text-end" onClick={toggleExpand}>
+        <button
+          className={`${changeThemeTextColor()} w-full text-end `}
+          onClick={toggleExpand}
+        >
           {isExpanded ? '...czytaj mniej' : '...czytaj więcej'}
         </button>
       )}
