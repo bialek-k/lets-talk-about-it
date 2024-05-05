@@ -1,23 +1,9 @@
-import { graphqlClient } from '@/lib/graphqlClient';
-
-interface Event {
-  edition: string;
-}
-
-interface QueryResult {
-  allEvents: Event[];
-}
-
-const eventsQuery = `
-query MyQuery {
-    allEvents {
-    edition
-  }
-  
-}`;
+import { EventRoutesDocument } from '@/graphql/generated';
+import { request } from '@/lib/request';
 
 export const fetchEvents = async () => {
-  const results = await graphqlClient.request<QueryResult>(eventsQuery);
+  const results = await request(EventRoutesDocument);
+  console.log(results);
 
   return [
     {

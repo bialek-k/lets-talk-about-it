@@ -5,27 +5,12 @@ import Youtube from '@/components/Youtube/Youtube';
 import Linkedin from '@/components/Linkedin/Linkedin';
 import MainLogo from '@/components/MainLogo/MainLogo';
 import { OpenNav } from '@/components/Header/Header';
-import { graphqlClient } from '@/lib/graphqlClient';
 
 import { MyQueryDocument } from '@/graphql/generated';
 import { About } from '@/components/About/About';
 import { request } from '@/lib/request';
 
 const i18nNamespaces = ['home'];
-
-const aboutQuery = `
-query MyQuery($locale: SiteLocale) {
-  about(locale: $locale) {
-    id
-    title
-    description {
-      value
-    }
-    malgosiaDescription {
-      value
-    }
-  }
-}`;
 
 export default async function Home({
   params: { locale },
