@@ -12,10 +12,15 @@ interface AboutProps {
 
 export const About = ({ data }: AboutProps) => {
   return (
-    <section className="container mx-auto px-4">
+    <section className="container mx-auto px-4 ">
       <PageTitle title="o nas" subtitle="Let's Talk About IT" />
       <div className="content  py-6">
-        <TextHolder structuredText text={data.description?.value} readMore />
+        <TextHolder
+          structuredText
+          text={data.description?.value}
+          readMore
+          theme="dark"
+        />
       </div>
       <div className="person py-6">
         <h2 className="text-4xl font-bold">Małgorzata Rycak</h2>
