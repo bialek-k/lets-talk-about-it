@@ -16,32 +16,34 @@ const JoinUs = ({ data }: JoinUsProps) => {
   return (
     <section
       id="#joinus"
-      className="container mx-auto px-6 bg-main-black py-12 "
+      className=" mx-auto px-6 md:px-24 bg-main-black py-12 flex flex-col items-center"
     >
       <PageTitle
         color="white"
         title="dołącz do naszej
 społeczności"
       />
-      {data.map((social: SocialRecord) => {
-        return (
-          <div
-            key={social.id}
-            className="socialItem py-6 flex flex-col items-center"
-          >
-            <div className="icon w-24 mb-12">
-              <DatoImage data={social.icon?.responsiveImage} />
-            </div>
+      <div className="cols md:flex md:flex-cols-3 gap-12">
+        {data.map((social: SocialRecord) => {
+          return (
+            <div
+              key={social.id}
+              className="socialItem py-6 flex flex-col items-center"
+            >
+              <div className="icon w-24 mb-12">
+                <DatoImage data={social.icon?.responsiveImage} />
+              </div>
 
-            <TextHolder
-              structuredText
-              text={social.description}
-              readMore
-              theme="light"
-            />
-          </div>
-        );
-      })}
+              <TextHolder
+                structuredText
+                text={social.description}
+                readMore
+                theme="light"
+              />
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };

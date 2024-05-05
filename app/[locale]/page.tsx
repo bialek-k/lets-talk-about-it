@@ -28,7 +28,7 @@ export default async function Home({
       locale={locale}
       resources={resources}
     >
-      <main className="flex bg-main-black min-h-screen flex-col items-center justify-between  text-[#F5F5F5] font-sans">
+      <main className="flex bg-main-black min-h-screen flex-col  items-center justify-between  text-[#F5F5F5] font-sans">
         <div className=" lg:hidden bg-main-black min-w-56 w-full flex flex-col items-center pt-10">
           <MainLogo className=" w-[100px] h-[100px]" />
           <div className="flex flex-row w-full">
