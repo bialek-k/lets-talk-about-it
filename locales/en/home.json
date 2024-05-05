@@ -1,1 +1,19 @@
-{ "about": "About us", "title": "title", "podcasts": "Podcasts" }
+{
+  "about": "About us",
+  "title": "title",
+  "podcasts": "Podcasts",
+  "events": "Events",
+  "event": "Edition",
+  "contact": "Contact",
+  "partners": "Become a Partner",
+  "followUs": "Follow us",
+  "socialMediaMessage": "Join Let’s talk about IT on our social media",
+  "haveQuestions": "Have questions?",
+  "contactUs": "Feel free to contact us",
+  "links": "Useful links",
+  "regulations": "Regulations",
+  "privacyPolicy": "Privacy Policy",
+  "rights": "All rights reserved ©",
+  "owner": "Let’s talk about IT 2024",
+  "madeBy": "Karolina Bożemska, Krzysztof Białek, Vincent Słomiński"
+}

@@ -1,25 +1,40 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ChevronIcon from '@/IconsSVG/ChevronIcon';
-import { routes } from '@/routes/routes';
+import { fetchEvents } from '@/routes/routes';
 import Linkedin from '../Linkedin/Linkedin';
 import Facebook from '../Facebook/Facebook';
 import Youtube from '../Youtube/Youtube';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { AnimatePresence, motion } from 'framer-motion';
 import MainLogo from '../MainLogo/MainLogo';
+import toRoman from '../UI/NumberToRoman';
 
 interface MobileNavProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
+interface Route {
+  path?: string;
+  name?: string;
+  content?: { path: string; name: string }[];
+}
 
 export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
   const { t } = useTranslation();
+  const [routes, setRoutes] = useState<Route[]>([]);
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchRoutes = async () => {
+      const fetchedRoutes = await fetchEvents();
+      setRoutes(fetchedRoutes);
+    };
+    fetchRoutes();
+  }, []);
 
   function toggleSubMenu() {
     setSubMenuOpen(!isSubMenuOpen);
@@ -67,8 +82,12 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                 >
                   <div className="flex flex-row items-center justify-between border-b border-solid border-white">
                     {route.path ? (
-                      <Link className="pb-5" href={route.path ?? ''}>
-                        {t(route.name)}
+                      <Link
+                        className="pb-5"
+                        onClick={() => setIsOpen(false)}
+                        href={route.path ?? ''}
+                      >
+                        {t(route.name ?? '')}
                       </Link>
                     ) : (
                       <button
@@ -76,7 +95,7 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                         type="button"
                         onClick={toggleSubMenu}
                       >
-                        {t(route.name)}
+                        {t(route.name ?? '')}
                       </button>
                     )}
                     {route.content && (
@@ -110,8 +129,11 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                               <Link
                                 className="border-b border-solid border-white h-[50px] flex items-center "
                                 href={subRoute.path ?? '#'}
+                                onClick={() => setIsOpen(false)}
                               >
-                                {t(subRoute.name)}
+                                {`${t(subRoute.name.split(' ')[0])} ${toRoman(
+                                  parseInt(subRoute.name.split(' ')[1])
+                                )}`}
                               </Link>
                             </motion.div>
                           ))}
