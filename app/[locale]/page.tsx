@@ -28,8 +28,11 @@ export default async function Home({
       locale={locale}
       resources={resources}
     >
-      <main className="flex bg-main-black min-h-screen flex-col  items-center justify-between  text-[#F5F5F5] font-sans">
-        <div className=" lg:hidden bg-main-black min-w-56 w-full flex flex-col items-center pt-10">
+      <main
+        id="main"
+        className="flex bg-main-black min-h-screen flex-col items-center justify-between  text-[#F5F5F5] font-sans w-full"
+      >
+        <div className="flex lg:hidden min-w-56 w-full flex-col items-center pt-10">
           <MainLogo className=" w-[100px] h-[100px]" />
           <div className="flex flex-row w-full">
             <div className="flex justify-center gap-6 ml-auto">
@@ -51,6 +54,7 @@ export default async function Home({
             </div>
           </div>
         </div>
+        <section></section>
       </main>
       <About data={about} />
       <JoinUs data={allJoins[0].social} />

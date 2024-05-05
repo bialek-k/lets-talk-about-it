@@ -1,49 +1,33 @@
-export type Route = {
-  path?: string;
-  name: string;
-  content?: Route[];
-};
+import { EventRoutesDocument } from '@/graphql/generated';
+import { request } from '@/lib/request';
 
-export const routes: Route[] = [
-  {
-    path: '#about',
-    name: 'about',
-  },
-  {
-    name: 'events',
-    content: [
-      {
-        path: '/event1',
-        name: 'event1',
-      },
-      {
-        path: '/event2',
-        name: 'event2',
-      },
-      {
-        path: '/event3',
-        name: 'event3',
-      },
-      {
-        path: '/event4',
-        name: 'event4',
-      },
-      {
-        path: '/event5',
-        name: 'event5',
-      },
-    ],
-  },
-  {
-    path: '/podcasts',
-    name: 'podcasts',
-  },
-  {
-    path: '/partners',
-    name: 'partners',
-  },
-  {
-    path: '/contact',
-    name: 'contact',
-  },
-];
+export const fetchEvents = async () => {
+  const results = await request(EventRoutesDocument);
+  console.log(results);
+
+  return [
+    {
+      path: '/about',
+      name: 'about',
+    },
+    {
+      name: 'events',
+      content: results.allEvents.map((event) => ({
+        path: `/events/${event.edition}`,
+        name: `event ${event.edition}`,
+      })),
+    },
+    {
+      path: '/podcasts',
+      name: 'podcasts',
+    },
+    {
+      path: '/partners',
+      name: 'partners',
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+    },
+  ];
+};
