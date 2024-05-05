@@ -7,6 +7,10 @@ import MainLogo from '@/components/MainLogo/MainLogo';
 import { OpenNav } from '@/components/Header/Header';
 import { graphqlClient } from '@/lib/graphqlClient';
 
+import { MyQueryDocument } from '@/graphql/generated';
+import { About } from '@/components/About/About';
+import { request } from '@/lib/request';
+
 const i18nNamespaces = ['home'];
 
 const aboutQuery = `
@@ -29,7 +33,7 @@ export default async function Home({
   params: { locale: string };
 }) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
-  const results = await graphqlClient.request(aboutQuery, { locale });
+  const { about } = await request(MyQueryDocument, { locale });
 
   return (
     <TranslationsProvider
@@ -65,6 +69,7 @@ export default async function Home({
         </div>
         <section></section>
       </main>
+      <About data={about} />
     </TranslationsProvider>
   );
 }
