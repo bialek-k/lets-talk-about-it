@@ -1,8 +1,7 @@
 export const aboutQuery = `
 query MyQuery($locale: SiteLocale) {
   about(locale: $locale) {
-    id
-    title
+    
     description {
       value
     }

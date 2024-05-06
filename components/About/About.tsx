@@ -7,7 +7,7 @@ import { Image } from '@/components/UI/Image';
 import { AboutRecord } from '@/graphql/generated';
 
 interface AboutProps {
-  data: AboutRecord;
+  data: any;
 }
 
 export const About = ({ data }: AboutProps) => {
@@ -15,7 +15,7 @@ export const About = ({ data }: AboutProps) => {
     <section className=" px-6 md:px-24 ">
       <PageTitle title="o nas" subtitle="Let's Talk About IT" />
       <div className="content md:flex md:gap-24 justify-between">
-        <div className="description py-6  ">
+        <div className="description py-6">
           <TextHolder
             structuredText
             text={data.description?.value}

@@ -9,7 +9,7 @@ import { TextHolder } from '../UI/TextHolder';
 import { PageTitle } from '../UI/PageTitle';
 
 interface JoinUsProps {
-  data: JoinRecord[];
+  data: any;
 }
 
 const JoinUs = ({ data }: JoinUsProps) => {
