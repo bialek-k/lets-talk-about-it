@@ -7,10 +7,10 @@ import { Image } from '@/components/UI/Image';
 import { AboutRecord } from '@/graphql/generated';
 
 interface AboutProps {
-  data: any;
+  about: AboutRecord;
 }
 
-export const About = ({ data }: any) => {
+export const About = ({ about }: AboutProps) => {
   return (
     <section className=" px-6 md:px-24 ">
       <PageTitle title="o nas" subtitle="Let's Talk About IT" />
@@ -18,16 +18,19 @@ export const About = ({ data }: any) => {
         <div className="description py-6">
           <TextHolder
             structuredText
-            text={data.description?.value}
+            text={about.description?.value}
             readMore
             theme="dark"
           />
         </div>
         <div className="person py-6 md:flex md:flex-col md:max-w-lg md:items-center">
           <h2 className="text-4xl font-bold">Małgorzata Rycak</h2>
-          <Image image={data.malgosiaImage?.responsiveImage} />
+          <Image image={about.malgosiaImage?.responsiveImage} />
           <div className="content py-6">
-            <TextHolder structuredText text={data.malgosiaDescription?.value} />
+            <TextHolder
+              structuredText
+              text={about.malgosiaDescription?.value}
+            />
           </div>
         </div>
       </div>

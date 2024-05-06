@@ -1,10 +1,10 @@
 import { AboutModelDescriptionField } from '@/graphql/generated';
 import React, { useEffect, useState } from 'react';
 
-import { StructuredText as StructuredTextDocument } from 'react-datocms';
+import { StructuredText, StructuredTextDocument } from 'react-datocms';
 
 interface TextHolderProps {
-  text: any;
+  text: StructuredTextDocument;
   structuredText?: boolean;
   theme?: 'light' | 'dark';
   readMore?: boolean;
@@ -47,7 +47,7 @@ export const TextHolder = ({
                 : 'text-main-black bg-main-white'
             }`}
           >
-            <StructuredTextDocument data={text} />
+            <StructuredText data={text} />
           </div>
         ) : (
           <>{text}</>

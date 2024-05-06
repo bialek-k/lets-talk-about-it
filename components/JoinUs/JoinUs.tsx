@@ -2,17 +2,27 @@
 
 import React from 'react';
 
-import { Image as DatoImage } from 'react-datocms';
+import {
+  Image as DatoImage,
+  ResponsiveImageType,
+  StructuredTextDocument,
+} from 'react-datocms';
 
 import { JoinRecord, SocialRecord } from '@/graphql/generated';
 import { TextHolder } from '../UI/TextHolder';
 import { PageTitle } from '../UI/PageTitle';
 
 interface JoinUsProps {
-  data: any;
+  social: SocialRecord[];
 }
 
-const JoinUs = ({ data }: JoinUsProps) => {
+interface ItemProps {
+  id: string;
+  icon: ResponsiveImageType;
+  description: StructuredTextDocument;
+}
+
+const JoinUs = ({ social }: JoinUsProps) => {
   return (
     <section
       id="#joinus"
@@ -24,19 +34,19 @@ const JoinUs = ({ data }: JoinUsProps) => {
 społeczności"
       />
       <div className="cols md:flex md:flex-cols-3 gap-12">
-        {data.map((social: any) => {
+        {social.map((item: any) => {
           return (
             <div
-              key={social.id}
-              className="socialItem py-6 flex flex-col items-center"
+              key={item.id}
+              className="itemItem py-6 flex flex-col items-center"
             >
               <div className="icon w-24 mb-12">
-                <DatoImage data={social.icon?.responsiveImage} />
+                <DatoImage data={item.icon?.responsiveImage} />
               </div>
 
               <TextHolder
                 structuredText
-                text={social.description}
+                text={item.description}
                 readMore
                 theme="light"
               />

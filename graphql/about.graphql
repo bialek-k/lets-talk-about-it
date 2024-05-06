@@ -1,4 +1,4 @@
-query MyQuery($locale: SiteLocale) {
+query About($locale: SiteLocale) {
   about(locale: $locale) {
     description {
       value

@@ -15,22 +15,10 @@ const config: CodegenConfig = {
   ],
   documents: './graphql/**/*.graphql',
   generates: {
-    'graphql/generated.ts': {
-      plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
+    'gql/': {
+      preset: 'client',
       config: {
-        strictScalars: true,
-        scalars: {
-          BooleanType: 'boolean',
-          CustomData: 'Record<string, unknown>',
-          Date: 'string',
-          DateTime: 'string',
-          FloatType: 'number',
-          IntType: 'number',
-          ItemId: 'string',
-          JsonField: 'unknown',
-          MetaTagAttributes: 'Record<string, string>',
-          UploadId: 'string',
-        },
+        documentMode: 'string',
       },
     },
   },
