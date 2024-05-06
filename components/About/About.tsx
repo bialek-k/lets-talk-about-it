@@ -27,10 +27,7 @@ export const About = ({ about }: AboutProps) => {
           <h2 className="text-4xl font-bold">Małgorzata Rycak</h2>
           <Image image={about.malgosiaImage?.responsiveImage} />
           <div className="content py-6">
-            <TextHolder
-              structuredText
-              text={about.malgosiaDescription?.value}
-            />
+            <TextHolder structuredText text={about.description?.value} />
           </div>
         </div>
       </div>

@@ -1,10 +1,14 @@
+import {
+  AboutModelMalgosiaDescriptionField,
+  StructuredTextFilter,
+} from '@/gql/graphql';
 import { AboutModelDescriptionField } from '@/graphql/generated';
 import React, { useEffect, useState } from 'react';
 
 import { StructuredText, StructuredTextDocument } from 'react-datocms';
 
 interface TextHolderProps {
-  text: StructuredTextDocument;
+  text: any;
   structuredText?: boolean;
   theme?: 'light' | 'dark';
   readMore?: boolean;
