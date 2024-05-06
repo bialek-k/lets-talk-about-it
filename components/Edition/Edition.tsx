@@ -1,13 +1,15 @@
 import toRoman from '../UI/NumberToRoman';
 import Arrow from '@/IconsSVG/Arrow';
 import { request } from '@/lib/request';
-import { EditionsDocument } from '@/graphql/generated';
+import { EditionsDocument, PartnersDocument } from '@/graphql/generated';
 import { Image } from '../UI/Image';
 import Button from '../UI/Button';
 import Calendar from '@/IconsSVG/Calendar';
 import Location from '../Location/Location';
 import MainTitle from '../MainTitle/MainTitle';
 import LinesPattern from '@/IconsSVG/LinesPattern';
+import PartnersCarousel from '../PartnersCarousel/PartnersCarousel';
+import TextBorderLine from '@/IconsSVG/TextBorderLine';
 
 const Edition = async ({
   locale,
@@ -23,6 +25,7 @@ const Edition = async ({
     locale,
     edition,
   });
+  const data = await request(PartnersDocument, { locale });
 
   const eventDate = new Date(results.event?.date ?? '');
   const formattedDate = `${eventDate.getDate().toString().padStart(2, '0')}.${(
@@ -33,8 +36,8 @@ const Edition = async ({
   return (
     <section className="w-full">
       <div className="flex flex-col items-center justify-center ">
-        <div className=" pt-20 lg:pt-24 pb-[60px] w-full pl-4 lg:pl-[100px] flex flex-col items-center justify-center bg-main-yellow">
-          <div className="mt-[4px] self-end invisible lg:visible">
+        <div className=" pt-20 lg:pt-24 pb-[60px] w-full pl-4 lg:px-[100px] flex flex-col items-center justify-center bg-main-yellow">
+          <div className="mt-[4px] self-end hidden lg:inline ">
             <LinesPattern fill="#0C0C0C" />
           </div>
           <h1
@@ -93,21 +96,24 @@ const Edition = async ({
             </div>
           </div>
         </div>
-        <div className="lg:w-full flex flex-col pl-4 lg:pl-[100px] justify-center items-center">
+        <div className="lg:w-full flex flex-col pl-4 lg:px-[100px] justify-center items-center">
           <div className="self-end invisible lg:visible">
             <LinesPattern fill="#0C0C0C" />
           </div>
           {/* PROWADZĄCA */}
 
-          <h2 className="my-10 flex w-full font-medium text-5xl leading-[62px] ">
+          <h2 className="my-10 flex w-full font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px] ">
             {t('lead')}
           </h2>
           <div className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6">
             <div>
-              <h3 className="font-semibold text-lg">
-                {results.event?.lead[0].name}
-              </h3>
-              <p className=" font-normal text-lg">
+              <div className="relative">
+                <h3 className="font-semibold text-lg w-max z-40 relative">
+                  {results.event?.lead[0].name}
+                </h3>
+                <TextBorderLine className="lg:visible invisible absolute top-5 z-1" />
+              </div>
+              <p className=" font-normal text-lg pr-[30%]">
                 {results.event?.lead[0].role}
               </p>
             </div>
@@ -119,7 +125,7 @@ const Edition = async ({
 
           {/* PRELEGENCI */}
 
-          <h2 className="my-10 flex w-full font-medium text-5xl leading-[62px] ">
+          <h2 className="my-10 flex w-full font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px] ">
             {t('speakers')}
           </h2>
           <div className="lg:w-full flex flex-col lg:flex-row lg:flex-wrap lg:items-start lg:justify-between">
@@ -129,8 +135,13 @@ const Edition = async ({
                 key={speaker.name}
               >
                 <div>
-                  <h3 className=" font-semibold text-lg">{speaker.name}</h3>
-                  <p className=" font-normal text-lg">{speaker.role}</p>
+                  <div className="relative w-max">
+                    <h3 className=" font-semibold text-lg w-max z-40 relative">
+                      {speaker.name}
+                    </h3>
+                    <TextBorderLine className="lg:visible invisible absolute top-5 z-1 w-full" />
+                  </div>
+                  <p className=" font-normal text-lg ">{speaker.role}</p>
                 </div>
                 <Image
                   image={speaker.image?.responsiveImage}
@@ -159,13 +170,8 @@ const Edition = async ({
           <h2>{t('gallery')}</h2>
         </div>
         {/* PARTNERS */}
-        {results.event?.new && (
-          <div>
-            <h2>{t('partners')}</h2>
-          </div>
-        )}
+        <PartnersCarousel locale={locale} />
       </div>
-      {/* <pre>{JSON.stringify(results, null, 2)}</pre> */}
     </section>
   );
 };

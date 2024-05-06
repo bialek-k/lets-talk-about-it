@@ -7,7 +7,7 @@ export const fetchEvents = async () => {
 
   return [
     {
-      path: '/about',
+      path: '/#about',
       name: 'about',
     },
     {

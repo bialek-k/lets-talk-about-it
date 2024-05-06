@@ -12,7 +12,7 @@ interface AboutProps {
 
 export const About = ({ data }: AboutProps) => {
   return (
-    <section className=" px-6 md:px-24 ">
+    <section id="about" className=" px-6 md:px-24 ">
       <PageTitle title="o nas" subtitle="Let's Talk About IT" />
       <div className="content md:flex md:gap-24 justify-between">
         <div className="description py-6  ">
