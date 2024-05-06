@@ -24,7 +24,7 @@ const JoinUs = ({ data }: JoinUsProps) => {
 społeczności"
       />
       <div className="cols md:flex md:flex-cols-3 gap-12">
-        {data.map((social: SocialRecord) => {
+        {data.map((social: any) => {
           return (
             <div
               key={social.id}

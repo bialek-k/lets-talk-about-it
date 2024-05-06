@@ -10,7 +10,7 @@ interface AboutProps {
   data: any;
 }
 
-export const About = ({ data }: AboutProps) => {
+export const About = ({ data }: any) => {
   return (
     <section className=" px-6 md:px-24 ">
       <PageTitle title="o nas" subtitle="Let's Talk About IT" />
