@@ -3,7 +3,7 @@ import React from 'react';
 import { Image as DatoImage } from 'react-datocms';
 
 export interface ImageProps {
-  image: ResponsiveImage;
+  image: any;
 }
 
 export interface ResponsiveImage {
@@ -20,7 +20,7 @@ export interface ResponsiveImage {
   width: number;
 }
 
-export const Image = ({ image }: ImageProps) => {
+export const Image = ({ image }: any) => {
   return (
     <div className="relative w-64 h-64 container mx-auto my-12">
       <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6" />
