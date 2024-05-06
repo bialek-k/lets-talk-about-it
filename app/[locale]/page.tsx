@@ -6,10 +6,15 @@ import Linkedin from '@/components/Linkedin/Linkedin';
 import MainLogo from '@/components/MainLogo/MainLogo';
 import { OpenNav } from '@/components/Header/Header';
 
-import { MyQueryDocument, JoinUsDocument } from '@/graphql/generated';
+import {
+  MyQueryDocument,
+  JoinUsDocument,
+  PartnersDocument,
+} from '@/graphql/generated';
 import { About } from '@/components/About/About';
 import { request } from '@/lib/request';
 import JoinUs from '@/components/JoinUs/JoinUs';
+import Partners from '@/components/Partners/Partners';
 
 const i18nNamespaces = ['home'];
 
@@ -21,6 +26,7 @@ export default async function Home({
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
   const { about } = await request(MyQueryDocument, { locale });
   const { allJoins } = await request(JoinUsDocument, { locale });
+  const { partner } = await request(PartnersDocument, { locale });
 
   return (
     <TranslationsProvider
@@ -58,6 +64,7 @@ export default async function Home({
       </main>
       <About data={about} />
       <JoinUs data={allJoins[0].social} />
+      <Partners data={partner?.images} />
     </TranslationsProvider>
   );
 }

@@ -4,12 +4,27 @@ import React from 'react';
 
 import { Image as DatoImage } from 'react-datocms';
 
-import { JoinRecord, SocialRecord } from '@/graphql/generated';
+import {
+  JoinRecord,
+  ResponsiveImage,
+  SocialRecord,
+  StructuredTextFilter,
+} from '@/graphql/generated';
 import { TextHolder } from '../UI/TextHolder';
 import { PageTitle } from '../UI/PageTitle';
 
 interface JoinUsProps {
   data: JoinRecord[];
+}
+interface Icon {
+  responsiveImage: ResponsiveImage;
+}
+
+interface SocialType {
+  id: number;
+  icon: Icon;
+  responsiveImage: ResponsiveImage;
+  description: StructuredTextFilter;
 }
 
 const JoinUs = ({ data }: JoinUsProps) => {
@@ -24,7 +39,7 @@ const JoinUs = ({ data }: JoinUsProps) => {
 społeczności"
       />
       <div className="cols md:flex md:flex-cols-3 gap-12">
-        {data.map((social: SocialRecord) => {
+        {data.map((social: SocialType) => {
           return (
             <div
               key={social.id}
