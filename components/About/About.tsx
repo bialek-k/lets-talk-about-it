@@ -16,12 +16,14 @@ export const About = ({ about }: AboutProps) => {
       <PageTitle title="o nas" subtitle="Let's Talk About IT" />
       <div className="content md:flex md:gap-24 justify-between">
         <div className="description py-6">
-          <TextHolder
-            structuredText
-            text={about.description?.value}
-            readMore
-            theme="dark"
-          />
+          {about.description?.value && (
+            <TextHolder
+              structuredText
+              text={about.description?.value}
+              readMore
+              theme="dark"
+            />
+          )}
         </div>
         <div className="person py-6 md:flex md:flex-col md:max-w-lg md:items-center">
           <h2 className="text-4xl font-bold">Małgorzata Rycak</h2>
