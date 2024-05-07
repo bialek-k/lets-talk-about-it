@@ -4,7 +4,7 @@ import { Image as DatoImage, ResponsiveImageType } from 'react-datocms';
 
 export interface ImageProps {
   image?: ResponsiveImageType | null;
-  alt: string | null | undefined;
+  alt?: string | null | undefined;
 }
 
 export const Image = ({ image }: ImageProps) => {
