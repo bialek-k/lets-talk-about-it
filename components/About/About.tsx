@@ -4,7 +4,7 @@ import React from 'react';
 import { PageTitle } from '../UI/PageTitle';
 import { TextHolder } from '../UI/TextHolder';
 import { Image } from '@/components/UI/Image';
-import { AboutRecord } from '@/graphql/generated';
+import { AboutRecord } from '@/gql/graphql';
 
 interface AboutProps {
   about: AboutRecord;
@@ -25,7 +25,13 @@ export const About = ({ about }: AboutProps) => {
         </div>
         <div className="person py-6 md:flex md:flex-col md:max-w-lg md:items-center">
           <h2 className="text-4xl font-bold">Małgorzata Rycak</h2>
-          <Image image={about.malgosiaImage?.responsiveImage} />
+          {about.malgosiaImage && about.malgosiaImage.responsiveImage ? (
+            // eslint-disable-next-line jsx-a11y/alt-text
+            <Image image={about.malgosiaImage.responsiveImage} />
+          ) : (
+            <div>Brak dostępnego obrazu</div>
+          )}
+
           <div className="content py-6">
             <TextHolder structuredText text={about.description?.value} />
           </div>

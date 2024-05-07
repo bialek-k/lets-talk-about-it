@@ -134,7 +134,7 @@ const Edition = async ({
                 </div>
                 <Image
                   image={speaker.image?.responsiveImage}
-                  alt={speaker.name}
+                  alt={speaker?.name}
                 />
               </div>
             ))}
