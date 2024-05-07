@@ -29,9 +29,10 @@ export const About = ({ about }: AboutProps) => {
           <h2 className="text-4xl font-bold">Małgorzata Rycak</h2>
           {about.malgosiaImage && about.malgosiaImage.responsiveImage ? (
             // eslint-disable-next-line jsx-a11y/alt-text
+
             <Image image={about.malgosiaImage.responsiveImage} />
           ) : (
-            <div>Brak dostępnego obrazu</div>
+            <div>Brak dostępneg obrazu</div>
           )}
 
           <div className="content py-6">
