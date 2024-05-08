@@ -2,7 +2,6 @@ query JoinUs($locale: SiteLocale) {
   allJoins(locale: $locale) {
     social {
       id
-      name
       description {
         value
       }

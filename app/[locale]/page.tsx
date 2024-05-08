@@ -6,10 +6,19 @@ import Linkedin from '@/components/Linkedin/Linkedin';
 import MainLogo from '@/components/MainLogo/MainLogo';
 import { OpenNav } from '@/components/Header/Header';
 
-import { MyQueryDocument, JoinUsDocument } from '@/graphql/generated';
+import {
+  MyQueryDocument,
+  JoinUsDocument,
+  EditionsDocument,
+} from '@/graphql/generated';
 import { About } from '@/components/About/About';
 import { request } from '@/lib/request';
 import JoinUs from '@/components/JoinUs/JoinUs';
+import MainTitle from '@/components/MainTitle/MainTitle';
+import LinesPattern from '@/IconsSVG/LinesPattern';
+import EditionHero from '@/components/EditionHero/EditionHero';
+import LeadSection from '@/components/LeadSection/LeadSection';
+import PartnersCarousel from '@/components/PartnersCarousel/PartnersCarousel';
 
 const i18nNamespaces = ['home'];
 
@@ -21,6 +30,10 @@ export default async function Home({
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
   const { about } = await request(MyQueryDocument, { locale });
   const { allJoins } = await request(JoinUsDocument, { locale });
+  const event = await request(EditionsDocument, {
+    locale,
+    new: true,
+  });
 
   return (
     <TranslationsProvider
@@ -30,7 +43,7 @@ export default async function Home({
     >
       <main
         id="main"
-        className="flex bg-main-black min-h-screen flex-col items-center justify-between  text-[#F5F5F5] font-sans w-full"
+        className="flex bg-main-black flex-col items-center justify-between  text-[#F5F5F5] w-full"
       >
         <div className="flex lg:hidden min-w-56 w-full flex-col items-center pt-10">
           <MainLogo className=" w-[100px] h-[100px]" />
@@ -54,10 +67,29 @@ export default async function Home({
             </div>
           </div>
         </div>
-        <section></section>
+        <div className="pt-[140px] pb-[240px]">
+          <MainTitle fill="#E2FF02" />
+        </div>
+        <div className="mr-auto">
+          <LinesPattern fill="#E2FF02" />
+        </div>
       </main>
       <About data={about} />
       <JoinUs data={allJoins[0].social} />
+      <EditionHero
+        locale={locale}
+        isMain={true}
+        edition={event.event?.edition}
+        translation={t}
+      />
+      <LeadSection
+        locale={locale}
+        edition={event.event?.edition}
+        translation={t}
+      />
+      <div className="bg-main-black py-20">
+        <PartnersCarousel locale={locale} isMain={true} />
+      </div>
     </TranslationsProvider>
   );
 }

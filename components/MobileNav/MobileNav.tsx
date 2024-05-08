@@ -57,7 +57,7 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
             initial={{ scale: 0, x: '100vw', y: '-100vh' }}
             animate={{ scale: 1, x: 0, y: 0 }}
             exit={{ scale: 0, x: '100vw', y: '-100vh' }}
-            transition={{ type: 'spring', stiffness: 100 }}
+            transition={{ type: 'spring', stiffness: 50, duration: 0.8 }}
             onClick={(e) => e.stopPropagation()}
             className="bg-main-black border-2 border-solid border-main-yellow text-white p-6 rounded-lg w-full max-w-[328px] shadow-xl cursor-default relative overflow-hidden flex flex-col items-center gap-10 overflow-y-auto m-auto"
           >
@@ -72,7 +72,10 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
               <span />
             </button>
             {/* LOGO */}
-            <MainLogo className="w-[80px] h-[80px]" />
+            <MainLogo
+              className="w-[80px] h-[80px]"
+              setIsOpen={() => setIsOpen(false)}
+            />
             {/* NAVIGATION */}
             <div className="flex flex-col items-start gap-5 self-start pl-[13px] pr-[49px] w-full text-base font-normal">
               {routes.map((route, index) => (

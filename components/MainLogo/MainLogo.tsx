@@ -1,9 +1,19 @@
+'use client';
 import MainLogoIcon from '@/IconsSVG/MainLogoIcon';
 import Link from 'next/link';
 
-const MainLogo = ({ className }: { className: string }) => {
+interface MainLogoProps {
+  className?: string;
+  setIsOpen?: (isOpen: boolean) => void;
+}
+
+const MainLogo = ({ className, setIsOpen }: MainLogoProps) => {
   return (
-    <Link className={className} href="/">
+    <Link
+      className={className}
+      href="/"
+      onClick={() => setIsOpen && setIsOpen(false)}
+    >
       <MainLogoIcon />
     </Link>
   );
