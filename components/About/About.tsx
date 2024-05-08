@@ -7,15 +7,15 @@ import { Image } from '@/components/UI/Image';
 import { AboutRecord } from '@/graphql/generated';
 
 interface AboutProps {
-  data: AboutRecord;
+  data: any;
 }
 
-export const About = ({ data }: AboutProps) => {
+export const About = ({ data }: any) => {
   return (
     <section id="about" className=" px-6 md:px-24 ">
       <PageTitle title="o nas" subtitle="Let's Talk About IT" />
       <div className="content md:flex md:gap-24 justify-between">
-        <div className="description py-6  ">
+        <div className="description py-6">
           <TextHolder
             structuredText
             text={data.description?.value}
@@ -25,7 +25,7 @@ export const About = ({ data }: AboutProps) => {
         </div>
         <div className="person py-6 md:flex md:flex-col md:max-w-lg md:items-center">
           <h2 className="text-4xl font-bold">Małgorzata Rycak</h2>
-          <Image image={data.malgosiaImage?.responsiveImage} alt="image" />
+          <Image image={data.malgosiaImage?.responsiveImage} />
           <div className="content py-6">
             <TextHolder structuredText text={data.malgosiaDescription?.value} />
           </div>

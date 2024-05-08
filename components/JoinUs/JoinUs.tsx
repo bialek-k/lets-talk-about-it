@@ -9,7 +9,7 @@ import { TextHolder } from '../UI/TextHolder';
 import { PageTitle } from '../UI/PageTitle';
 
 interface JoinUsProps {
-  data: JoinRecord[];
+  data: any;
 }
 
 const JoinUs = ({ data }: JoinUsProps) => {
@@ -24,7 +24,7 @@ const JoinUs = ({ data }: JoinUsProps) => {
 społeczności"
       />
       <div className="cols md:flex md:flex-cols-3 gap-12">
-        {data.map((social: SocialRecord) => {
+        {data.map((social: any) => {
           return (
             <div
               key={social.id}

@@ -1,28 +1,47 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  BooleanType: { input: boolean; output: boolean; }
-  CustomData: { input: Record<string, unknown>; output: Record<string, unknown>; }
-  Date: { input: string; output: string; }
-  DateTime: { input: string; output: string; }
-  FloatType: { input: number; output: number; }
-  IntType: { input: number; output: number; }
-  ItemId: { input: string; output: string; }
-  JsonField: { input: unknown; output: unknown; }
-  MetaTagAttributes: { input: Record<string, string>; output: Record<string, string>; }
-  UploadId: { input: string; output: string; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  BooleanType: { input: boolean; output: boolean };
+  CustomData: {
+    input: Record<string, unknown>;
+    output: Record<string, unknown>;
+  };
+  Date: { input: string; output: string };
+  DateTime: { input: string; output: string };
+  FloatType: { input: number; output: number };
+  IntType: { input: number; output: number };
+  ItemId: { input: string; output: string };
+  JsonField: { input: unknown; output: unknown };
+  MetaTagAttributes: {
+    input: Record<string, string>;
+    output: Record<string, string>;
+  };
+  UploadId: { input: string; output: string };
 };
 
 export type AboutModelDescriptionField = {
@@ -84,13 +103,15 @@ export enum AboutModelOrderBy {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
+  TitleDesc = 'title_DESC',
 }
 
 /** Record of type O nas (about) */
 export type AboutRecord = RecordInterface & {
   __typename?: 'AboutRecord';
-  _allDescriptionLocales?: Maybe<Array<AboutModelDescriptionFieldMultiLocaleField>>;
+  _allDescriptionLocales?: Maybe<
+    Array<AboutModelDescriptionFieldMultiLocaleField>
+  >;
   _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
@@ -113,31 +134,26 @@ export type AboutRecord = RecordInterface & {
   title?: Maybe<Scalars['String']['output']>;
 };
 
-
 /** Record of type O nas (about) */
 export type AboutRecord_AllDescriptionLocalesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
 };
-
 
 /** Record of type O nas (about) */
 export type AboutRecord_AllTitleLocalesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
 };
 
-
 /** Record of type O nas (about) */
 export type AboutRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 /** Record of type O nas (about) */
 export type AboutRecordDescriptionArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 /** Record of type O nas (about) */
 export type AboutRecordTitleArgs = {
@@ -168,7 +184,7 @@ export enum ColorBucketType {
   Purple = 'purple',
   Red = 'red',
   White = 'white',
-  Yellow = 'yellow'
+  Yellow = 'yellow',
 }
 
 export type ColorField = {
@@ -268,14 +284,16 @@ export enum EventModelOrderBy {
   SignAsc = 'sign_ASC',
   SignDesc = 'sign_DESC',
   TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
+  TitleDesc = 'title_DESC',
 }
 
 /** Record of type Event (event) */
 export type EventRecord = RecordInterface & {
   __typename?: 'EventRecord';
   _allLeadLocales?: Maybe<Array<PersonRecordListListNonNullMultiLocaleField>>;
-  _allSpeakersLocales?: Maybe<Array<PersonRecordListListNonNullMultiLocaleField>>;
+  _allSpeakersLocales?: Maybe<
+    Array<PersonRecordListListNonNullMultiLocaleField>
+  >;
   _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
@@ -302,30 +320,25 @@ export type EventRecord = RecordInterface & {
   title?: Maybe<Scalars['String']['output']>;
 };
 
-
 /** Record of type Event (event) */
 export type EventRecord_AllLeadLocalesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
 };
-
 
 /** Record of type Event (event) */
 export type EventRecord_AllSpeakersLocalesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
 };
 
-
 /** Record of type Event (event) */
 export type EventRecord_AllTitleLocalesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
 };
 
-
 /** Record of type Event (event) */
 export type EventRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 /** Record of type Event (event) */
 export type EventRecordLeadArgs = {
@@ -333,13 +346,11 @@ export type EventRecordLeadArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-
 /** Record of type Event (event) */
 export type EventRecordSpeakersArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 /** Record of type Event (event) */
 export type EventRecordTitleArgs = {
@@ -350,7 +361,7 @@ export type EventRecordTitleArgs = {
 export enum FaviconType {
   AppleTouchIcon = 'appleTouchIcon',
   Icon = 'icon',
-  MsApplication = 'msApplication'
+  MsApplication = 'msApplication',
 }
 
 export type FileField = FileFieldInterface & {
@@ -387,12 +398,10 @@ export type FileField = FileFieldInterface & {
   width?: Maybe<Scalars['IntType']['output']>;
 };
 
-
 export type FileFieldAltArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 export type FileFieldBlurUpThumbArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -401,18 +410,15 @@ export type FileFieldBlurUpThumbArgs = {
   size?: Scalars['Int']['input'];
 };
 
-
 export type FileFieldCustomDataArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
-
 export type FileFieldFocalPointArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 export type FileFieldResponsiveImageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -421,12 +427,10 @@ export type FileFieldResponsiveImageArgs = {
   sizes?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type FileFieldTitleArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 export type FileFieldUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -465,12 +469,10 @@ export type FileFieldInterface = {
   width?: Maybe<Scalars['IntType']['output']>;
 };
 
-
 export type FileFieldInterfaceAltArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 export type FileFieldInterfaceBlurUpThumbArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -479,18 +481,15 @@ export type FileFieldInterfaceBlurUpThumbArgs = {
   size?: Scalars['Int']['input'];
 };
 
-
 export type FileFieldInterfaceCustomDataArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
-
 export type FileFieldInterfaceFocalPointArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 export type FileFieldInterfaceResponsiveImageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -499,12 +498,10 @@ export type FileFieldInterfaceResponsiveImageArgs = {
   sizes?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type FileFieldInterfaceTitleArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 export type FileFieldInterfaceUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -574,7 +571,7 @@ export enum GalleryModelOrderBy {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
+  TitleDesc = 'title_DESC',
 }
 
 /** Record of type Galeria (gallery) */
@@ -597,7 +594,6 @@ export type GalleryRecord = RecordInterface & {
   images: Array<FileField>;
   title?: Maybe<Scalars['String']['output']>;
 };
-
 
 /** Record of type Galeria (gallery) */
 export type GalleryRecord_SeoMetaTagsArgs = {
@@ -1858,7 +1854,7 @@ export enum ImgixParamsAuto {
   Compress = 'compress',
   Enhance = 'enhance',
   Format = 'format',
-  Redeye = 'redeye'
+  Redeye = 'redeye',
 }
 
 export enum ImgixParamsBlendAlign {
@@ -1867,7 +1863,7 @@ export enum ImgixParamsBlendAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top'
+  Top = 'top',
 }
 
 export enum ImgixParamsBlendCrop {
@@ -1875,7 +1871,7 @@ export enum ImgixParamsBlendCrop {
   Faces = 'faces',
   Left = 'left',
   Right = 'right',
-  Top = 'top'
+  Top = 'top',
 }
 
 export enum ImgixParamsBlendFit {
@@ -1883,7 +1879,7 @@ export enum ImgixParamsBlendFit {
   Clip = 'clip',
   Crop = 'crop',
   Max = 'max',
-  Scale = 'scale'
+  Scale = 'scale',
 }
 
 export enum ImgixParamsBlendMode {
@@ -1902,17 +1898,17 @@ export enum ImgixParamsBlendMode {
   Overlay = 'overlay',
   Saturation = 'saturation',
   Screen = 'screen',
-  Softlight = 'softlight'
+  Softlight = 'softlight',
 }
 
 export enum ImgixParamsBlendSize {
-  Inherit = 'inherit'
+  Inherit = 'inherit',
 }
 
 export enum ImgixParamsCh {
   Dpr = 'dpr',
   SaveData = 'saveData',
-  Width = 'width'
+  Width = 'width',
 }
 
 export enum ImgixParamsCrop {
@@ -1923,19 +1919,19 @@ export enum ImgixParamsCrop {
   Focalpoint = 'focalpoint',
   Left = 'left',
   Right = 'right',
-  Top = 'top'
+  Top = 'top',
 }
 
 export enum ImgixParamsCs {
   Adobergb1998 = 'adobergb1998',
   Srgb = 'srgb',
   Strip = 'strip',
-  Tinysrgb = 'tinysrgb'
+  Tinysrgb = 'tinysrgb',
 }
 
 export enum ImgixParamsFill {
   Blur = 'blur',
-  Solid = 'solid'
+  Solid = 'solid',
 }
 
 export enum ImgixParamsFit {
@@ -1947,13 +1943,13 @@ export enum ImgixParamsFit {
   Fillmax = 'fillmax',
   Max = 'max',
   Min = 'min',
-  Scale = 'scale'
+  Scale = 'scale',
 }
 
 export enum ImgixParamsFlip {
   H = 'h',
   Hv = 'hv',
-  V = 'v'
+  V = 'v',
 }
 
 export enum ImgixParamsFm {
@@ -1970,12 +1966,12 @@ export enum ImgixParamsFm {
   Png8 = 'png8',
   Png32 = 'png32',
   Webm = 'webm',
-  Webp = 'webp'
+  Webp = 'webp',
 }
 
 export enum ImgixParamsIptc {
   Allow = 'allow',
-  Block = 'block'
+  Block = 'block',
 }
 
 export enum ImgixParamsMarkAlign {
@@ -1984,7 +1980,7 @@ export enum ImgixParamsMarkAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top'
+  Top = 'top',
 }
 
 export enum ImgixParamsMarkFit {
@@ -1992,25 +1988,25 @@ export enum ImgixParamsMarkFit {
   Crop = 'crop',
   Fill = 'fill',
   Max = 'max',
-  Scale = 'scale'
+  Scale = 'scale',
 }
 
 export enum ImgixParamsMarkTile {
-  Grid = 'grid'
+  Grid = 'grid',
 }
 
 export enum ImgixParamsPalette {
   Css = 'css',
-  Json = 'json'
+  Json = 'json',
 }
 
 export enum ImgixParamsTransparency {
-  Grid = 'grid'
+  Grid = 'grid',
 }
 
 export enum ImgixParamsTrim {
   Auto = 'auto',
-  Color = 'color'
+  Color = 'color',
 }
 
 export enum ImgixParamsTxtAlign {
@@ -2019,18 +2015,18 @@ export enum ImgixParamsTxtAlign {
   Left = 'left',
   Middle = 'middle',
   Right = 'right',
-  Top = 'top'
+  Top = 'top',
 }
 
 export enum ImgixParamsTxtClip {
   Ellipsis = 'ellipsis',
   End = 'end',
   Middle = 'middle',
-  Start = 'start'
+  Start = 'start',
 }
 
 export enum ImgixParamsTxtFit {
-  Max = 'max'
+  Max = 'max',
 }
 
 /** Specifies how to filter by usage */
@@ -2054,7 +2050,7 @@ export type ItemIdFilter = {
 export enum ItemStatus {
   Draft = 'draft',
   Published = 'published',
-  Updated = 'updated'
+  Updated = 'updated',
 }
 
 export type JoinModelFilter = {
@@ -2089,7 +2085,7 @@ export enum JoinModelOrderBy {
   UpdatedAtAsc = '_updatedAt_ASC',
   UpdatedAtDesc = '_updatedAt_DESC',
   IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
+  IdDesc = 'id_DESC',
 }
 
 /** Record of type Dołącz do nas (join) */
@@ -2112,7 +2108,6 @@ export type JoinRecord = RecordInterface & {
   social: Array<SocialRecord>;
 };
 
-
 /** Record of type Dołącz do nas (join) */
 export type JoinRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
@@ -2131,7 +2126,7 @@ export type LocalesFilter = {
 export enum MuxThumbnailFormatType {
   Gif = 'gif',
   Jpg = 'jpg',
-  Png = 'png'
+  Png = 'png',
 }
 
 /** Specifies how to filter by image orientation */
@@ -2148,6 +2143,7 @@ export type PartnerModelFilter = {
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
   _isValid?: InputMaybe<BooleanFilter>;
+  _locales?: InputMaybe<LocalesFilter>;
   _locales?: InputMaybe<LocalesFilter>;
   _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
   _publishedAt?: InputMaybe<PublishedAtFilter>;
@@ -2179,18 +2175,20 @@ export enum PartnerModelOrderBy {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
+  TitleDesc = 'title_DESC',
 }
 
 /** Record of type Partnerzy (partner) */
 export type PartnerRecord = RecordInterface & {
   __typename?: 'PartnerRecord';
   _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
+  _allTitleLocales?: Maybe<Array<StringMultiLocaleField>>;
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
   _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
   _isValid: Scalars['BooleanType']['output'];
+  _locales: Array<SiteLocale>;
   _locales: Array<SiteLocale>;
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
@@ -2205,18 +2203,26 @@ export type PartnerRecord = RecordInterface & {
   title?: Maybe<Scalars['String']['output']>;
 };
 
+/** Record of type Partnerzy (partner) */
+export type PartnerRecord_AllTitleLocalesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+};
 
 /** Record of type Partnerzy (partner) */
 export type PartnerRecord_AllTitleLocalesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
 };
 
-
 /** Record of type Partnerzy (partner) */
 export type PartnerRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Record of type Partnerzy (partner) */
+export type PartnerRecordTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
 
 /** Record of type Partnerzy (partner) */
 export type PartnerRecordTitleArgs = {
@@ -2245,7 +2251,6 @@ export type PersonRecord = RecordInterface & {
   name?: Maybe<Scalars['String']['output']>;
   role?: Maybe<Scalars['String']['output']>;
 };
-
 
 /** Block of type Person (person) */
 export type PersonRecord_SeoMetaTagsArgs = {
@@ -2294,7 +2299,7 @@ export enum PodcastModelOrderBy {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
+  TitleDesc = 'title_DESC',
 }
 
 /** Record of type Podcast (podcast) */
@@ -2319,7 +2324,6 @@ export type PodcastRecord = RecordInterface & {
   quest: Array<PersonRecord>;
   title?: Maybe<Scalars['String']['output']>;
 };
-
 
 /** Record of type Podcast (podcast) */
 export type PodcastRecord_SeoMetaTagsArgs = {
@@ -2393,13 +2397,11 @@ export type Query = {
   upload?: Maybe<FileField>;
 };
 
-
 /** The query root for this schema */
 export type Query_AllAboutsMetaArgs = {
   filter?: InputMaybe<AboutModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 /** The query root for this schema */
 export type Query_AllEventsMetaArgs = {
@@ -2407,13 +2409,11 @@ export type Query_AllEventsMetaArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-
 /** The query root for this schema */
 export type Query_AllGalleriesMetaArgs = {
   filter?: InputMaybe<GalleryModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 /** The query root for this schema */
 export type Query_AllJoinsMetaArgs = {
@@ -2421,13 +2421,11 @@ export type Query_AllJoinsMetaArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-
 /** The query root for this schema */
 export type Query_AllPartnersMetaArgs = {
   filter?: InputMaybe<PartnerModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 /** The query root for this schema */
 export type Query_AllPodcastsMetaArgs = {
@@ -2435,20 +2433,17 @@ export type Query_AllPodcastsMetaArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-
 /** The query root for this schema */
 export type Query_AllUploadsMetaArgs = {
   filter?: InputMaybe<UploadFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
-
 /** The query root for this schema */
 export type Query_SiteArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 /** The query root for this schema */
 export type QueryAboutArgs = {
@@ -2457,7 +2452,6 @@ export type QueryAboutArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<AboutModelOrderBy>>>;
 };
-
 
 /** The query root for this schema */
 export type QueryAllAboutsArgs = {
@@ -2469,7 +2463,6 @@ export type QueryAllAboutsArgs = {
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
-
 /** The query root for this schema */
 export type QueryAllEventsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -2479,7 +2472,6 @@ export type QueryAllEventsArgs = {
   orderBy?: InputMaybe<Array<InputMaybe<EventModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
-
 
 /** The query root for this schema */
 export type QueryAllGalleriesArgs = {
@@ -2491,7 +2483,6 @@ export type QueryAllGalleriesArgs = {
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
-
 /** The query root for this schema */
 export type QueryAllJoinsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -2501,7 +2492,6 @@ export type QueryAllJoinsArgs = {
   orderBy?: InputMaybe<Array<InputMaybe<JoinModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
-
 
 /** The query root for this schema */
 export type QueryAllPartnersArgs = {
@@ -2513,7 +2503,6 @@ export type QueryAllPartnersArgs = {
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
-
 /** The query root for this schema */
 export type QueryAllPodcastsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -2523,7 +2512,6 @@ export type QueryAllPodcastsArgs = {
   orderBy?: InputMaybe<Array<InputMaybe<PodcastModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
-
 
 /** The query root for this schema */
 export type QueryAllUploadsArgs = {
@@ -2535,7 +2523,6 @@ export type QueryAllUploadsArgs = {
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
-
 /** The query root for this schema */
 export type QueryEventArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -2543,7 +2530,6 @@ export type QueryEventArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<EventModelOrderBy>>>;
 };
-
 
 /** The query root for this schema */
 export type QueryGalleryArgs = {
@@ -2553,7 +2539,6 @@ export type QueryGalleryArgs = {
   orderBy?: InputMaybe<Array<InputMaybe<GalleryModelOrderBy>>>;
 };
 
-
 /** The query root for this schema */
 export type QueryJoinArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -2561,7 +2546,6 @@ export type QueryJoinArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<JoinModelOrderBy>>>;
 };
-
 
 /** The query root for this schema */
 export type QueryPartnerArgs = {
@@ -2571,7 +2555,6 @@ export type QueryPartnerArgs = {
   orderBy?: InputMaybe<Array<InputMaybe<PartnerModelOrderBy>>>;
 };
 
-
 /** The query root for this schema */
 export type QueryPodcastArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -2579,7 +2562,6 @@ export type QueryPodcastArgs = {
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<PodcastModelOrderBy>>>;
 };
-
 
 /** The query root for this schema */
 export type QueryUploadArgs = {
@@ -2606,7 +2588,6 @@ export type RecordInterface = {
   id: Scalars['ItemId']['output'];
 };
 
-
 export type RecordInterface_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -2627,7 +2608,7 @@ export enum ResolutionType {
   Icon = 'icon',
   Large = 'large',
   Medium = 'medium',
-  Small = 'small'
+  Small = 'small',
 }
 
 export type ResponsiveImage = {
@@ -2663,11 +2644,9 @@ export type Site = {
   noIndex?: Maybe<Scalars['BooleanType']['output']>;
 };
 
-
 export type SiteFaviconMetaTagsArgs = {
   variants?: InputMaybe<Array<InputMaybe<FaviconType>>>;
 };
-
 
 export type SiteGlobalSeoArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -2676,7 +2655,7 @@ export type SiteGlobalSeoArgs = {
 
 export enum SiteLocale {
   En = 'en',
-  Pl = 'pl'
+  Pl = 'pl',
 }
 
 export type SocialModelDescriptionField = {
@@ -2707,7 +2686,6 @@ export type SocialRecord = RecordInterface & {
   id: Scalars['ItemId']['output'];
   name?: Maybe<Scalars['String']['output']>;
 };
-
 
 /** Block of type Social (social) */
 export type SocialRecord_SeoMetaTagsArgs = {
@@ -3019,13 +2997,13 @@ export enum UploadOrderBy {
   ResolutionAsc = 'resolution_ASC',
   ResolutionDesc = 'resolution_DESC',
   SizeAsc = 'size_ASC',
-  SizeDesc = 'size_DESC'
+  SizeDesc = 'size_DESC',
 }
 
 export enum UploadOrientation {
   Landscape = 'landscape',
   Portrait = 'portrait',
-  Square = 'square'
+  Square = 'square',
 }
 
 /** Specifies how to filter by size */
@@ -3084,7 +3062,7 @@ export enum UploadType {
   Presentation = 'presentation',
   Richtext = 'richtext',
   Spreadsheet = 'spreadsheet',
-  Video = 'video'
+  Video = 'video',
 }
 
 /** Specifies how to filter by update datetime */
@@ -3121,12 +3099,10 @@ export type UploadVideoField = {
   width: Scalars['IntType']['output'];
 };
 
-
 export type UploadVideoFieldAltArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
-
 
 export type UploadVideoFieldBlurUpThumbArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
@@ -3135,17 +3111,14 @@ export type UploadVideoFieldBlurUpThumbArgs = {
   size?: Scalars['Int']['input'];
 };
 
-
 export type UploadVideoFieldMp4UrlArgs = {
   exactRes?: InputMaybe<VideoMp4Res>;
   res?: InputMaybe<VideoMp4Res>;
 };
 
-
 export type UploadVideoFieldThumbnailUrlArgs = {
   format?: InputMaybe<MuxThumbnailFormatType>;
 };
-
 
 export type UploadVideoFieldTitleArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
@@ -3171,7 +3144,7 @@ export type UploadWidthFilter = {
 export enum VideoMp4Res {
   High = 'high',
   Low = 'low',
-  Medium = 'medium'
+  Medium = 'medium',
 }
 
 export type FocalPoint = {
@@ -3184,39 +3157,992 @@ export type MyQueryQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
 }>;
 
-
-export type MyQueryQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: string, title?: string | null, description?: { __typename?: 'AboutModelDescriptionField', value: unknown } | null, malgosiaDescription?: { __typename?: 'AboutModelMalgosiaDescriptionField', value: unknown } | null, malgosiaImage?: { __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, base64?: string | null, bgColor?: string | null, title?: string | null, aspectRatio: number, height: number, sizes: string, src: string, srcSet: string, webpSrcSet: string, width: number } | null } | null } | null };
+export type MyQueryQuery = {
+  __typename?: 'Query';
+  about?: {
+    __typename?: 'AboutRecord';
+    description?: {
+      __typename?: 'AboutModelDescriptionField';
+      value: unknown;
+    } | null;
+    malgosiaDescription?: {
+      __typename?: 'AboutModelMalgosiaDescriptionField';
+      value: unknown;
+    } | null;
+    malgosiaImage?: {
+      __typename?: 'FileField';
+      responsiveImage?: {
+        __typename?: 'ResponsiveImage';
+        alt?: string | null;
+        base64?: string | null;
+        bgColor?: string | null;
+        title?: string | null;
+        aspectRatio: number;
+        height: number;
+        sizes: string;
+        src: string;
+        srcSet: string;
+        webpSrcSet: string;
+        width: number;
+      } | null;
+    } | null;
+  } | null;
+};
 
 export type EditionsQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
   edition?: InputMaybe<Scalars['String']['input']>;
 }>;
 
+export type EditionsQuery = {
+  __typename?: 'Query';
+  event?: {
+    __typename?: 'EventRecord';
+    id: string;
+    title?: string | null;
+    edition?: string | null;
+    new: boolean;
+    date?: string | null;
+    sign?: string | null;
+    location?: string | null;
+    lead: Array<{
+      __typename?: 'PersonRecord';
+      name?: string | null;
+      role?: string | null;
+      image?: {
+        __typename?: 'FileField';
+        responsiveImage?: {
+          __typename?: 'ResponsiveImage';
+          alt?: string | null;
+          base64?: string | null;
+          bgColor?: string | null;
+          title?: string | null;
+          aspectRatio: number;
+          height: number;
+          sizes: string;
+          src: string;
+          srcSet: string;
+          webpSrcSet: string;
+          width: number;
+        } | null;
+      } | null;
+    }>;
+    speakers: Array<{
+      __typename?: 'PersonRecord';
+      name?: string | null;
+      role?: string | null;
+      image?: {
+        __typename?: 'FileField';
+        responsiveImage?: {
+          __typename?: 'ResponsiveImage';
+          alt?: string | null;
+          base64?: string | null;
+          bgColor?: string | null;
+          title?: string | null;
+          aspectRatio: number;
+          height: number;
+          sizes: string;
+          src: string;
+          srcSet: string;
+          webpSrcSet: string;
+          width: number;
+        } | null;
+      } | null;
+    }>;
+  } | null;
+};
 
-export type EditionsQuery = { __typename?: 'Query', event?: { __typename?: 'EventRecord', id: string, title?: string | null, edition?: string | null, new: boolean, date?: string | null, sign?: string | null, location?: string | null, lead: Array<{ __typename?: 'PersonRecord', name?: string | null, role?: string | null, image?: { __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, base64?: string | null, bgColor?: string | null, title?: string | null, aspectRatio: number, height: number, sizes: string, src: string, srcSet: string, webpSrcSet: string, width: number } | null } | null }>, speakers: Array<{ __typename?: 'PersonRecord', name?: string | null, role?: string | null, image?: { __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, base64?: string | null, bgColor?: string | null, title?: string | null, aspectRatio: number, height: number, sizes: string, src: string, srcSet: string, webpSrcSet: string, width: number } | null } | null }> } | null };
+export type EventRoutesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type EventRoutesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type EventRoutesQuery = { __typename?: 'Query', allEvents: Array<{ __typename?: 'EventRecord', edition?: string | null }> };
+export type EventRoutesQuery = {
+  __typename?: 'Query';
+  allEvents: Array<{ __typename?: 'EventRecord'; edition?: string | null }>;
+};
 
 export type JoinUsQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
 }>;
 
-
-export type JoinUsQuery = { __typename?: 'Query', allJoins: Array<{ __typename?: 'JoinRecord', social: Array<{ __typename?: 'SocialRecord', id: string, name?: string | null, description?: { __typename?: 'SocialModelDescriptionField', value: unknown } | null, icon?: { __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, base64?: string | null, bgColor?: string | null, title?: string | null, aspectRatio: number, height: number, sizes: string, src: string, srcSet: string, webpSrcSet: string, width: number } | null } | null }> }> };
+export type JoinUsQuery = {
+  __typename?: 'Query';
+  allJoins: Array<{
+    __typename?: 'JoinRecord';
+    social: Array<{
+      __typename?: 'SocialRecord';
+      id: string;
+      name?: string | null;
+      description?: {
+        __typename?: 'SocialModelDescriptionField';
+        value: unknown;
+      } | null;
+      icon?: {
+        __typename?: 'FileField';
+        responsiveImage?: {
+          __typename?: 'ResponsiveImage';
+          alt?: string | null;
+          base64?: string | null;
+          bgColor?: string | null;
+          title?: string | null;
+          aspectRatio: number;
+          height: number;
+          sizes: string;
+          src: string;
+          srcSet: string;
+          webpSrcSet: string;
+          width: number;
+        } | null;
+      } | null;
+    }>;
+  }>;
+};
 
 export type PartnersQueryVariables = Exact<{
   locale?: InputMaybe<SiteLocale>;
 }>;
 
+export type PartnersQuery = {
+  __typename?: 'Query';
+  allPartners: Array<{
+    __typename?: 'PartnerRecord';
+    title?: string | null;
+    images: Array<{
+      __typename?: 'FileField';
+      responsiveImage?: {
+        __typename?: 'ResponsiveImage';
+        alt?: string | null;
+        base64?: string | null;
+        bgColor?: string | null;
+        title?: string | null;
+        aspectRatio: number;
+        height: number;
+        sizes: string;
+        src: string;
+        width: number;
+      } | null;
+    }>;
+  }>;
+};
 
-export type PartnersQuery = { __typename?: 'Query', allPartners: Array<{ __typename?: 'PartnerRecord', title?: string | null, images: Array<{ __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, base64?: string | null, bgColor?: string | null, title?: string | null, aspectRatio: number, height: number, sizes: string, src: string, width: number } | null }> }> };
-
-
-export const MyQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MyQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"SiteLocale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"about"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"malgosiaDescription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"malgosiaImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"imgixParams"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fit"},"value":{"kind":"EnumValue","value":"crop"}},{"kind":"ObjectField","name":{"kind":"Name","value":"w"},"value":{"kind":"IntValue","value":"300"}},{"kind":"ObjectField","name":{"kind":"Name","value":"h"},"value":{"kind":"IntValue","value":"300"}},{"kind":"ObjectField","name":{"kind":"Name","value":"auto"},"value":{"kind":"EnumValue","value":"format"}},{"kind":"ObjectField","name":{"kind":"Name","value":"q"},"value":{"kind":"IntValue","value":"75"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"srcSet"}},{"kind":"Field","name":{"kind":"Name","value":"webpSrcSet"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}}]}}]} as unknown as DocumentNode<MyQueryQuery, MyQueryQueryVariables>;
-export const EditionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Editions"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"SiteLocale"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"edition"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"edition"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"edition"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"edition"}},{"kind":"Field","name":{"kind":"Name","value":"new"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"sign"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"lead"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"role"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"imgixParams"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fit"},"value":{"kind":"EnumValue","value":"crop"}},{"kind":"ObjectField","name":{"kind":"Name","value":"w"},"value":{"kind":"IntValue","value":"300"}},{"kind":"ObjectField","name":{"kind":"Name","value":"h"},"value":{"kind":"IntValue","value":"300"}},{"kind":"ObjectField","name":{"kind":"Name","value":"auto"},"value":{"kind":"EnumValue","value":"format"}},{"kind":"ObjectField","name":{"kind":"Name","value":"q"},"value":{"kind":"IntValue","value":"75"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"srcSet"}},{"kind":"Field","name":{"kind":"Name","value":"webpSrcSet"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"speakers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"role"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"imgixParams"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fit"},"value":{"kind":"EnumValue","value":"crop"}},{"kind":"ObjectField","name":{"kind":"Name","value":"w"},"value":{"kind":"IntValue","value":"300"}},{"kind":"ObjectField","name":{"kind":"Name","value":"h"},"value":{"kind":"IntValue","value":"300"}},{"kind":"ObjectField","name":{"kind":"Name","value":"auto"},"value":{"kind":"EnumValue","value":"format"}},{"kind":"ObjectField","name":{"kind":"Name","value":"q"},"value":{"kind":"IntValue","value":"75"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"srcSet"}},{"kind":"Field","name":{"kind":"Name","value":"webpSrcSet"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<EditionsQuery, EditionsQueryVariables>;
-export const EventRoutesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"EventRoutes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allEvents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edition"}}]}}]}}]} as unknown as DocumentNode<EventRoutesQuery, EventRoutesQueryVariables>;
-export const JoinUsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"JoinUs"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"SiteLocale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allJoins"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"social"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"imgixParams"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fit"},"value":{"kind":"EnumValue","value":"crop"}},{"kind":"ObjectField","name":{"kind":"Name","value":"w"},"value":{"kind":"IntValue","value":"300"}},{"kind":"ObjectField","name":{"kind":"Name","value":"h"},"value":{"kind":"IntValue","value":"300"}},{"kind":"ObjectField","name":{"kind":"Name","value":"auto"},"value":{"kind":"EnumValue","value":"format"}},{"kind":"ObjectField","name":{"kind":"Name","value":"q"},"value":{"kind":"IntValue","value":"75"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"srcSet"}},{"kind":"Field","name":{"kind":"Name","value":"webpSrcSet"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<JoinUsQuery, JoinUsQueryVariables>;
-export const PartnersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Partners"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"SiteLocale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allPartners"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"bgColor"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"aspectRatio"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}}]}}]} as unknown as DocumentNode<PartnersQuery, PartnersQueryVariables>;
+export const MyQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'MyQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NamedType',
+            name: { kind: 'Name', value: 'SiteLocale' },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'about' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'description' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'malgosiaDescription' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'malgosiaImage' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'responsiveImage' },
+                        arguments: [
+                          {
+                            kind: 'Argument',
+                            name: { kind: 'Name', value: 'imgixParams' },
+                            value: {
+                              kind: 'ObjectValue',
+                              fields: [
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'fit' },
+                                  value: { kind: 'EnumValue', value: 'crop' },
+                                },
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'w' },
+                                  value: { kind: 'IntValue', value: '300' },
+                                },
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'h' },
+                                  value: { kind: 'IntValue', value: '300' },
+                                },
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'auto' },
+                                  value: { kind: 'EnumValue', value: 'format' },
+                                },
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'q' },
+                                  value: { kind: 'IntValue', value: '75' },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'alt' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'base64' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'bgColor' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'aspectRatio' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'height' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sizes' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'src' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'srcSet' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'webpSrcSet' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'width' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MyQueryQuery, MyQueryQueryVariables>;
+export const EditionsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'Editions' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NamedType',
+            name: { kind: 'Name', value: 'SiteLocale' },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'edition' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'event' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filter' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'edition' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'edition' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'edition' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'new' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'date' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'sign' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'location' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'lead' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'role' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'image' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'responsiveImage' },
+                              arguments: [
+                                {
+                                  kind: 'Argument',
+                                  name: { kind: 'Name', value: 'imgixParams' },
+                                  value: {
+                                    kind: 'ObjectValue',
+                                    fields: [
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'fit' },
+                                        value: {
+                                          kind: 'EnumValue',
+                                          value: 'crop',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'w' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '300',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'h' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '300',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'auto' },
+                                        value: {
+                                          kind: 'EnumValue',
+                                          value: 'format',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'q' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '75',
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'alt' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'base64' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'bgColor' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'aspectRatio',
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'height' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sizes' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'src' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'srcSet' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'webpSrcSet' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'width' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'speakers' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'role' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'image' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'responsiveImage' },
+                              arguments: [
+                                {
+                                  kind: 'Argument',
+                                  name: { kind: 'Name', value: 'imgixParams' },
+                                  value: {
+                                    kind: 'ObjectValue',
+                                    fields: [
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'fit' },
+                                        value: {
+                                          kind: 'EnumValue',
+                                          value: 'crop',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'w' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '300',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'h' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '300',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'auto' },
+                                        value: {
+                                          kind: 'EnumValue',
+                                          value: 'format',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'q' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '75',
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'alt' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'base64' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'bgColor' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'aspectRatio',
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'height' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sizes' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'src' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'srcSet' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'webpSrcSet' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'width' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<EditionsQuery, EditionsQueryVariables>;
+export const EventRoutesDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'EventRoutes' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'allEvents' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'edition' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<EventRoutesQuery, EventRoutesQueryVariables>;
+export const JoinUsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'JoinUs' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NamedType',
+            name: { kind: 'Name', value: 'SiteLocale' },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'allJoins' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'social' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'description' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'value' },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'icon' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'responsiveImage' },
+                              arguments: [
+                                {
+                                  kind: 'Argument',
+                                  name: { kind: 'Name', value: 'imgixParams' },
+                                  value: {
+                                    kind: 'ObjectValue',
+                                    fields: [
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'fit' },
+                                        value: {
+                                          kind: 'EnumValue',
+                                          value: 'crop',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'w' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '300',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'h' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '300',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'auto' },
+                                        value: {
+                                          kind: 'EnumValue',
+                                          value: 'format',
+                                        },
+                                      },
+                                      {
+                                        kind: 'ObjectField',
+                                        name: { kind: 'Name', value: 'q' },
+                                        value: {
+                                          kind: 'IntValue',
+                                          value: '75',
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'alt' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'base64' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'bgColor' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'aspectRatio',
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'height' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sizes' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'src' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'srcSet' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'webpSrcSet' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'width' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<JoinUsQuery, JoinUsQueryVariables>;
+export const PartnersDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'Partners' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NamedType',
+            name: { kind: 'Name', value: 'SiteLocale' },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'allPartners' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'images' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'responsiveImage' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'alt' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'base64' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'bgColor' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'aspectRatio' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'height' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sizes' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'src' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'width' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PartnersQuery, PartnersQueryVariables>;
