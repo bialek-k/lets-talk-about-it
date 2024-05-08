@@ -3,7 +3,6 @@ import { request } from '@/lib/request';
 
 export const fetchEvents = async () => {
   const results = await request(EventRoutesDocument);
-  console.log(results);
 
   return [
     {

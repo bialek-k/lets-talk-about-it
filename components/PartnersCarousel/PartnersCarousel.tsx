@@ -3,11 +3,21 @@ import { request } from '@/lib/request';
 import Marquee from '../Marquee/Marquee';
 import Image from 'next/image';
 
-const PartnersCarousel = async ({ locale }: { locale: string }) => {
+const PartnersCarousel = async ({
+  locale,
+  isMain,
+}: {
+  locale: string;
+  isMain?: boolean;
+}) => {
   const results = await request(PartnersDocument, { locale });
   return (
     <div className="flex flex-col items-center justify-center">
-      <h3 className="font-semibold text-[40px] leading-[52px] text-start self-start w-full ml-4">
+      <h3
+        className={`${
+          isMain ? 'text-main-white' : 'text-main-black'
+        } font-semibold text-[40px] leading-[52px] text-start self-start w-full ml-4 lg:ml-[100px]`}
+      >
         {results.allPartners[0]?.title}
       </h3>
       <Marquee>
@@ -23,9 +33,6 @@ const PartnersCarousel = async ({ locale }: { locale: string }) => {
           </div>
         ))}
       </Marquee>
-      <div className=" w-screen">
-        {/* <pre>{JSON.stringify(results, null, 2)}</pre> */}
-      </div>
     </div>
   );
 };
