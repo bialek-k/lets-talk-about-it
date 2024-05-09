@@ -1,5 +1,5 @@
-query Partners($locale: SiteLocale) {
-  allPartners(locale: $locale) {
+query PartnersPage($locale: SiteLocale) {
+  partner(locale: $locale) {
     title
     images {
       responsiveImage {

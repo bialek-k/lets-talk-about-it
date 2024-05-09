@@ -1,3 +1,5 @@
+'use client';
+
 import { AboutModelDescriptionField } from '@/graphql/generated';
 import React, { useEffect, useState } from 'react';
 
