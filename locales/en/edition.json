@@ -1,11 +1,12 @@
 {
-  "invite": "INVITATION",
+  "invite": "We invite you for the",
   "Edition": "EDITION",
   "edition": "edition",
-  "event": "EVENT",
+  "Event": "of event",
   "sign": "Sign Up",
-  "gallery": "GALLERY",
+  "gallery": "gallery",
   "lead": "HOST",
-  "spekers": "SPEAKERS",
-  "partners": "partners"
+  "speakers": "SPEAKERS",
+  "partners": "partners",
+  "noGallery": "Photos will be added soon"
 }

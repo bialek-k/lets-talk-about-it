@@ -1,5 +1,5 @@
-query Editions($locale: SiteLocale, $edition: String) {
-  event(locale: $locale, filter: {edition: {eq: $edition}}) {
+query Editions($locale: SiteLocale, $edition: String, $new:BooleanType) {
+  event(locale: $locale, filter: {new: {eq: $new}, edition: {eq: $edition}}) {
     id
     title
     edition
@@ -12,7 +12,7 @@ query Editions($locale: SiteLocale, $edition: String) {
         role
         image {
           responsiveImage(
-        imgixParams: { fit: crop, w: 300, h: 300, auto: format, q: 75 }
+        imgixParams: { fit: crop, w: 300, h: 300, auto: format }
       ) {
         alt
         base64
@@ -33,7 +33,7 @@ query Editions($locale: SiteLocale, $edition: String) {
         role
         image {
           responsiveImage(
-        imgixParams: { fit: crop, w: 300, h: 300, auto: format, q: 75 }
+        imgixParams: { fit: crop, w: 300, h: 300, auto: format, }
       ) {
         alt
         base64
@@ -49,6 +49,20 @@ query Editions($locale: SiteLocale, $edition: String) {
       }
         }
     }
-
+    images {
+      thumbhash
+      responsiveImage(imgixParams: {auto: format}) {
+        src
+        srcSet
+        title
+        webpSrcSet
+        height
+        base64
+        aspectRatio
+        sizes
+        width
+      }
+      basename
+    }
   }
 }

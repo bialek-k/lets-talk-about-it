@@ -7,13 +7,19 @@ import Header from '@/components/Header/Header';
 import TranslationsProvider from '@/components/TranslationsProvider/TranslationProvider';
 import initTranslations from '../i18n';
 import Footer from '@/components/Footer/Footer';
-
 const i18nNamespaces = ['home'];
+import { IBM_Plex_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
   title: `Let's Talk About IT`,
   description: "Landing page for Let's Talk About IT project",
 };
+
+const ibm = IBM_Plex_Sans({
+  display: 'swap',
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+});
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }));
@@ -27,13 +33,9 @@ export default async function RootLayout({
   params: { locale: string };
 }) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
-  const isMain = React.Children.toArray(children).some(
-    (child) => React.isValidElement(child) && child.props.id === 'main'
-  );
-
   return (
-    <html lang={locale} dir={dir(locale)}>
-      <body className="overflow-x-hidden flex flex-col items-center">
+    <html lang={locale} dir={dir(locale)} className={ibm.className}>
+      <body className={`${ibm} overflow-x-hidden flex flex-col items-center`}>
         <TranslationsProvider
           namespaces={i18nNamespaces}
           locale={locale}

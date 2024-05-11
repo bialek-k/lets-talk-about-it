@@ -109,6 +109,7 @@ export default function Header({ isMain }: { isMain?: boolean }) {
                     />
                   </div>
                 )}
+                {/* SUBROUTE EVENTS */}
                 {route.content && (
                   <AnimatePresence>
                     {isSubMenuOpen && (
@@ -119,7 +120,7 @@ export default function Header({ isMain }: { isMain?: boolean }) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: '-100%' }}
                         transition={{ duration: 0.3 }}
-                        className="text-base font-normal flex flex-col w-full absolute top-10 "
+                        className="text-base font-normal flex flex-col w-full absolute top-10 right-[10px] border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
                       >
                         {route.content.map((subRoute, index) => (
                           <motion.div

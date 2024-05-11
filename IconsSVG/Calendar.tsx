@@ -1,8 +1,8 @@
-const Calendar = () => {
+const Calendar = ({ width, height }: { width: string; height: string }) => {
   return (
     <svg
-      width="28"
-      height="32"
+      width={width}
+      height={height}
       viewBox="0 0 28 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -22,6 +22,18 @@ query MyQuery($locale: SiteLocale, $edition: String) {
             url
         }
     }
-
+gallery {
+  responsiveImage {
+        alt
+        base64
+        bgColor
+        title
+        aspectRatio
+        height
+        sizes
+        src
+        width
+      }
+}
   }
 }`;

@@ -2,10 +2,11 @@
   "invite": "Zapraszamy na",
   "Edition": "EDYCJA",
   "edition": "edycję",
-  "event": "wydarzenia",
+  "Event": "wydarzenia",
   "sign": "Zapisz się",
-  "gallery": "Galeria",
+  "gallery": "galeria",
   "lead": "PROWADZĄCA",
   "speakers": "PRELEGENCI",
-  "partners": "partnerzy"
+  "partners": "partnerzy",
+  "noGallery": "Zdjęcia zostaną dodane wkrótce"
 }
