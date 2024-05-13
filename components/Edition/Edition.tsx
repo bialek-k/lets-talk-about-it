@@ -30,7 +30,7 @@ const Edition = async ({
   });
 
   return (
-    <section className="w-full">
+    <section className="w-full mx-auto">
       <div className="flex flex-col items-center justify-center ">
         {/* HERO SECTION */}
         <EditionHero locale={locale} edition={edition} translation={t} />

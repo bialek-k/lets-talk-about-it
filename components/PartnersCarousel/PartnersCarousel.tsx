@@ -12,11 +12,11 @@ const PartnersCarousel = async ({
 }) => {
   const results = await request(PartnersDocument, { locale });
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-full mx-auto">
       <h3
         className={`${
           isMain ? 'text-main-white' : 'text-main-black'
-        } font-semibold text-[40px] leading-[52px] text-start self-start w-full ml-4 lg:ml-[100px]`}
+        } font-semibold text-[40px] leading-[52px] text-start self-start ml-4 lg:ml-[100px]`}
       >
         {results.allPartners[0]?.title}
       </h3>

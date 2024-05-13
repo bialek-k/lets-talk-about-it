@@ -25,7 +25,7 @@ export const fetchEvents = async () => {
       name: 'partners',
     },
     {
-      path: '/contact',
+      path: '#contact',
       name: 'contact',
     },
   ];
