@@ -87,7 +87,7 @@ export default async function Home({
         edition={event.event?.edition}
         translation={t}
       />
-      <div className="bg-main-black py-20">
+      <div className="bg-main-black py-20 w-full mx-auto">
         <PartnersCarousel locale={locale} isMain={true} />
       </div>
     </TranslationsProvider>

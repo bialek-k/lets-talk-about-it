@@ -21,14 +21,22 @@ interface GalleryProps {
   };
 }
 
+export const ImageContainer = ({ image }: GalleryProps) => {
+  return (
+    <div className="relative bg-main-yellow rounded mt-[30px] mr-[30px] max-w-[260px] max-h-[260px] lg:max-w-[300px] lg:max-h-[300px]">
+      <DatoImage
+        className="absolute top-[-30px] right-[-30px] rounded"
+        data={image.responsiveImage}
+        layout="responsive"
+      />
+    </div>
+  );
+};
+
 const ImageGalleryItem = ({ image }: GalleryProps) => {
   const [open, setOpen] = useState(false);
   return (
-    <div
-      key={image.basename}
-      onClick={() => setOpen(!open)}
-      // className=" relative h-[155px] lg:h-[300px] w-[155px] lg:w-[300px] cursor-pointer"
-    >
+    <div key={image.basename} onClick={() => setOpen(!open)}>
       <DatoImage
         className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
         data={image.responsiveImage}

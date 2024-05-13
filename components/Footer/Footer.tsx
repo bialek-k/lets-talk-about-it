@@ -12,7 +12,10 @@ import { useTranslation } from 'react-i18next';
 const Footer = () => {
   const { t } = useTranslation();
   return (
-    <footer className="w-full flex flex-col gap-10 items-center justify-center mx-auto pb-5 lg:pb-16 lg:px-[100px]">
+    <footer
+      id="contact"
+      className="w-full flex flex-col gap-10 items-center justify-center mx-auto pb-5 lg:pb-16 lg:px-[100px]"
+    >
       <div className="lg:invisible visible w-full flex items-center justify-end">
         <LinesPattern fill="#0C0C0C" />
       </div>
