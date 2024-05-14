@@ -88,7 +88,7 @@ export default async function Home({
         translation={t}
       />
       <div className="bg-main-black py-20 w-full mx-auto">
-        <PartnersCarousel locale={locale} isMain={true} />
+        <PartnersCarousel locale={locale} isMain={true} translation={t} />
       </div>
     </TranslationsProvider>
   );
