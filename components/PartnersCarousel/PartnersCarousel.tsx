@@ -2,23 +2,27 @@ import { PartnersDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
 import Marquee from '../Marquee/Marquee';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 const PartnersCarousel = async ({
   locale,
   isMain,
+  translation,
 }: {
   locale: string;
   isMain?: boolean;
+  translation: (key: string) => string;
 }) => {
   const results = await request(PartnersDocument, { locale });
+  const t = translation;
   return (
-    <div className="flex flex-col items-center justify-center w-full mx-auto">
+    <div className="flex flex-col items-center justify-center w-screen mx-auto">
       <h3
         className={`${
           isMain ? 'text-main-white' : 'text-main-black'
         } font-semibold text-[40px] leading-[52px] text-start self-start ml-4 lg:ml-[100px]`}
       >
-        {results.allPartners[0]?.title}
+        {t('partnerzy')}
       </h3>
       <Marquee>
         {results.allPartners[0].images.map((partner) => (

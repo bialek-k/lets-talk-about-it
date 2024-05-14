@@ -30,8 +30,8 @@ const Edition = async ({
   });
 
   return (
-    <section className="w-full mx-auto">
-      <div className="flex flex-col items-center justify-center ">
+    <section className="">
+      <div className="">
         {/* HERO SECTION */}
         <EditionHero locale={locale} edition={edition} translation={t} />
         {/* LEAD SECTION */}
@@ -68,8 +68,8 @@ const Edition = async ({
           )}
         </div>
         {/* PARTNERS */}
-        <div className="pt-20">
-          <PartnersCarousel locale={locale} />
+        <div className="pt-20 w-full mx-auto">
+          <PartnersCarousel locale={locale} translation={t} />
         </div>
       </div>
     </section>
