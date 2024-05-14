@@ -67,14 +67,41 @@ export default async function Home({
             </div>
           </div>
         </div>
-        <div className="pt-[140px] pb-[240px]">
+        <div className="pt-[140px] pb-[240px] px-4">
           <MainTitle fill="#E2FF02" />
         </div>
         <div className="mr-auto">
           <LinesPattern fill="#E2FF02" />
         </div>
       </main>
-      <About data={about} />
+      <About
+        data={{
+          description: {
+            value: about?.description?.value,
+          },
+          malgosiaDescription: {
+            value: about?.malgosiaDescription?.value,
+          },
+          malgosiaImage: {
+            basename: about?.malgosiaImage?.basename ?? '',
+            responsiveImage: {
+              src: about?.malgosiaImage?.responsiveImage?.src ?? '',
+              aspectRatio:
+                about?.malgosiaImage?.responsiveImage?.aspectRatio ?? 1,
+              sizes: about?.malgosiaImage?.responsiveImage?.sizes ?? '',
+              srcSet: about?.malgosiaImage?.responsiveImage?.srcSet ?? '',
+              webpSrcSet:
+                about?.malgosiaImage?.responsiveImage?.webpSrcSet ?? '',
+              base64: about?.malgosiaImage?.responsiveImage?.base64 ?? '',
+              height: about?.malgosiaImage?.responsiveImage?.height ?? 0,
+              width: about?.malgosiaImage?.responsiveImage?.width ?? 0,
+              title: about?.malgosiaImage?.responsiveImage?.title ?? '',
+              alt: about?.malgosiaImage?.responsiveImage?.alt ?? '',
+              bgColor: about?.malgosiaImage?.responsiveImage?.bgColor ?? '',
+            },
+          },
+        }}
+      />
       <JoinUs data={allJoins[0].social} />
       <EditionHero
         locale={locale}

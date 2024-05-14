@@ -27,6 +27,7 @@ query Editions($locale: SiteLocale, $edition: String, $new:BooleanType) {
         srcSet
         webpSrcSet
         width
+        alt
       }
         }
     }
@@ -48,6 +49,7 @@ query Editions($locale: SiteLocale, $edition: String, $new:BooleanType) {
         aspectRatio
         sizes
         width
+        alt
       }
         }
     }

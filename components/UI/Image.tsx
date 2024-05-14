@@ -3,30 +3,33 @@ import React from 'react';
 import { Image as DatoImage } from 'react-datocms';
 
 export interface ImageProps {
-  image: any;
+  alt: string;
+  image: {
+    basename: string;
+    responsiveImage: {
+      alt?: string;
+      bgColor?: string;
+      src: string;
+      base64: string;
+      height: number;
+      width: number;
+      aspectRatio: number;
+      sizes: string;
+      srcSet: string;
+      webpSrcSet: string;
+      title: string;
+    };
+  };
 }
 
-export interface ResponsiveImage {
-  alt: any;
-  base64: string;
-  bgColor: string;
-  title: any;
-  aspectRatio: number;
-  height: number;
-  sizes: string;
-  src: string;
-  srcSet: string;
-  webpSrcSet: string;
-  width: number;
-}
-
-export const Image = ({ image }: any) => {
+export const Image = ({ image, alt }: ImageProps) => {
   return (
-    <div className="relative w-64 h-64 container mx-auto my-12">
-      <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6" />
-      <div className="w-full bg-red-400">
-        <DatoImage data={image} className="" layout="fill" />
-      </div>
+    <div className="relative bg-main-yellow rounded mt-[30px] mr-[30px] max-w-[260px] max-h-[260px] lg:max-w-[300px] lg:max-h-[300px]">
+      <DatoImage
+        className="absolute top-[-30px] right-[-30px] rounded"
+        data={image.responsiveImage}
+        layout="responsive"
+      />
     </div>
   );
 };

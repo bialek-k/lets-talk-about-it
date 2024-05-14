@@ -8,6 +8,8 @@ interface GalleryProps {
   image: {
     basename: string;
     responsiveImage: {
+      alt?: string;
+      bgColor?: string;
       src: string;
       base64: string;
       height: number;
@@ -20,18 +22,6 @@ interface GalleryProps {
     };
   };
 }
-
-export const ImageContainer = ({ image }: GalleryProps) => {
-  return (
-    <div className="relative bg-main-yellow rounded mt-[30px] mr-[30px] max-w-[260px] max-h-[260px] lg:max-w-[300px] lg:max-h-[300px]">
-      <DatoImage
-        className="absolute top-[-30px] right-[-30px] rounded"
-        data={image.responsiveImage}
-        layout="responsive"
-      />
-    </div>
-  );
-};
 
 const ImageGalleryItem = ({ image }: GalleryProps) => {
   const [open, setOpen] = useState(false);

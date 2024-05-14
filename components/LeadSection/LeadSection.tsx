@@ -2,11 +2,9 @@ import LinesPattern from '@/IconsSVG/LinesPattern';
 import TextBorderLine from '@/IconsSVG/TextBorderLine';
 import { EditionsDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
-// import { Image } from '../UI/Image';
 import Arrow from '@/IconsSVG/Arrow';
 import Button from '../UI/Button';
-import { Image as DatoImage } from '../UI/Image';
-import { ImageContainer } from '../UI/ImageGalleryItem';
+import { Image } from '../UI/Image';
 
 interface ImageProps {
   image: {
@@ -69,10 +67,12 @@ const LeadSection = async ({
               </p>
             </div>
             <div>
-              <ImageContainer
+              <Image
+                alt={leader.image?.basename ?? ''}
                 image={{
                   basename: leader.image?.basename ?? '',
                   responsiveImage: {
+                    alt: leader.image?.responsiveImage?.alt ?? '',
                     src: leader.image?.responsiveImage?.src ?? '',
                     base64: leader.image?.responsiveImage?.base64 ?? '',
                     height: leader.image?.responsiveImage?.height ?? 0,
@@ -115,7 +115,8 @@ const LeadSection = async ({
               </p>
             </div>
             <div>
-              <ImageContainer
+              <Image
+                alt={speaker.image?.basename ?? ''}
                 image={{
                   basename: speaker.image?.basename ?? '',
                   responsiveImage: {

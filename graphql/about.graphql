@@ -7,6 +7,7 @@ query MyQuery($locale: SiteLocale) {
       value
     }
     malgosiaImage {
+      basename
       responsiveImage(
         imgixParams: { fit: crop, w: 300, h: 300, auto: format, q: 75 }
       ) {
