@@ -8,7 +8,7 @@ export function request<TDocument = any>(
   variables?: Variables
 ) {
   return graphqlRequest<TDocument, Variables>(
-    `${process.env.NEXT_PUBLIC_HYGRAPH_URI}`,
+    'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clw5ez35a035f07uosp2vtc7s/master',
     document,
     variables
   );
