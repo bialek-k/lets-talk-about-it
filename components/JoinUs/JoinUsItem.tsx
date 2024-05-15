@@ -6,13 +6,14 @@ import { RichTextContent } from '@graphcms/rich-text-types';
 interface JoinUsItemProps {
   social: RichTextContent;
   icon?: JSX.Element;
+  small?: boolean;
 }
 
-export const JoinUsItem = ({ social, icon }: JoinUsItemProps) => {
+export const JoinUsItem = ({ social, icon, small }: JoinUsItemProps) => {
   return (
-    <div className="socialItem py-6 flex flex-col items-center">
-      <div className="icon w-24 mb-12">{icon}</div>
-      <TextHolder content={social} theme="light" />
+    <div className="socialItem flex flex-col items-center">
+      <div className="icon mb-12 max-h-28">{icon}</div>
+      <TextHolder content={social} readMore theme="light" small={small} />
     </div>
   );
 };

@@ -1,0 +1,12 @@
+query PartnersQuery($locale: Locale!) {
+  partner(where: { id: "clw7sout213xu07w5n05dsj1z" }, locales: [$locale]) {
+    title
+    logos(locales: en) {
+      id
+      height
+      width
+      url
+      fileName
+    }
+  }
+}

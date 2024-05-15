@@ -30,15 +30,14 @@ export default async function Home({
   params: { locale: Locale };
 }) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
-  // const { about } = await request(MyQueryDocument, { locale });
-  // const { allJoins } = await request(JoinUsDocument, { locale });
+
+  const { about } = await request(AboutQueryDocument, { locale });
+  const { join_us } = await request(JoinUsQueryDocument, { locale });
+
   // const event = await request(EditionsDocument, {
   //   locale,
   //   new: true,
   // });
-
-  const { about } = await request(AboutQueryDocument, { locale });
-  const { join_us } = await request(JoinUsQueryDocument, { locale });
 
   return (
     <TranslationsProvider
@@ -82,7 +81,7 @@ export default async function Home({
       <About about={about} />
 
       <JoinUs join_us={join_us} />
-      {/*
+
       {/* <EditionHero
         locale={locale}
         isMain={true}
@@ -95,7 +94,7 @@ export default async function Home({
         translation={t}
       /> */}
       <div className="bg-main-black py-20 w-full mx-auto">
-        {/* <PartnersCarousel locale={locale} isMain={true} translation={t} /> */}
+        <PartnersCarousel locale={locale} isMain={true} translation={t} />
       </div>
     </TranslationsProvider>
   );

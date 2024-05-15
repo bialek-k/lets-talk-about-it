@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import { PageTitle } from '../UI/PageTitle';
@@ -14,30 +12,33 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
   return (
     <section
       id="#joinus"
-      className=" mx-auto px-6 md:px-24 bg-main-black py-12 flex flex-col items-center"
+      className="px-6 md:px-24 bg-main-black w-full py-12 flex flex-col items-center"
     >
       <PageTitle
         color="white"
         title="dołącz do naszej
 społeczności"
       />
-      <div className="cols md:flex md:flex-cols-3 gap-12">
+      <div className="flex flex-wrap md:flex-col-3 justify-center gap-6">
         {join_us?.facebook_description && (
           <JoinUsItem
             social={join_us.facebook_description.raw}
             icon={<FacebookIcon_yellow />}
+            small
           />
         )}
         {join_us?.linkedin_description && (
           <JoinUsItem
             social={join_us.linkedin_description.raw}
             icon={<LinkedinIcon_yellow />}
+            small
           />
         )}
         {join_us?.youtube_description && (
           <JoinUsItem
             social={join_us.youtube_description.raw}
             icon={<YoutubeIcon_yellow />}
+            small
           />
         )}
       </div>
