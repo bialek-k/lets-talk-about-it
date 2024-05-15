@@ -15,7 +15,11 @@ import EditionHero from '@/components/EditionHero/EditionHero';
 import LeadSection from '@/components/LeadSection/LeadSection';
 import PartnersCarousel from '@/components/PartnersCarousel/PartnersCarousel';
 
-import { Locale, AboutQueryDocument } from '@/graphql/generated';
+import {
+  Locale,
+  AboutQueryDocument,
+  JoinUsQueryDocument,
+} from '@/graphql/generated';
 import { request } from '@/lib/request';
 
 const i18nNamespaces = ['home'];
@@ -34,6 +38,7 @@ export default async function Home({
   // });
 
   const { about } = await request(AboutQueryDocument, { locale });
+  const { join_us } = await request(JoinUsQueryDocument, { locale });
 
   return (
     <TranslationsProvider
@@ -63,7 +68,7 @@ export default async function Home({
               />
             </div>
             <div className="ml-auto relative right-4 flex">
-              {/* <OpenNav /> */}
+              <OpenNav />
             </div>
           </div>
         </div>
@@ -76,8 +81,8 @@ export default async function Home({
       </main>
       <About about={about} />
 
+      <JoinUs join_us={join_us} />
       {/*
-      <JoinUs data={allJoins[0].social} /> */}
       {/* <EditionHero
         locale={locale}
         isMain={true}

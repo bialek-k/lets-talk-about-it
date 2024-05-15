@@ -1478,6 +1478,7 @@ export enum EntityTypeName {
   /** Asset system model */
   Asset = 'Asset',
   Event = 'Event',
+  JoinUs = 'Join_us',
   Person = 'Person',
   /** Scheduled Operation system model */
   ScheduledOperation = 'ScheduledOperation',
@@ -2489,6 +2490,506 @@ export type ImageTransformationInput = {
   sharpen?: InputMaybe<ImageSharpenInput>;
 };
 
+export type Join_Us = Entity & Node & {
+  __typename?: 'Join_us';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<Join_Us>;
+  facebook_description: RichText;
+  /** List of Join_us versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  linkedin_description: RichText;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Join_Us>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  youtube_description: RichText;
+};
+
+
+export type Join_UsCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type Join_UsCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type Join_UsDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type Join_UsHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type Join_UsLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  locales?: Array<Locale>;
+};
+
+
+export type Join_UsPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type Join_UsPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type Join_UsScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type Join_UsUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type Join_UsUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type Join_UsConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: Join_UsWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type Join_UsConnection = {
+  __typename?: 'Join_usConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<Join_UsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type Join_UsCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** facebook_description input for default locale (en) */
+  facebook_description: Scalars['RichTextAST']['input'];
+  /** linkedin_description input for default locale (en) */
+  linkedin_description: Scalars['RichTextAST']['input'];
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<Join_UsCreateLocalizationsInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** youtube_description input for default locale (en) */
+  youtube_description: Scalars['RichTextAST']['input'];
+};
+
+export type Join_UsCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  facebook_description: Scalars['RichTextAST']['input'];
+  linkedin_description: Scalars['RichTextAST']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  youtube_description: Scalars['RichTextAST']['input'];
+};
+
+export type Join_UsCreateLocalizationInput = {
+  /** Localization input */
+  data: Join_UsCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type Join_UsCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<Join_UsCreateLocalizationInput>>;
+};
+
+export type Join_UsCreateManyInlineInput = {
+  /** Connect multiple existing Join_us documents */
+  connect?: InputMaybe<Array<Join_UsWhereUniqueInput>>;
+  /** Create and connect multiple existing Join_us documents */
+  create?: InputMaybe<Array<Join_UsCreateInput>>;
+};
+
+export type Join_UsCreateOneInlineInput = {
+  /** Connect one existing Join_us document */
+  connect?: InputMaybe<Join_UsWhereUniqueInput>;
+  /** Create and connect one Join_us document */
+  create?: InputMaybe<Join_UsCreateInput>;
+};
+
+/** An edge in a connection. */
+export type Join_UsEdge = {
+  __typename?: 'Join_usEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Join_Us;
+};
+
+/** Identifies documents */
+export type Join_UsManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<Join_UsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<Join_UsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<Join_UsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<Join_UsWhereStageInput>;
+  documentInStages_none?: InputMaybe<Join_UsWhereStageInput>;
+  documentInStages_some?: InputMaybe<Join_UsWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum Join_UsOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type Join_UsUpdateInput = {
+  /** facebook_description input for default locale (en) */
+  facebook_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  /** linkedin_description input for default locale (en) */
+  linkedin_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<Join_UsUpdateLocalizationsInput>;
+  /** youtube_description input for default locale (en) */
+  youtube_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+};
+
+export type Join_UsUpdateLocalizationDataInput = {
+  facebook_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  linkedin_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  youtube_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+};
+
+export type Join_UsUpdateLocalizationInput = {
+  data: Join_UsUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type Join_UsUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<Join_UsCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<Join_UsUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<Join_UsUpsertLocalizationInput>>;
+};
+
+export type Join_UsUpdateManyInlineInput = {
+  /** Connect multiple existing Join_us documents */
+  connect?: InputMaybe<Array<Join_UsConnectInput>>;
+  /** Create and connect multiple Join_us documents */
+  create?: InputMaybe<Array<Join_UsCreateInput>>;
+  /** Delete multiple Join_us documents */
+  delete?: InputMaybe<Array<Join_UsWhereUniqueInput>>;
+  /** Disconnect multiple Join_us documents */
+  disconnect?: InputMaybe<Array<Join_UsWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Join_us documents */
+  set?: InputMaybe<Array<Join_UsWhereUniqueInput>>;
+  /** Update multiple Join_us documents */
+  update?: InputMaybe<Array<Join_UsUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Join_us documents */
+  upsert?: InputMaybe<Array<Join_UsUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type Join_UsUpdateManyInput = {
+  /** facebook_description input for default locale (en) */
+  facebook_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  /** linkedin_description input for default locale (en) */
+  linkedin_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<Join_UsUpdateManyLocalizationsInput>;
+  /** youtube_description input for default locale (en) */
+  youtube_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+};
+
+export type Join_UsUpdateManyLocalizationDataInput = {
+  facebook_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  linkedin_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  youtube_description?: InputMaybe<Scalars['RichTextAST']['input']>;
+};
+
+export type Join_UsUpdateManyLocalizationInput = {
+  data: Join_UsUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type Join_UsUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<Join_UsUpdateManyLocalizationInput>>;
+};
+
+export type Join_UsUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: Join_UsUpdateManyInput;
+  /** Document search */
+  where: Join_UsWhereInput;
+};
+
+export type Join_UsUpdateOneInlineInput = {
+  /** Connect existing Join_us document */
+  connect?: InputMaybe<Join_UsWhereUniqueInput>;
+  /** Create and connect one Join_us document */
+  create?: InputMaybe<Join_UsCreateInput>;
+  /** Delete currently connected Join_us document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected Join_us document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Join_us document */
+  update?: InputMaybe<Join_UsUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Join_us document */
+  upsert?: InputMaybe<Join_UsUpsertWithNestedWhereUniqueInput>;
+};
+
+export type Join_UsUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: Join_UsUpdateInput;
+  /** Unique document search */
+  where: Join_UsWhereUniqueInput;
+};
+
+export type Join_UsUpsertInput = {
+  /** Create document if it didn't exist */
+  create: Join_UsCreateInput;
+  /** Update document if it exists */
+  update: Join_UsUpdateInput;
+};
+
+export type Join_UsUpsertLocalizationInput = {
+  create: Join_UsCreateLocalizationDataInput;
+  locale: Locale;
+  update: Join_UsUpdateLocalizationDataInput;
+};
+
+export type Join_UsUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: Join_UsUpsertInput;
+  /** Unique document search */
+  where: Join_UsWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type Join_UsWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type Join_UsWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<Join_UsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<Join_UsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<Join_UsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<Join_UsWhereStageInput>;
+  documentInStages_none?: InputMaybe<Join_UsWhereStageInput>;
+  documentInStages_some?: InputMaybe<Join_UsWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type Join_UsWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<Join_UsWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<Join_UsWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<Join_UsWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<Join_UsWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Join_us record uniquely */
+export type Join_UsWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 /** Locale system enumeration */
 export enum Locale {
   /** System locale */
@@ -2524,6 +3025,8 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one event */
   createEvent?: Maybe<Event>;
+  /** Create one join_us */
+  createJoin_us?: Maybe<Join_Us>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one about from _all_ existing stages. Returns deleted document. */
@@ -2532,6 +3035,8 @@ export type Mutation = {
   deleteAsset?: Maybe<Asset>;
   /** Delete one event from _all_ existing stages. Returns deleted document. */
   deleteEvent?: Maybe<Event>;
+  /** Delete one join_us from _all_ existing stages. Returns deleted document. */
+  deleteJoin_us?: Maybe<Join_Us>;
   /**
    * Delete many About documents
    * @deprecated Please use the new paginated many mutation (deleteManyAboutsConnection)
@@ -2553,6 +3058,13 @@ export type Mutation = {
   deleteManyEvents: BatchPayload;
   /** Delete many Event documents, return deleted documents */
   deleteManyEventsConnection: EventConnection;
+  /**
+   * Delete many Join_us documents
+   * @deprecated Please use the new paginated many mutation (deleteManyJoin_ussConnection)
+   */
+  deleteManyJoin_uss: BatchPayload;
+  /** Delete many Join_us documents, return deleted documents */
+  deleteManyJoin_ussConnection: Join_UsConnection;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -2563,6 +3075,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one event */
   publishEvent?: Maybe<Event>;
+  /** Publish one join_us */
+  publishJoin_us?: Maybe<Join_Us>;
   /**
    * Publish many About documents
    * @deprecated Please use the new paginated many mutation (publishManyAboutsConnection)
@@ -2584,24 +3098,37 @@ export type Mutation = {
   publishManyEvents: BatchPayload;
   /** Publish many Event documents */
   publishManyEventsConnection: EventConnection;
+  /**
+   * Publish many Join_us documents
+   * @deprecated Please use the new paginated many mutation (publishManyJoin_ussConnection)
+   */
+  publishManyJoin_uss: BatchPayload;
+  /** Publish many Join_us documents */
+  publishManyJoin_ussConnection: Join_UsConnection;
   /** Schedule to publish one about */
   schedulePublishAbout?: Maybe<About>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one event */
   schedulePublishEvent?: Maybe<Event>;
+  /** Schedule to publish one join_us */
+  schedulePublishJoin_us?: Maybe<Join_Us>;
   /** Unpublish one about from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAbout?: Maybe<About>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one event from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishEvent?: Maybe<Event>;
+  /** Unpublish one join_us from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishJoin_us?: Maybe<Join_Us>;
   /** Unpublish one about from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAbout?: Maybe<About>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one event from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishEvent?: Maybe<Event>;
+  /** Unpublish one join_us from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishJoin_us?: Maybe<Join_Us>;
   /**
    * Unpublish many About documents
    * @deprecated Please use the new paginated many mutation (unpublishManyAboutsConnection)
@@ -2623,12 +3150,21 @@ export type Mutation = {
   unpublishManyEvents: BatchPayload;
   /** Find many Event documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyEventsConnection: EventConnection;
+  /**
+   * Unpublish many Join_us documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyJoin_ussConnection)
+   */
+  unpublishManyJoin_uss: BatchPayload;
+  /** Find many Join_us documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyJoin_ussConnection: Join_UsConnection;
   /** Update one about */
   updateAbout?: Maybe<About>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /** Update one event */
   updateEvent?: Maybe<Event>;
+  /** Update one join_us */
+  updateJoin_us?: Maybe<Join_Us>;
   /**
    * Update many abouts
    * @deprecated Please use the new paginated many mutation (updateManyAboutsConnection)
@@ -2650,6 +3186,13 @@ export type Mutation = {
   updateManyEvents: BatchPayload;
   /** Update many Event documents */
   updateManyEventsConnection: EventConnection;
+  /**
+   * Update many join_uss
+   * @deprecated Please use the new paginated many mutation (updateManyJoin_ussConnection)
+   */
+  updateManyJoin_uss: BatchPayload;
+  /** Update many Join_us documents */
+  updateManyJoin_ussConnection: Join_UsConnection;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Upsert one about */
@@ -2658,6 +3201,8 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one event */
   upsertEvent?: Maybe<Event>;
+  /** Upsert one join_us */
+  upsertJoin_us?: Maybe<Join_Us>;
 };
 
 
@@ -2673,6 +3218,11 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateEventArgs = {
   data: EventCreateInput;
+};
+
+
+export type MutationCreateJoin_UsArgs = {
+  data: Join_UsCreateInput;
 };
 
 
@@ -2693,6 +3243,11 @@ export type MutationDeleteAssetArgs = {
 
 export type MutationDeleteEventArgs = {
   where: EventWhereUniqueInput;
+};
+
+
+export type MutationDeleteJoin_UsArgs = {
+  where: Join_UsWhereUniqueInput;
 };
 
 
@@ -2741,6 +3296,21 @@ export type MutationDeleteManyEventsConnectionArgs = {
 };
 
 
+export type MutationDeleteManyJoin_UssArgs = {
+  where?: InputMaybe<Join_UsManyWhereInput>;
+};
+
+
+export type MutationDeleteManyJoin_UssConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<Join_UsManyWhereInput>;
+};
+
+
 export type MutationDeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
@@ -2774,6 +3344,15 @@ export type MutationPublishEventArgs = {
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where: EventWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationPublishJoin_UsArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  to?: Array<Stage>;
+  where: Join_UsWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -2850,6 +3429,30 @@ export type MutationPublishManyEventsConnectionArgs = {
 };
 
 
+export type MutationPublishManyJoin_UssArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<Join_UsManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationPublishManyJoin_UssConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<Join_UsManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
 export type MutationSchedulePublishAboutArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2879,6 +3482,17 @@ export type MutationSchedulePublishEventArgs = {
   releaseId?: InputMaybe<Scalars['String']['input']>;
   to?: Array<Stage>;
   where: EventWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationSchedulePublishJoin_UsArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: Join_UsWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -2913,6 +3527,16 @@ export type MutationScheduleUnpublishEventArgs = {
 };
 
 
+export type MutationScheduleUnpublishJoin_UsArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where: Join_UsWhereUniqueInput;
+};
+
+
 export type MutationUnpublishAboutArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2934,6 +3558,14 @@ export type MutationUnpublishEventArgs = {
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: EventWhereUniqueInput;
+};
+
+
+export type MutationUnpublishJoin_UsArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where: Join_UsWhereUniqueInput;
 };
 
 
@@ -3003,6 +3635,28 @@ export type MutationUnpublishManyEventsConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyJoin_UssArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<Join_UsManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyJoin_UssConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<Join_UsManyWhereInput>;
+};
+
+
 export type MutationUpdateAboutArgs = {
   data: AboutUpdateInput;
   where: AboutWhereUniqueInput;
@@ -3018,6 +3672,12 @@ export type MutationUpdateAssetArgs = {
 export type MutationUpdateEventArgs = {
   data: EventUpdateInput;
   where: EventWhereUniqueInput;
+};
+
+
+export type MutationUpdateJoin_UsArgs = {
+  data: Join_UsUpdateInput;
+  where: Join_UsWhereUniqueInput;
 };
 
 
@@ -3072,6 +3732,23 @@ export type MutationUpdateManyEventsConnectionArgs = {
 };
 
 
+export type MutationUpdateManyJoin_UssArgs = {
+  data: Join_UsUpdateManyInput;
+  where?: InputMaybe<Join_UsManyWhereInput>;
+};
+
+
+export type MutationUpdateManyJoin_UssConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  data: Join_UsUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<Join_UsManyWhereInput>;
+};
+
+
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
@@ -3093,6 +3770,12 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertEventArgs = {
   upsert: EventUpsertInput;
   where: EventWhereUniqueInput;
+};
+
+
+export type MutationUpsertJoin_UsArgs = {
+  upsert: Join_UsUpsertInput;
+  where: Join_UsWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -3618,6 +4301,14 @@ export type Query = {
   events: Array<Event>;
   /** Retrieve multiple events using the Relay connection interface */
   eventsConnection: EventConnection;
+  /** Retrieve a single join_us */
+  join_us?: Maybe<Join_Us>;
+  /** Retrieve document version */
+  join_usVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple join_uss */
+  join_uss: Array<Join_Us>;
+  /** Retrieve multiple join_uss using the Relay connection interface */
+  join_ussConnection: Join_UsConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Retrieve a single scheduledOperation */
@@ -3758,6 +4449,44 @@ export type QueryEventsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: Stage;
   where?: InputMaybe<EventWhereInput>;
+};
+
+
+export type QueryJoin_UsArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: Join_UsWhereUniqueInput;
+};
+
+
+export type QueryJoin_UsVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryJoin_UssArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<Join_UsOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<Join_UsWhereInput>;
+};
+
+
+export type QueryJoin_UssConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<Join_UsOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<Join_UsWhereInput>;
 };
 
 
@@ -3978,7 +4707,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = About | Asset | Event;
+export type ScheduledOperationAffectedDocument = About | Asset | Event | Join_Us;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -5431,5 +6160,13 @@ export type AboutQueryQueryVariables = Exact<{
 
 export type AboutQueryQuery = { __typename?: 'Query', about?: { __typename?: 'About', title: string, description: { __typename?: 'RichText', raw: any }, malgosia_description: { __typename?: 'RichText', raw: any }, malgosia_image: { __typename?: 'Asset', url: string, width?: number | null, height?: number | null, fileName: string } } | null };
 
+export type JoinUsQueryQueryVariables = Exact<{
+  locale: Locale;
+}>;
+
+
+export type JoinUsQueryQuery = { __typename?: 'Query', join_us?: { __typename?: 'Join_us', facebook_description: { __typename?: 'RichText', raw: any }, linkedin_description: { __typename?: 'RichText', raw: any }, youtube_description: { __typename?: 'RichText', raw: any } } | null };
+
 
 export const AboutQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AboutQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"about"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw6y1gcx6my207w6oxtppa4c","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"malgosia_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"malgosia_image"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<AboutQueryQuery, AboutQueryQueryVariables>;
+export const JoinUsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"JoinUsQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"join_us"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw7o3sj94j4007usyxtpzp1q","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"facebook_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"linkedin_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"youtube_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}}]}}]}}]} as unknown as DocumentNode<JoinUsQueryQuery, JoinUsQueryQueryVariables>;
