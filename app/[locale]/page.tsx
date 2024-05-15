@@ -19,6 +19,7 @@ import {
   Locale,
   AboutQueryDocument,
   JoinUsQueryDocument,
+  NewEventQueryDocument,
 } from '@/graphql/generated';
 import { request } from '@/lib/request';
 
@@ -33,11 +34,9 @@ export default async function Home({
 
   const { about } = await request(AboutQueryDocument, { locale });
   const { join_us } = await request(JoinUsQueryDocument, { locale });
-
-  // const event = await request(EditionsDocument, {
-  //   locale,
-  //   new: true,
-  // });
+  const {
+    events: [newEvent],
+  } = await request(NewEventQueryDocument, { locale });
 
   return (
     <TranslationsProvider
@@ -79,20 +78,14 @@ export default async function Home({
         </div>
       </main>
       <About about={about} />
-
       <JoinUs join_us={join_us} />
-
-      {/* <EditionHero
+      <EditionHero
         locale={locale}
         isMain={true}
-        edition={event.event?.edition}
+        edition={newEvent}
         translation={t}
       />
-      <LeadSection
-        locale={locale}
-        edition={event.event?.edition}
-        translation={t}
-      /> */}
+      <LeadSection locale={locale} edition={newEvent} translation={t} />
       <div className="bg-main-black py-20 w-full mx-auto">
         <PartnersCarousel locale={locale} isMain={true} translation={t} />
       </div>

@@ -1,8 +1,8 @@
 import toRoman from '../UI/NumberToRoman';
 import Arrow from '@/IconsSVG/Arrow';
 import { request } from '@/lib/request';
-import { EditionsDocument, PartnersDocument } from '@/graphql/generated';
-import { Image } from '../UI/ImageContainer';
+import { EditionQueryDocument } from '@/graphql/generated';
+
 import Button from '../UI/Button';
 import Calendar from '@/IconsSVG/Calendar';
 import Location from '../Location/Location';
@@ -24,18 +24,16 @@ const Edition = async ({
   translation: (key: string) => string;
 }) => {
   const t = translation;
-  const results = await request(EditionsDocument, {
-    locale,
-    edition,
-  });
+
+  const { event } = await request(EditionQueryDocument, { locale, edition });
 
   return (
     <section className="">
       <div className="">
         {/* HERO SECTION */}
-        <EditionHero locale={locale} edition={edition} translation={t} />
+        <EditionHero locale={locale} edition={event} translation={t} />
         {/* LEAD SECTION */}
-        <LeadSection locale={locale} edition={edition} translation={t} />
+        <LeadSection locale={locale} edition={event} translation={t} />
         {/* GALERIA */}
         <div
           id="gallery"
@@ -44,23 +42,8 @@ const Edition = async ({
           <h2 className="font-semibold text-[40px] leading-[52px] text-start self-start w-full mb-5 lg:ml-[100px]">
             {t('gallery')}
           </h2>
-          {results.event?.images && results.event.images.length > 0 ? (
-            <Gallery
-              images={results.event.images.map((image) => ({
-                basename: image.basename,
-                responsiveImage: {
-                  src: image.responsiveImage?.src ?? '',
-                  base64: image.responsiveImage?.base64 ?? '',
-                  height: image.responsiveImage?.height ?? 0,
-                  width: image.responsiveImage?.width ?? 0,
-                  aspectRatio: image.responsiveImage?.aspectRatio ?? 0,
-                  sizes: image.responsiveImage?.sizes ?? '',
-                  srcSet: image.responsiveImage?.srcSet ?? '',
-                  webpSrcSet: image.responsiveImage?.webpSrcSet ?? '',
-                  title: image.responsiveImage?.title ?? '',
-                },
-              }))}
-            />
+          {event?.gallery.length ? (
+            <Gallery images={event?.gallery} />
           ) : (
             <div className=" font-semibold text-lg leading-6">
               {t('noGallery')}

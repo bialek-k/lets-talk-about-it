@@ -1,0 +1,7 @@
+query EventsRoutes {
+  events(stage: PUBLISHED) {
+    id
+    slug
+    edition
+  }
+}
