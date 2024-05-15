@@ -1,7 +1,6 @@
 import LinesPattern from '@/IconsSVG/LinesPattern';
 import {
   EditionQueryDocument,
-  EditionsDocument,
   Event,
   EventCreateInput,
   NewEventQueryQuery,
