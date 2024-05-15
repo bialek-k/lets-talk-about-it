@@ -1,41 +1,58 @@
-import { Image } from '@/components/UI/ImageContainer';
+import EnvelopIconYellow from '@/IconsSVG/EnvelopIcon_yellow';
 import { PageTitle } from '@/components/UI/PageTitle';
 import { TextHolder } from '@/components/UI/TextHolder';
-import { PartnersPageDocument } from '@/graphql/generated';
+import { PartnersQueryDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
-
-import { Image as DatoImage } from 'react-datocms';
+import { RichText } from '@graphcms/rich-text-react-renderer';
+import Image from 'next/image';
 
 const Partners = async ({
   params: { locale },
 }: {
   params: { locale: string };
 }) => {
-  const results = await request(PartnersPageDocument, { locale });
+  const { partner } = await request(PartnersQueryDocument, { locale });
 
   return (
     <section className="mt-16 md:mt-24 w-full min-h-screen ">
-      <div className="bg-main-black px-4 flex flex-col h-full items-center justify-center pb-12 ">
-        {results.partner?.title && (
-          <PageTitle title={results.partner?.title} color="white" />
+      <div className="bg-main-black flex flex-col h-full px-24 justify-center pb-12 ">
+        {partner?.title && (
+          <PageTitle title={partner?.title} small color="white" />
         )}
-        {results.partner?.description && (
+        {partner?.description && (
           <div className="md:max-w-lg">
-            <TextHolder
-              text={results.partner?.description}
-              structuredText
-              theme="light"
+            <RichText
+              content={partner?.description.raw}
+              renderers={{
+                p: ({ children }) => (
+                  <p className="m-0 text-main-white">{children}</p>
+                ),
+              }}
             />
+            <div className="pt-6 flex gap-2">
+              <EnvelopIconYellow />
+              <strong className="text-main-yellow">
+                letstalkitpoland@gmail.com
+              </strong>
+            </div>
           </div>
         )}
       </div>
-      <div className="flex flex-col px-4">
+      <div className="flex flex-col  px-24">
         <PageTitle title="zaufali nam:" />
         <div className="partnersImages flex flex-col md:grid md:grid-cols-3 md:gap-6 md:items-center">
-          {results.partner?.images.map((img) => {
+          {partner?.logos.map((img) => {
+            const validWidth = img?.width !== null ? img?.width : undefined;
+            const validHeight = img?.height !== null ? img?.height : undefined;
+
             return (
               <div key={`id:${img}`} className="py-4">
-                <DatoImage data={img.responsiveImage!} className="" />
+                <Image
+                  alt={img.fileName}
+                  src={img.url}
+                  width={validWidth}
+                  height={validHeight}
+                />
               </div>
             );
           })}

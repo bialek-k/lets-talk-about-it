@@ -1,6 +1,9 @@
 query PartnersQuery($locale: Locale!) {
   partner(where: { id: "clw7sout213xu07w5n05dsj1z" }, locales: [$locale]) {
     title
+    description {
+      raw
+    }
     logos(locales: en) {
       id
       height

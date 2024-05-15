@@ -35,21 +35,21 @@ const Edition = async ({
         {/* LEAD SECTION */}
         <LeadSection locale={locale} edition={event} translation={t} />
         {/* GALERIA */}
-        <div
-          id="gallery"
-          className="bg-main-black px-4 py-10 w-full text-main-white"
-        >
-          <h2 className="font-semibold text-[40px] leading-[52px] text-start self-start w-full mb-5 lg:ml-[100px]">
-            {t('gallery')}
-          </h2>
-          {event?.gallery.length ? (
+        {event?.gallery.length ? (
+          <div
+            id="gallery"
+            className="bg-main-black px-4 py-10 w-full text-main-white"
+          >
+            <h2 className="font-semibold text-[40px] leading-[52px] text-start self-start w-full mb-5 lg:ml-[100px]">
+              {t('gallery')}
+            </h2>
             <Gallery images={event?.gallery} />
-          ) : (
-            <div className=" font-semibold text-lg leading-6">
-              {t('noGallery')}
-            </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className=" font-semibold text-lg leading-6">
+            {t('noGallery')}
+          </div>
+        )}
         {/* PARTNERS */}
         <div className="pt-20 w-full mx-auto">
           <PartnersCarousel locale={locale} translation={t} />

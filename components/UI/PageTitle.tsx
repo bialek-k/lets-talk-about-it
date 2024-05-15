@@ -4,19 +4,21 @@ interface PageTitleProps {
   title: string;
   subtitle?: string;
   color?: 'white' | 'black';
+  small?: boolean;
 }
 
 export const PageTitle = ({
   title,
   subtitle,
   color = 'black',
+  small,
 }: PageTitleProps) => {
   return (
-    <div className="py-6">
+    <div className="pt-6">
       <h1
-        className={`text-4xl font-semibold mb-6 md:uppercase ${
-          color === 'white' ? 'text-main-white' : 'text-main-black'
-        }`}
+        className={`text-4xl font-semibold mb-6 ${
+          small ? '' : 'md:uppercase'
+        } ${color === 'white' ? 'text-main-white' : 'text-main-black'}`}
       >
         {title}
       </h1>
