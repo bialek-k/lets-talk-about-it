@@ -1,0 +1,13 @@
+query JoinUsQuery($locale: Locale!) {
+  join_us(where: { id: "clw7o3sj94j4007usyxtpzp1q" }, locales: [$locale]) {
+    facebook_description {
+      raw
+    }
+    linkedin_description {
+      raw
+    }
+    youtube_description {
+      raw
+    }
+  }
+}

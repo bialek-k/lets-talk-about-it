@@ -2,38 +2,33 @@
 import FsLightbox from 'fslightbox-react';
 
 import { useState } from 'react';
-import { Image as DatoImage } from 'react-datocms';
+import Image from 'next/image';
 
-interface GalleryProps {
+interface ImageGalleryItemProps {
   image: {
-    basename: string;
-    responsiveImage: {
-      alt?: string;
-      bgColor?: string;
-      src: string;
-      base64: string;
-      height: number;
-      width: number;
-      aspectRatio: number;
-      sizes: string;
-      srcSet: string;
-      webpSrcSet: string;
-      title: string;
-    };
+    url: string;
+    width?: number | null;
+    height?: number | null;
+    fileName: string;
   };
 }
 
-const ImageGalleryItem = ({ image }: GalleryProps) => {
+const ImageGalleryItem = ({ image }: ImageGalleryItemProps) => {
+  const validWidth = image?.width !== null ? image?.width : undefined;
+  const validHeight = image?.height !== null ? image?.height : undefined;
+
   const [open, setOpen] = useState(false);
   return (
-    <div key={image.basename} onClick={() => setOpen(!open)}>
-      <DatoImage
+    <div key={image.fileName} onClick={() => setOpen(!open)}>
+      <Image
+        alt={image.fileName}
         className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
-        data={image.responsiveImage}
+        src={image.url}
         layout="responsive"
+        width={validWidth}
+        height={validHeight}
       />
-
-      <FsLightbox toggler={open} sources={[image.responsiveImage.src]} />
+      <FsLightbox toggler={open} sources={[image.url]} />
     </div>
   );
 };
