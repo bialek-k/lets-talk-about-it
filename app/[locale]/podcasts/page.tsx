@@ -30,6 +30,7 @@ const Podcasts = async ({
           href="https://www.youtube.com/@LetstalkTPoland"
           target="_blank"
           rel="noopener noreferrer"
+          className="break-words"
         >
           https://www.youtube.com/@LetstalkTPoland
         </Link>

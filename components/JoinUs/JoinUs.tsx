@@ -17,7 +17,7 @@ const JoinUs = ({ data }: JoinUsProps) => {
   return (
     <section
       id="#joinus"
-      className=" mx-auto px-6 md:px-24 bg-main-black py-12 flex flex-col items-center"
+      className=" mx-auto px-6 md:px-24 bg-main-black py-12 flex flex-col items-center w-full"
     >
       <PageTitle color="white" title={t('joinUs')} />
       <div className="cols md:flex md:flex-col gap-12">

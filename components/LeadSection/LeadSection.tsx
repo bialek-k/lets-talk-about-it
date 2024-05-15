@@ -6,23 +6,6 @@ import Arrow from '@/IconsSVG/Arrow';
 import Button from '../UI/Button';
 import { Image } from '../UI/Image';
 
-interface ImageProps {
-  image: {
-    basename: string;
-    responsiveImage: {
-      src: string;
-      base64: string;
-      height: number;
-      width: number;
-      aspectRatio: number;
-      sizes: string;
-      srcSet: string;
-      webpSrcSet?: any;
-      title: string;
-    };
-  };
-}
-
 const LeadSection = async ({
   locale,
   edition,
@@ -48,7 +31,7 @@ const LeadSection = async ({
       <h2 className="my-10 mr-auto flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
         {t('lead')}
       </h2>
-      <div className="lg:w-full flex flex-col lg:grid lg:grid-cols-2 lg:justify-items-start mr-auto gap-10">
+      <div className="lg:w-full grid place-items-center lg:grid lg:grid-cols-2 lg:justify-items-start gap-10">
         {results.event?.lead.map((leader) => (
           <div
             className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6"
@@ -96,7 +79,7 @@ const LeadSection = async ({
       <h2 className="my-10 mr-auto flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
         {t('speakers')}
       </h2>
-      <div className="lg:w-full flex flex-row flex-wrap lg:grid lg:grid-cols-2 lg:justify-items-start mr-auto gap-10">
+      <div className="lg:w-full grid place-items-center lg:grid lg:grid-cols-2 lg:justify-items-start gap-10">
         {results.event?.speakers.map((speaker) => (
           <div
             className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6"
@@ -109,7 +92,9 @@ const LeadSection = async ({
                 </h3>
                 <TextBorderLine className="lg:visible invisible absolute top-5 z-1 w-full" />
               </div>
-              <p className=" font-normal text-lg leading-6">{speaker.role}</p>
+              <p className=" font-normal text-lg leading-6 break-words">
+                {speaker.role}
+              </p>
               <p className=" font-normal text-lg leading-6">
                 {speaker.alternativeRole}
               </p>
