@@ -6,6 +6,7 @@ const nextConfig = {
       'another-domain.com',
       'drive.google.com',
       'https://drive.google.com/',
+      'eu-central-1-shared-euc1-02.graphassets.com',
     ],
   },
 };

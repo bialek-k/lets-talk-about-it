@@ -1,37 +1,14 @@
 require('dotenv').config({ path: '.env.local' });
-const token = process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN;
 
 import { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
-  schema: [
-    {
-      'https://graphql.datocms.com': {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    },
-  ],
-  documents: './graphql/**/*.graphql',
+  schema:
+    'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clw5ez35a035f07uosp2vtc7s/master',
+  documents: './**/*.graphql',
   generates: {
     'graphql/generated.ts': {
       plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
-      config: {
-        strictScalars: true,
-        scalars: {
-          BooleanType: 'boolean',
-          CustomData: 'Record<string, unknown>',
-          Date: 'string',
-          DateTime: 'string',
-          FloatType: 'number',
-          IntType: 'number',
-          ItemId: 'string',
-          JsonField: 'unknown',
-          MetaTagAttributes: 'Record<string, string>',
-          UploadId: 'string',
-        },
-      },
     },
   },
 };

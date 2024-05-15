@@ -6,22 +6,17 @@ import Pagination from '@mui/material/Pagination';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import ImageGalleryItem from '../UI/ImageGalleryItem';
 import { useMediaQuery } from '@mui/material';
+import { EventGalleryArgs } from '@/graphql/generated';
+
+interface Image {
+  url: string;
+  width?: number | null;
+  height?: number | null;
+  fileName?: string;
+}
 
 interface GalleryProps {
-  images: {
-    basename: string;
-    responsiveImage: {
-      src: string;
-      base64: string;
-      height: number;
-      width: number;
-      aspectRatio: number;
-      sizes: string;
-      srcSet: string;
-      webpSrcSet: string;
-      title: string;
-    };
-  }[];
+  images: Image[];
 }
 
 const Gallery = ({ images }: GalleryProps) => {
@@ -46,8 +41,8 @@ const Gallery = ({ images }: GalleryProps) => {
       <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
         {images
           .slice((currentPage - 1) * imagesPerPage, currentPage * imagesPerPage)
-          .map((image) => (
-            <ImageGalleryItem key={image.basename} image={image} />
+          .map((image: any) => (
+            <ImageGalleryItem key={image.fileName} image={image} />
           ))}
       </div>
       <ThemeProvider theme={customTheme}>
