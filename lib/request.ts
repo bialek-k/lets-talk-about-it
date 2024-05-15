@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { request as graphqlRequest, Variables } from 'graphql-request';
 import { RequestDocument } from 'graphql-request';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
