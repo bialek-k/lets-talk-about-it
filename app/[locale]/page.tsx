@@ -6,13 +6,8 @@ import Linkedin from '@/components/Linkedin/Linkedin';
 import MainLogo from '@/components/MainLogo/MainLogo';
 import { OpenNav } from '@/components/Header/Header';
 
-import {
-  MyQueryDocument,
-  JoinUsDocument,
-  EditionsDocument,
-} from '@/graphql/generated';
 import { About } from '@/components/About/About';
-import { request } from '@/lib/request';
+
 import JoinUs from '@/components/JoinUs/JoinUs';
 import MainTitle from '@/components/MainTitle/MainTitle';
 import LinesPattern from '@/IconsSVG/LinesPattern';
@@ -20,20 +15,25 @@ import EditionHero from '@/components/EditionHero/EditionHero';
 import LeadSection from '@/components/LeadSection/LeadSection';
 import PartnersCarousel from '@/components/PartnersCarousel/PartnersCarousel';
 
+import { Locale, AboutQueryDocument } from '@/graphql/generated';
+import { request } from '@/lib/request';
+
 const i18nNamespaces = ['home'];
 
 export default async function Home({
   params: { locale },
 }: {
-  params: { locale: string };
+  params: { locale: Locale };
 }) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
-  const { about } = await request(MyQueryDocument, { locale });
-  const { allJoins } = await request(JoinUsDocument, { locale });
-  const event = await request(EditionsDocument, {
-    locale,
-    new: true,
-  });
+  // const { about } = await request(MyQueryDocument, { locale });
+  // const { allJoins } = await request(JoinUsDocument, { locale });
+  // const event = await request(EditionsDocument, {
+  //   locale,
+  //   new: true,
+  // });
+
+  const { about } = await request(AboutQueryDocument, { locale });
 
   return (
     <TranslationsProvider
@@ -63,7 +63,7 @@ export default async function Home({
               />
             </div>
             <div className="ml-auto relative right-4 flex">
-              <OpenNav />
+              {/* <OpenNav /> */}
             </div>
           </div>
         </div>
@@ -74,9 +74,11 @@ export default async function Home({
           <LinesPattern fill="#E2FF02" />
         </div>
       </main>
-      <About data={about} />
-      <JoinUs data={allJoins[0].social} />
-      <EditionHero
+      <About about={about} />
+
+      {/*
+      <JoinUs data={allJoins[0].social} /> */}
+      {/* <EditionHero
         locale={locale}
         isMain={true}
         edition={event.event?.edition}
@@ -86,9 +88,9 @@ export default async function Home({
         locale={locale}
         edition={event.event?.edition}
         translation={t}
-      />
+      /> */}
       <div className="bg-main-black py-20 w-full mx-auto">
-        <PartnersCarousel locale={locale} isMain={true} translation={t} />
+        {/* <PartnersCarousel locale={locale} isMain={true} translation={t} /> */}
       </div>
     </TranslationsProvider>
   );

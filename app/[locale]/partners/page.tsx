@@ -1,4 +1,4 @@
-import { Image } from '@/components/UI/Image';
+import { Image } from '@/components/UI/ImageContainer';
 import { PageTitle } from '@/components/UI/PageTitle';
 import { TextHolder } from '@/components/UI/TextHolder';
 import { PartnersPageDocument } from '@/graphql/generated';

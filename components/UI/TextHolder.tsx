@@ -1,21 +1,19 @@
 'use client';
 
-import { AboutModelDescriptionField } from '@/graphql/generated';
 import React, { useEffect, useState } from 'react';
 
-import { StructuredText as StructuredTextDocument } from 'react-datocms';
+import { RichText } from '@graphcms/rich-text-react-renderer';
+import { RichTextContent } from '@graphcms/rich-text-types';
 
 interface TextHolderProps {
-  text: any;
-  structuredText?: boolean;
+  content: RichTextContent;
   theme?: 'light' | 'dark';
   readMore?: boolean;
   handleReadMore?: () => void;
 }
 
 export const TextHolder = ({
-  text,
-  structuredText,
+  content,
   theme = 'dark',
   readMore,
 }: TextHolderProps) => {
@@ -41,19 +39,15 @@ export const TextHolder = ({
         className={`content flex prose max-w-max dark:text-main-white dark:prose-strong:text-main-white overflow-hidden transition-max-height duration-300 ease-in-out `}
         style={{ maxHeight: isExpanded ? '100%' : '298px' }}
       >
-        {structuredText ? (
-          <div
-            className={`w-full ${
-              theme === 'dark'
-                ? 'text-main-white bg-main-black'
-                : 'text-main-black bg-main-white'
-            }`}
-          >
-            <StructuredTextDocument data={text} />
-          </div>
-        ) : (
-          <>{text}</>
-        )}
+        <div
+          className={`w-full ${
+            theme === 'dark'
+              ? 'text-main-white bg-main-black'
+              : 'text-main-black bg-main-white'
+          }`}
+        >
+          <RichText content={content} />
+        </div>
       </div>
       {readMore && (
         <button

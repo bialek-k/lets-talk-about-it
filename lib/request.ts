@@ -6,11 +6,8 @@ export function request<TDocument = any>(
   variables?: Variables
 ) {
   return graphqlRequest<TDocument, Variables>(
-    'https://graphql.datocms.com/',
+    `${process.env.NEXT_PUBLIC_HYGRAPH_URI}`,
     document,
-    variables,
-    {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN}`,
-    }
+    variables
   );
 }

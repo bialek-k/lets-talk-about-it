@@ -2,7 +2,7 @@ import toRoman from '../UI/NumberToRoman';
 import Arrow from '@/IconsSVG/Arrow';
 import { request } from '@/lib/request';
 import { EditionsDocument, PartnersDocument } from '@/graphql/generated';
-import { Image } from '../UI/Image';
+import { Image } from '../UI/ImageContainer';
 import Button from '../UI/Button';
 import Calendar from '@/IconsSVG/Calendar';
 import Location from '../Location/Location';

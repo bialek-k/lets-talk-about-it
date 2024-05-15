@@ -5,7 +5,7 @@ import { request } from '@/lib/request';
 // import { Image } from '../UI/Image';
 import Arrow from '@/IconsSVG/Arrow';
 import Button from '../UI/Button';
-import { Image as DatoImage } from '../UI/Image';
+import { Image as DatoImage } from '../UI/ImageContainer';
 import { ImageContainer } from '../UI/ImageGalleryItem';
 
 interface ImageProps {
