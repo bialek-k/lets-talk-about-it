@@ -16,9 +16,9 @@ export const PageTitle = ({
   return (
     <div className="pt-6">
       <h1
-        className={` ${
+        className={`${
           small ? '' : 'md:uppercase'
-        } text-[40px] lg:text-[48px] leading-[52px] lg:leading-[62px] font-semibold lg:font-bold mb-6 md:uppercase ${
+        } text-[40px] lg:text-[48px] leading-[52px] lg:leading-[62px] font-semibold lg:font-bold mb-6 ${
           color === 'white' ? 'text-main-white' : 'text-main-black'
         }`}
       >
