@@ -14,6 +14,7 @@ const LeadSection = async ({
   translation: (key: string) => string;
 }) => {
   const t = translation;
+  console.log(edition.lead);
 
   return (
     <div className="w-full mx-auto flex flex-col px-4 lg:px-[100px] justify-center items-center relative pb-10">

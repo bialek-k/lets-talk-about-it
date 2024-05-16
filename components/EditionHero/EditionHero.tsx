@@ -45,8 +45,6 @@ const EditionHero = async ({
     );
   };
 
-  console.log(edition.location.split(' '));
-
   return (
     <div
       className={`${
