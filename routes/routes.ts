@@ -5,7 +5,6 @@ export const fetchEvents = async () => {
   // const results = await request(EventRoutesDocument);
 
   const { events } = await request(EventsRoutesDocument);
-  console.log(events);
 
   return [
     {

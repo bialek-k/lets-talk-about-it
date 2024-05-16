@@ -19,12 +19,15 @@ const ImageGalleryItem = ({ image }: ImageGalleryItemProps) => {
 
   const [open, setOpen] = useState(false);
   return (
-    <div key={image.fileName} onClick={() => setOpen(!open)}>
+    <div
+      key={image.fileName}
+      onClick={() => setOpen(!open)}
+      className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] "
+    >
       <Image
         alt={image.fileName}
         className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
         src={image.url}
-        layout="responsive"
         width={validWidth}
         height={validHeight}
       />
