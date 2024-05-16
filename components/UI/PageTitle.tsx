@@ -24,7 +24,7 @@ export const PageTitle = ({
       >
         {title}
       </h1>
-      <p className="text-2xl font-semibold">{subtitle}</p>
+      <p className="text-[24px] font-semibold">{subtitle}</p>
     </div>
   );
 };

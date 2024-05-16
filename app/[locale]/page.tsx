@@ -78,7 +78,6 @@ export default async function Home({
         </div>
       </main>
       <About about={about} />
-      <JoinUs join_us={join_us} />
       <EditionHero
         locale={locale}
         isMain={true}
@@ -86,6 +85,7 @@ export default async function Home({
         translation={t}
       />
       <LeadSection locale={locale} edition={newEvent} translation={t} />
+      <JoinUs join_us={join_us} />
       <div className="bg-main-black py-20 w-full mx-auto">
         <PartnersCarousel locale={locale} isMain={true} translation={t} />
       </div>
