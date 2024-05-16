@@ -70,7 +70,7 @@ export default async function Home({
             </div>
           </div>
         </div>
-        <div className="pt-[140px] pb-[240px] px-4">
+        <div className="pt-[140px] pb-[240px]">
           <MainTitle fill="#E2FF02" />
         </div>
         <div className="mr-auto">

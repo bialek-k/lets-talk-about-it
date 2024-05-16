@@ -35,16 +35,16 @@ export const TextHolder = ({
   return (
     <div
       className={`bg-main-${theme === 'light' ? 'white' : 'black'} 
-      } px-[30px] rounded-2xl border-4 border-[#E2FF00] w-full`}
+      } p-[30px] rounded-2xl border-4 border-[#E2FF00]`}
     >
       <div
         className={`content flex prose ${
-          small ? 'max-w-56' : ''
-        } dark:text-main-white dark:prose-strong:text-main-white overflow-hidden transition-max-height duration-300 ease-in-out `}
-        style={{ maxHeight: isExpanded ? '100%' : '298px' }}
+          small ? 'max-w-[260px] lg:max-w-[292px]' : ''
+        } dark:text-main-white dark:prose-strong:text-main-white dark:prose-li:marker:text-main-black  overflow-hidden transition-max-height duration-300 ease-in-out `}
+        style={{ maxHeight: isExpanded ? '100%' : '333px' }}
       >
         <div
-          className={`w-full ${
+          className={`w-full font-normal text-base leading-5 lg:text-lg lg:leading-6 ${
             theme === 'dark'
               ? 'text-main-white bg-main-black'
               : 'text-main-black bg-main-white'
@@ -53,7 +53,9 @@ export const TextHolder = ({
           <RichText
             content={content}
             renderers={{
-              p: ({ children }) => <p className="m-0">{children}</p>,
+              p: ({ children }) => (
+                <p className="m-0 break-words">{children}</p>
+              ),
             }}
           />
         </div>

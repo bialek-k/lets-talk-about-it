@@ -12,7 +12,9 @@ query EditionQuery($locale: Locale!, $edition: String!) {
         id
         name
         position
+        alternativePosition
         photo(locales: en) {
+          fileName
           width
           height
           url
@@ -24,7 +26,9 @@ query EditionQuery($locale: Locale!, $edition: String!) {
         id
         name
         position
+        alternativePosition
         photo(locales: en) {
+          fileName
           width
           height
           url

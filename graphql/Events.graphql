@@ -12,6 +12,7 @@ query NewEventQuery($locale: Locale!) {
         id
         name
         position
+        alternativePosition
         photo(locales: en) {
           width
           height
@@ -24,6 +25,7 @@ query NewEventQuery($locale: Locale!) {
         id
         name
         position
+        alternativePosition
         photo(locales: en) {
           width
           height
