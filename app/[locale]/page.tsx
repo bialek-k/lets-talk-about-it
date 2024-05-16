@@ -78,12 +78,14 @@ export default async function Home({
         </div>
       </main>
       <About about={about} />
-      <EditionHero
-        locale={locale}
-        isMain={true}
-        edition={newEvent}
-        translation={t}
-      />
+      <div id="mainEvent" className="w-full">
+        <EditionHero
+          locale={locale}
+          isMain={true}
+          edition={newEvent}
+          translation={t}
+        />
+      </div>
       <LeadSection locale={locale} edition={newEvent} translation={t} />
       <JoinUs join_us={join_us} />
       <div className="bg-main-black py-20 w-full mx-auto">

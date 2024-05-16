@@ -83,7 +83,7 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                   key={index}
                   className=" flex flex-col justify-center w-full pl-[3px]"
                 >
-                  <div className="flex flex-row items-center justify-between border-b border-solid border-white">
+                  <div className="flex flex-row items-center justify-between border-b border-solid border-white relative">
                     {route.path ? (
                       <Link
                         className="pb-5"
@@ -94,7 +94,7 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                       </Link>
                     ) : (
                       <button
-                        className="w-full flex "
+                        className="w-full flex h-[46px] items-start z-10"
                         type="button"
                         onClick={toggleSubMenu}
                       >
@@ -103,7 +103,7 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                     )}
                     {route.content && (
                       <ChevronIcon
-                        className={`transition-all duration-300 ${
+                        className={`transition-all duration-300 absolute right-0 top-[-10px] ${
                           isSubMenuOpen && 'rotate-180'
                         }`}
                       />

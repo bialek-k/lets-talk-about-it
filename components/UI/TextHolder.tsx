@@ -56,7 +56,7 @@ export const TextHolder = ({
             content={content}
             renderers={{
               p: ({ children }) => {
-                return <p className="m-0">{children}</p>;
+                return <p className="m-0 mt-2">{children}</p>;
               },
             }}
           />

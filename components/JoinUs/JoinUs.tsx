@@ -19,17 +19,17 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
     >
       <PageTitle color="white" title={t('joinUs')} />
       <div className="flex flex-wrap md:flex-col-3 justify-center gap-6 lg:gap-20">
-        {join_us?.facebook_description && (
-          <JoinUsItem
-            social={join_us.facebook_description.raw}
-            icon={<FacebookIcon_yellow />}
-            small
-          />
-        )}
         {join_us?.linkedin_description && (
           <JoinUsItem
             social={join_us.linkedin_description.raw}
             icon={<LinkedinIcon_yellow />}
+            small
+          />
+        )}
+        {join_us?.facebook_description && (
+          <JoinUsItem
+            social={join_us.facebook_description.raw}
+            icon={<FacebookIcon_yellow />}
             small
           />
         )}

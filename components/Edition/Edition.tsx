@@ -46,7 +46,10 @@ const Edition = async ({
             <Gallery images={event?.gallery} />
           </div>
         ) : (
-          <div className=" font-semibold text-lg leading-6">
+          <div
+            id="gallery"
+            className=" font-semibold text-lg leading-6 px-[100px]"
+          >
             {t('noGallery')}
           </div>
         )}
