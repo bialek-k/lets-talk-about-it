@@ -10,7 +10,8 @@ const Location = ({ data }: { data?: string | null }) => {
   return (
     <>
       <motion.button
-        whileHover={{ scale: 1.2 }}
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 1, repeat: Infinity }}
         className="w-[25px] lg:w-[48px] h-[32px] lg:h-[64px]"
         onClick={() => setIsOpen(true)}
       >

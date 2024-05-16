@@ -13,6 +13,7 @@ query EditionQuery($locale: Locale!, $edition: String!) {
         name
         position
         alternativePosition
+        linkedIn
         photo(locales: en) {
           fileName
           width
@@ -27,6 +28,7 @@ query EditionQuery($locale: Locale!, $edition: String!) {
         name
         position
         alternativePosition
+        linkedIn
         photo(locales: en) {
           fileName
           width
