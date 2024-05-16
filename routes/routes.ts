@@ -1,8 +1,10 @@
-import { EventRoutesDocument } from '@/graphql/generated';
+import { EventsRoutesDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
 
 export const fetchEvents = async () => {
-  const results = await request(EventRoutesDocument);
+  // const results = await request(EventRoutesDocument);
+
+  const { events } = await request(EventsRoutesDocument);
 
   return [
     {
@@ -11,8 +13,8 @@ export const fetchEvents = async () => {
     },
     {
       name: 'events',
-      content: results.allEvents.map((event) => ({
-        path: `/events/${event.edition}`,
+      content: events.map((event) => ({
+        path: `/events/${event.slug}`,
         name: `event ${event.edition}`,
       })),
     },

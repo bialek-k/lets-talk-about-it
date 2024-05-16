@@ -1,23 +1,23 @@
 'use client';
 
-import { AboutModelDescriptionField } from '@/graphql/generated';
 import React, { useEffect, useState } from 'react';
 
-import { StructuredText as StructuredTextDocument } from 'react-datocms';
+import { RichText } from '@graphcms/rich-text-react-renderer';
+import { RichTextContent } from '@graphcms/rich-text-types';
 
 interface TextHolderProps {
-  text: any;
-  structuredText?: boolean;
+  content: RichTextContent;
   theme?: 'light' | 'dark';
   readMore?: boolean;
   handleReadMore?: () => void;
+  small?: boolean;
 }
 
 export const TextHolder = ({
-  text,
-  structuredText,
+  content,
   theme = 'dark',
   readMore,
+  small,
 }: TextHolderProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -35,25 +35,30 @@ export const TextHolder = ({
   return (
     <div
       className={`bg-main-${theme === 'light' ? 'white' : 'black'} 
-      } p-8 rounded-2xl border-4 border-[#E2FF00] w-full`}
+      } p-[30px] rounded-2xl border-4 border-[#E2FF00]`}
     >
       <div
-        className={`content flex prose max-w-max dark:text-main-white dark:prose-strong:text-main-white overflow-hidden transition-max-height duration-300 ease-in-out `}
-        style={{ maxHeight: isExpanded ? '100%' : '298px' }}
+        className={`content flex prose ${
+          small ? 'max-w-[260px] lg:max-w-[292px]' : ''
+        } dark:text-main-white dark:prose-strong:text-main-white dark:prose-li:marker:text-main-black  overflow-hidden transition-max-height duration-300 ease-in-out `}
+        style={{ maxHeight: isExpanded ? '100%' : '333px' }}
       >
-        {structuredText ? (
-          <div
-            className={`w-full ${
-              theme === 'dark'
-                ? 'text-main-white bg-main-black'
-                : 'text-main-black bg-main-white'
-            }`}
-          >
-            <StructuredTextDocument data={text} />
-          </div>
-        ) : (
-          <>{text}</>
-        )}
+        <div
+          className={`w-full font-normal text-base leading-5 lg:text-lg lg:leading-6 ${
+            theme === 'dark'
+              ? 'text-main-white bg-main-black'
+              : 'text-main-black bg-main-white'
+          }`}
+        >
+          <RichText
+            content={content}
+            renderers={{
+              p: ({ children }) => (
+                <p className="m-0 break-words">{children}</p>
+              ),
+            }}
+          />
+        </div>
       </div>
       {readMore && (
         <button

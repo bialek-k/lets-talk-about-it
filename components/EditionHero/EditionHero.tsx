@@ -1,5 +1,10 @@
 import LinesPattern from '@/IconsSVG/LinesPattern';
-import { EditionsDocument } from '@/graphql/generated';
+import {
+  EditionQueryDocument,
+  Event,
+  EventCreateInput,
+  NewEventQueryQuery,
+} from '@/graphql/generated';
 import { request } from '@/lib/request';
 import toRoman from '../UI/NumberToRoman';
 import MainTitle from '../MainTitle/MainTitle';
@@ -15,18 +20,13 @@ const EditionHero = async ({
   translation,
 }: {
   locale: string;
-  edition?: string | null;
+  edition: any;
   isMain?: boolean;
   translation: (key: string) => string;
 }) => {
   const t = translation;
 
-  const results = await request(EditionsDocument, {
-    locale,
-    edition,
-  });
-
-  const eventDate = new Date(results.event?.date ?? '');
+  const eventDate = new Date(edition?.date ?? '');
   const formattedDate = `${eventDate.getDate().toString().padStart(2, '0')}.${(
     eventDate.getMonth() + 1
   )
@@ -49,26 +49,26 @@ const EditionHero = async ({
       <h1 className=" self-start text-[40px] lg:text-[64px] lg:leading-[83px] leading-[52px] font-semibold mb-10 lg:mt-[60px]">
         events
       </h1>
-      {results.event?.new ? (
+      {edition?.new ? (
         <h2 className="self-start text-lg font-normal lg:text-2xl lg:font-semibold">
-          {t('invite')} {toRoman(parseInt(results.event?.edition ?? ''))}{' '}
+          {t('invite')} {toRoman(parseInt(edition?.edition ?? ''))}{' '}
           {t('edition')} {t('Event')}:
         </h2>
       ) : (
         <h2 className="self-start text-lg font-normal lg:text-2xl lg:font-semibold">
-          {toRoman(parseInt(results.event?.edition ?? ''))} {t('Edition')}
+          {toRoman(parseInt(edition?.edition ?? ''))} {t('Edition')}
         </h2>
       )}
       <MainTitle fill="#0C0C0C" />
       <h2 className="font-semibold text-[40px] leading-[52px] lg:text-[64px] lg:leading-[83px]  text-center">
-        {results.event?.title}
+        {edition?.title}
       </h2>
       <Arrow />
-      {results.event?.new ? (
+      {edition?.new ? (
         <div className="mt-5">
           <Button
             target="_blank"
-            href={results.event?.sign ?? '#'}
+            href={edition?.singUpLink ?? '#'}
             content={t('sign')}
             buttonColor="text-main-white"
             backgroundColor="bg-main-black"
@@ -99,9 +99,9 @@ const EditionHero = async ({
         </div>
         <div className="border-r-2 border-solid border-main-black bg-main-black  h-[79px] mx-[35px]"></div>
         <div className="flex flex-col items-center justify-center lg:flex-row lg:w-[357px] lg:gap-10">
-          <Location data={results.event?.location} />
+          <Location data={edition?.location} />
           <h3 className=" font-medium lg:font-semibold lg:text-[40px] lg:leading-[52px] text-base text-center mt-6 lg:mt-0 w-min lg:w-[75%] ">
-            {results.event?.location?.toLocaleUpperCase()}
+            {edition?.location?.toLocaleUpperCase()}
           </h3>
         </div>
       </div>

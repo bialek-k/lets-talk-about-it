@@ -1,8 +1,10 @@
-import { PartnersDocument } from '@/graphql/generated';
+import { PartnersQueryDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
 import Marquee from '../Marquee/Marquee';
-import Image from 'next/image';
+
 import { useTranslation } from 'react-i18next';
+
+import Image from 'next/image';
 
 const PartnersCarousel = async ({
   locale,
@@ -13,29 +15,37 @@ const PartnersCarousel = async ({
   isMain?: boolean;
   translation: (key: string) => string;
 }) => {
-  const results = await request(PartnersDocument, { locale });
+  const { partner } = await request(PartnersQueryDocument, { locale });
   const t = translation;
+
   return (
     <div className="flex flex-col items-center justify-center w-screen mx-auto">
       <h3
         className={`${
           isMain ? 'text-main-white' : 'text-main-black'
-        } font-semibold text-[40px] leading-[52px] text-start self-start ml-4 lg:ml-[100px]`}
+        } font-semibold text-[40px] leading-[52px] text-start self-start ml-4 lg:mx-auto lg:uppercase lg:mb-[100px]`}
       >
         {t('partnerzy')}
       </h3>
+
       <Marquee>
-        {results.allPartners[0].images.map((partner) => (
-          <div className="mr-10 lg:mr-20" key={partner.responsiveImage?.title}>
-            <Image
-              className="w-full h-[77px] lg:h-[98px]"
-              alt={partner.responsiveImage?.title ?? ''}
-              src={partner.responsiveImage?.src ?? ''}
-              width={partner.responsiveImage?.width}
-              height={partner.responsiveImage?.height}
-            ></Image>
-          </div>
-        ))}
+        {partner?.logos.map((partner) => {
+          const validWidth =
+            partner?.width !== null ? partner?.width : undefined;
+          const validHeight =
+            partner?.height !== null ? partner?.height : undefined;
+
+          return (
+            <div className="mr-10 lg:mr-20" key={partner.id}>
+              <Image
+                alt={partner.fileName}
+                src={partner.url}
+                width={validWidth}
+                height={validHeight}
+              />
+            </div>
+          );
+        })}
       </Marquee>
     </div>
   );

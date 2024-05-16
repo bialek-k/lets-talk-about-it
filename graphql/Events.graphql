@@ -1,0 +1,43 @@
+query NewEventQuery($locale: Locale!) {
+  events(first: 1, locales: [$locale]) {
+    id
+    title
+    new
+    date
+    edition
+    location
+    singUpLink
+    lead {
+      ... on Person {
+        id
+        name
+        position
+        alternativePosition
+        photo(locales: en) {
+          width
+          height
+          url
+        }
+      }
+    }
+    speakers {
+      ... on Person {
+        id
+        name
+        position
+        alternativePosition
+        photo(locales: en) {
+          width
+          height
+          url
+        }
+      }
+    }
+    gallery {
+      width
+      height
+      url
+      fileName
+    }
+  }
+}
