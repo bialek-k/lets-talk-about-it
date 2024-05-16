@@ -26,7 +26,6 @@ const Edition = async ({
   const t = translation;
 
   const { event } = await request(EditionQueryDocument, { locale, edition });
-  console.log(await event, 'event');
 
   return (
     <section className="">
