@@ -12,6 +12,8 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { AnimatePresence, motion } from 'framer-motion';
 import MainLogo from '../MainLogo/MainLogo';
 import toRoman from '../UI/NumberToRoman';
+import { usePathname } from 'next/navigation';
+import { text } from 'stream/consumers';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -27,6 +29,18 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
   const { t } = useTranslation();
   const [routes, setRoutes] = useState<Route[]>([]);
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
+  const currentPath = usePathname();
+
+  const isActive = (path?: string) => {
+    if (path === '/#about') {
+      if (currentPath === '/' || currentPath === '/en') return true;
+    }
+    if (currentPath.endsWith(path ?? '')) return true;
+    if (path === 'events' && currentPath.includes('events')) {
+      return true;
+    }
+    return console.log(currentPath, path), currentPath === path;
+  };
 
   useEffect(() => {
     const fetchRoutes = async () => {
@@ -86,7 +100,11 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                   <div className="flex flex-row items-center justify-between border-b border-solid border-white relative">
                     {route.path ? (
                       <Link
-                        className="pb-5"
+                        className={`pb-5 ${
+                          isActive(route.path)
+                            ? 'text-main-yellow'
+                            : 'text-white'
+                        }`}
                         onClick={() => setIsOpen(false)}
                         href={route.path ?? ''}
                       >
@@ -94,7 +112,11 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                       </Link>
                     ) : (
                       <button
-                        className="w-full flex h-[46px] items-start z-10"
+                        className={`w-full flex h-[46px] items-start z-10 ${
+                          isActive(route.name)
+                            ? 'text-main-yellow'
+                            : 'text-white'
+                        }`}
                         type="button"
                         onClick={toggleSubMenu}
                       >
@@ -130,7 +152,11 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                               key={index}
                             >
                               <Link
-                                className="border-b border-solid border-white h-[50px] flex items-center "
+                                className={`border-b border-solid border-white h-[50px] flex items-center ${
+                                  currentPath.includes(subRoute.path)
+                                    ? 'text-main-yellow'
+                                    : 'text-main-white'
+                                } `}
                                 href={subRoute.path ?? '#'}
                                 onClick={() => setIsOpen(false)}
                               >
