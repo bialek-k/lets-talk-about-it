@@ -1,72 +1,83 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  Date: { input: any; output: any; }
-  DateTime: { input: any; output: any; }
-  Hex: { input: any; output: any; }
-  Json: { input: any; output: any; }
-  Long: { input: any; output: any; }
-  RGBAHue: { input: any; output: any; }
-  RGBATransparency: { input: any; output: any; }
-  RichTextAST: { input: any; output: any; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  Date: { input: any; output: any };
+  DateTime: { input: any; output: any };
+  Hex: { input: any; output: any };
+  Json: { input: any; output: any };
+  Long: { input: any; output: any };
+  RGBAHue: { input: any; output: any };
+  RGBATransparency: { input: any; output: any };
+  RichTextAST: { input: any; output: any };
 };
 
-export type About = Entity & Node & {
-  __typename?: 'About';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']['output'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  description: RichText;
-  /** Get the document in other stages */
-  documentInStages: Array<About>;
-  /** List of About versions */
-  history: Array<Version>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<About>;
-  malgosia_description: RichText;
-  malgosia_image: Asset;
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  scheduledIn: Array<ScheduledOperation>;
-  /** System stage field */
-  stage: Stage;
-  title: Scalars['String']['output'];
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']['output'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-};
-
+export type About = Entity &
+  Node & {
+    __typename?: 'About';
+    /** The time the document was created */
+    createdAt: Scalars['DateTime']['output'];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    description: RichText;
+    /** Get the document in other stages */
+    documentInStages: Array<About>;
+    /** List of About versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars['ID']['output'];
+    /** System Locale field */
+    locale: Locale;
+    /** Get the other localizations for this document */
+    localizations: Array<About>;
+    malgosia_description: RichText;
+    malgosia_image: Asset;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars['DateTime']['output']>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    title: Scalars['String']['output'];
+    /** The time the document was updated */
+    updatedAt: Scalars['DateTime']['output'];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
 
 export type AboutCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
-
 export type AboutCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 export type AboutDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
@@ -74,19 +85,16 @@ export type AboutDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 export type AboutHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
 };
 
-
 export type AboutLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
 };
-
 
 export type AboutMalgosia_ImageArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -94,17 +102,14 @@ export type AboutMalgosia_ImageArgs = {
   where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
-
 export type AboutPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type AboutPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 export type AboutScheduledInArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -117,11 +122,9 @@ export type AboutScheduledInArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type AboutUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type AboutUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -225,7 +228,9 @@ export type AboutManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   documentInStages_every?: InputMaybe<AboutWhereStageInput>;
   documentInStages_none?: InputMaybe<AboutWhereStageInput>;
@@ -264,7 +269,9 @@ export type AboutManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -283,7 +290,9 @@ export type AboutManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -297,7 +306,7 @@ export enum AboutOrderByInput {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type AboutUpdateInput = {
@@ -456,7 +465,9 @@ export type AboutWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   documentInStages_every?: InputMaybe<AboutWhereStageInput>;
   documentInStages_none?: InputMaybe<AboutWhereStageInput>;
@@ -495,7 +506,9 @@ export type AboutWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -533,7 +546,9 @@ export type AboutWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -562,60 +577,59 @@ export type Aggregate = {
 };
 
 /** Asset system model */
-export type Asset = Entity & Node & {
-  __typename?: 'Asset';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']['output'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  /** Get the document in other stages */
-  documentInStages: Array<Asset>;
-  /** The file name */
-  fileName: Scalars['String']['output'];
-  galleryEvent: Array<Event>;
-  /** The file handle */
-  handle: Scalars['String']['output'];
-  /** The height of the file */
-  height?: Maybe<Scalars['Float']['output']>;
-  /** List of Asset versions */
-  history: Array<Version>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Asset>;
-  logosPartner: Array<Partner>;
-  malgosia_imageAbout: Array<About>;
-  /** The mime type of the file */
-  mimeType?: Maybe<Scalars['String']['output']>;
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  scheduledIn: Array<ScheduledOperation>;
-  /** The file size */
-  size?: Maybe<Scalars['Float']['output']>;
-  /** System stage field */
-  stage: Stage;
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']['output'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-  /** Returns information you need to upload the asset. The type of upload is dependant on what you pass into asset creations as upload type. */
-  upload?: Maybe<AssetUpload>;
-  /** Get the url for the asset with provided transformations applied. */
-  url: Scalars['String']['output'];
-  /** The file width */
-  width?: Maybe<Scalars['Float']['output']>;
-};
-
+export type Asset = Entity &
+  Node & {
+    __typename?: 'Asset';
+    /** The time the document was created */
+    createdAt: Scalars['DateTime']['output'];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<Asset>;
+    /** The file name */
+    fileName: Scalars['String']['output'];
+    galleryEvent: Array<Event>;
+    /** The file handle */
+    handle: Scalars['String']['output'];
+    /** The height of the file */
+    height?: Maybe<Scalars['Float']['output']>;
+    /** List of Asset versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars['ID']['output'];
+    /** System Locale field */
+    locale: Locale;
+    /** Get the other localizations for this document */
+    localizations: Array<Asset>;
+    logosPartner: Array<Partner>;
+    malgosia_imageAbout: Array<About>;
+    /** The mime type of the file */
+    mimeType?: Maybe<Scalars['String']['output']>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars['DateTime']['output']>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** The file size */
+    size?: Maybe<Scalars['Float']['output']>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars['DateTime']['output'];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+    /** Returns information you need to upload the asset. The type of upload is dependant on what you pass into asset creations as upload type. */
+    upload?: Maybe<AssetUpload>;
+    /** Get the url for the asset with provided transformations applied. */
+    url: Scalars['String']['output'];
+    /** The file width */
+    width?: Maybe<Scalars['Float']['output']>;
+  };
 
 /** Asset system model */
 export type AssetCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type AssetCreatedByArgs = {
@@ -623,14 +637,12 @@ export type AssetCreatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-
 /** Asset system model */
 export type AssetDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   inheritLocale?: Scalars['Boolean']['input'];
   stages?: Array<Stage>;
 };
-
 
 /** Asset system model */
 export type AssetGalleryEventArgs = {
@@ -645,7 +657,6 @@ export type AssetGalleryEventArgs = {
   where?: InputMaybe<EventWhereInput>;
 };
 
-
 /** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int']['input'];
@@ -653,13 +664,11 @@ export type AssetHistoryArgs = {
   stageOverride?: InputMaybe<Stage>;
 };
 
-
 /** Asset system model */
 export type AssetLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
 };
-
 
 /** Asset system model */
 export type AssetLogosPartnerArgs = {
@@ -674,7 +683,6 @@ export type AssetLogosPartnerArgs = {
   where?: InputMaybe<PartnerWhereInput>;
 };
 
-
 /** Asset system model */
 export type AssetMalgosia_ImageAboutArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -688,19 +696,16 @@ export type AssetMalgosia_ImageAboutArgs = {
   where?: InputMaybe<AboutWhereInput>;
 };
 
-
 /** Asset system model */
 export type AssetPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type AssetPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Asset system model */
 export type AssetScheduledInArgs = {
@@ -714,19 +719,16 @@ export type AssetScheduledInArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 /** Asset system model */
 export type AssetUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type AssetUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Asset system model */
 export type AssetUrlArgs = {
@@ -830,7 +832,9 @@ export type AssetManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   documentInStages_every?: InputMaybe<AssetWhereStageInput>;
   documentInStages_none?: InputMaybe<AssetWhereStageInput>;
@@ -877,7 +881,9 @@ export type AssetManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -896,7 +902,9 @@ export type AssetManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
   upload?: InputMaybe<AssetUploadWhereInput>;
 };
@@ -921,7 +929,7 @@ export enum AssetOrderByInput {
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC',
   WidthAsc = 'width_ASC',
-  WidthDesc = 'width_DESC'
+  WidthDesc = 'width_DESC',
 }
 
 /** Identifies documents */
@@ -1077,7 +1085,7 @@ export enum AssetUploadStatus {
   AssetCreatePending = 'ASSET_CREATE_PENDING',
   AssetErrorUpload = 'ASSET_ERROR_UPLOAD',
   AssetUpdatePending = 'ASSET_UPDATE_PENDING',
-  AssetUploadComplete = 'ASSET_UPLOAD_COMPLETE'
+  AssetUploadComplete = 'ASSET_UPLOAD_COMPLETE',
 }
 
 /** Identifies documents */
@@ -1102,7 +1110,9 @@ export type AssetUploadWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   expiresAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  expiresAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  expiresAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   status?: InputMaybe<AssetUploadStatus>;
   /** All values that are contained in given list. */
   status_in?: InputMaybe<Array<InputMaybe<AssetUploadStatus>>>;
@@ -1134,7 +1144,9 @@ export type AssetUploadWhereStageInput = {
   /** Any other value that exists and is not equal to the given value. */
   expiresAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  expiresAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  expiresAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   status?: InputMaybe<AssetUploadStatus>;
   /** All values that are contained in given list. */
   status_in?: InputMaybe<Array<InputMaybe<AssetUploadStatus>>>;
@@ -1194,7 +1206,9 @@ export type AssetWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   documentInStages_every?: InputMaybe<AssetWhereStageInput>;
   documentInStages_none?: InputMaybe<AssetWhereStageInput>;
@@ -1313,7 +1327,9 @@ export type AssetWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -1347,7 +1363,9 @@ export type AssetWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
   upload?: InputMaybe<AssetUploadWhereInput>;
   width?: InputMaybe<Scalars['Float']['input']>;
@@ -1428,7 +1446,7 @@ export enum DocumentFileTypes {
   Png = 'png',
   Svg = 'svg',
   Tiff = 'tiff',
-  Webp = 'webp'
+  Webp = 'webp',
 }
 
 export type DocumentOutputInput = {
@@ -1486,7 +1504,7 @@ export enum EntityTypeName {
   /** Scheduled Release system model */
   ScheduledRelease = 'ScheduledRelease',
   /** User system model */
-  User = 'User'
+  User = 'User',
 }
 
 /** Allows to specify input to query models and components directly */
@@ -1499,64 +1517,61 @@ export type EntityWhereInput = {
   typename: EntityTypeName;
 };
 
-export type Event = Entity & Node & {
-  __typename?: 'Event';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']['output'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  date?: Maybe<Scalars['Date']['output']>;
-  /** Get the document in other stages */
-  documentInStages: Array<Event>;
-  edition: Scalars['String']['output'];
-  gallery: Array<Asset>;
-  /** List of Event versions */
-  history: Array<Version>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  lead: Array<EventleadUnion>;
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Event>;
-  location?: Maybe<Scalars['String']['output']>;
-  /** Zaznacz jeśli to najnowsza edycja */
-  new?: Maybe<Scalars['Boolean']['output']>;
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  scheduledIn: Array<ScheduledOperation>;
-  singUpLink?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  speakers: Array<EventspeakersUnion>;
-  /** System stage field */
-  stage: Stage;
-  title: Scalars['String']['output'];
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']['output'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-};
-
+export type Event = Entity &
+  Node & {
+    __typename?: 'Event';
+    /** The time the document was created */
+    createdAt: Scalars['DateTime']['output'];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    date?: Maybe<Scalars['Date']['output']>;
+    /** Get the document in other stages */
+    documentInStages: Array<Event>;
+    edition: Scalars['String']['output'];
+    gallery: Array<Asset>;
+    /** List of Event versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars['ID']['output'];
+    lead: Array<EventleadUnion>;
+    /** System Locale field */
+    locale: Locale;
+    /** Get the other localizations for this document */
+    localizations: Array<Event>;
+    location?: Maybe<Scalars['String']['output']>;
+    /** Zaznacz jeśli to najnowsza edycja */
+    new?: Maybe<Scalars['Boolean']['output']>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars['DateTime']['output']>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    singUpLink?: Maybe<Scalars['String']['output']>;
+    slug?: Maybe<Scalars['String']['output']>;
+    speakers: Array<EventspeakersUnion>;
+    /** System stage field */
+    stage: Stage;
+    title: Scalars['String']['output'];
+    /** The time the document was updated */
+    updatedAt: Scalars['DateTime']['output'];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
 
 export type EventCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type EventCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
-
 export type EventDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   inheritLocale?: Scalars['Boolean']['input'];
   stages?: Array<Stage>;
 };
-
 
 export type EventGalleryArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1570,13 +1585,11 @@ export type EventGalleryArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 export type EventHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
 };
-
 
 export type EventLeadArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1588,23 +1601,19 @@ export type EventLeadArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 export type EventLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
 };
 
-
 export type EventPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type EventPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 export type EventScheduledInArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -1617,7 +1626,6 @@ export type EventScheduledInArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type EventSpeakersArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1628,11 +1636,9 @@ export type EventSpeakersArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 export type EventUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type EventUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1738,7 +1744,9 @@ export type EventManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   date?: InputMaybe<Scalars['Date']['input']>;
   /** All values greater than the given value. */
@@ -1839,7 +1847,9 @@ export type EventManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -1900,7 +1910,9 @@ export type EventManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -1926,7 +1938,7 @@ export enum EventOrderByInput {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type EventUpdateInput = {
@@ -2086,7 +2098,9 @@ export type EventWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   date?: InputMaybe<Scalars['Date']['input']>;
   /** All values greater than the given value. */
@@ -2187,7 +2201,9 @@ export type EventWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -2267,7 +2283,9 @@ export type EventWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -2325,9 +2343,13 @@ export type EventleadUnionUpdateManyInlineInput = {
   /** Delete multiple EventleadUnion documents */
   delete?: InputMaybe<Array<EventleadUnionWhereUniqueInput>>;
   /** Update multiple EventleadUnion component instances */
-  update?: InputMaybe<Array<EventleadUnionUpdateWithNestedWhereUniqueAndPositionInput>>;
+  update?: InputMaybe<
+    Array<EventleadUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
   /** Upsert multiple EventleadUnion component instances */
-  upsert?: InputMaybe<Array<EventleadUnionUpsertWithNestedWhereUniqueAndPositionInput>>;
+  upsert?: InputMaybe<
+    Array<EventleadUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
 };
 
 export type EventleadUnionUpdateManyWithNestedWhereInput = {
@@ -2403,9 +2425,13 @@ export type EventspeakersUnionUpdateManyInlineInput = {
   /** Delete multiple EventspeakersUnion documents */
   delete?: InputMaybe<Array<EventspeakersUnionWhereUniqueInput>>;
   /** Update multiple EventspeakersUnion component instances */
-  update?: InputMaybe<Array<EventspeakersUnionUpdateWithNestedWhereUniqueAndPositionInput>>;
+  update?: InputMaybe<
+    Array<EventspeakersUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
   /** Upsert multiple EventspeakersUnion component instances */
-  upsert?: InputMaybe<Array<EventspeakersUnionUpsertWithNestedWhereUniqueAndPositionInput>>;
+  upsert?: InputMaybe<
+    Array<EventspeakersUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
 };
 
 export type EventspeakersUnionUpdateManyWithNestedWhereInput = {
@@ -2492,7 +2518,7 @@ export enum ImageFit {
   /** Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size. */
   Max = 'max',
   /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
-  Scale = 'scale'
+  Scale = 'scale',
 }
 
 export type ImageQualityInput = {
@@ -2535,49 +2561,47 @@ export type ImageTransformationInput = {
   sharpen?: InputMaybe<ImageSharpenInput>;
 };
 
-export type Join_Us = Entity & Node & {
-  __typename?: 'Join_us';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']['output'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  /** Get the document in other stages */
-  documentInStages: Array<Join_Us>;
-  facebook_description: RichText;
-  /** List of Join_us versions */
-  history: Array<Version>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  linkedin_description: RichText;
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Join_Us>;
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  scheduledIn: Array<ScheduledOperation>;
-  /** System stage field */
-  stage: Stage;
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']['output'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-  youtube_description: RichText;
-};
-
+export type Join_Us = Entity &
+  Node & {
+    __typename?: 'Join_us';
+    /** The time the document was created */
+    createdAt: Scalars['DateTime']['output'];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<Join_Us>;
+    facebook_description: RichText;
+    /** List of Join_us versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars['ID']['output'];
+    linkedin_description: RichText;
+    /** System Locale field */
+    locale: Locale;
+    /** Get the other localizations for this document */
+    localizations: Array<Join_Us>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars['DateTime']['output']>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars['DateTime']['output'];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+    youtube_description: RichText;
+  };
 
 export type Join_UsCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
-
 export type Join_UsCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 export type Join_UsDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
@@ -2585,30 +2609,25 @@ export type Join_UsDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 export type Join_UsHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
 };
 
-
 export type Join_UsLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
 };
 
-
 export type Join_UsPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type Join_UsPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 export type Join_UsScheduledInArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2621,11 +2640,9 @@ export type Join_UsScheduledInArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type Join_UsUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type Join_UsUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2728,7 +2745,9 @@ export type Join_UsManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   documentInStages_every?: InputMaybe<Join_UsWhereStageInput>;
   documentInStages_none?: InputMaybe<Join_UsWhereStageInput>;
@@ -2766,7 +2785,9 @@ export type Join_UsManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -2785,7 +2806,9 @@ export type Join_UsManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -2797,7 +2820,7 @@ export enum Join_UsOrderByInput {
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type Join_UsUpdateInput = {
@@ -2955,7 +2978,9 @@ export type Join_UsWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   documentInStages_every?: InputMaybe<Join_UsWhereStageInput>;
   documentInStages_none?: InputMaybe<Join_UsWhereStageInput>;
@@ -2993,7 +3018,9 @@ export type Join_UsWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -3012,7 +3039,9 @@ export type Join_UsWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -3039,7 +3068,7 @@ export type Join_UsWhereUniqueInput = {
 export enum Locale {
   /** System locale */
   En = 'en',
-  Pl = 'pl'
+  Pl = 'pl',
 }
 
 /** Representing a geolocation point with latitude and longitude */
@@ -3049,7 +3078,6 @@ export type Location = {
   latitude: Scalars['Float']['output'];
   longitude: Scalars['Float']['output'];
 };
-
 
 /** Representing a geolocation point with latitude and longitude */
 export type LocationDistanceArgs = {
@@ -3294,61 +3322,49 @@ export type Mutation = {
   upsertPartner?: Maybe<Partner>;
 };
 
-
 export type MutationCreateAboutArgs = {
   data: AboutCreateInput;
 };
-
 
 export type MutationCreateAssetArgs = {
   data: AssetCreateInput;
 };
 
-
 export type MutationCreateEventArgs = {
   data: EventCreateInput;
 };
-
 
 export type MutationCreateJoin_UsArgs = {
   data: Join_UsCreateInput;
 };
 
-
 export type MutationCreatePartnerArgs = {
   data: PartnerCreateInput;
 };
-
 
 export type MutationCreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
 };
 
-
 export type MutationDeleteAboutArgs = {
   where: AboutWhereUniqueInput;
 };
-
 
 export type MutationDeleteAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
-
 export type MutationDeleteEventArgs = {
   where: EventWhereUniqueInput;
 };
-
 
 export type MutationDeleteJoin_UsArgs = {
   where: Join_UsWhereUniqueInput;
 };
 
-
 export type MutationDeleteManyAboutsArgs = {
   where?: InputMaybe<AboutManyWhereInput>;
 };
-
 
 export type MutationDeleteManyAboutsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3359,11 +3375,9 @@ export type MutationDeleteManyAboutsConnectionArgs = {
   where?: InputMaybe<AboutManyWhereInput>;
 };
 
-
 export type MutationDeleteManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type MutationDeleteManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3374,11 +3388,9 @@ export type MutationDeleteManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type MutationDeleteManyEventsArgs = {
   where?: InputMaybe<EventManyWhereInput>;
 };
-
 
 export type MutationDeleteManyEventsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3389,11 +3401,9 @@ export type MutationDeleteManyEventsConnectionArgs = {
   where?: InputMaybe<EventManyWhereInput>;
 };
 
-
 export type MutationDeleteManyJoin_UssArgs = {
   where?: InputMaybe<Join_UsManyWhereInput>;
 };
-
 
 export type MutationDeleteManyJoin_UssConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3404,11 +3414,9 @@ export type MutationDeleteManyJoin_UssConnectionArgs = {
   where?: InputMaybe<Join_UsManyWhereInput>;
 };
 
-
 export type MutationDeleteManyPartnersArgs = {
   where?: InputMaybe<PartnerManyWhereInput>;
 };
-
 
 export type MutationDeleteManyPartnersConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3419,21 +3427,17 @@ export type MutationDeleteManyPartnersConnectionArgs = {
   where?: InputMaybe<PartnerManyWhereInput>;
 };
 
-
 export type MutationDeletePartnerArgs = {
   where: PartnerWhereUniqueInput;
 };
-
 
 export type MutationDeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
 
-
 export type MutationDeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
 };
-
 
 export type MutationPublishAboutArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -3443,7 +3447,6 @@ export type MutationPublishAboutArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationPublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3451,7 +3454,6 @@ export type MutationPublishAssetArgs = {
   where: AssetWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationPublishEventArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -3461,7 +3463,6 @@ export type MutationPublishEventArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationPublishJoin_UsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3470,7 +3471,6 @@ export type MutationPublishJoin_UsArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationPublishManyAboutsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3478,7 +3478,6 @@ export type MutationPublishManyAboutsArgs = {
   where?: InputMaybe<AboutManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationPublishManyAboutsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3494,7 +3493,6 @@ export type MutationPublishManyAboutsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationPublishManyAssetsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3502,7 +3500,6 @@ export type MutationPublishManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationPublishManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3518,7 +3515,6 @@ export type MutationPublishManyAssetsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationPublishManyEventsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3526,7 +3522,6 @@ export type MutationPublishManyEventsArgs = {
   where?: InputMaybe<EventManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationPublishManyEventsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3542,7 +3537,6 @@ export type MutationPublishManyEventsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationPublishManyJoin_UssArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3550,7 +3544,6 @@ export type MutationPublishManyJoin_UssArgs = {
   where?: InputMaybe<Join_UsManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationPublishManyJoin_UssConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3566,7 +3559,6 @@ export type MutationPublishManyJoin_UssConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationPublishManyPartnersArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3574,7 +3566,6 @@ export type MutationPublishManyPartnersArgs = {
   where?: InputMaybe<PartnerManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationPublishManyPartnersConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3590,7 +3581,6 @@ export type MutationPublishManyPartnersConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationPublishPartnerArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3598,7 +3588,6 @@ export type MutationPublishPartnerArgs = {
   where: PartnerWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationSchedulePublishAboutArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -3610,7 +3599,6 @@ export type MutationSchedulePublishAboutArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationSchedulePublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3620,7 +3608,6 @@ export type MutationSchedulePublishAssetArgs = {
   where: AssetWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationSchedulePublishEventArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -3632,7 +3619,6 @@ export type MutationSchedulePublishEventArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationSchedulePublishJoin_UsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3642,7 +3628,6 @@ export type MutationSchedulePublishJoin_UsArgs = {
   where: Join_UsWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type MutationSchedulePublishPartnerArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -3654,7 +3639,6 @@ export type MutationSchedulePublishPartnerArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type MutationScheduleUnpublishAboutArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -3663,7 +3647,6 @@ export type MutationScheduleUnpublishAboutArgs = {
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: AboutWhereUniqueInput;
 };
-
 
 export type MutationScheduleUnpublishAssetArgs = {
   from?: Array<Stage>;
@@ -3674,7 +3657,6 @@ export type MutationScheduleUnpublishAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
-
 export type MutationScheduleUnpublishEventArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -3683,7 +3665,6 @@ export type MutationScheduleUnpublishEventArgs = {
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: EventWhereUniqueInput;
 };
-
 
 export type MutationScheduleUnpublishJoin_UsArgs = {
   from?: Array<Stage>;
@@ -3694,7 +3675,6 @@ export type MutationScheduleUnpublishJoin_UsArgs = {
   where: Join_UsWhereUniqueInput;
 };
 
-
 export type MutationScheduleUnpublishPartnerArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -3704,14 +3684,12 @@ export type MutationScheduleUnpublishPartnerArgs = {
   where: PartnerWhereUniqueInput;
 };
 
-
 export type MutationUnpublishAboutArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: AboutWhereUniqueInput;
 };
-
 
 export type MutationUnpublishAssetArgs = {
   from?: Array<Stage>;
@@ -3720,14 +3698,12 @@ export type MutationUnpublishAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
-
 export type MutationUnpublishEventArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: EventWhereUniqueInput;
 };
-
 
 export type MutationUnpublishJoin_UsArgs = {
   from?: Array<Stage>;
@@ -3736,14 +3712,12 @@ export type MutationUnpublishJoin_UsArgs = {
   where: Join_UsWhereUniqueInput;
 };
 
-
 export type MutationUnpublishManyAboutsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AboutManyWhereInput>;
 };
-
 
 export type MutationUnpublishManyAboutsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3758,14 +3732,12 @@ export type MutationUnpublishManyAboutsConnectionArgs = {
   where?: InputMaybe<AboutManyWhereInput>;
 };
 
-
 export type MutationUnpublishManyAssetsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type MutationUnpublishManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3780,14 +3752,12 @@ export type MutationUnpublishManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type MutationUnpublishManyEventsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<EventManyWhereInput>;
 };
-
 
 export type MutationUnpublishManyEventsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3802,14 +3772,12 @@ export type MutationUnpublishManyEventsConnectionArgs = {
   where?: InputMaybe<EventManyWhereInput>;
 };
 
-
 export type MutationUnpublishManyJoin_UssArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<Join_UsManyWhereInput>;
 };
-
 
 export type MutationUnpublishManyJoin_UssConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3824,14 +3792,12 @@ export type MutationUnpublishManyJoin_UssConnectionArgs = {
   where?: InputMaybe<Join_UsManyWhereInput>;
 };
 
-
 export type MutationUnpublishManyPartnersArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PartnerManyWhereInput>;
 };
-
 
 export type MutationUnpublishManyPartnersConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3846,7 +3812,6 @@ export type MutationUnpublishManyPartnersConnectionArgs = {
   where?: InputMaybe<PartnerManyWhereInput>;
 };
 
-
 export type MutationUnpublishPartnerArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -3854,36 +3819,30 @@ export type MutationUnpublishPartnerArgs = {
   where: PartnerWhereUniqueInput;
 };
 
-
 export type MutationUpdateAboutArgs = {
   data: AboutUpdateInput;
   where: AboutWhereUniqueInput;
 };
-
 
 export type MutationUpdateAssetArgs = {
   data: AssetUpdateInput;
   where: AssetWhereUniqueInput;
 };
 
-
 export type MutationUpdateEventArgs = {
   data: EventUpdateInput;
   where: EventWhereUniqueInput;
 };
-
 
 export type MutationUpdateJoin_UsArgs = {
   data: Join_UsUpdateInput;
   where: Join_UsWhereUniqueInput;
 };
 
-
 export type MutationUpdateManyAboutsArgs = {
   data: AboutUpdateManyInput;
   where?: InputMaybe<AboutManyWhereInput>;
 };
-
 
 export type MutationUpdateManyAboutsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3895,12 +3854,10 @@ export type MutationUpdateManyAboutsConnectionArgs = {
   where?: InputMaybe<AboutManyWhereInput>;
 };
 
-
 export type MutationUpdateManyAssetsArgs = {
   data: AssetUpdateManyInput;
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type MutationUpdateManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3912,12 +3869,10 @@ export type MutationUpdateManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type MutationUpdateManyEventsArgs = {
   data: EventUpdateManyInput;
   where?: InputMaybe<EventManyWhereInput>;
 };
-
 
 export type MutationUpdateManyEventsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3929,12 +3884,10 @@ export type MutationUpdateManyEventsConnectionArgs = {
   where?: InputMaybe<EventManyWhereInput>;
 };
 
-
 export type MutationUpdateManyJoin_UssArgs = {
   data: Join_UsUpdateManyInput;
   where?: InputMaybe<Join_UsManyWhereInput>;
 };
-
 
 export type MutationUpdateManyJoin_UssConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3946,12 +3899,10 @@ export type MutationUpdateManyJoin_UssConnectionArgs = {
   where?: InputMaybe<Join_UsManyWhereInput>;
 };
 
-
 export type MutationUpdateManyPartnersArgs = {
   data: PartnerUpdateManyInput;
   where?: InputMaybe<PartnerManyWhereInput>;
 };
-
 
 export type MutationUpdateManyPartnersConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -3963,42 +3914,35 @@ export type MutationUpdateManyPartnersConnectionArgs = {
   where?: InputMaybe<PartnerManyWhereInput>;
 };
 
-
 export type MutationUpdatePartnerArgs = {
   data: PartnerUpdateInput;
   where: PartnerWhereUniqueInput;
 };
-
 
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
 };
 
-
 export type MutationUpsertAboutArgs = {
   upsert: AboutUpsertInput;
   where: AboutWhereUniqueInput;
 };
-
 
 export type MutationUpsertAssetArgs = {
   upsert: AssetUpsertInput;
   where: AssetWhereUniqueInput;
 };
 
-
 export type MutationUpsertEventArgs = {
   upsert: EventUpsertInput;
   where: EventWhereUniqueInput;
 };
 
-
 export type MutationUpsertJoin_UsArgs = {
   upsert: Join_UsUpsertInput;
   where: Join_UsWhereUniqueInput;
 };
-
 
 export type MutationUpsertPartnerArgs = {
   upsert: PartnerUpsertInput;
@@ -4028,49 +3972,47 @@ export type PageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-export type Partner = Entity & Node & {
-  __typename?: 'Partner';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']['output'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  description: RichText;
-  /** Get the document in other stages */
-  documentInStages: Array<Partner>;
-  /** List of Partner versions */
-  history: Array<Version>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Partner>;
-  logos: Array<Asset>;
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  scheduledIn: Array<ScheduledOperation>;
-  /** System stage field */
-  stage: Stage;
-  title?: Maybe<Scalars['String']['output']>;
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']['output'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-};
-
+export type Partner = Entity &
+  Node & {
+    __typename?: 'Partner';
+    /** The time the document was created */
+    createdAt: Scalars['DateTime']['output'];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    description: RichText;
+    /** Get the document in other stages */
+    documentInStages: Array<Partner>;
+    /** List of Partner versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars['ID']['output'];
+    /** System Locale field */
+    locale: Locale;
+    /** Get the other localizations for this document */
+    localizations: Array<Partner>;
+    logos: Array<Asset>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars['DateTime']['output']>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    title?: Maybe<Scalars['String']['output']>;
+    /** The time the document was updated */
+    updatedAt: Scalars['DateTime']['output'];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
 
 export type PartnerCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
-
 export type PartnerCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 export type PartnerDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
@@ -4078,19 +4020,16 @@ export type PartnerDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 export type PartnerHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
 };
 
-
 export type PartnerLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
 };
-
 
 export type PartnerLogosArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -4104,17 +4043,14 @@ export type PartnerLogosArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 export type PartnerPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type PartnerPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 export type PartnerScheduledInArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -4127,11 +4063,9 @@ export type PartnerScheduledInArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type PartnerUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 export type PartnerUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -4232,7 +4166,9 @@ export type PartnerManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   documentInStages_every?: InputMaybe<PartnerWhereStageInput>;
   documentInStages_none?: InputMaybe<PartnerWhereStageInput>;
@@ -4273,7 +4209,9 @@ export type PartnerManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -4292,7 +4230,9 @@ export type PartnerManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -4306,7 +4246,7 @@ export enum PartnerOrderByInput {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type PartnerUpdateInput = {
@@ -4459,7 +4399,9 @@ export type PartnerWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   documentInStages_every?: InputMaybe<PartnerWhereStageInput>;
   documentInStages_none?: InputMaybe<PartnerWhereStageInput>;
@@ -4500,7 +4442,9 @@ export type PartnerWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
@@ -4538,7 +4482,9 @@ export type PartnerWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -4578,12 +4524,10 @@ export type Person = Entity & {
   stage: Stage;
 };
 
-
 export type PersonLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
 };
-
 
 export type PersonPhotoArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -4742,7 +4686,7 @@ export enum PersonOrderByInput {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   PositionAsc = 'position_ASC',
-  PositionDesc = 'position_DESC'
+  PositionDesc = 'position_DESC',
 }
 
 export type PersonParent = Event;
@@ -4973,7 +4917,9 @@ export type PersonWhereInput = {
   /** All values ending with the given string. */
   alternativePosition_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are contained in given list. */
-  alternativePosition_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  alternativePosition_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** Any other value that exists and is not equal to the given value. */
   alternativePosition_not?: InputMaybe<Scalars['String']['input']>;
   /** All values not containing the given string. */
@@ -4981,7 +4927,9 @@ export type PersonWhereInput = {
   /** All values not ending with the given string */
   alternativePosition_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  alternativePosition_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  alternativePosition_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   alternativePosition_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -5143,18 +5091,15 @@ export type Query = {
   usersConnection: UserConnection;
 };
 
-
 export type QueryAboutArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: AboutWhereUniqueInput;
 };
 
-
 export type QueryAboutVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type QueryAboutsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5168,7 +5113,6 @@ export type QueryAboutsArgs = {
   where?: InputMaybe<AboutWhereInput>;
 };
 
-
 export type QueryAboutsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5181,18 +5125,15 @@ export type QueryAboutsConnectionArgs = {
   where?: InputMaybe<AboutWhereInput>;
 };
 
-
 export type QueryAssetArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: AssetWhereUniqueInput;
 };
 
-
 export type QueryAssetVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type QueryAssetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5206,7 +5147,6 @@ export type QueryAssetsArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 export type QueryAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5219,12 +5159,10 @@ export type QueryAssetsConnectionArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 export type QueryEntitiesArgs = {
   locales?: InputMaybe<Array<Locale>>;
   where: Array<EntityWhereInput>;
 };
-
 
 export type QueryEventArgs = {
   locales?: Array<Locale>;
@@ -5232,11 +5170,9 @@ export type QueryEventArgs = {
   where: EventWhereUniqueInput;
 };
 
-
 export type QueryEventVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type QueryEventsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5250,7 +5186,6 @@ export type QueryEventsArgs = {
   where?: InputMaybe<EventWhereInput>;
 };
 
-
 export type QueryEventsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5263,18 +5198,15 @@ export type QueryEventsConnectionArgs = {
   where?: InputMaybe<EventWhereInput>;
 };
 
-
 export type QueryJoin_UsArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: Join_UsWhereUniqueInput;
 };
 
-
 export type QueryJoin_UsVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type QueryJoin_UssArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5288,7 +5220,6 @@ export type QueryJoin_UssArgs = {
   where?: InputMaybe<Join_UsWhereInput>;
 };
 
-
 export type QueryJoin_UssConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5301,13 +5232,11 @@ export type QueryJoin_UssConnectionArgs = {
   where?: InputMaybe<Join_UsWhereInput>;
 };
 
-
 export type QueryNodeArgs = {
   id: Scalars['ID']['input'];
   locales?: Array<Locale>;
   stage?: Stage;
 };
-
 
 export type QueryPartnerArgs = {
   locales?: Array<Locale>;
@@ -5315,11 +5244,9 @@ export type QueryPartnerArgs = {
   where: PartnerWhereUniqueInput;
 };
 
-
 export type QueryPartnerVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type QueryPartnersArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5333,7 +5260,6 @@ export type QueryPartnersArgs = {
   where?: InputMaybe<PartnerWhereInput>;
 };
 
-
 export type QueryPartnersConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5346,13 +5272,11 @@ export type QueryPartnersConnectionArgs = {
   where?: InputMaybe<PartnerWhereInput>;
 };
 
-
 export type QueryScheduledOperationArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: ScheduledOperationWhereUniqueInput;
 };
-
 
 export type QueryScheduledOperationsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5366,7 +5290,6 @@ export type QueryScheduledOperationsArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type QueryScheduledOperationsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5379,13 +5302,11 @@ export type QueryScheduledOperationsConnectionArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type QueryScheduledReleaseArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: ScheduledReleaseWhereUniqueInput;
 };
-
 
 export type QueryScheduledReleasesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5399,7 +5320,6 @@ export type QueryScheduledReleasesArgs = {
   where?: InputMaybe<ScheduledReleaseWhereInput>;
 };
 
-
 export type QueryScheduledReleasesConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -5412,13 +5332,11 @@ export type QueryScheduledReleasesConnectionArgs = {
   where?: InputMaybe<ScheduledReleaseWhereInput>;
 };
 
-
 export type QueryUserArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: UserWhereUniqueInput;
 };
-
 
 export type QueryUsersArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5431,7 +5349,6 @@ export type QueryUsersArgs = {
   stage?: Stage;
   where?: InputMaybe<UserWhereInput>;
 };
-
 
 export type QueryUsersConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -5476,39 +5393,39 @@ export type RichText = {
 };
 
 /** Scheduled Operation system model */
-export type ScheduledOperation = Entity & Node & {
-  __typename?: 'ScheduledOperation';
-  affectedDocuments: Array<ScheduledOperationAffectedDocument>;
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']['output'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  /** Operation description */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Get the document in other stages */
-  documentInStages: Array<ScheduledOperation>;
-  /** Operation error message */
-  errorMessage?: Maybe<Scalars['String']['output']>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  /** Raw operation payload including all details, this field is subject to change */
-  rawPayload: Scalars['Json']['output'];
-  /** The release this operation is scheduled for */
-  release?: Maybe<ScheduledRelease>;
-  /** System stage field */
-  stage: Stage;
-  /** operation Status */
-  status: ScheduledOperationStatus;
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']['output'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-};
-
+export type ScheduledOperation = Entity &
+  Node & {
+    __typename?: 'ScheduledOperation';
+    affectedDocuments: Array<ScheduledOperationAffectedDocument>;
+    /** The time the document was created */
+    createdAt: Scalars['DateTime']['output'];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Operation description */
+    description?: Maybe<Scalars['String']['output']>;
+    /** Get the document in other stages */
+    documentInStages: Array<ScheduledOperation>;
+    /** Operation error message */
+    errorMessage?: Maybe<Scalars['String']['output']>;
+    /** The unique identifier */
+    id: Scalars['ID']['output'];
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars['DateTime']['output']>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    /** Raw operation payload including all details, this field is subject to change */
+    rawPayload: Scalars['Json']['output'];
+    /** The release this operation is scheduled for */
+    release?: Maybe<ScheduledRelease>;
+    /** System stage field */
+    stage: Stage;
+    /** operation Status */
+    status: ScheduledOperationStatus;
+    /** The time the document was updated */
+    updatedAt: Scalars['DateTime']['output'];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
 
 /** Scheduled Operation system model */
 export type ScheduledOperationAffectedDocumentsArgs = {
@@ -5521,13 +5438,11 @@ export type ScheduledOperationAffectedDocumentsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperationCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Operation system model */
 export type ScheduledOperationDocumentInStagesArgs = {
@@ -5536,13 +5451,11 @@ export type ScheduledOperationDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperationPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Operation system model */
 export type ScheduledOperationReleaseArgs = {
@@ -5550,14 +5463,18 @@ export type ScheduledOperationReleaseArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperationUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = About | Asset | Event | Join_Us | Partner;
+export type ScheduledOperationAffectedDocument =
+  | About
+  | Asset
+  | Event
+  | Join_Us
+  | Partner;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -5619,7 +5536,9 @@ export type ScheduledOperationManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
@@ -5635,7 +5554,9 @@ export type ScheduledOperationManyWhereInput = {
   /** All values not ending with the given string */
   description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -5654,7 +5575,9 @@ export type ScheduledOperationManyWhereInput = {
   /** All values not ending with the given string */
   errorMessage_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  errorMessage_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  errorMessage_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   errorMessage_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -5692,7 +5615,9 @@ export type ScheduledOperationManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   /** All values containing the given json path. */
   rawPayload_json_path_exists?: InputMaybe<Scalars['String']['input']>;
@@ -5725,7 +5650,9 @@ export type ScheduledOperationManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -5743,7 +5670,7 @@ export enum ScheduledOperationOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 /** System Scheduled Operation Status */
@@ -5752,7 +5679,7 @@ export enum ScheduledOperationStatus {
   Completed = 'COMPLETED',
   Failed = 'FAILED',
   InProgress = 'IN_PROGRESS',
-  Pending = 'PENDING'
+  Pending = 'PENDING',
 }
 
 export type ScheduledOperationUpdateManyInlineInput = {
@@ -5795,7 +5722,9 @@ export type ScheduledOperationWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
@@ -5811,7 +5740,9 @@ export type ScheduledOperationWhereInput = {
   /** All values not ending with the given string */
   description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -5830,7 +5761,9 @@ export type ScheduledOperationWhereInput = {
   /** All values not ending with the given string */
   errorMessage_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  errorMessage_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  errorMessage_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   errorMessage_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -5868,7 +5801,9 @@ export type ScheduledOperationWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   /** All values containing the given json path. */
   rawPayload_json_path_exists?: InputMaybe<Scalars['String']['input']>;
@@ -5901,7 +5836,9 @@ export type ScheduledOperationWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -5911,44 +5848,44 @@ export type ScheduledOperationWhereUniqueInput = {
 };
 
 /** Scheduled Release system model */
-export type ScheduledRelease = Entity & Node & {
-  __typename?: 'ScheduledRelease';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']['output'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  /** Release description */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Get the document in other stages */
-  documentInStages: Array<ScheduledRelease>;
-  /** Release error message */
-  errorMessage?: Maybe<Scalars['String']['output']>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  /** Whether scheduled release should be run */
-  isActive: Scalars['Boolean']['output'];
-  /** Whether scheduled release is implicit */
-  isImplicit: Scalars['Boolean']['output'];
-  /** Operations to run with this release */
-  operations: Array<ScheduledOperation>;
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  /** Release date and time */
-  releaseAt?: Maybe<Scalars['DateTime']['output']>;
-  /** System stage field */
-  stage: Stage;
-  /** Release Status */
-  status: ScheduledReleaseStatus;
-  /** Release Title */
-  title?: Maybe<Scalars['String']['output']>;
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']['output'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-};
-
+export type ScheduledRelease = Entity &
+  Node & {
+    __typename?: 'ScheduledRelease';
+    /** The time the document was created */
+    createdAt: Scalars['DateTime']['output'];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Release description */
+    description?: Maybe<Scalars['String']['output']>;
+    /** Get the document in other stages */
+    documentInStages: Array<ScheduledRelease>;
+    /** Release error message */
+    errorMessage?: Maybe<Scalars['String']['output']>;
+    /** The unique identifier */
+    id: Scalars['ID']['output'];
+    /** Whether scheduled release should be run */
+    isActive: Scalars['Boolean']['output'];
+    /** Whether scheduled release is implicit */
+    isImplicit: Scalars['Boolean']['output'];
+    /** Operations to run with this release */
+    operations: Array<ScheduledOperation>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars['DateTime']['output']>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    /** Release date and time */
+    releaseAt?: Maybe<Scalars['DateTime']['output']>;
+    /** System stage field */
+    stage: Stage;
+    /** Release Status */
+    status: ScheduledReleaseStatus;
+    /** Release Title */
+    title?: Maybe<Scalars['String']['output']>;
+    /** The time the document was updated */
+    updatedAt: Scalars['DateTime']['output'];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
 
 /** Scheduled Release system model */
 export type ScheduledReleaseCreatedByArgs = {
@@ -5956,14 +5893,12 @@ export type ScheduledReleaseCreatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-
 /** Scheduled Release system model */
 export type ScheduledReleaseDocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   inheritLocale?: Scalars['Boolean']['input'];
   stages?: Array<Stage>;
 };
-
 
 /** Scheduled Release system model */
 export type ScheduledReleaseOperationsArgs = {
@@ -5978,13 +5913,11 @@ export type ScheduledReleaseOperationsArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 /** Scheduled Release system model */
 export type ScheduledReleasePublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Release system model */
 export type ScheduledReleaseUpdatedByArgs = {
@@ -6066,7 +5999,9 @@ export type ScheduledReleaseManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
@@ -6082,7 +6017,9 @@ export type ScheduledReleaseManyWhereInput = {
   /** All values not ending with the given string */
   description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -6101,7 +6038,9 @@ export type ScheduledReleaseManyWhereInput = {
   /** All values not ending with the given string */
   errorMessage_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  errorMessage_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  errorMessage_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   errorMessage_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -6148,7 +6087,9 @@ export type ScheduledReleaseManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
@@ -6164,7 +6105,9 @@ export type ScheduledReleaseManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   releaseAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  releaseAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  releaseAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   status?: InputMaybe<ScheduledReleaseStatus>;
   /** All values that are contained in given list. */
   status_in?: InputMaybe<Array<InputMaybe<ScheduledReleaseStatus>>>;
@@ -6205,7 +6148,9 @@ export type ScheduledReleaseManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -6231,7 +6176,7 @@ export enum ScheduledReleaseOrderByInput {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 /** System Scheduled Release Status */
@@ -6239,7 +6184,7 @@ export enum ScheduledReleaseStatus {
   Completed = 'COMPLETED',
   Failed = 'FAILED',
   InProgress = 'IN_PROGRESS',
-  Pending = 'PENDING'
+  Pending = 'PENDING',
 }
 
 export type ScheduledReleaseUpdateInput = {
@@ -6342,7 +6287,9 @@ export type ScheduledReleaseWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   createdBy?: InputMaybe<UserWhereInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
@@ -6358,7 +6305,9 @@ export type ScheduledReleaseWhereInput = {
   /** All values not ending with the given string */
   description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -6377,7 +6326,9 @@ export type ScheduledReleaseWhereInput = {
   /** All values not ending with the given string */
   errorMessage_not_ends_with?: InputMaybe<Scalars['String']['input']>;
   /** All values that are not contained in given list. */
-  errorMessage_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  errorMessage_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['String']['input']>>
+  >;
   /** All values not starting with the given string. */
   errorMessage_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
@@ -6424,7 +6375,9 @@ export type ScheduledReleaseWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   publishedBy?: InputMaybe<UserWhereInput>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
@@ -6440,7 +6393,9 @@ export type ScheduledReleaseWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   releaseAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  releaseAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  releaseAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   status?: InputMaybe<ScheduledReleaseStatus>;
   /** All values that are contained in given list. */
   status_in?: InputMaybe<Array<InputMaybe<ScheduledReleaseStatus>>>;
@@ -6481,7 +6436,9 @@ export type ScheduledReleaseWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
@@ -6495,13 +6452,13 @@ export enum Stage {
   /** The Draft is the default stage for all your content. */
   Draft = 'DRAFT',
   /** The Published stage is where you can publish your content to. */
-  Published = 'PUBLISHED'
+  Published = 'PUBLISHED',
 }
 
 export enum SystemDateTimeFieldVariation {
   Base = 'BASE',
   Combined = 'COMBINED',
-  Localization = 'LOCALIZATION'
+  Localization = 'LOCALIZATION',
 }
 
 export type UnpublishLocaleInput = {
@@ -6512,30 +6469,30 @@ export type UnpublishLocaleInput = {
 };
 
 /** User system model */
-export type User = Entity & Node & {
-  __typename?: 'User';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']['output'];
-  /** Get the document in other stages */
-  documentInStages: Array<User>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  /** Flag to determine if user is active or not */
-  isActive: Scalars['Boolean']['output'];
-  /** User Kind. Can be either MEMBER, PAT or PUBLIC */
-  kind: UserKind;
-  /** The username */
-  name: Scalars['String']['output'];
-  /** Profile Picture url */
-  picture?: Maybe<Scalars['String']['output']>;
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** System stage field */
-  stage: Stage;
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']['output'];
-};
-
+export type User = Entity &
+  Node & {
+    __typename?: 'User';
+    /** The time the document was created */
+    createdAt: Scalars['DateTime']['output'];
+    /** Get the document in other stages */
+    documentInStages: Array<User>;
+    /** The unique identifier */
+    id: Scalars['ID']['output'];
+    /** Flag to determine if user is active or not */
+    isActive: Scalars['Boolean']['output'];
+    /** User Kind. Can be either MEMBER, PAT or PUBLIC */
+    kind: UserKind;
+    /** The username */
+    name: Scalars['String']['output'];
+    /** Profile Picture url */
+    picture?: Maybe<Scalars['String']['output']>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars['DateTime']['output']>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars['DateTime']['output'];
+  };
 
 /** User system model */
 export type UserDocumentInStagesArgs = {
@@ -6586,7 +6543,7 @@ export enum UserKind {
   Member = 'MEMBER',
   Pat = 'PAT',
   Public = 'PUBLIC',
-  Webhook = 'WEBHOOK'
+  Webhook = 'WEBHOOK',
 }
 
 /** Identifies documents */
@@ -6613,7 +6570,9 @@ export type UserManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   documentInStages_every?: InputMaybe<UserWhereStageInput>;
   documentInStages_none?: InputMaybe<UserWhereStageInput>;
   documentInStages_some?: InputMaybe<UserWhereStageInput>;
@@ -6698,7 +6657,9 @@ export type UserManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -6713,7 +6674,9 @@ export type UserManyWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
 };
 
 export enum UserOrderByInput {
@@ -6732,7 +6695,7 @@ export enum UserOrderByInput {
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
 }
 
 export type UserUpdateManyInlineInput = {
@@ -6781,7 +6744,9 @@ export type UserWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   documentInStages_every?: InputMaybe<UserWhereStageInput>;
   documentInStages_none?: InputMaybe<UserWhereStageInput>;
   documentInStages_some?: InputMaybe<UserWhereStageInput>;
@@ -6866,7 +6831,9 @@ export type UserWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -6881,7 +6848,9 @@ export type UserWhereInput = {
   /** Any other value that exists and is not equal to the given value. */
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars['DateTime']['input']>>
+  >;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -6949,7 +6918,7 @@ export enum _FilterKind {
   UnionEvery = 'union_every',
   UnionNone = 'union_none',
   UnionSingle = 'union_single',
-  UnionSome = 'union_some'
+  UnionSome = 'union_some',
 }
 
 export enum _MutationInputFieldKind {
@@ -6959,7 +6928,7 @@ export enum _MutationInputFieldKind {
   RichTextWithEmbeds = 'richTextWithEmbeds',
   Scalar = 'scalar',
   Union = 'union',
-  Virtual = 'virtual'
+  Virtual = 'virtual',
 }
 
 export enum _MutationKind {
@@ -6974,33 +6943,33 @@ export enum _MutationKind {
   UnpublishMany = 'unpublishMany',
   Update = 'update',
   UpdateMany = 'updateMany',
-  Upsert = 'upsert'
+  Upsert = 'upsert',
 }
 
 export enum _OrderDirection {
   Asc = 'asc',
-  Desc = 'desc'
+  Desc = 'desc',
 }
 
 export enum _RelationInputCardinality {
   Many = 'many',
-  One = 'one'
+  One = 'one',
 }
 
 export enum _RelationInputKind {
   Create = 'create',
-  Update = 'update'
+  Update = 'update',
 }
 
 export enum _RelationKind {
   Regular = 'regular',
-  Union = 'union'
+  Union = 'union',
 }
 
 export enum _SystemDateTimeFieldVariation {
   Base = 'base',
   Combined = 'combined',
-  Localization = 'localization'
+  Localization = 'localization',
 }
 
 export type EditionQueryQueryVariables = Exact<{
@@ -7010,13 +6979,69 @@ export type EditionQueryQueryVariables = Exact<{
   skip?: Scalars['Int']['input'];
 }>;
 
+export type EditionQueryQuery = {
+  __typename?: 'Query';
+  event?: {
+    __typename?: 'Event';
+    id: string;
+    title: string;
+    new?: boolean | null;
+    date?: any | null;
+    edition: string;
+    location?: string | null;
+    slug?: string | null;
+    singUpLink?: string | null;
+    lead: Array<{
+      __typename?: 'Person';
+      id: string;
+      name: string;
+      position: string;
+      alternativePosition?: string | null;
+      linkedIn?: string | null;
+      photo?: {
+        __typename?: 'Asset';
+        fileName: string;
+        width?: number | null;
+        height?: number | null;
+        url: string;
+      } | null;
+    }>;
+    speakers: Array<{
+      __typename?: 'Person';
+      id: string;
+      name: string;
+      position: string;
+      alternativePosition?: string | null;
+      linkedIn?: string | null;
+      photo?: {
+        __typename?: 'Asset';
+        fileName: string;
+        width?: number | null;
+        height?: number | null;
+        url: string;
+      } | null;
+    }>;
+    gallery: Array<{
+      __typename?: 'Asset';
+      width?: number | null;
+      height?: number | null;
+      url: string;
+      fileName: string;
+    }>;
+  } | null;
+};
 
-export type EditionQueryQuery = { __typename?: 'Query', event?: { __typename?: 'Event', id: string, title: string, new?: boolean | null, date?: any | null, edition: string, location?: string | null, slug?: string | null, singUpLink?: string | null, lead: Array<{ __typename?: 'Person', id: string, name: string, position: string, alternativePosition?: string | null, linkedIn?: string | null, photo?: { __typename?: 'Asset', fileName: string, width?: number | null, height?: number | null, url: string } | null }>, speakers: Array<{ __typename?: 'Person', id: string, name: string, position: string, alternativePosition?: string | null, linkedIn?: string | null, photo?: { __typename?: 'Asset', fileName: string, width?: number | null, height?: number | null, url: string } | null }>, gallery: Array<{ __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }> } | null };
+export type EventsRoutesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type EventsRoutesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type EventsRoutesQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Event', id: string, slug?: string | null, edition: string }> };
+export type EventsRoutesQuery = {
+  __typename?: 'Query';
+  events: Array<{
+    __typename?: 'Event';
+    id: string;
+    slug?: string | null;
+    edition: string;
+  }>;
+};
 
 export type EventGalleryQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -7024,45 +7049,1045 @@ export type EventGalleryQueryVariables = Exact<{
   skip?: Scalars['Int']['input'];
 }>;
 
-
-export type EventGalleryQuery = { __typename?: 'Query', assetsConnection: { __typename?: 'AssetConnection', aggregate: { __typename?: 'Aggregate', count: number }, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, endCursor?: string | null, pageSize?: number | null }, edges: Array<{ __typename?: 'AssetEdge', cursor: string, node: { __typename?: 'Asset', id: string, fileName: string, height?: number | null, width?: number | null, url: string } }> } };
+export type EventGalleryQuery = {
+  __typename?: 'Query';
+  assetsConnection: {
+    __typename?: 'AssetConnection';
+    aggregate: { __typename?: 'Aggregate'; count: number };
+    pageInfo: {
+      __typename?: 'PageInfo';
+      startCursor?: string | null;
+      endCursor?: string | null;
+      pageSize?: number | null;
+    };
+    edges: Array<{
+      __typename?: 'AssetEdge';
+      cursor: string;
+      node: {
+        __typename?: 'Asset';
+        id: string;
+        fileName: string;
+        height?: number | null;
+        width?: number | null;
+        url: string;
+      };
+    }>;
+  };
+};
 
 export type NewEventQueryQueryVariables = Exact<{
   locale: Locale;
 }>;
 
-
-<<<<<<< Updated upstream
-export type NewEventQueryQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Event', id: string, title: string, new?: boolean | null, date?: any | null, edition: string, location?: string | null, singUpLink?: string | null, lead: Array<{ __typename?: 'Person', id: string, name: string, position: string, alternativePosition?: string | null, linkedIn?: string | null, photo?: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } | null }>, speakers: Array<{ __typename?: 'Person', id: string, name: string, position: string, alternativePosition?: string | null, linkedIn?: string | null, photo?: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } | null }>, gallery: Array<{ __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }> }> };
-=======
-export type NewEventQueryQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Event', id: string, title: string, new?: boolean | null, date?: any | null, edition: string, location?: string | null, singUpLink?: string | null, slug?: string | null, lead: Array<{ __typename?: 'Person', id: string, name: string, position: string, alternativePosition?: string | null, photo?: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } | null }>, speakers: Array<{ __typename?: 'Person', id: string, name: string, position: string, alternativePosition?: string | null, photo?: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } | null }>, gallery: Array<{ __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }> }> };
->>>>>>> Stashed changes
+export type NewEventQueryQuery = {
+  __typename?: 'Query';
+  events: Array<{
+    __typename?: 'Event';
+    id: string;
+    title: string;
+    new?: boolean | null;
+    date?: any | null;
+    edition: string;
+    location?: string | null;
+    singUpLink?: string | null;
+    lead: Array<{
+      __typename?: 'Person';
+      id: string;
+      name: string;
+      position: string;
+      alternativePosition?: string | null;
+      linkedIn?: string | null;
+      photo?: {
+        __typename?: 'Asset';
+        width?: number | null;
+        height?: number | null;
+        url: string;
+      } | null;
+    }>;
+    speakers: Array<{
+      __typename?: 'Person';
+      id: string;
+      name: string;
+      position: string;
+      alternativePosition?: string | null;
+      linkedIn?: string | null;
+      photo?: {
+        __typename?: 'Asset';
+        width?: number | null;
+        height?: number | null;
+        url: string;
+      } | null;
+    }>;
+    gallery: Array<{
+      __typename?: 'Asset';
+      width?: number | null;
+      height?: number | null;
+      url: string;
+      fileName: string;
+    }>;
+  }>;
+};
 
 export type JoinUsQueryQueryVariables = Exact<{
   locale: Locale;
 }>;
 
-
-export type JoinUsQueryQuery = { __typename?: 'Query', join_us?: { __typename?: 'Join_us', facebook_description: { __typename?: 'RichText', raw: any }, linkedin_description: { __typename?: 'RichText', raw: any }, youtube_description: { __typename?: 'RichText', raw: any } } | null };
+export type JoinUsQueryQuery = {
+  __typename?: 'Query';
+  join_us?: {
+    __typename?: 'Join_us';
+    facebook_description: { __typename?: 'RichText'; raw: any };
+    linkedin_description: { __typename?: 'RichText'; raw: any };
+    youtube_description: { __typename?: 'RichText'; raw: any };
+  } | null;
+};
 
 export type PartnersQueryQueryVariables = Exact<{
   locale: Locale;
 }>;
 
-
-export type PartnersQueryQuery = { __typename?: 'Query', partner?: { __typename?: 'Partner', title?: string | null, description: { __typename?: 'RichText', raw: any }, logos: Array<{ __typename?: 'Asset', id: string, height?: number | null, width?: number | null, url: string, fileName: string }> } | null };
+export type PartnersQueryQuery = {
+  __typename?: 'Query';
+  partner?: {
+    __typename?: 'Partner';
+    title?: string | null;
+    description: { __typename?: 'RichText'; raw: any };
+    logos: Array<{
+      __typename?: 'Asset';
+      id: string;
+      height?: number | null;
+      width?: number | null;
+      url: string;
+      fileName: string;
+    }>;
+  } | null;
+};
 
 export type AboutQueryQueryVariables = Exact<{
   locale: Locale;
 }>;
 
+export type AboutQueryQuery = {
+  __typename?: 'Query';
+  about?: {
+    __typename?: 'About';
+    title: string;
+    description: { __typename?: 'RichText'; raw: any };
+    malgosia_description: { __typename?: 'RichText'; raw: any };
+    malgosia_image: {
+      __typename?: 'Asset';
+      url: string;
+      width?: number | null;
+      height?: number | null;
+      fileName: string;
+    };
+  } | null;
+};
 
-export type AboutQueryQuery = { __typename?: 'Query', about?: { __typename?: 'About', title: string, description: { __typename?: 'RichText', raw: any }, malgosia_description: { __typename?: 'RichText', raw: any }, malgosia_image: { __typename?: 'Asset', url: string, width?: number | null, height?: number | null, fileName: string } } | null };
-
-
-export const EditionQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"EditionQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"edition"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"5"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"edition"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"new"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"edition"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"singUpLink"}},{"kind":"Field","name":{"kind":"Name","value":"lead"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fileName"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"speakers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fileName"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<EditionQueryQuery, EditionQueryQueryVariables>;
-export const EventsRoutesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"EventsRoutes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"events"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"stage"},"value":{"kind":"EnumValue","value":"PUBLISHED"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"edition"}}]}}]}}]} as unknown as DocumentNode<EventsRoutesQuery, EventsRoutesQueryVariables>;
-export const NewEventQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"NewEventQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"events"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"new"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"edition"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"singUpLink"}},{"kind":"Field","name":{"kind":"Name","value":"lead"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"speakers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<NewEventQueryQuery, NewEventQueryQueryVariables>;
-export const JoinUsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"JoinUsQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"join_us"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw7o3sj94j4007usyxtpzp1q","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"facebook_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"linkedin_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"youtube_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}}]}}]}}]} as unknown as DocumentNode<JoinUsQueryQuery, JoinUsQueryQueryVariables>;
-export const PartnersQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PartnersQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"partner"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw7sout213xu07w5n05dsj1z","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"logos"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<PartnersQueryQuery, PartnersQueryQueryVariables>;
-export const AboutQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AboutQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"about"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw6y1gcx6my207w6oxtppa4c","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"malgosia_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"malgosia_image"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<AboutQueryQuery, AboutQueryQueryVariables>;
+export const EditionQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'EditionQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'Locale' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'edition' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'first' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          },
+          defaultValue: { kind: 'IntValue', value: '5' },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'skip' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          },
+          defaultValue: { kind: 'IntValue', value: '0' },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'event' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'slug' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'edition' },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locales' },
+                value: {
+                  kind: 'ListValue',
+                  values: [
+                    {
+                      kind: 'Variable',
+                      name: { kind: 'Name', value: 'locale' },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'new' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'date' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'edition' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'location' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'singUpLink' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'lead' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'Person' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'position' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: {
+                                kind: 'Name',
+                                value: 'alternativePosition',
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'linkedIn' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'photo' },
+                              arguments: [
+                                {
+                                  kind: 'Argument',
+                                  name: { kind: 'Name', value: 'locales' },
+                                  value: { kind: 'EnumValue', value: 'en' },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'fileName' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'width' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'height' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'url' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'speakers' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'Person' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'position' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: {
+                                kind: 'Name',
+                                value: 'alternativePosition',
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'linkedIn' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'photo' },
+                              arguments: [
+                                {
+                                  kind: 'Argument',
+                                  name: { kind: 'Name', value: 'locales' },
+                                  value: { kind: 'EnumValue', value: 'en' },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'fileName' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'width' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'height' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'url' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'gallery' },
+                  arguments: [
+                    {
+                      kind: 'Argument',
+                      name: { kind: 'Name', value: 'first' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'first' },
+                      },
+                    },
+                    {
+                      kind: 'Argument',
+                      name: { kind: 'Name', value: 'skip' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'skip' },
+                      },
+                    },
+                    {
+                      kind: 'Argument',
+                      name: { kind: 'Name', value: 'locales' },
+                      value: { kind: 'EnumValue', value: 'en' },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'height' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'fileName' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<EditionQueryQuery, EditionQueryQueryVariables>;
+export const EventsRoutesDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'EventsRoutes' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'events' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'stage' },
+                value: { kind: 'EnumValue', value: 'PUBLISHED' },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'edition' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<EventsRoutesQuery, EventsRoutesQueryVariables>;
+export const NewEventQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'NewEventQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'Locale' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'events' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'first' },
+                value: { kind: 'IntValue', value: '1' },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locales' },
+                value: {
+                  kind: 'ListValue',
+                  values: [
+                    {
+                      kind: 'Variable',
+                      name: { kind: 'Name', value: 'locale' },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'new' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'date' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'edition' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'location' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'singUpLink' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'lead' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'Person' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'position' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: {
+                                kind: 'Name',
+                                value: 'alternativePosition',
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'linkedIn' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'photo' },
+                              arguments: [
+                                {
+                                  kind: 'Argument',
+                                  name: { kind: 'Name', value: 'locales' },
+                                  value: { kind: 'EnumValue', value: 'en' },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'width' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'height' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'url' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'speakers' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'Person' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'position' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: {
+                                kind: 'Name',
+                                value: 'alternativePosition',
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'linkedIn' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'photo' },
+                              arguments: [
+                                {
+                                  kind: 'Argument',
+                                  name: { kind: 'Name', value: 'locales' },
+                                  value: { kind: 'EnumValue', value: 'en' },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'width' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'height' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'url' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'gallery' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'height' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'fileName' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NewEventQueryQuery, NewEventQueryQueryVariables>;
+export const JoinUsQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'JoinUsQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'Locale' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'join_us' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'id' },
+                      value: {
+                        kind: 'StringValue',
+                        value: 'clw7o3sj94j4007usyxtpzp1q',
+                        block: false,
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locales' },
+                value: {
+                  kind: 'ListValue',
+                  values: [
+                    {
+                      kind: 'Variable',
+                      name: { kind: 'Name', value: 'locale' },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'facebook_description' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'linkedin_description' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'youtube_description' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<JoinUsQueryQuery, JoinUsQueryQueryVariables>;
+export const PartnersQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'PartnersQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'Locale' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'partner' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'id' },
+                      value: {
+                        kind: 'StringValue',
+                        value: 'clw7sout213xu07w5n05dsj1z',
+                        block: false,
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locales' },
+                value: {
+                  kind: 'ListValue',
+                  values: [
+                    {
+                      kind: 'Variable',
+                      name: { kind: 'Name', value: 'locale' },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'description' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'logos' },
+                  arguments: [
+                    {
+                      kind: 'Argument',
+                      name: { kind: 'Name', value: 'locales' },
+                      value: { kind: 'EnumValue', value: 'en' },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'height' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'fileName' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PartnersQueryQuery, PartnersQueryQueryVariables>;
+export const AboutQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'AboutQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'Locale' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'about' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'id' },
+                      value: {
+                        kind: 'StringValue',
+                        value: 'clw6y1gcx6my207w6oxtppa4c',
+                        block: false,
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locales' },
+                value: {
+                  kind: 'ListValue',
+                  values: [
+                    {
+                      kind: 'Variable',
+                      name: { kind: 'Name', value: 'locale' },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'description' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                    ],
+                  },
+                },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'malgosia_description' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'malgosia_image' },
+                  arguments: [
+                    {
+                      kind: 'Argument',
+                      name: { kind: 'Name', value: 'locales' },
+                      value: { kind: 'EnumValue', value: 'en' },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'height' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'fileName' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AboutQueryQuery, AboutQueryQueryVariables>;
