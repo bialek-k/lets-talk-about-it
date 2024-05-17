@@ -7,6 +7,7 @@ query NewEventQuery($locale: Locale!) {
     edition
     location
     singUpLink
+    slug
     lead {
       ... on Person {
         id

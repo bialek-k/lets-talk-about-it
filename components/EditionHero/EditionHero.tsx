@@ -45,6 +45,11 @@ const EditionHero = async ({
     );
   };
 
+<<<<<<< Updated upstream
+=======
+  // console.log(edition.location.split(' '));
+
+>>>>>>> Stashed changes
   return (
     <div
       className={`${
@@ -91,7 +96,7 @@ const EditionHero = async ({
       ) : (
         <div className="mt-5">
           <Button
-            href="#gallery"
+            href={`/events/${edition.slug}#gallery`}
             content={t('gallery')}
             buttonColor="text-main-white"
             backgroundColor="bg-main-black"

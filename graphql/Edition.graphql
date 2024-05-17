@@ -1,4 +1,9 @@
-query EditionQuery($locale: Locale!, $edition: String!) {
+query EditionQuery(
+  $locale: Locale!
+  $edition: String!
+  $first: Int! = 5
+  $skip: Int! = 0
+) {
   event(where: { slug: $edition }, locales: [$locale]) {
     id
     title
@@ -6,6 +11,7 @@ query EditionQuery($locale: Locale!, $edition: String!) {
     date
     edition
     location
+    slug
     singUpLink
     lead {
       ... on Person {
@@ -37,7 +43,7 @@ query EditionQuery($locale: Locale!, $edition: String!) {
         }
       }
     }
-    gallery(locales: en) {
+    gallery(first: $first, skip: $skip, locales: en) {
       width
       height
       url

@@ -25,7 +25,10 @@ const Edition = async ({
 }) => {
   const t = translation;
 
-  const { event } = await request(EditionQueryDocument, { locale, edition });
+  const { event } = await request(EditionQueryDocument, {
+    locale,
+    edition,
+  });
 
   return (
     <section className="">
@@ -43,7 +46,7 @@ const Edition = async ({
             <h2 className="font-semibold text-[40px] leading-[52px] text-start self-start w-full mb-5 lg:ml-[100px]">
               {t('gallery')}
             </h2>
-            <Gallery images={event?.gallery} />
+            <Gallery id={event?.id} />
           </div>
         ) : (
           <div
