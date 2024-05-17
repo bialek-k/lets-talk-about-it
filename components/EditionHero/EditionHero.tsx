@@ -45,11 +45,6 @@ const EditionHero = async ({
     );
   };
 
-<<<<<<< Updated upstream
-=======
-  // console.log(edition.location.split(' '));
-
->>>>>>> Stashed changes
   return (
     <div
       className={`${
