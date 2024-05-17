@@ -5,8 +5,8 @@ import Pagination from '@mui/material/Pagination';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import ImageGalleryItem from '../UI/ImageGalleryItem';
 import { useMediaQuery } from '@mui/material';
-import { EventGalleryDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
+import { EventGalleryDocument } from '@/graphql/generated';
 
 // interface Image {
 //   url: string;
