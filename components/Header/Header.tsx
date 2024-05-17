@@ -18,6 +18,7 @@ import Facebook from '../Facebook/Facebook';
 import Youtube from '../Youtube/Youtube';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import toRoman from '../UI/NumberToRoman';
+import { usePathname } from 'next/navigation';
 
 interface Route {
   path?: string;
@@ -31,6 +32,18 @@ export default function Header({ isMain }: { isMain?: boolean }) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
+  const currentPath = usePathname();
+
+  const isActive = (path?: string) => {
+    if (path === '/#about') {
+      if (currentPath === '/' || currentPath === '/en') return true;
+    }
+    if (currentPath.endsWith(path ?? '')) return true;
+    if (path === 'events' && currentPath.includes('events')) {
+      return true;
+    }
+    return console.log(currentPath, path), currentPath === path;
+  };
 
   useEffect(() => {
     const fetchRoutes = async () => {
@@ -94,10 +107,21 @@ export default function Header({ isMain }: { isMain?: boolean }) {
                 className="relative flex justify-center items-center"
               >
                 {route.path ? (
-                  <Link href={route.path ?? '#'}>{t(route.name ?? '')}</Link>
+                  <Link
+                    className={`${
+                      isActive(route.path)
+                        ? 'text-main-yellow'
+                        : 'text-main-white'
+                    } `}
+                    href={route.path ?? '#'}
+                  >
+                    {t(route.name ?? '')}
+                  </Link>
                 ) : (
                   <div
-                    className=" flex flex-row items-center justify-between"
+                    className={`flex flex-row items-center justify-between ${
+                      isActive(route.name) ? 'text-main-yellow' : 'text-white'
+                    }`}
                     onMouseEnter={() => setSubMenuOpen(true)}
                     onMouseLeave={() => setSubMenuOpen(false)}
                   >
@@ -131,7 +155,11 @@ export default function Header({ isMain }: { isMain?: boolean }) {
                             key={index}
                           >
                             <Link
-                              className="border-b bg-main-black border-solid border-white h-[50px] flex items-center "
+                              className={`border-b bg-main-black border-solid border-white h-[50px] flex items-center ${
+                                currentPath.includes(subRoute.path)
+                                  ? 'text-main-yellow'
+                                  : 'text-main-white'
+                              }`}
                               href={subRoute.path ?? '#'}
                             >
                               {`${t(subRoute.name.split(' ')[0])} ${toRoman(
