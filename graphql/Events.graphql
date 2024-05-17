@@ -7,12 +7,14 @@ query NewEventQuery($locale: Locale!) {
     edition
     location
     singUpLink
+    slug
     lead {
       ... on Person {
         id
         name
         position
         alternativePosition
+        linkedIn
         photo(locales: en) {
           width
           height
@@ -26,6 +28,7 @@ query NewEventQuery($locale: Locale!) {
         name
         position
         alternativePosition
+        linkedIn
         photo(locales: en) {
           width
           height

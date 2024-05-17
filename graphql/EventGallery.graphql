@@ -1,0 +1,26 @@
+query EventGallery($id: ID!, $first: Int! = 5, $skip: Int! = 0) {
+  assetsConnection(
+    where: { galleryEvent_every: { id: $id } }
+    first: $first
+    skip: $skip
+  ) {
+    aggregate {
+      count
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      pageSize
+    }
+    edges {
+      cursor
+      node {
+        id
+        fileName
+        height
+        width
+        url
+      }
+    }
+  }
+}

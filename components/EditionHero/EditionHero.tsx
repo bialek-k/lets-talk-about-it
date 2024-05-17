@@ -33,6 +33,18 @@ const EditionHero = async ({
     .toString()
     .padStart(2, '0')}.${eventDate.getFullYear()}`;
 
+  const formatLocation = (location: string) => {
+    const wordsArray = location.split(' ');
+    const lastWord = wordsArray.pop();
+    const remainingWords = wordsArray.join(' ');
+    return (
+      <>
+        <p>{remainingWords}</p>
+        <p>{lastWord}</p>
+      </>
+    );
+  };
+
   return (
     <div
       className={`${
@@ -79,7 +91,7 @@ const EditionHero = async ({
       ) : (
         <div className="mt-5">
           <Button
-            href="#gallery"
+            href={`/events/${edition.slug}#gallery`}
             content={t('gallery')}
             buttonColor="text-main-white"
             backgroundColor="bg-main-black"
@@ -100,9 +112,9 @@ const EditionHero = async ({
         <div className="border-r-2 border-solid border-main-black bg-main-black  h-[79px] mx-[35px]"></div>
         <div className="flex flex-col items-center justify-center lg:flex-row lg:w-[357px] lg:gap-10">
           <Location data={edition?.location} />
-          <h3 className=" font-medium lg:font-semibold lg:text-[40px] lg:leading-[52px] text-base text-center mt-6 lg:mt-0 w-min lg:w-[75%] ">
-            {edition?.location?.toLocaleUpperCase()}
-          </h3>
+          <div className=" font-medium lg:font-semibold lg:text-[40px] lg:leading-[52px] text-base text-center mt-6 lg:mt-0 w-min lg:w-[100%] ">
+            {formatLocation(edition?.location)}
+          </div>
         </div>
       </div>
     </div>

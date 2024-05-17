@@ -42,6 +42,7 @@ const PartnersCarousel = async ({
                 src={partner.url}
                 width={validWidth}
                 height={validHeight}
+                className="w-[100%] h-[60px]"
               />
             </div>
           );

@@ -11,6 +11,7 @@ interface TextHolderProps {
   readMore?: boolean;
   handleReadMore?: () => void;
   small?: boolean;
+  additionalContent?: JSX.Element | string;
 }
 
 export const TextHolder = ({
@@ -18,6 +19,7 @@ export const TextHolder = ({
   theme = 'dark',
   readMore,
   small,
+  additionalContent,
 }: TextHolderProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -53,11 +55,12 @@ export const TextHolder = ({
           <RichText
             content={content}
             renderers={{
-              p: ({ children }) => (
-                <p className="m-0 break-words">{children}</p>
-              ),
+              p: ({ children }) => {
+                return <p className="m-0 mt-2">{children}</p>;
+              },
             }}
           />
+          {additionalContent}
         </div>
       </div>
       {readMore && (

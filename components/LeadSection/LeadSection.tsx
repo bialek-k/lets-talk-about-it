@@ -32,7 +32,7 @@ const LeadSection = async ({
               className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6 lg:mr-auto"
               key={leader.name}
             >
-              <div className="pb-6">
+              <div className="">
                 <div className="relative w-fit">
                   <h3 className=" font-semibold text-lg w-max z-40 relative">
                     {leader.name}
@@ -47,7 +47,11 @@ const LeadSection = async ({
                 </p>
               </div>
               <div>
-                <ImageContainer image={leader.photo} />
+                <ImageContainer
+                  alt={leader.name}
+                  image={leader.photo}
+                  link={leader.linkedIn}
+                />
               </div>
             </div>
           );
@@ -65,7 +69,7 @@ const LeadSection = async ({
             className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6 lg:mr-auto"
             key={speaker.name}
           >
-            <div className="pb-6">
+            <div className="">
               <div className="relative w-fit">
                 <h3 className=" font-semibold text-lg w-max z-40 relative">
                   {speaker.name}
@@ -80,7 +84,11 @@ const LeadSection = async ({
               </p>
             </div>
             <div>
-              <ImageContainer image={speaker.photo} />
+              <ImageContainer
+                alt={speaker.name}
+                image={speaker.photo}
+                link={speaker.linkedIn}
+              />
             </div>
           </div>
         ))}

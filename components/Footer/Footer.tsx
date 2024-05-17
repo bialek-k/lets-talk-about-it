@@ -62,7 +62,7 @@ const Footer = () => {
             <Link href="" className="font-normal text-base">
               {t('privacyPolicy')}
             </Link>
-            <Link href="" className="font-normal text-base">
+            <Link href="/#mainEvent" className="font-normal text-base">
               {t('Events')}
             </Link>
           </div>
@@ -71,7 +71,10 @@ const Footer = () => {
       <div className="flex flex-col items-center">
         <p className="font-normal text-base text-center">{t('rights')}</p>
         <p className="font-normal text-base text-center">{t('owner')}</p>
-        <p className="font-normal text-base text-center">{t('madeBy')}</p>
+        <p className="font-normal text-base text-center">
+          Karolina Bożemska, Krzysztof Białek,
+        </p>
+        <p className="font-normal text-base text-center">Vincent Słomiński</p>
       </div>
     </footer>
   );

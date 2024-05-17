@@ -15,7 +15,6 @@
   "privacyPolicy": "Polityka prywatności",
   "rights": "Wszelkie prawa zastrzeżone ©",
   "owner": "Let’s talk about IT 2024",
-  "madeBy": "Karolina Bożemska, Krzysztof Białek, Vincent Słomiński",
   "invite": "Zapraszamy na",
   "edition": "edycję",
   "Event": "wydarzenia",
@@ -24,5 +23,7 @@
   "speakers": "PRELEGENCI",
   "partnerzy": "partnerzy",
   "aboutUs": "o nas",
-  "joinUs": "dołącz do naszej społeczności"
+  "joinUs": "dołącz do naszej społeczności",
+  "gallery": "Galeria",
+  "Edition": "EDYCJA"
 }
