@@ -10,6 +10,9 @@ import Footer from '@/components/Footer/Footer';
 const i18nNamespaces = ['home'];
 import { IBM_Plex_Sans } from 'next/font/google';
 
+import { request } from '@/lib/request';
+import { DocsQueryDocument } from '@/graphql/generated';
+
 export const metadata: Metadata = {
   title: `Let's Talk About IT`,
   description: "Landing page for Let's Talk About IT project",
@@ -32,7 +35,9 @@ export default async function RootLayout({
   children: ReactNode;
   params: { locale: string };
 }) {
-  const { t, resources } = await initTranslations(locale, i18nNamespaces);
+  const { resources } = await initTranslations(locale, i18nNamespaces);
+  const { doc } = await request(DocsQueryDocument, { locale });
+
   return (
     <html lang={locale} dir={dir(locale)} className={ibm.className}>
       <body className={`${ibm} overflow-x-hidden flex flex-col items-center`}>
@@ -43,7 +48,7 @@ export default async function RootLayout({
         >
           <Header isMain={true} />
           {children}
-          <Footer />
+          <Footer doc={doc} />
         </TranslationsProvider>
       </body>
     </html>
