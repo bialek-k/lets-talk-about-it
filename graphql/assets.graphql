@@ -1,0 +1,9 @@
+query AssetsQuery {
+  assets(where: {fileName: "attachment.jpeg"}) {
+    id
+    url
+    width
+    height
+    fileName
+  }
+}

@@ -16,19 +16,30 @@ export const About = ({ about }: AboutQueryQuery) => {
     <section id="about" className="px-6 md:px-24">
       <PageTitle title={t('aboutUs')} />
       <div className="content md:flex md:gap-24 justify-between">
-        <div className="description pb-6">
+        <div className="description pb-10 lg:pb-6">
           <p className="text-[24px] font-semibold mb-6">Let’s Talk About IT</p>
-          <TextHolder content={about?.description.raw} readMore theme="dark" />
+          <TextHolder
+            content={about?.description.raw}
+            customClass="mt-1"
+            readMore
+            theme="dark"
+          />
         </div>
         <div className="person pb-6 md:flex md:flex-col md:max-w-lg md:items-center">
-          <h2 className="text-[24px] font-semibold">Małgorzata Rycak</h2>
+          <h2 className="text-[24px] mb-[10px] font-semibold">
+            Małgorzata Rycak
+          </h2>
           <ImageContainer
             link="https://www.linkedin.com/in/malgorzata-rycak/"
             alt="Małgorzata Rycak"
             image={about?.malgosia_image}
           />
           <div className="content py-6">
-            <TextHolder content={about?.malgosia_description.raw} readMore />
+            <TextHolder
+              content={about?.malgosia_description.raw}
+              customClass="mt-2"
+              readMore
+            />
           </div>
         </div>
       </div>
