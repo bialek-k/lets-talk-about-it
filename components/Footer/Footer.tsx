@@ -8,9 +8,36 @@ import Youtube from '../Youtube/Youtube';
 import Link from 'next/link';
 import EnvelopeIcon from '@/IconsSVG/EnvelopeIcon';
 import { useTranslation } from 'react-i18next';
+import { DocsQueryQuery } from '@/graphql/generated';
 
-const Footer = () => {
+import { MapWindow } from '@/components/Modal/Modal';
+import { useState } from 'react';
+
+import { Data } from '@/components/Modal/Modal';
+
+const Footer = (doc: DocsQueryQuery) => {
   const { t } = useTranslation();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState<Data | undefined>();
+
+  const modalOpenHandler = (title: string) => {
+    if (title === 'regulations') {
+      setModalData({
+        title: 'Regulamin',
+        content: doc?.doc?.regulation.raw,
+      });
+      setIsOpen(true);
+    }
+    if (title === 'privacyPolicy') {
+      setModalData({
+        title: 'Polityka Prywatności',
+        content: doc?.doc?.private_policy.raw,
+      });
+      setIsOpen(true);
+    }
+  };
+
   return (
     <footer
       id="contact"
@@ -53,12 +80,18 @@ const Footer = () => {
         <div className="flex flex-col lg:items-start lg:pl-[100px] justify-center mr-auto lg:mr-0  lg:py-4 lg:max-w-[390px] lg:w-full">
           <div className="flex flex-col gap-5 justify-center">
             <h4 className="font-medium text-2xl lg:mb-5 ">{t('links')}</h4>
-            <Link href="" className="font-normal text-base">
+            <button
+              onClick={() => modalOpenHandler('regulations')}
+              className="text-left"
+            >
               {t('regulations')}
-            </Link>
-            <Link href="" className="font-normal text-base">
+            </button>
+            <button
+              onClick={() => modalOpenHandler('privacyPolicy')}
+              className="text-left"
+            >
               {t('privacyPolicy')}
-            </Link>
+            </button>
             <Link href="/#mainEvent" className="font-normal text-base">
               {t('Events')}
             </Link>
@@ -73,6 +106,9 @@ const Footer = () => {
         </p>
         <p className="font-normal text-base text-center">Vincent Słomiński</p>
       </div>
+      {isOpen && (
+        <MapWindow isOpen={isOpen} setIsOpen={setIsOpen} data={modalData} />
+      )}
     </footer>
   );
 };

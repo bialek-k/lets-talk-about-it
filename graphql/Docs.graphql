@@ -1,0 +1,13 @@
+query DocsQuery($locale: Locale!) {
+  doc(where: { id: "clwchj88i4bkj07upbsdpxkds" }, locales: [$locale]) {
+    coockies {
+      raw
+    }
+    private_policy {
+      raw
+    }
+    regulation {
+      raw
+    }
+  }
+}
