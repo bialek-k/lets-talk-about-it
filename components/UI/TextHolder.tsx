@@ -13,6 +13,7 @@ interface TextHolderProps {
   small?: boolean;
   additionalContent?: JSX.Element | string;
   customClass?: string;
+  shortText?: boolean;
 }
 
 export const TextHolder = ({
@@ -22,6 +23,7 @@ export const TextHolder = ({
   readMore,
   small,
   additionalContent,
+  shortText,
 }: TextHolderProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -44,8 +46,12 @@ export const TextHolder = ({
       <div
         className={`content flex prose ${
           small ? 'max-w-[260px] lg:max-w-[292px]' : ''
-        } dark:text-main-white dark:prose-strong:text-main-white dark:prose-li:marker:text-main-black  overflow-hidden transition-max-height duration-300 ease-in-out `}
-        style={{ maxHeight: isExpanded ? '100%' : '333px' }}
+        } dark:text-main-white dark:prose-strong:text-main-white dark:prose-li:marker:text-main-black  overflow-hidden transition-max-height duration-300 ease-in-out`}
+        style={
+          shortText
+            ? { maxHeight: '100%' }
+            : { maxHeight: isExpanded ? '100%' : '333px' }
+        }
       >
         <div
           className={`w-full font-normal text-base leading-5 lg:text-lg lg:leading-6 ${

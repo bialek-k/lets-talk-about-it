@@ -99,7 +99,7 @@ export default function Header({ isMain }: { isMain?: boolean }) {
           {/* MOBILE NAVIGATION BUTTON */}
           <OpenNav />
           {/* NAVIGATION DESKTOP */}
-          <ul className="ml-auto hidden lg:flex gap-6 text-white">
+          <ul className="ml-auto hidden lg:flex text-white text-2xl">
             {routes.map((route, index) => (
               <li
                 key={index}
@@ -107,7 +107,7 @@ export default function Header({ isMain }: { isMain?: boolean }) {
               >
                 {route.path ? (
                   <Link
-                    className={`${
+                    className={` mr-6 ${
                       isActive(route.path)
                         ? 'text-main-yellow'
                         : 'text-main-white'
