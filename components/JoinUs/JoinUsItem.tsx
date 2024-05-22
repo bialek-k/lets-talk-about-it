@@ -7,13 +7,25 @@ interface JoinUsItemProps {
   social: RichTextContent;
   icon?: JSX.Element;
   small?: boolean;
+  longText: boolean;
 }
 
-export const JoinUsItem = ({ social, icon, small }: JoinUsItemProps) => {
+export const JoinUsItem = ({
+  social,
+  icon,
+  small,
+  longText,
+}: JoinUsItemProps) => {
   return (
     <div className="socialItem flex flex-col items-center">
       <div className="icon mb-12 max-h-28">{icon}</div>
-      <TextHolder content={social} readMore theme="light" small={small} />
+      <TextHolder
+        content={social}
+        readMore={longText}
+        theme="light"
+        small={small}
+        shortText={!longText}
+      />
     </div>
   );
 };

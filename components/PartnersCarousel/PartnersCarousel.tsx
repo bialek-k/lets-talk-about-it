@@ -23,7 +23,7 @@ const PartnersCarousel = async ({
       <h3
         className={`${
           isMain ? 'text-main-white' : 'text-main-black'
-        } font-semibold text-[40px] leading-[52px] text-start self-start ml-4 lg:mx-auto lg:uppercase lg:mb-[100px]`}
+        } font-semibold text-[40px] leading-[52px] text-start self-start ml-4 lg:mx-auto lg:uppercase lg:mb-[25px]`}
       >
         {t('partnerzy')}
       </h3>

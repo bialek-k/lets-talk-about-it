@@ -24,6 +24,7 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             social={join_us.linkedin_description.raw}
             icon={<LinkedinIcon_yellow />}
             small
+            longText={true}
           />
         )}
         {join_us?.facebook_description && (
@@ -31,6 +32,7 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             social={join_us.facebook_description.raw}
             icon={<FacebookIcon_yellow />}
             small
+            longText={true}
           />
         )}
         {join_us?.youtube_description && (
@@ -38,6 +40,7 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             social={join_us.youtube_description.raw}
             icon={<YoutubeIcon_yellow />}
             small
+            longText={false}
           />
         )}
       </div>
