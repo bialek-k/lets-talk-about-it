@@ -29,7 +29,7 @@ const LeadSection = async ({
         {edition.lead.map((leader: any) => {
           return (
             <div
-              className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6 lg:mr-auto"
+              className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6 lg:mr-auto w-min lg:w-fit"
               key={leader.name}
             >
               <div className="">
@@ -66,7 +66,7 @@ const LeadSection = async ({
       <div className="w-full grid place-items-center lg:grid lg:grid-cols-2 lg:gap-10">
         {edition.speakers.map((speaker: any) => (
           <div
-            className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6 lg:mr-auto"
+            className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6 lg:mr-auto w-min lg:w-fit"
             key={speaker.name}
           >
             <div className="">

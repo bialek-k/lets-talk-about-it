@@ -12,11 +12,13 @@ interface TextHolderProps {
   handleReadMore?: () => void;
   small?: boolean;
   additionalContent?: JSX.Element | string;
+  customClass?: string;
 }
 
 export const TextHolder = ({
   content,
   theme = 'dark',
+  customClass,
   readMore,
   small,
   additionalContent,
@@ -56,7 +58,7 @@ export const TextHolder = ({
             content={content}
             renderers={{
               p: ({ children }) => {
-                return <p className="m-0 mt-2">{children}</p>;
+                return <p className={`m-0 ${customClass}`}>{children}</p>;
               },
             }}
           />

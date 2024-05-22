@@ -16,9 +16,6 @@ const Footer = () => {
       id="contact"
       className="w-full flex flex-col gap-10 items-center justify-center mx-auto pb-5 lg:pb-16 lg:px-[100px]"
     >
-      <div className="lg:invisible visible w-full flex items-center justify-end">
-        <LinesPattern fill="#0C0C0C" />
-      </div>
       <div className="flex items-center justify-center w-[100px] h-[100px] mr-auto ml-4 lg:ml-0">
         <MainLogoIcon />
       </div>
