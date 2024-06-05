@@ -8,13 +8,6 @@ import { useMediaQuery } from '@mui/material';
 import { request } from '@/lib/request';
 import { EventGalleryDocument } from '@/graphql/generated';
 
-// interface Image {
-//   url: string;
-//   width?: number | null;
-//   height?: number | null;
-//   fileName?: string;
-// }
-
 interface GalleryProps {
   id: string;
 }

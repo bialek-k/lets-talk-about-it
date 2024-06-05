@@ -1,6 +1,5 @@
 'use client';
 
-import LinesPattern from '@/IconsSVG/LinesPattern';
 import MainLogoIcon from '@/IconsSVG/MainLogoIcon';
 import Facebook from '../Facebook/Facebook';
 import Linkedin from '../Linkedin/Linkedin';
@@ -9,10 +8,8 @@ import Link from 'next/link';
 import EnvelopeIcon from '@/IconsSVG/EnvelopeIcon';
 import { useTranslation } from 'react-i18next';
 import { DocsQueryQuery } from '@/graphql/generated';
-
 import { MapWindow } from '@/components/Modal/Modal';
 import { useState } from 'react';
-
 import { Data } from '@/components/Modal/Modal';
 
 const Footer = (doc: DocsQueryQuery) => {

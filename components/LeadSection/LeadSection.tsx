@@ -11,6 +11,7 @@ const LeadSection = async ({
 }: {
   locale: string;
   edition?: any;
+  // edition?: EditionQueryQuery['event'];
   translation: (key: string) => string;
 }) => {
   const t = translation;

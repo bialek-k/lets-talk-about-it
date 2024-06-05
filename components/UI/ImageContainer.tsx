@@ -4,13 +4,13 @@ import Linkedin from '../Linkedin/Linkedin';
 
 interface ImageContainerProps {
   alt: string;
-  link?: string;
+  link?: string | null;
   image?: {
     url: string;
     width?: number | null | undefined;
     height?: number | null | undefined;
     fileName?: string;
-  };
+  } | null;
 }
 
 export const ImageContainer = ({ image, alt, link }: ImageContainerProps) => {

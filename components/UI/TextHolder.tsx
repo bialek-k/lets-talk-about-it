@@ -76,6 +76,9 @@ export const TextHolder = ({
           className={`${changeThemeTextColor()} w-full text-end `}
           onClick={toggleExpand}
         >
+          {
+            //missing translations here
+          }
           {isExpanded ? '...czytaj mniej' : '...czytaj więcej'}
         </button>
       )}

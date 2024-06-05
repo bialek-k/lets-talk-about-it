@@ -40,9 +40,7 @@ export const MapWindow = ({ isOpen, setIsOpen, data }: ModalProps) => {
             <button
               onClick={() => setIsOpen(false)}
               className={`absolute w-7 h-7 z-30 top-4 right-4 flex items-center justify-center hamburger hamburger_active`}
-            >
-              <span />
-            </button>
+            />
             <div className="pt-6">
               {data && (
                 <RichText

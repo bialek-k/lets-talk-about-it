@@ -1,6 +1,5 @@
 'use client';
 
-import { init } from '@graphql-codegen/cli';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 

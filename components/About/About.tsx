@@ -6,8 +6,6 @@ import { TextHolder } from '../UI/TextHolder';
 import { AboutQueryQuery } from '@/graphql/generated';
 import { ImageContainer } from '../UI/ImageContainer';
 import { useTranslation } from 'react-i18next';
-import ChevronIcon from '@/IconsSVG/ChevronIcon';
-import MainLogoIcon from '@/IconsSVG/MainLogoIcon';
 import Pattern from '@/IconsSVG/Pattern';
 
 export const About = ({ about }: AboutQueryQuery) => {

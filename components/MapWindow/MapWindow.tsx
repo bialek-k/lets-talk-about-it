@@ -36,7 +36,7 @@ const MapWindow = ({ isOpen, setIsOpen, data }: MapWindowProps) => {
             <iframe
               src={`https://maps.google.com/maps?q=${data}}&z=10&output=embed`}
               width="100%"
-              height="450"
+              height={450}
             ></iframe>
           </motion.div>
         </motion.div>
