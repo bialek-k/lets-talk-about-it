@@ -26,7 +26,7 @@ interface Route {
   content?: { path: string; name: string }[];
 }
 
-export default function Header({ isMain }: { isMain?: boolean }) {
+export default function Header({ isMain = false }: { isMain?: boolean }) {
   const [routes, setRoutes] = useState<Route[]>([]);
   const { t } = useTranslation();
   const { scrollY } = useScroll();
@@ -99,7 +99,7 @@ export default function Header({ isMain }: { isMain?: boolean }) {
           {/* MOBILE NAVIGATION BUTTON */}
           <OpenNav />
           {/* NAVIGATION DESKTOP */}
-          <ul className="ml-auto hidden lg:flex text-white text-2xl">
+          <ul className=" hidden lg:flex text-white text-[22px] leading-7 gap-6">
             {routes.map((route, index) => (
               <li
                 key={index}
@@ -107,7 +107,7 @@ export default function Header({ isMain }: { isMain?: boolean }) {
               >
                 {route.path ? (
                   <Link
-                    className={` mr-6 ${
+                    className={`${
                       isActive(route.path)
                         ? 'text-main-yellow'
                         : 'text-main-white'
@@ -118,7 +118,7 @@ export default function Header({ isMain }: { isMain?: boolean }) {
                   </Link>
                 ) : (
                   <div
-                    className={`flex flex-row items-center justify-between ${
+                    className={`flex flex-row items-center justify-between gap-2 ${
                       isActive(route.name) ? 'text-main-yellow' : 'text-white'
                     }`}
                     onMouseEnter={() => setSubMenuOpen(true)}
