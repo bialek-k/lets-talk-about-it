@@ -7,7 +7,7 @@ export default function EventLayout({
 }) {
   return (
     <section className="overflow-x-hidden flex flex-col items-center">
-      <Header isMain={false} />
+      <Header />
       {children}
     </section>
   );

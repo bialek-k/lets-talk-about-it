@@ -19,6 +19,10 @@ export const fetchEvents = async () => {
       })),
     },
     {
+      path: '/workshops',
+      name: 'workshops',
+    },
+    {
       path: '/podcasts',
       name: 'podcasts',
     },
