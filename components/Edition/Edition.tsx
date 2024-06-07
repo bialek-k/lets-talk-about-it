@@ -43,17 +43,26 @@ const Edition = async ({
             id="gallery"
             className="bg-main-black px-4 py-10 w-full text-main-white"
           >
-            <h2 className="font-semibold text-[40px] leading-[52px] text-start self-start w-full mb-5 lg:ml-[100px]">
+            <h2 className="font-semibold text-[40px] lg:text-[48px] leading-[52px] lg:leading-[62px] text-start self-start w-full mb-5 lg:ml-[100px]">
               {t('gallery')}
             </h2>
+            <h3 className=" font-semibold text-lg leading-6 lg:px-[100px] lg:mt-10 self-start mb-10">
+              {t('galleryText')} {toRoman(parseInt(event?.edition ?? ''))}{' '}
+              {t('galleryText2')}
+            </h3>
             <Gallery id={event?.id} />
           </div>
         ) : (
           <div
             id="gallery"
-            className=" font-semibold text-lg leading-6 px-[100px]"
+            className="bg-main-black px-4 py-10 w-full text-main-white"
           >
-            {t('noGallery')}
+            <h2 className="font-semibold text-[40px] lg:text-[48px] leading-[52px] lg:leading-[62px] text-start self-start w-full mb-5 lg:ml-[100px]">
+              {t('gallery')}
+            </h2>
+            <h3 className=" font-semibold text-lg leading-6 lg:px-[100px] lg:mt-10 self-start">
+              {t('noGallery')}
+            </h3>
           </div>
         )}
         {/* PARTNERS */}

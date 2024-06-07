@@ -1,8 +1,8 @@
 const Arrow = () => {
   return (
     <svg
-      width="120"
-      height="120"
+      width="90"
+      height="90"
       viewBox="0 0 120 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

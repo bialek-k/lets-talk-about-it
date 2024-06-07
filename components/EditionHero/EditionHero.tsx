@@ -58,21 +58,23 @@ const EditionHero = async ({
       >
         <LinesPattern fill="#0C0C0C" />
       </div>
-      <h1 className=" self-start text-[40px] lg:text-[64px] lg:leading-[83px] leading-[52px] font-semibold mb-10 lg:mt-[60px]">
-        events
-      </h1>
-      {edition?.new ? (
-        <h2 className="self-start text-lg font-normal lg:text-2xl lg:font-semibold">
-          {t('invite')} {toRoman(parseInt(edition?.edition ?? ''))}{' '}
-          {t('edition')} {t('Event')}:
-        </h2>
-      ) : (
-        <h2 className="self-start text-lg font-normal lg:text-2xl lg:font-semibold">
-          {toRoman(parseInt(edition?.edition ?? ''))} {t('Edition')}
-        </h2>
-      )}
-      <MainTitle fill="#0C0C0C" />
-      <h2 className="font-semibold text-[40px] leading-[52px] lg:text-[64px] lg:leading-[83px]  text-center">
+      <div className="self-start flex flex-col lg:flex-row justify-center lg:items-center mt-10 mb-5 lg:mt-20 lg:mb-10 lg:gap-5">
+        <h1 className="text-[32px] lg:text-[48px] lg:leading-[62px] leading-[42px] font-semibold">
+          {t('events')}
+        </h1>
+        {edition?.new ? (
+          <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
+            {t('invite')} {toRoman(parseInt(edition?.edition ?? ''))}{' '}
+            {t('edition')} {t('Event')}:
+          </h2>
+        ) : (
+          <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
+            {toRoman(parseInt(edition?.edition ?? ''))} {t('Edition')}
+          </h2>
+        )}
+      </div>
+      <MainTitle fill="#0C0C0C" events={true} />
+      <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-normal lg:mt-10 mb-2 text-center">
         {edition?.title}
       </h2>
       <Arrow />
@@ -100,19 +102,19 @@ const EditionHero = async ({
           />
         </div>
       )}
-      <div className="flex flex-row items-start lg:items-center justify-center w-full mt-6 lg:max-w-[936px] lg:justify-between">
-        <div className="flex flex-col lg:flex-row  items-center justify-center lg:w-[357px] lg:gap-10">
+      <div className="flex flex-row items-start lg:items-center justify-center w-full mt-6 lg:max-w-[936px] ">
+        <div className="flex flex-col lg:flex-row  items-center justify-center lg:justify-end lg:w-[357px] lg:gap-10">
           <div className="w-[28px] lg:w-[68px] h-[32px] lg:h-[64px]">
             <Calendar width="100%" height="100%" />
           </div>
-          <h3 className=" font-medium text-base mt-6 lg:mt-0 lg:font-semibold lg:text-[40px] lg:leading-[52px] ">
+          <h3 className=" font-medium text-base mt-6 lg:mt-0  lg:text-[32px] lg:leading-[42px] lg:font-normal ">
             {formattedDate}
           </h3>
         </div>
         <div className="border-r-2 border-solid border-main-black bg-main-black  h-[79px] mx-[35px]"></div>
         <div className="flex flex-col items-center justify-center lg:flex-row lg:w-[357px] lg:gap-10">
           <Location data={edition?.location} />
-          <div className=" font-medium lg:font-semibold lg:text-[40px] lg:leading-[52px] text-base text-center mt-6 lg:mt-0 w-min lg:w-[100%] ">
+          <div className=" font-medium lg:text-[32px] lg:leading-[42px] lg:font-normal text-base text-center lg:text-start mt-6 lg:mt-0 w-min lg:w-[100%] ">
             {formatLocation(edition?.location)}
           </div>
         </div>
