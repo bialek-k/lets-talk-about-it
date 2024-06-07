@@ -1,15 +1,7 @@
 import toRoman from '../UI/NumberToRoman';
-import Arrow from '@/IconsSVG/Arrow';
 import { request } from '@/lib/request';
 import { EditionQueryDocument } from '@/graphql/generated';
-
-import Button from '../UI/Button';
-import Calendar from '@/IconsSVG/Calendar';
-import Location from '../Location/Location';
-import MainTitle from '../MainTitle/MainTitle';
-import LinesPattern from '@/IconsSVG/LinesPattern';
 import PartnersCarousel from '../PartnersCarousel/PartnersCarousel';
-import TextBorderLine from '@/IconsSVG/TextBorderLine';
 import Gallery from '../Gallery/Gallery';
 import EditionHero from '../EditionHero/EditionHero';
 import LeadSection from '../LeadSection/LeadSection';

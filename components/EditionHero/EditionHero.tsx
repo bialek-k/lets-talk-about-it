@@ -1,11 +1,4 @@
 import LinesPattern from '@/IconsSVG/LinesPattern';
-import {
-  EditionQueryDocument,
-  Event,
-  EventCreateInput,
-  NewEventQueryQuery,
-} from '@/graphql/generated';
-import { request } from '@/lib/request';
 import toRoman from '../UI/NumberToRoman';
 import MainTitle from '../MainTitle/MainTitle';
 import Arrow from '@/IconsSVG/Arrow';
