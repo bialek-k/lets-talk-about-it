@@ -3,13 +3,9 @@ import Pattern from '@/IconsSVG/Pattern';
 const MainTitle = ({
   fill,
   events = false,
-  patternClass,
-  subHeadingClass,
 }: {
   fill: string;
   events: boolean;
-  patternClass?: string;
-  subHeadingClass?: string;
 }) => {
   return (
     <div className="flex justify-center flex-col items-center mx-auto w-full mb-5">
