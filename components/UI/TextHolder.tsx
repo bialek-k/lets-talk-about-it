@@ -41,7 +41,7 @@ export const TextHolder = ({
   return (
     <div
       className={`bg-main-${theme === 'light' ? 'white' : 'black'} 
-      } p-[30px] rounded-2xl border-4 border-[#E2FF00]`}
+      } p-[30px] h-max rounded-2xl border-4 border-[#E2FF00] `}
     >
       <div
         className={`content flex prose ${
@@ -54,7 +54,7 @@ export const TextHolder = ({
         }
       >
         <div
-          className={`w-full font-normal text-base leading-5 lg:text-lg lg:leading-6 ${
+          className={`w-full h-full font-normal prose-p:py-[10px] text-base leading-5 lg:text-lg lg:leading-6 ${
             theme === 'dark'
               ? 'text-main-white bg-main-black'
               : 'text-main-black bg-main-white'

@@ -1,13 +1,16 @@
 {
   "invite": "Zapraszamy na",
-  "Edition": "EDYCJA",
+  "Edition": "edycja",
   "edition": "edycję",
   "Event": "wydarzenia",
   "sign": "Zapisz się",
-  "gallery": "Galeria",
+  "gallery": "galeria",
+  "galleryText": "Zobaczcie co działo się podczas",
+  "galleryText2": "edycji wydarzenia Let’s talk about IT:",
   "lead": "PROWADZĄCA",
   "speakers": "PRELEGENCI",
   "partners": "partnerzy",
   "noGallery": "Zdjęcia zostaną dodane wkrótce",
-  "partnerzy": "partnerzy"
+  "partnerzy": "partnerzy",
+  "Events": "wydarzenia:"
 }

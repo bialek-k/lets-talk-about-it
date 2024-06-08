@@ -1,6 +1,4 @@
 'use client';
-
-import { init } from '@graphql-codegen/cli';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -27,7 +25,7 @@ const Button = ({
     <div className="bg-main-white ">
       <Link href={href} target={target} rel="noopener noreferrer">
         <motion.button
-          className={`font-semibold text-2xl px-[44.5px] py-[14.5px] rounded ${buttonColor} ${backgroundColor}`}
+          className={`font-semibold text-2xl px-[59.5px] py-[14.5px] rounded ${buttonColor} ${backgroundColor}`}
           initial={{ y: '-6px', x: '6px' }}
           whileHover={{
             y: '0',

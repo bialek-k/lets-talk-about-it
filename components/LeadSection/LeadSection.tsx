@@ -16,7 +16,7 @@ const LeadSection = async ({
   const t = translation;
 
   return (
-    <div className="w-full mx-auto flex flex-col px-4 lg:px-[100px] justify-center items-center relative pb-10">
+    <div className="w-full mx-auto flex flex-col px-4 lg:px-[100px] justify-center items-center relative pb-10 max-w-[1440px]">
       <div className="self-end invisible lg:visible absolute top-0 right-0">
         <LinesPattern fill="#0C0C0C" />
       </div>

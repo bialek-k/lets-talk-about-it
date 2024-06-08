@@ -40,7 +40,7 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             social={join_us.youtube_description.raw}
             icon={<YoutubeIcon_yellow />}
             small
-            longText={false}
+            longText={true}
           />
         )}
       </div>

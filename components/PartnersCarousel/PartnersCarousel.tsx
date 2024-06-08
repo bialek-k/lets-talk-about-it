@@ -15,38 +15,15 @@ const PartnersCarousel = async ({
   isMain?: boolean;
   translation: (key: string) => string;
 }) => {
-  const { partner } = await request(PartnersQueryDocument, { locale });
   const t = translation;
 
   return (
     <div className="flex flex-col items-center justify-center w-screen mx-auto">
-      <h3
-        className={`${
-          isMain ? 'text-main-white' : 'text-main-black'
-        } font-semibold text-[40px] leading-[52px] text-start self-start ml-4 lg:mx-auto lg:uppercase lg:mb-[25px]`}
-      >
-        {t('partnerzy')}
-      </h3>
-
       <Marquee>
-        {partner?.logos.map((partner) => {
-          const validWidth =
-            partner?.width !== null ? partner?.width : undefined;
-          const validHeight =
-            partner?.height !== null ? partner?.height : undefined;
-
-          return (
-            <div className="mr-10 lg:mr-20" key={partner.id}>
-              <Image
-                alt={partner.fileName}
-                src={partner.url}
-                width={validWidth}
-                height={validHeight}
-                className="w-[100%] h-[60px]"
-              />
-            </div>
-          );
-        })}
+        <h3 className=" text-[40px] leading-[52px] font-bold">
+          VI edycja Let’s talk about IT odbędzie się 17.10.2024r. w Rzeszowie !
+          Join us to rock IT
+        </h3>
       </Marquee>
     </div>
   );

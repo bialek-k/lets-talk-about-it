@@ -112,7 +112,7 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                       </Link>
                     ) : (
                       <button
-                        className={`w-full flex h-[46px] items-start z-10 ${
+                        className={`w-full flex pb-5 items-center z-10 relative ${
                           isActive(route.name)
                             ? 'text-main-yellow'
                             : 'text-white'
@@ -121,14 +121,14 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                         onClick={toggleSubMenu}
                       >
                         {t(route.name ?? '')}
+                        {route.content && (
+                          <ChevronIcon
+                            className={`transition-all duration-300 absolute right-5 top-2 ${
+                              isSubMenuOpen && 'rotate-180'
+                            }`}
+                          />
+                        )}
                       </button>
-                    )}
-                    {route.content && (
-                      <ChevronIcon
-                        className={`transition-all duration-300 absolute right-0 top-[-10px] ${
-                          isSubMenuOpen && 'rotate-180'
-                        }`}
-                      />
                     )}
                   </div>
 
@@ -147,8 +147,11 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                             <motion.div
                               initial={{ opacity: 0, y: '-100%' }}
                               animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 0.3, delay: index * 0.3 }}
+                              exit={{ opacity: 0, transition: { duration: 0 } }}
+                              transition={{
+                                duration: 0.3,
+                                delay: index * 0.3,
+                              }}
                               key={index}
                             >
                               <Link

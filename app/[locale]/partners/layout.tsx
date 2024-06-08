@@ -7,7 +7,7 @@ export default function PartnersLayout({
 }) {
   return (
     <section className="overflow-x-hidden w-full flex flex-col items-center">
-      <Header isMain={false} />
+      <Header />
       {children}
     </section>
   );
