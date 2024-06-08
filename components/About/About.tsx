@@ -18,19 +18,20 @@ export const About = ({ about }: AboutQueryQuery) => {
     <section id="about" className="px-6 md:px-24 h-min-screen">
       <PageTitle title={t('aboutUs')} />
       <div className="content md:flex md:gap-24 justify-between ">
-        <div className="description  ">
-          <p className="text-[24px] font-semibold">Let’s Talk About IT</p>
+        <div className="description">
+          <p className="text-[24px] mb-6 font-semibold">Let’s Talk About IT</p>
           <TextHolder
             content={about?.description.raw}
             customClass="mt-1"
             theme="dark"
+            shortText
           />
         </div>
         <div className="person md:flex md:flex-col md:max-w-lg md:items-center">
           <h2 className="text-[24px] font-semibold">Małgorzata Rycak</h2>
           <div className="relative  container mx-auto mt-4 mb-16">
             <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded" />
-            <div className="h-full aspect-square realitve z-10 ">
+            <div className="md:h-full  aspect-square realitve z-10 ">
               <Image
                 alt={'malgorzata_rycak'}
                 src={about?.malgosia_image?.url!}
@@ -55,6 +56,7 @@ export const About = ({ about }: AboutQueryQuery) => {
               content={about?.malgosia_description.raw}
               customClass="mt-2"
               theme="dark"
+              readMore
             />
           </div>
         </div>

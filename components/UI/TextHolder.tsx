@@ -54,7 +54,7 @@ export const TextHolder = ({
         }
       >
         <div
-          className={`w-full font-normal prose-p:py-[10px] text-base leading-5 lg:text-lg lg:leading-6 ${
+          className={`w-full h-full font-normal prose-p:py-[10px] text-base leading-5 lg:text-lg lg:leading-6 ${
             theme === 'dark'
               ? 'text-main-white bg-main-black'
               : 'text-main-black bg-main-white'
