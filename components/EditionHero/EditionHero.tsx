@@ -42,7 +42,7 @@ const EditionHero = async ({
     <div
       className={`${
         isMain ? '' : ' pt-20 lg:pt-24'
-      }  pb-[60px] w-full px-4 lg:px-[100px] flex flex-col items-center justify-center bg-main-yellow relative`}
+      }  pb-[60px] w-full px-4 lg:px-[100px] flex flex-col items-center justify-center bg-main-yellow relative max-w-[1440px]`}
     >
       <div
         className={`${
@@ -53,7 +53,7 @@ const EditionHero = async ({
       </div>
       <div className="self-start flex flex-col lg:flex-row justify-center lg:items-center mt-10 mb-5 lg:mt-20 lg:mb-10 lg:gap-5">
         <h1 className="text-[32px] lg:text-[48px] lg:leading-[62px] leading-[42px] font-semibold">
-          {t('events')}
+          {t('Events')}
         </h1>
         {edition?.new ? (
           <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
