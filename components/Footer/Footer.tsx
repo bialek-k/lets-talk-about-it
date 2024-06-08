@@ -39,6 +39,13 @@ const Footer = (doc: DocsQueryQuery) => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <footer
       id="contact"
@@ -48,7 +55,7 @@ const Footer = (doc: DocsQueryQuery) => {
         <div className="w-[100px] h-[100px] mr-auto">
           <MainLogoIcon />
         </div>
-        <button className="hidden lg:flex ml-auto ">
+        <button onClick={scrollToTop} className="hidden lg:flex ml-auto ">
           <BackToTop />
         </button>
       </div>
@@ -98,7 +105,7 @@ const Footer = (doc: DocsQueryQuery) => {
             >
               {t('privacyPolicy')}
             </button>
-            <Link href="/#mainEvent" className="font-normal text-base">
+            <Link href="/#about" className="font-normal text-base">
               {t('aboutUs')}
             </Link>
           </div>
