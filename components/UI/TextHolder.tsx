@@ -41,7 +41,7 @@ export const TextHolder = ({
   return (
     <div
       className={`bg-main-${theme === 'light' ? 'white' : 'black'} 
-      } p-[30px] h-full rounded-2xl border-4 border-[#E2FF00] `}
+      } p-[30px] h-max rounded-2xl border-4 border-[#E2FF00] `}
     >
       <div
         className={`content flex prose ${
