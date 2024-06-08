@@ -14,6 +14,7 @@ import { MapWindow } from '@/components/Modal/Modal';
 import { useState } from 'react';
 
 import { Data } from '@/components/Modal/Modal';
+import BackToTop from '@/IconsSVG/BackToTop';
 
 const Footer = (doc: DocsQueryQuery) => {
   const { t } = useTranslation();
@@ -41,10 +42,15 @@ const Footer = (doc: DocsQueryQuery) => {
   return (
     <footer
       id="contact"
-      className="w-full flex flex-col gap-10 items-center justify-center mx-auto pb-5 lg:pb-16 lg:px-[100px]"
+      className="w-full flex flex-col gap-10 items-center justify-center mx-auto pb-5 lg:pb-16 lg:px-[100px] pt-[80px] max-w-[1440px]"
     >
-      <div className="flex items-center justify-center w-[100px] h-[100px] mr-auto ml-4 lg:ml-0">
-        <MainLogoIcon />
+      <div className="flex items-center justify-center lg:justify-between  h-[100px] w-full ml-4 lg:ml-0">
+        <div className="w-[100px] h-[100px] mr-auto">
+          <MainLogoIcon />
+        </div>
+        <button className="hidden lg:flex ml-auto ">
+          <BackToTop />
+        </button>
       </div>
       <section className=" flex flex-col items-center justify-center w-full px-4 gap-5 lg:flex-row lg:px-0 lg:gap-0 lg:justify-between ">
         <div className="flex flex-col items-start justify-center gap-5 max-w-[530px] mr-auto lg:mr-0 lg:py-4 lg:pr-[100px] lg:max-w-[390px] lg:w-full">
@@ -77,9 +83,9 @@ const Footer = (doc: DocsQueryQuery) => {
             letstalkitpoland@gmail.com
           </Link>
         </div>
-        <div className="flex flex-col lg:items-start lg:pl-[100px] justify-center mr-auto lg:mr-0  lg:py-4 lg:max-w-[390px] lg:w-full">
+        <div className="flex flex-col lg:items-start lg:pl-[100px] justify-center mr-auto lg:mr-0  lg:pt-4 lg:max-w-[390px] lg:w-full">
+          <h4 className="font-medium text-2xl lg:mb-10 mb-5 ">{t('links')}</h4>
           <div className="flex flex-col gap-5 justify-center">
-            <h4 className="font-medium text-2xl lg:mb-5 ">{t('links')}</h4>
             <button
               onClick={() => modalOpenHandler('regulations')}
               className="text-left"
@@ -93,18 +99,22 @@ const Footer = (doc: DocsQueryQuery) => {
               {t('privacyPolicy')}
             </button>
             <Link href="/#mainEvent" className="font-normal text-base">
-              {t('Events')}
+              {t('aboutUs')}
             </Link>
           </div>
         </div>
       </section>
       <div className="flex flex-col items-center">
-        <p className="font-normal text-base text-center">{t('rights')}</p>
-        <p className="font-normal text-base text-center">{t('owner')}</p>
-        <p className="font-normal text-base text-center">
-          Karolina Bożemska, Krzysztof Białek,
-        </p>
-        <p className="font-normal text-base text-center">Vincent Słomiński</p>
+        <div className="flex flex-col lg:flex-row-reverse lg:gap-1">
+          <p className="font-normal text-base text-center">{t('rights')}</p>
+          <p className="font-normal text-base text-center">{t('owner')}</p>
+        </div>
+        <div className="flex flex-col lg:flex-row lg:gap-1">
+          <p className="font-normal text-base text-center">
+            Karolina Bożemska, Krzysztof Białek,
+          </p>
+          <p className="font-normal text-base text-center">Vincent Słomiński</p>
+        </div>
       </div>
       {isOpen && (
         <MapWindow isOpen={isOpen} setIsOpen={setIsOpen} data={modalData} />

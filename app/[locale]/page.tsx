@@ -80,7 +80,7 @@ export default async function Home({
         </div>
       </main>
       <About about={about} />
-      <div id="mainEvent" className="w-full">
+      <div id="mainEvent" className="w-full flex justify-center bg-main-yellow">
         <EditionHero
           locale={locale}
           isMain={true}
