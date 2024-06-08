@@ -11,10 +11,10 @@
   "socialMediaMessage": "Dołącz do Let’s talk about IT na naszych mediach społecznościowych",
   "haveQuestions": "Masz pytania?",
   "contactUs": "Zapraszamy do kontaktu",
-  "links": "Przydatne linki",
+  "links": "Na skróty",
   "regulations": "Regulamin",
   "privacyPolicy": "Polityka prywatności",
-  "rights": "Wszelkie prawa zastrzeżone ©",
+  "rights": "© Wszelkie prawa zastrzeżone",
   "owner": "Let’s talk about IT 2024",
   "invite": "Zapraszamy na",
   "edition": "edycję",
@@ -23,8 +23,9 @@
   "lead": "PROWADZĄCA",
   "speakers": "PRELEGENCI",
   "partnerzy": "partnerzy",
-  "aboutUs": "o nas",
+  "aboutUs": "O nas",
   "joinUs": "dołącz do naszej społeczności",
   "gallery": "Galeria",
-  "Edition": "EDYCJA"
+  "Edition": "edycja",
+  "Events": "wydarzenia:"
 }
