@@ -1,8 +1,6 @@
 query EditionQuery(
   $locale: Locale!
   $edition: String!
-  $first: Int! = 5
-  $skip: Int! = 0
 ) {
   event(where: { slug: $edition }, locales: [$locale]) {
     id
@@ -43,7 +41,7 @@ query EditionQuery(
         }
       }
     }
-    gallery(first: $first, skip: $skip, locales: en) {
+    gallery(first: 100, locales: en) {
       width
       height
       url

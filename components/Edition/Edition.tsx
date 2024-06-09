@@ -47,7 +47,7 @@ const Edition = async ({
                 {t('galleryText')} {toRoman(parseInt(event?.edition ?? ''))}{' '}
                 {t('galleryText2')}
               </h3>
-              <Gallery id={event?.id} />
+              <Gallery gallery={event?.gallery} />
             </div>
           ) : (
             <div
