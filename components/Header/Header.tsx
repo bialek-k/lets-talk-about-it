@@ -19,6 +19,7 @@ import Youtube from '../Youtube/Youtube';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import toRoman from '../UI/NumberToRoman';
 import { usePathname } from 'next/navigation';
+import OpenNav from '../OpenNav/OpenNav';
 
 interface Route {
   path?: string;
@@ -143,7 +144,7 @@ export default function Header({ isMain = false }: { isMain?: boolean }) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: '-100%' }}
                         transition={{ duration: 0.3 }}
-                        className="text-base font-normal flex flex-col w-full absolute top-10 right-[10px] border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
+                        className="text-base font-normal flex flex-col items-center justify-center w-[130px] absolute top-9 border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
                       >
                         {route.content.map((subRoute, index) => (
                           <motion.div
@@ -154,7 +155,7 @@ export default function Header({ isMain = false }: { isMain?: boolean }) {
                             key={index}
                           >
                             <Link
-                              className={`border-b bg-main-black border-solid border-white h-[50px] flex items-center ${
+                              className={`border-b bg-main-black border-solid border-white h-[50px] w-max flex items-center ${
                                 currentPath.includes(subRoute.path)
                                   ? 'text-main-yellow'
                                   : 'text-main-white'
@@ -195,32 +196,5 @@ export default function Header({ isMain = false }: { isMain?: boolean }) {
         </nav>
       </motion.header>
     </AnimatePresence>
-  );
-}
-
-export function OpenNav() {
-  const [isMenuOpen, setOpenMenu] = useState(false);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflowY = 'hidden';
-    } else {
-      document.body.style.overflowY = 'auto';
-    }
-  }, [isMenuOpen]);
-
-  return (
-    <div className="lg:hidden relative ml-auto flex items-center ">
-      <button
-        onClick={() => setOpenMenu(true)}
-        className={`absolute right-0 border-none w-7 h-7 z-30 flex items-center justify-center hamburger ${
-          isMenuOpen ? 'hamburger_active' : ''
-        }`}
-        aria-label="Open Mobile Menu"
-      >
-        <span />
-      </button>
-      <MobileNav isOpen={isMenuOpen} setIsOpen={setOpenMenu} />
-    </div>
   );
 }
