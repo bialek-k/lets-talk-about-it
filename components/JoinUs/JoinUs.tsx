@@ -1,10 +1,8 @@
 'use client';
-import React from 'react';
 
 import { PageTitle } from '../UI/PageTitle';
 import { JoinUsQueryQuery } from '@/graphql/generated';
 import { JoinUsItem } from './JoinUsItem';
-
 import LinkedinIcon_yellow from '@/IconsSVG/LinkedinIcon_yellow';
 import FacebookIcon_yellow from '@/IconsSVG/FacebookIcon_yellow';
 import YoutubeIcon_yellow from '@/IconsSVG/YoutubeIcon_yellow';
@@ -12,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
   const { t } = useTranslation();
+
   return (
     <section
       id="#joinus"
@@ -24,7 +23,8 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             social={join_us.linkedin_description.raw}
             icon={<LinkedinIcon_yellow />}
             small
-            longText={true}
+            longText
+            navigateDirection="https://www.linkedin.com/groups/14230011/"
           />
         )}
         {join_us?.facebook_description && (
@@ -32,7 +32,8 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             social={join_us.facebook_description.raw}
             icon={<FacebookIcon_yellow />}
             small
-            longText={true}
+            longText
+            navigateDirection="https://www.facebook.com/groups/letstalkitpoland"
           />
         )}
         {join_us?.youtube_description && (
@@ -40,7 +41,8 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             social={join_us.youtube_description.raw}
             icon={<YoutubeIcon_yellow />}
             small
-            longText={true}
+            longText
+            navigateDirection="https://www.youtube.com/@LetstalkTPoland"
           />
         )}
       </div>

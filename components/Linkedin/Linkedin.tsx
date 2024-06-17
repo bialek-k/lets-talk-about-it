@@ -4,9 +4,14 @@ import Link from 'next/link';
 interface LinkedinProps {
   href: string;
   className?: string;
+  shouldAnimate?: boolean;
 }
 
-export default function Linkedin({ href, className }: LinkedinProps) {
+export default function Linkedin({
+  href,
+  className,
+  shouldAnimate,
+}: LinkedinProps) {
   return (
     <Link
       className={className}
@@ -14,7 +19,7 @@ export default function Linkedin({ href, className }: LinkedinProps) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <LinkedinIcon />
+      <LinkedinIcon shouldAnimate={shouldAnimate} />
     </Link>
   );
 }
