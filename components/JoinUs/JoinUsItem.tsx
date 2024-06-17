@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { TextHolder } from '../UI/TextHolder';
 import { RichTextContent } from '@graphcms/rich-text-types';
 
@@ -19,9 +20,9 @@ export const JoinUsItem = ({
   return (
     <div className="socialItem flex flex-col items-center">
       <div className="icon mb-12 max-h-28 cursor-pointer">
-        <a href={navigateDirection} target="blank">
+        <Link href={navigateDirection} target="_blank">
           {icon}
-        </a>
+        </Link>
       </div>
       <TextHolder
         content={social}
