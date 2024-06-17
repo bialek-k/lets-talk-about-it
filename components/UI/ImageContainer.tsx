@@ -29,6 +29,7 @@ export const ImageContainer = ({ image, alt, link }: ImageContainerProps) => {
         )}
         {link && (
           <Linkedin
+            shouldAnimate
             href={link}
             className="absolute z-30 w-6 h-6 bottom-3 right-3"
           />

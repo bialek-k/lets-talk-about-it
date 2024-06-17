@@ -1,6 +1,5 @@
-import React from 'react';
+import Link from 'next/link';
 import { TextHolder } from '../UI/TextHolder';
-
 import { RichTextContent } from '@graphcms/rich-text-types';
 
 interface JoinUsItemProps {
@@ -8,6 +7,7 @@ interface JoinUsItemProps {
   icon?: JSX.Element;
   small?: boolean;
   longText: boolean;
+  navigateDirection: string;
 }
 
 export const JoinUsItem = ({
@@ -15,10 +15,15 @@ export const JoinUsItem = ({
   icon,
   small,
   longText,
+  navigateDirection,
 }: JoinUsItemProps) => {
   return (
     <div className="socialItem flex flex-col items-center">
-      <div className="icon mb-12 max-h-28">{icon}</div>
+      <div className="icon mb-12 max-h-28 cursor-pointer">
+        <Link href={navigateDirection} target="_blank">
+          {icon}
+        </Link>
+      </div>
       <TextHolder
         content={social}
         readMore={longText}

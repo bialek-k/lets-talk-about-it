@@ -1,7 +1,7 @@
 'use client';
 
 import LocationIcon from '@/IconsSVG/LocationIcon';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import MapWindow from '../MapWindow/MapWindow';
 import { motion } from 'framer-motion';
 

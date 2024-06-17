@@ -1,6 +1,19 @@
-export default function LinkedinIcon() {
+'use client';
+
+import { motion } from 'framer-motion';
+
+interface LinkedinIconProps {
+  shouldAnimate?: boolean;
+}
+
+const LinkedinIcon = ({ shouldAnimate }: LinkedinIconProps) => {
   return (
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <motion.svg
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      whileHover={shouldAnimate ? { scale: 1.4 } : {}}
+    >
       <g clipPath="url(#clip0_70_2637)">
         <path
           d="M24.5 0H7.5C3.35786 0 0 3.35786 0 7.5V24.5C0 28.6421 3.35786 32 7.5 32H24.5C28.6421 32 32 28.6421 32 24.5V7.5C32 3.35786 28.6421 0 24.5 0Z"
@@ -20,6 +33,8 @@ export default function LinkedinIcon() {
           <rect width="32" height="32" fill="white" />
         </clipPath>
       </defs>
-    </svg>
+    </motion.svg>
   );
-}
+};
+
+export default LinkedinIcon;
