@@ -4,7 +4,6 @@ import Facebook from '@/components/Facebook/Facebook';
 import Youtube from '@/components/Youtube/Youtube';
 import Linkedin from '@/components/Linkedin/Linkedin';
 import MainLogo from '@/components/MainLogo/MainLogo';
-import { OpenNav } from '@/components/Header/Header';
 
 import { About } from '@/components/About/About';
 
@@ -22,6 +21,7 @@ import {
   NewEventQueryDocument,
 } from '@/graphql/generated';
 import { request } from '@/lib/request';
+import OpenNav from '@/components/OpenNav/OpenNav';
 
 const i18nNamespaces = ['home'];
 

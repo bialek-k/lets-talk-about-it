@@ -34,10 +34,13 @@ const LeadSection = async ({
             >
               <div className="">
                 <div className="relative w-fit">
-                  <h3 className=" font-semibold text-lg w-max z-40 relative">
+                  <h3 className=" font-semibold text-lg z-40 relative">
                     {leader.name}
                   </h3>
-                  <TextBorderLine className="lg:visible invisible absolute top-5 z-1 w-full" />
+                  <TextBorderLine
+                    className="lg:visible invisible absolute 
+                  -bottom-[2px] z-1 w-full"
+                  />
                 </div>
                 <p className=" font-normal text-lg leading-6">
                   {leader.position}
@@ -71,10 +74,13 @@ const LeadSection = async ({
           >
             <div className="">
               <div className="relative w-fit">
-                <h3 className=" font-semibold text-lg w-max z-40 relative">
+                <h3 className=" font-semibold text-lg z-40 relative">
                   {speaker.name}
                 </h3>
-                <TextBorderLine className="lg:visible invisible absolute top-5 z-1 w-full" />
+                <TextBorderLine
+                  className="lg:visible invisible absolute 
+                -bottom-[2px] z-1 w-full"
+                />
               </div>
               <p className=" font-normal text-lg leading-6 break-words">
                 {speaker.position}
