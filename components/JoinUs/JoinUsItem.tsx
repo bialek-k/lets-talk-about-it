@@ -1,5 +1,4 @@
 import { TextHolder } from '../UI/TextHolder';
-
 import { RichTextContent } from '@graphcms/rich-text-types';
 
 interface JoinUsItemProps {
@@ -17,17 +16,12 @@ export const JoinUsItem = ({
   longText,
   navigateDirection,
 }: JoinUsItemProps) => {
-  const onClickNavigate = () => {
-    window.open(navigateDirection, '_blank');
-  };
-
   return (
     <div className="socialItem flex flex-col items-center">
-      <div
-        className="icon mb-12 max-h-28 cursor-pointer"
-        onClick={onClickNavigate}
-      >
-        {icon}
+      <div className="icon mb-12 max-h-28 cursor-pointer">
+        <a href={navigateDirection} target="blank">
+          {icon}
+        </a>
       </div>
       <TextHolder
         content={social}
