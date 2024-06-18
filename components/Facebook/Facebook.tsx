@@ -6,7 +6,7 @@ interface FacebookProps {
   className?: string;
 }
 
-export default function Facebook({ href, className }: FacebookProps) {
+export const Facebook = ({ href, className }: FacebookProps) => {
   return (
     <Link
       className={className}
@@ -17,4 +17,5 @@ export default function Facebook({ href, className }: FacebookProps) {
       <FacebookIcon />
     </Link>
   );
-}
+};
+export default Facebook;

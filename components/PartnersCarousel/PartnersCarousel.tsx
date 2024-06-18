@@ -1,11 +1,4 @@
-import { PartnersQueryDocument } from '@/graphql/generated';
-import { request } from '@/lib/request';
 import Marquee from '../Marquee/Marquee';
-
-import { useTranslation } from 'react-i18next';
-
-import Image from 'next/image';
-
 const PartnersCarousel = async ({
   locale,
   isMain,

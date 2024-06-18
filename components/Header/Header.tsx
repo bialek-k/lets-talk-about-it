@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import MobileNav from '../MobileNav/MobileNav';
 import {
   AnimatePresence,
   motion,
@@ -27,7 +26,7 @@ interface Route {
   content?: { path: string; name: string }[];
 }
 
-export default function Header({ isMain = false }: { isMain?: boolean }) {
+const Header = ({ isMain = false }: { isMain?: boolean }) => {
   const [routes, setRoutes] = useState<Route[]>([]);
   const { t } = useTranslation();
   const { scrollY } = useScroll();
@@ -151,7 +150,7 @@ export default function Header({ isMain = false }: { isMain?: boolean }) {
                             initial={{ opacity: 0, y: '-100%' }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: '-100%' }}
-                            transition={{ duration: 0.3, delay: index * 0.3 }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
                             key={index}
                           >
                             <Link
@@ -197,4 +196,6 @@ export default function Header({ isMain = false }: { isMain?: boolean }) {
       </motion.header>
     </AnimatePresence>
   );
-}
+};
+
+export default Header;

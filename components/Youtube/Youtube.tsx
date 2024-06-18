@@ -6,7 +6,7 @@ interface YoutubeProps {
   className?: string;
 }
 
-export default function Youtube({ href, className }: YoutubeProps) {
+const Youtube = ({ href, className }: YoutubeProps) => {
   return (
     <Link
       className={className}
@@ -17,4 +17,6 @@ export default function Youtube({ href, className }: YoutubeProps) {
       <YoutubeIcon />
     </Link>
   );
-}
+};
+
+export default Youtube;

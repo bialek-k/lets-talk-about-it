@@ -4,10 +4,7 @@ import React from 'react';
 import { PageTitle } from '../UI/PageTitle';
 import { TextHolder } from '../UI/TextHolder';
 import { AboutQueryQuery } from '@/graphql/generated';
-import { ImageContainer } from '../UI/ImageContainer';
 import { useTranslation } from 'react-i18next';
-import ChevronIcon from '@/IconsSVG/ChevronIcon';
-import MainLogoIcon from '@/IconsSVG/MainLogoIcon';
 import Pattern from '@/IconsSVG/Pattern';
 import Image from 'next/image';
 import Linkedin from '../Linkedin/Linkedin';
@@ -16,7 +13,7 @@ export const About = ({ about }: AboutQueryQuery) => {
   const { t } = useTranslation();
   return (
     <section id="about" className="px-6 md:px-24 h-min-screen">
-      <PageTitle title={t('aboutUs')} />
+      <PageTitle small title={t('aboutUs')} />
       <div className="content md:flex md:gap-24 justify-between ">
         <div className="description">
           <p className="text-[24px] mb-6 font-semibold">Let’s Talk About IT</p>
@@ -45,12 +42,14 @@ export const About = ({ about }: AboutQueryQuery) => {
               <Image
                 alt={'malgorzata_rycak'}
                 src={about?.malgosia_image?.url!}
-                objectFit="contain"
-                layout="fill"
+                width={about?.malgosia_image?.width ?? 300}
+                height={about?.malgosia_image?.height ?? 300}
+                priority
                 className=" rounded absolute "
               />
 
               <Linkedin
+                shouldAnimate
                 href={'https://www.linkedin.com/in/malgorzata-rycak/'}
                 className="absolute z-30 w-6 h-6 bottom-3 right-3"
               />

@@ -1,4 +1,4 @@
-export default function toRoman(num: number): string {
+const toRoman = (num: number): string => {
   const lookup: { [key: string]: number } = {
     M: 1000,
     CM: 900,
@@ -22,4 +22,5 @@ export default function toRoman(num: number): string {
     }
   }
   return roman;
-}
+};
+export default toRoman;
