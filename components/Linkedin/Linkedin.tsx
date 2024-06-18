@@ -7,11 +7,7 @@ interface LinkedinProps {
   shouldAnimate?: boolean;
 }
 
-export default function Linkedin({
-  href,
-  className,
-  shouldAnimate,
-}: LinkedinProps) {
+const Linkedin = ({ href, className, shouldAnimate }: LinkedinProps) => {
   return (
     <Link
       className={className}
@@ -22,4 +18,6 @@ export default function Linkedin({
       <LinkedinIcon shouldAnimate={shouldAnimate} />
     </Link>
   );
-}
+};
+
+export default Linkedin;

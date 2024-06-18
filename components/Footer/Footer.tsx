@@ -1,6 +1,5 @@
 'use client';
 
-import LinesPattern from '@/IconsSVG/LinesPattern';
 import MainLogoIcon from '@/IconsSVG/MainLogoIcon';
 import Facebook from '../Facebook/Facebook';
 import Linkedin from '../Linkedin/Linkedin';
@@ -55,7 +54,10 @@ const Footer = (doc: DocsQueryQuery) => {
         <div className="w-[100px] h-[100px] mr-auto">
           <MainLogoIcon />
         </div>
-        <button onClick={scrollToTop} className="hidden lg:flex ml-auto ">
+        <button
+          onClick={scrollToTop}
+          className="hidden lg:flex ml-auto hover:scale-125"
+        >
           <BackToTop />
         </button>
       </div>
@@ -82,13 +84,13 @@ const Footer = (doc: DocsQueryQuery) => {
           <h4 className="font-medium text-2xl mb-5 lg:mb-10">{t('contact')}</h4>
           <p className="font-normal text-base">{t('haveQuestions')}</p>
           <p className="font-normal text-base">{t('contactUs')}</p>
-          <Link
+          <a
             className="font-normal text-base flex items-center gap-4 flex-wrap sm:flex-nowrap mt-6"
             href="mailto:letstalkitpoland@gmail.com"
           >
             <EnvelopeIcon />
             letstalkitpoland@gmail.com
-          </Link>
+          </a>
         </div>
         <div className="flex flex-col lg:items-start lg:pl-[100px] justify-center mr-auto lg:mr-0  lg:pt-4 lg:max-w-[390px] lg:w-full">
           <h4 className="font-medium text-2xl lg:mb-10 mb-5 ">{t('links')}</h4>
@@ -106,7 +108,7 @@ const Footer = (doc: DocsQueryQuery) => {
               {t('privacyPolicy')}
             </button>
             <Link href="/#about" className="font-normal text-base">
-              {t('aboutUs')}
+              {t('about')}
             </Link>
           </div>
         </div>

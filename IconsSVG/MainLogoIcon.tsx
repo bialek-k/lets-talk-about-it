@@ -1,11 +1,6 @@
-
-export default function MainLogoIcon() {
+const MainLogoIcon = () => {
   return (
-    <svg
-      viewBox="0 0 111 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 111 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_28_1006)">
         <rect width="111" height="100" fill="#0C0C0C" />
         <path
@@ -38,4 +33,6 @@ export default function MainLogoIcon() {
       </defs>
     </svg>
   );
-}
+};
+
+export default MainLogoIcon;

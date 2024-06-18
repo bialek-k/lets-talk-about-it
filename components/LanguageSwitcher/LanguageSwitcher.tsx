@@ -9,9 +9,7 @@ type LanguageSwitcherProps = {
   customClass?: string;
 };
 
-export default function LanguageSwitcher({
-  customClass,
-}: LanguageSwitcherProps) {
+const LanguageSwitcher = ({ customClass }: LanguageSwitcherProps) => {
   const { i18n } = useTranslation();
 
   const router = useRouter();
@@ -59,4 +57,6 @@ export default function LanguageSwitcher({
       </span>
     </button>
   );
-}
+};
+
+export default LanguageSwitcher;

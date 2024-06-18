@@ -25,7 +25,7 @@ interface Route {
   content?: { path: string; name: string }[];
 }
 
-export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
+const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
   const { t } = useTranslation();
   const [routes, setRoutes] = useState<Route[]>([]);
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
@@ -150,7 +150,7 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                               exit={{ opacity: 0, transition: { duration: 0 } }}
                               transition={{
                                 duration: 0.3,
-                                delay: index * 0.3,
+                                delay: index * 0.1,
                               }}
                               key={index}
                             >
@@ -198,4 +198,6 @@ export default function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
       )}
     </AnimatePresence>
   );
-}
+};
+
+export default MobileNav;

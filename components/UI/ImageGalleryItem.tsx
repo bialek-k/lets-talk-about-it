@@ -1,8 +1,5 @@
 'use client';
-import FsLightbox from 'fslightbox-react';
-import { useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 interface ImageGalleryItemProps {
   image: {
@@ -11,20 +8,18 @@ interface ImageGalleryItemProps {
     height?: number | null;
     fileName: string;
   };
+  onClick?: () => void;
 }
 
-const ImageGalleryItem = ({ image }: ImageGalleryItemProps) => {
+const ImageGalleryItem = ({ image, onClick }: ImageGalleryItemProps) => {
   const validWidth = image?.width !== null ? image?.width : undefined;
   const validHeight = image?.height !== null ? image?.height : undefined;
 
-  const [open, setOpen] = useState(false);
-
   return (
-    <motion.div
+    <div
       key={image.fileName}
-      onClick={() => setOpen(!open)}
-      className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] "
-      whileHover={{ scale: 1.1 }}
+      onClick={onClick}
+      className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] hover:scale-110"
     >
       <Image
         alt={image.fileName}
@@ -33,8 +28,7 @@ const ImageGalleryItem = ({ image }: ImageGalleryItemProps) => {
         width={validWidth}
         height={validHeight}
       />
-      <FsLightbox toggler={open} sources={[image.url]} />
-    </motion.div>
+    </div>
   );
 };
 
