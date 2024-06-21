@@ -23,7 +23,7 @@ const config: Config = {
         'main-light-yello': '#F3FF99',
       },
       screens: {
-        'desktop-media-max': { max: '1024px' }, // => @media (max-width: 1024px)
+        'desktop-media-max': { max: '1023px' }, // => @media (max-width: 1023px)
       },
     },
   },

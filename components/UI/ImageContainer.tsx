@@ -11,9 +11,15 @@ interface ImageContainerProps {
     height?: number | null | undefined;
     fileName?: string;
   };
+  background?: string;
 }
 
-export const ImageContainer = ({ image, alt, link }: ImageContainerProps) => {
+export const ImageContainer = ({
+  image,
+  alt,
+  link,
+  background,
+}: ImageContainerProps) => {
   return (
     <div className="relative w-64 h-64 container mx-auto mt-4 mb-16">
       <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded" />
@@ -24,7 +30,7 @@ export const ImageContainer = ({ image, alt, link }: ImageContainerProps) => {
             src={image?.url}
             width={image.width ?? 300}
             height={image.height ?? 300}
-            className=" rounded absolute"
+            className={`rounded absolute ${background}`}
           />
         )}
         {link && (

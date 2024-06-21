@@ -18,6 +18,7 @@ import { text } from 'stream/consumers';
 interface MobileNavProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  locale: string;
 }
 interface Route {
   path?: string;
@@ -25,11 +26,12 @@ interface Route {
   content?: { path: string; name: string }[];
 }
 
-const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
+const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
   const { t } = useTranslation();
   const [routes, setRoutes] = useState<Route[]>([]);
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
   const currentPath = usePathname();
+  const [activeMenu, setActiveMenu] = useState('');
 
   const isActive = (path?: string) => {
     if (path === '/#about') {
@@ -44,15 +46,16 @@ const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
 
   useEffect(() => {
     const fetchRoutes = async () => {
-      const fetchedRoutes = await fetchEvents();
+      const fetchedRoutes = await fetchEvents({ locale });
       setRoutes(fetchedRoutes);
     };
     fetchRoutes();
-  }, []);
+  }, [locale]);
 
-  function toggleSubMenu() {
+  const toggleSubMenu = (name: string) => {
     setSubMenuOpen(!isSubMenuOpen);
-  }
+    setActiveMenu(name);
+  };
 
   return (
     <AnimatePresence>
@@ -113,18 +116,20 @@ const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
                     ) : (
                       <button
                         className={`w-full flex pb-5 items-center z-10 relative ${
-                          isActive(route.name)
+                          currentPath.includes(route.name ?? '')
                             ? 'text-main-yellow'
-                            : 'text-white'
+                            : 'text-main-white'
                         }`}
                         type="button"
-                        onClick={toggleSubMenu}
+                        onClick={() => toggleSubMenu(route.name ?? '')}
                       >
                         {t(route.name ?? '')}
                         {route.content && (
                           <ChevronIcon
                             className={`transition-all duration-300 absolute right-5 top-2 ${
-                              isSubMenuOpen && 'rotate-180'
+                              isSubMenuOpen &&
+                              activeMenu === route.name &&
+                              'rotate-180'
                             }`}
                           />
                         )}
@@ -133,7 +138,7 @@ const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
                   </div>
 
                   {/* Submenu */}
-                  {route.content && (
+                  {route.content && activeMenu === route.name && (
                     <AnimatePresence>
                       {isSubMenuOpen && (
                         <motion.div
@@ -163,9 +168,13 @@ const MobileNav = ({ isOpen, setIsOpen }: MobileNavProps) => {
                                 href={subRoute.path ?? '#'}
                                 onClick={() => setIsOpen(false)}
                               >
-                                {`${t(subRoute.name.split(' ')[0])} ${toRoman(
-                                  parseInt(subRoute.name.split(' ')[1])
-                                )}`}
+                                {subRoute.name.includes('event')
+                                  ? `${t(
+                                      subRoute.name.split(' ')[0]
+                                    )} ${toRoman(
+                                      parseInt(subRoute.name.split(' ')[1])
+                                    )}`
+                                  : t(subRoute.name)}
                               </Link>
                             </motion.div>
                           ))}

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import MobileNav from '../MobileNav/MobileNav';
 
-const OpenNav = () => {
+const OpenNav = ({ locale }: { locale: string }) => {
   const [isMenuOpen, setOpenMenu] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const OpenNav = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className="lg:hidden relative ml-auto flex items-center ">
+    <div className="xl:hidden relative ml-auto flex items-center ">
       <button
         onClick={() => setOpenMenu(true)}
         className={`absolute right-0 border-none w-7 h-7 z-30 flex items-center justify-center hamburger ${
@@ -24,7 +24,7 @@ const OpenNav = () => {
       >
         <span />
       </button>
-      <MobileNav isOpen={isMenuOpen} setIsOpen={setOpenMenu} />
+      <MobileNav isOpen={isMenuOpen} setIsOpen={setOpenMenu} locale={locale} />
     </div>
   );
 };

@@ -26,12 +26,19 @@ interface Route {
   content?: { path: string; name: string }[];
 }
 
-const Header = ({ isMain = false }: { isMain?: boolean }) => {
+const Header = ({
+  isMain = false,
+  locale,
+}: {
+  isMain?: boolean;
+  locale: string;
+}) => {
   const [routes, setRoutes] = useState<Route[]>([]);
   const { t } = useTranslation();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState('');
   const currentPath = usePathname();
 
   const isActive = (path?: string) => {
@@ -46,11 +53,11 @@ const Header = ({ isMain = false }: { isMain?: boolean }) => {
 
   useEffect(() => {
     const fetchRoutes = async () => {
-      const fetchedRoutes = await fetchEvents();
+      const fetchedRoutes = await fetchEvents({ locale });
       setRoutes(fetchedRoutes);
     };
     fetchRoutes();
-  }, []);
+  }, [locale]);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     if (latest < 160) {
@@ -97,9 +104,9 @@ const Header = ({ isMain = false }: { isMain?: boolean }) => {
           <MainLogo className="w-[70px] h-[70px] lg:w-[100px] lg:h-[100px]" />
 
           {/* MOBILE NAVIGATION BUTTON */}
-          <OpenNav />
+          <OpenNav locale={locale} />
           {/* NAVIGATION DESKTOP */}
-          <ul className=" hidden lg:flex text-white text-[22px] leading-7 gap-6">
+          <ul className=" hidden xl:flex text-white text-[22px] leading-7 gap-6">
             {routes.map((route, index) => (
               <li
                 key={index}
@@ -119,21 +126,28 @@ const Header = ({ isMain = false }: { isMain?: boolean }) => {
                 ) : (
                   <div
                     className={`flex flex-row items-center justify-between gap-2 ${
-                      isActive(route.name) ? 'text-main-yellow' : 'text-white'
+                      currentPath.includes(route.name ?? '')
+                        ? 'text-main-yellow'
+                        : 'text-main-white'
                     }`}
-                    onMouseEnter={() => setSubMenuOpen(true)}
+                    onMouseEnter={() => {
+                      setSubMenuOpen(true);
+                      setActiveMenu(route.name ?? '');
+                    }}
                     onMouseLeave={() => setSubMenuOpen(false)}
                   >
                     <p>{t(route.name ?? '')}</p>
                     <ChevronIcon
                       className={`transition-all duration-300 ${
-                        isSubMenuOpen && 'rotate-180'
+                        isSubMenuOpen &&
+                        activeMenu === route.name &&
+                        'rotate-180'
                       }`}
                     />
                   </div>
                 )}
                 {/* SUBROUTE EVENTS */}
-                {route.content && (
+                {route.content && activeMenu === route.name && (
                   <AnimatePresence>
                     {isSubMenuOpen && (
                       <motion.div
@@ -143,14 +157,17 @@ const Header = ({ isMain = false }: { isMain?: boolean }) => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: '-100%' }}
                         transition={{ duration: 0.3 }}
-                        className="text-base font-normal flex flex-col items-center justify-center w-[130px] absolute top-9 border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
+                        className="text-base font-normal flex flex-col items-center justify-center w-auto absolute top-9 border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
                       >
                         {route.content.map((subRoute, index) => (
                           <motion.div
                             initial={{ opacity: 0, y: '-100%' }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: '-100%' }}
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: index * 0.1,
+                            }}
                             key={index}
                           >
                             <Link
@@ -161,9 +178,11 @@ const Header = ({ isMain = false }: { isMain?: boolean }) => {
                               }`}
                               href={subRoute.path ?? '#'}
                             >
-                              {`${t(subRoute.name.split(' ')[0])} ${toRoman(
-                                parseInt(subRoute.name.split(' ')[1])
-                              )}`}
+                              {subRoute.name.includes('event')
+                                ? `${t(subRoute.name.split(' ')[0])} ${toRoman(
+                                    parseInt(subRoute.name.split(' ')[1])
+                                  )}`
+                                : t(subRoute.name)}
                             </Link>
                           </motion.div>
                         ))}
@@ -175,7 +194,7 @@ const Header = ({ isMain = false }: { isMain?: boolean }) => {
             ))}
           </ul>
           {/* SOCIALS */}
-          <div className="justify-center gap-5 hidden lg:flex">
+          <div className="justify-center gap-5 hidden xl:flex">
             <Linkedin
               className="size-6"
               href="https://www.linkedin.com/groups/14230011/"
@@ -189,7 +208,7 @@ const Header = ({ isMain = false }: { isMain?: boolean }) => {
               href="https://www.youtube.com/@LetstalkTPoland"
             />
           </div>
-          <div className="hidden lg:flex">
+          <div className="hidden xl:flex">
             <LanguageSwitcher />
           </div>
         </nav>

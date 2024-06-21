@@ -1,3 +1,10 @@
 {
-  "title": "workshops"
+  "title": "workshops",
+  "organizer": "ORGANIZERS",
+  "lead": "HOST",
+  "carousel": "VI edition of Let’s talk about IT will take place on 17.10.2024 in Rzeszów. Join us to rock IT!",
+  "gallery": "gallery",
+  "noGallery": "Photos will appear soon!",
+  "galleryText": "See what happened during the workshops:",
+  "workshops": "workshops:"
 }
