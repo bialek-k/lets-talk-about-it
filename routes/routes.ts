@@ -1,10 +1,14 @@
-import { EventsRoutesDocument } from '@/graphql/generated';
+import {
+  EventsRoutesDocument,
+  WorkshopsRoutesDocument,
+} from '@/graphql/generated';
 import { request } from '@/lib/request';
 
-export const fetchEvents = async () => {
+export const fetchEvents = async ({ locale = 'pl' }: { locale: string }) => {
   // const results = await request(EventRoutesDocument);
 
   const { events } = await request(EventsRoutesDocument);
+  const { workshops } = await request(WorkshopsRoutesDocument, { locale });
 
   return [
     {
@@ -19,8 +23,11 @@ export const fetchEvents = async () => {
       })),
     },
     {
-      path: '/workshops',
       name: 'workshops',
+      content: workshops.map((workshop) => ({
+        path: `/workshops/${workshop.slug}`,
+        name: `${workshop.title}`,
+      })),
     },
     {
       path: '/podcasts',

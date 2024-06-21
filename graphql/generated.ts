@@ -573,6 +573,7 @@ export type Asset = Entity & Node & {
   /** The file name */
   fileName: Scalars['String']['output'];
   galleryEvent: Array<Event>;
+  galleryWorkshop: Array<Workshop>;
   /** The file handle */
   handle: Scalars['String']['output'];
   /** The height of the file */
@@ -585,6 +586,7 @@ export type Asset = Entity & Node & {
   locale: Locale;
   /** Get the other localizations for this document */
   localizations: Array<Asset>;
+  logoWorkshop: Array<Workshop>;
   logosPartner: Array<Partner>;
   malgosia_imageAbout: Array<About>;
   /** The mime type of the file */
@@ -647,6 +649,20 @@ export type AssetGalleryEventArgs = {
 
 
 /** Asset system model */
+export type AssetGalleryWorkshopArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<WorkshopOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<WorkshopWhereInput>;
+};
+
+
+/** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
@@ -658,6 +674,20 @@ export type AssetHistoryArgs = {
 export type AssetLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
+};
+
+
+/** Asset system model */
+export type AssetLogoWorkshopArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<WorkshopOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<WorkshopWhereInput>;
 };
 
 
@@ -754,8 +784,10 @@ export type AssetCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   galleryEvent?: InputMaybe<EventCreateManyInlineInput>;
+  galleryWorkshop?: InputMaybe<WorkshopCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
+  logoWorkshop?: InputMaybe<WorkshopCreateManyInlineInput>;
   logosPartner?: InputMaybe<PartnerCreateManyInlineInput>;
   malgosia_imageAbout?: InputMaybe<AboutCreateManyInlineInput>;
   photoPerson?: InputMaybe<PersonCreateManyInlineInput>;
@@ -838,6 +870,9 @@ export type AssetManyWhereInput = {
   galleryEvent_every?: InputMaybe<EventWhereInput>;
   galleryEvent_none?: InputMaybe<EventWhereInput>;
   galleryEvent_some?: InputMaybe<EventWhereInput>;
+  galleryWorkshop_every?: InputMaybe<WorkshopWhereInput>;
+  galleryWorkshop_none?: InputMaybe<WorkshopWhereInput>;
+  galleryWorkshop_some?: InputMaybe<WorkshopWhereInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -857,6 +892,9 @@ export type AssetManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  logoWorkshop_every?: InputMaybe<WorkshopWhereInput>;
+  logoWorkshop_none?: InputMaybe<WorkshopWhereInput>;
+  logoWorkshop_some?: InputMaybe<WorkshopWhereInput>;
   logosPartner_every?: InputMaybe<PartnerWhereInput>;
   logosPartner_none?: InputMaybe<PartnerWhereInput>;
   logosPartner_some?: InputMaybe<PartnerWhereInput>;
@@ -946,8 +984,10 @@ export type AssetTransformationInput = {
 export type AssetUpdateInput = {
   fileName?: InputMaybe<Scalars['String']['input']>;
   galleryEvent?: InputMaybe<EventUpdateManyInlineInput>;
+  galleryWorkshop?: InputMaybe<WorkshopUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
+  logoWorkshop?: InputMaybe<WorkshopUpdateManyInlineInput>;
   logosPartner?: InputMaybe<PartnerUpdateManyInlineInput>;
   malgosia_imageAbout?: InputMaybe<AboutUpdateManyInlineInput>;
   photoPerson?: InputMaybe<PersonUpdateManyInlineInput>;
@@ -1221,6 +1261,9 @@ export type AssetWhereInput = {
   galleryEvent_every?: InputMaybe<EventWhereInput>;
   galleryEvent_none?: InputMaybe<EventWhereInput>;
   galleryEvent_some?: InputMaybe<EventWhereInput>;
+  galleryWorkshop_every?: InputMaybe<WorkshopWhereInput>;
+  galleryWorkshop_none?: InputMaybe<WorkshopWhereInput>;
+  galleryWorkshop_some?: InputMaybe<WorkshopWhereInput>;
   handle?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
   handle_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1274,6 +1317,9 @@ export type AssetWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  logoWorkshop_every?: InputMaybe<WorkshopWhereInput>;
+  logoWorkshop_none?: InputMaybe<WorkshopWhereInput>;
+  logoWorkshop_some?: InputMaybe<WorkshopWhereInput>;
   logosPartner_every?: InputMaybe<PartnerWhereInput>;
   logosPartner_none?: InputMaybe<PartnerWhereInput>;
   logosPartner_some?: InputMaybe<PartnerWhereInput>;
@@ -1987,7 +2033,8 @@ export enum EntityTypeName {
   /** Scheduled Release system model */
   ScheduledRelease = 'ScheduledRelease',
   /** User system model */
-  User = 'User'
+  User = 'User',
+  Workshop = 'Workshop'
 }
 
 /** Allows to specify input to query models and components directly */
@@ -3579,6 +3626,8 @@ export type Mutation = {
   createPartner?: Maybe<Partner>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Create one workshop */
+  createWorkshop?: Maybe<Workshop>;
   /** Delete one about from _all_ existing stages. Returns deleted document. */
   deleteAbout?: Maybe<About>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
@@ -3631,12 +3680,21 @@ export type Mutation = {
   deleteManyPartners: BatchPayload;
   /** Delete many Partner documents, return deleted documents */
   deleteManyPartnersConnection: PartnerConnection;
+  /**
+   * Delete many Workshop documents
+   * @deprecated Please use the new paginated many mutation (deleteManyWorkshopsConnection)
+   */
+  deleteManyWorkshops: BatchPayload;
+  /** Delete many Workshop documents, return deleted documents */
+  deleteManyWorkshopsConnection: WorkshopConnection;
   /** Delete one partner from _all_ existing stages. Returns deleted document. */
   deletePartner?: Maybe<Partner>;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Delete one workshop from _all_ existing stages. Returns deleted document. */
+  deleteWorkshop?: Maybe<Workshop>;
   /** Publish one about */
   publishAbout?: Maybe<About>;
   /** Publish one asset */
@@ -3689,8 +3747,17 @@ export type Mutation = {
   publishManyPartners: BatchPayload;
   /** Publish many Partner documents */
   publishManyPartnersConnection: PartnerConnection;
+  /**
+   * Publish many Workshop documents
+   * @deprecated Please use the new paginated many mutation (publishManyWorkshopsConnection)
+   */
+  publishManyWorkshops: BatchPayload;
+  /** Publish many Workshop documents */
+  publishManyWorkshopsConnection: WorkshopConnection;
   /** Publish one partner */
   publishPartner?: Maybe<Partner>;
+  /** Publish one workshop */
+  publishWorkshop?: Maybe<Workshop>;
   /** Schedule to publish one about */
   schedulePublishAbout?: Maybe<About>;
   /** Schedule to publish one asset */
@@ -3703,6 +3770,8 @@ export type Mutation = {
   schedulePublishJoin_us?: Maybe<Join_Us>;
   /** Schedule to publish one partner */
   schedulePublishPartner?: Maybe<Partner>;
+  /** Schedule to publish one workshop */
+  schedulePublishWorkshop?: Maybe<Workshop>;
   /** Unpublish one about from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAbout?: Maybe<About>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -3715,6 +3784,8 @@ export type Mutation = {
   scheduleUnpublishJoin_us?: Maybe<Join_Us>;
   /** Unpublish one partner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishPartner?: Maybe<Partner>;
+  /** Unpublish one workshop from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishWorkshop?: Maybe<Workshop>;
   /** Unpublish one about from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAbout?: Maybe<About>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -3767,8 +3838,17 @@ export type Mutation = {
   unpublishManyPartners: BatchPayload;
   /** Find many Partner documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyPartnersConnection: PartnerConnection;
+  /**
+   * Unpublish many Workshop documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyWorkshopsConnection)
+   */
+  unpublishManyWorkshops: BatchPayload;
+  /** Find many Workshop documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyWorkshopsConnection: WorkshopConnection;
   /** Unpublish one partner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishPartner?: Maybe<Partner>;
+  /** Unpublish one workshop from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishWorkshop?: Maybe<Workshop>;
   /** Update one about */
   updateAbout?: Maybe<About>;
   /** Update one asset */
@@ -3821,10 +3901,19 @@ export type Mutation = {
   updateManyPartners: BatchPayload;
   /** Update many Partner documents */
   updateManyPartnersConnection: PartnerConnection;
+  /**
+   * Update many workshops
+   * @deprecated Please use the new paginated many mutation (updateManyWorkshopsConnection)
+   */
+  updateManyWorkshops: BatchPayload;
+  /** Update many Workshop documents */
+  updateManyWorkshopsConnection: WorkshopConnection;
   /** Update one partner */
   updatePartner?: Maybe<Partner>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Update one workshop */
+  updateWorkshop?: Maybe<Workshop>;
   /** Upsert one about */
   upsertAbout?: Maybe<About>;
   /** Upsert one asset */
@@ -3837,6 +3926,8 @@ export type Mutation = {
   upsertJoin_us?: Maybe<Join_Us>;
   /** Upsert one partner */
   upsertPartner?: Maybe<Partner>;
+  /** Upsert one workshop */
+  upsertWorkshop?: Maybe<Workshop>;
 };
 
 
@@ -3872,6 +3963,11 @@ export type MutationCreatePartnerArgs = {
 
 export type MutationCreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
+};
+
+
+export type MutationCreateWorkshopArgs = {
+  data: WorkshopCreateInput;
 };
 
 
@@ -3990,6 +4086,21 @@ export type MutationDeleteManyPartnersConnectionArgs = {
 };
 
 
+export type MutationDeleteManyWorkshopsArgs = {
+  where?: InputMaybe<WorkshopManyWhereInput>;
+};
+
+
+export type MutationDeleteManyWorkshopsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<WorkshopManyWhereInput>;
+};
+
+
 export type MutationDeletePartnerArgs = {
   where: PartnerWhereUniqueInput;
 };
@@ -4002,6 +4113,11 @@ export type MutationDeleteScheduledOperationArgs = {
 
 export type MutationDeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
+};
+
+
+export type MutationDeleteWorkshopArgs = {
+  where: WorkshopWhereUniqueInput;
 };
 
 
@@ -4194,11 +4310,44 @@ export type MutationPublishManyPartnersConnectionArgs = {
 };
 
 
+export type MutationPublishManyWorkshopsArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<WorkshopManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationPublishManyWorkshopsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<WorkshopManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
 export type MutationPublishPartnerArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where: PartnerWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationPublishWorkshopArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  to?: Array<Stage>;
+  where: WorkshopWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -4269,6 +4418,17 @@ export type MutationSchedulePublishPartnerArgs = {
 };
 
 
+export type MutationSchedulePublishWorkshopArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: WorkshopWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
 export type MutationScheduleUnpublishAboutArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -4326,6 +4486,16 @@ export type MutationScheduleUnpublishPartnerArgs = {
   releaseId?: InputMaybe<Scalars['String']['input']>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: PartnerWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishWorkshopArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where: WorkshopWhereUniqueInput;
 };
 
 
@@ -4501,11 +4671,41 @@ export type MutationUnpublishManyPartnersConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyWorkshopsArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<WorkshopManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyWorkshopsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<WorkshopManyWhereInput>;
+};
+
+
 export type MutationUnpublishPartnerArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: PartnerWhereUniqueInput;
+};
+
+
+export type MutationUnpublishWorkshopArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where: WorkshopWhereUniqueInput;
 };
 
 
@@ -4641,6 +4841,23 @@ export type MutationUpdateManyPartnersConnectionArgs = {
 };
 
 
+export type MutationUpdateManyWorkshopsArgs = {
+  data: WorkshopUpdateManyInput;
+  where?: InputMaybe<WorkshopManyWhereInput>;
+};
+
+
+export type MutationUpdateManyWorkshopsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  data: WorkshopUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<WorkshopManyWhereInput>;
+};
+
+
 export type MutationUpdatePartnerArgs = {
   data: PartnerUpdateInput;
   where: PartnerWhereUniqueInput;
@@ -4650,6 +4867,12 @@ export type MutationUpdatePartnerArgs = {
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
+};
+
+
+export type MutationUpdateWorkshopArgs = {
+  data: WorkshopUpdateInput;
+  where: WorkshopWhereUniqueInput;
 };
 
 
@@ -4686,6 +4909,12 @@ export type MutationUpsertJoin_UsArgs = {
 export type MutationUpsertPartnerArgs = {
   upsert: PartnerUpsertInput;
   where: PartnerWhereUniqueInput;
+};
+
+
+export type MutationUpsertWorkshopArgs = {
+  upsert: WorkshopUpsertInput;
+  where: WorkshopWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -5428,14 +5657,16 @@ export enum PersonOrderByInput {
   PositionDesc = 'position_DESC'
 }
 
-export type PersonParent = Event;
+export type PersonParent = Event | Workshop;
 
 export type PersonParentConnectInput = {
   Event?: InputMaybe<EventConnectInput>;
+  Workshop?: InputMaybe<WorkshopConnectInput>;
 };
 
 export type PersonParentCreateInput = {
   Event?: InputMaybe<EventCreateInput>;
+  Workshop?: InputMaybe<WorkshopCreateInput>;
 };
 
 export type PersonParentCreateManyInlineInput = {
@@ -5454,6 +5685,7 @@ export type PersonParentCreateOneInlineInput = {
 
 export type PersonParentUpdateInput = {
   Event?: InputMaybe<EventUpdateInput>;
+  Workshop?: InputMaybe<WorkshopUpdateInput>;
 };
 
 export type PersonParentUpdateManyInlineInput = {
@@ -5475,6 +5707,7 @@ export type PersonParentUpdateManyInlineInput = {
 
 export type PersonParentUpdateManyWithNestedWhereInput = {
   Event?: InputMaybe<EventUpdateManyWithNestedWhereInput>;
+  Workshop?: InputMaybe<WorkshopUpdateManyWithNestedWhereInput>;
 };
 
 export type PersonParentUpdateOneInlineInput = {
@@ -5494,18 +5727,22 @@ export type PersonParentUpdateOneInlineInput = {
 
 export type PersonParentUpdateWithNestedWhereUniqueInput = {
   Event?: InputMaybe<EventUpdateWithNestedWhereUniqueInput>;
+  Workshop?: InputMaybe<WorkshopUpdateWithNestedWhereUniqueInput>;
 };
 
 export type PersonParentUpsertWithNestedWhereUniqueInput = {
   Event?: InputMaybe<EventUpsertWithNestedWhereUniqueInput>;
+  Workshop?: InputMaybe<WorkshopUpsertWithNestedWhereUniqueInput>;
 };
 
 export type PersonParentWhereInput = {
   Event?: InputMaybe<EventWhereInput>;
+  Workshop?: InputMaybe<WorkshopWhereInput>;
 };
 
 export type PersonParentWhereUniqueInput = {
   Event?: InputMaybe<EventWhereUniqueInput>;
+  Workshop?: InputMaybe<WorkshopWhereUniqueInput>;
 };
 
 export type PersonUpdateInput = {
@@ -5832,6 +6069,14 @@ export type Query = {
   users: Array<User>;
   /** Retrieve multiple users using the Relay connection interface */
   usersConnection: UserConnection;
+  /** Retrieve a single workshop */
+  workshop?: Maybe<Workshop>;
+  /** Retrieve document version */
+  workshopVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple workshops */
+  workshops: Array<Workshop>;
+  /** Retrieve multiple workshops using the Relay connection interface */
+  workshopsConnection: WorkshopConnection;
 };
 
 
@@ -6174,6 +6419,44 @@ export type QueryUsersConnectionArgs = {
   where?: InputMaybe<UserWhereInput>;
 };
 
+
+export type QueryWorkshopArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: WorkshopWhereUniqueInput;
+};
+
+
+export type QueryWorkshopVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryWorkshopsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<WorkshopOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<WorkshopWhereInput>;
+};
+
+
+export type QueryWorkshopsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<WorkshopOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<WorkshopWhereInput>;
+};
+
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
 export type Rgba = {
   __typename?: 'RGBA';
@@ -6286,7 +6569,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = About | Asset | Doc | Event | Join_Us | Partner;
+export type ScheduledOperationAffectedDocument = About | Asset | Doc | Event | Join_Us | Partner | Workshop;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -7646,6 +7929,770 @@ export type VersionWhereInput = {
   stage: Stage;
 };
 
+export type Workshop = Entity & Node & {
+  __typename?: 'Workshop';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  date?: Maybe<Scalars['Date']['output']>;
+  description?: Maybe<RichText>;
+  /** Get the document in other stages */
+  documentInStages: Array<Workshop>;
+  gallery: Array<Asset>;
+  /** List of Workshop versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  lead?: Maybe<WorkshopleadUnion>;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Workshop>;
+  location?: Maybe<Scalars['String']['output']>;
+  logo: Asset;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  slug?: Maybe<Scalars['String']['output']>;
+  /** System stage field */
+  stage: Stage;
+  title: Scalars['String']['output'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type WorkshopCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type WorkshopCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type WorkshopDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type WorkshopGalleryArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<AssetOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<AssetWhereInput>;
+};
+
+
+export type WorkshopHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type WorkshopLeadArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type WorkshopLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  locales?: Array<Locale>;
+};
+
+
+export type WorkshopLogoArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+
+export type WorkshopPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type WorkshopPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type WorkshopScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type WorkshopUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type WorkshopUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type WorkshopConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: WorkshopWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type WorkshopConnection = {
+  __typename?: 'WorkshopConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<WorkshopEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type WorkshopCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  date?: InputMaybe<Scalars['Date']['input']>;
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  gallery?: InputMaybe<AssetCreateManyInlineInput>;
+  lead?: InputMaybe<WorkshopleadUnionCreateOneInlineInput>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<WorkshopCreateLocalizationsInput>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  logo: AssetCreateOneInlineInput;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** title input for default locale (en) */
+  title: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type WorkshopCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  title: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type WorkshopCreateLocalizationInput = {
+  /** Localization input */
+  data: WorkshopCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type WorkshopCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<WorkshopCreateLocalizationInput>>;
+};
+
+export type WorkshopCreateManyInlineInput = {
+  /** Connect multiple existing Workshop documents */
+  connect?: InputMaybe<Array<WorkshopWhereUniqueInput>>;
+  /** Create and connect multiple existing Workshop documents */
+  create?: InputMaybe<Array<WorkshopCreateInput>>;
+};
+
+export type WorkshopCreateOneInlineInput = {
+  /** Connect one existing Workshop document */
+  connect?: InputMaybe<WorkshopWhereUniqueInput>;
+  /** Create and connect one Workshop document */
+  create?: InputMaybe<WorkshopCreateInput>;
+};
+
+/** An edge in a connection. */
+export type WorkshopEdge = {
+  __typename?: 'WorkshopEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Workshop;
+};
+
+/** Identifies documents */
+export type WorkshopManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<WorkshopWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<WorkshopWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<WorkshopWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  date?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than the given value. */
+  date_gt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than or equal the given value. */
+  date_gte?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are contained in given list. */
+  date_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  /** All values less than the given value. */
+  date_lt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values less than or equal the given value. */
+  date_lte?: InputMaybe<Scalars['Date']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  date_not?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are not contained in given list. */
+  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  documentInStages_every?: InputMaybe<WorkshopWhereStageInput>;
+  documentInStages_none?: InputMaybe<WorkshopWhereStageInput>;
+  documentInStages_some?: InputMaybe<WorkshopWhereStageInput>;
+  gallery_every?: InputMaybe<AssetWhereInput>;
+  gallery_none?: InputMaybe<AssetWhereInput>;
+  gallery_some?: InputMaybe<AssetWhereInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values in which the modular component is connected to the given models */
+  lead?: InputMaybe<WorkshopleadUnionWhereInput>;
+  /** All values in which the union is empty. */
+  lead_empty?: InputMaybe<Scalars['Boolean']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  location_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  location_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  location_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  location_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  location_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  location_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  location_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  location_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  location_starts_with?: InputMaybe<Scalars['String']['input']>;
+  logo?: InputMaybe<AssetWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum WorkshopOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  LocationAsc = 'location_ASC',
+  LocationDesc = 'location_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type WorkshopUpdateInput = {
+  date?: InputMaybe<Scalars['Date']['input']>;
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  gallery?: InputMaybe<AssetUpdateManyInlineInput>;
+  lead?: InputMaybe<WorkshopleadUnionUpdateOneInlineInput>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<WorkshopUpdateLocalizationsInput>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  logo?: InputMaybe<AssetUpdateOneInlineInput>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** title input for default locale (en) */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type WorkshopUpdateLocalizationDataInput = {
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type WorkshopUpdateLocalizationInput = {
+  data: WorkshopUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type WorkshopUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<WorkshopCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<WorkshopUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<WorkshopUpsertLocalizationInput>>;
+};
+
+export type WorkshopUpdateManyInlineInput = {
+  /** Connect multiple existing Workshop documents */
+  connect?: InputMaybe<Array<WorkshopConnectInput>>;
+  /** Create and connect multiple Workshop documents */
+  create?: InputMaybe<Array<WorkshopCreateInput>>;
+  /** Delete multiple Workshop documents */
+  delete?: InputMaybe<Array<WorkshopWhereUniqueInput>>;
+  /** Disconnect multiple Workshop documents */
+  disconnect?: InputMaybe<Array<WorkshopWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Workshop documents */
+  set?: InputMaybe<Array<WorkshopWhereUniqueInput>>;
+  /** Update multiple Workshop documents */
+  update?: InputMaybe<Array<WorkshopUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Workshop documents */
+  upsert?: InputMaybe<Array<WorkshopUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type WorkshopUpdateManyInput = {
+  date?: InputMaybe<Scalars['Date']['input']>;
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<WorkshopUpdateManyLocalizationsInput>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  /** title input for default locale (en) */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type WorkshopUpdateManyLocalizationDataInput = {
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type WorkshopUpdateManyLocalizationInput = {
+  data: WorkshopUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type WorkshopUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<WorkshopUpdateManyLocalizationInput>>;
+};
+
+export type WorkshopUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: WorkshopUpdateManyInput;
+  /** Document search */
+  where: WorkshopWhereInput;
+};
+
+export type WorkshopUpdateOneInlineInput = {
+  /** Connect existing Workshop document */
+  connect?: InputMaybe<WorkshopWhereUniqueInput>;
+  /** Create and connect one Workshop document */
+  create?: InputMaybe<WorkshopCreateInput>;
+  /** Delete currently connected Workshop document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected Workshop document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Workshop document */
+  update?: InputMaybe<WorkshopUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Workshop document */
+  upsert?: InputMaybe<WorkshopUpsertWithNestedWhereUniqueInput>;
+};
+
+export type WorkshopUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: WorkshopUpdateInput;
+  /** Unique document search */
+  where: WorkshopWhereUniqueInput;
+};
+
+export type WorkshopUpsertInput = {
+  /** Create document if it didn't exist */
+  create: WorkshopCreateInput;
+  /** Update document if it exists */
+  update: WorkshopUpdateInput;
+};
+
+export type WorkshopUpsertLocalizationInput = {
+  create: WorkshopCreateLocalizationDataInput;
+  locale: Locale;
+  update: WorkshopUpdateLocalizationDataInput;
+};
+
+export type WorkshopUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: WorkshopUpsertInput;
+  /** Unique document search */
+  where: WorkshopWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type WorkshopWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type WorkshopWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<WorkshopWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<WorkshopWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<WorkshopWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  date?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than the given value. */
+  date_gt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values greater than or equal the given value. */
+  date_gte?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are contained in given list. */
+  date_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  /** All values less than the given value. */
+  date_lt?: InputMaybe<Scalars['Date']['input']>;
+  /** All values less than or equal the given value. */
+  date_lte?: InputMaybe<Scalars['Date']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  date_not?: InputMaybe<Scalars['Date']['input']>;
+  /** All values that are not contained in given list. */
+  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
+  documentInStages_every?: InputMaybe<WorkshopWhereStageInput>;
+  documentInStages_none?: InputMaybe<WorkshopWhereStageInput>;
+  documentInStages_some?: InputMaybe<WorkshopWhereStageInput>;
+  gallery_every?: InputMaybe<AssetWhereInput>;
+  gallery_none?: InputMaybe<AssetWhereInput>;
+  gallery_some?: InputMaybe<AssetWhereInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values in which the modular component is connected to the given models */
+  lead?: InputMaybe<WorkshopleadUnionWhereInput>;
+  /** All values in which the union is empty. */
+  lead_empty?: InputMaybe<Scalars['Boolean']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  location_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  location_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  location_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  location_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  location_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  location_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  location_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  location_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  location_starts_with?: InputMaybe<Scalars['String']['input']>;
+  logo?: InputMaybe<AssetWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type WorkshopWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<WorkshopWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<WorkshopWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<WorkshopWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<WorkshopWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Workshop record uniquely */
+export type WorkshopWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type WorkshopleadUnion = Person;
+
+export type WorkshopleadUnionConnectInput = {
+  Person?: InputMaybe<PersonConnectInput>;
+};
+
+export type WorkshopleadUnionCreateInput = {
+  Person?: InputMaybe<PersonCreateInput>;
+};
+
+export type WorkshopleadUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing WorkshopleadUnion documents */
+  create?: InputMaybe<Array<WorkshopleadUnionCreateInput>>;
+};
+
+export type WorkshopleadUnionCreateOneInlineInput = {
+  /** Create and connect one WorkshopleadUnion document */
+  create?: InputMaybe<WorkshopleadUnionCreateInput>;
+};
+
+export type WorkshopleadUnionCreateWithPositionInput = {
+  Person?: InputMaybe<PersonCreateWithPositionInput>;
+};
+
+export type WorkshopleadUnionUpdateInput = {
+  Person?: InputMaybe<PersonUpdateInput>;
+};
+
+export type WorkshopleadUnionUpdateManyInlineInput = {
+  /** Create and connect multiple WorkshopleadUnion component instances */
+  create?: InputMaybe<Array<WorkshopleadUnionCreateWithPositionInput>>;
+  /** Delete multiple WorkshopleadUnion documents */
+  delete?: InputMaybe<Array<WorkshopleadUnionWhereUniqueInput>>;
+  /** Update multiple WorkshopleadUnion component instances */
+  update?: InputMaybe<Array<WorkshopleadUnionUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple WorkshopleadUnion component instances */
+  upsert?: InputMaybe<Array<WorkshopleadUnionUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type WorkshopleadUnionUpdateManyWithNestedWhereInput = {
+  Person?: InputMaybe<PersonUpdateManyWithNestedWhereInput>;
+};
+
+export type WorkshopleadUnionUpdateOneInlineInput = {
+  /** Create and connect one WorkshopleadUnion document */
+  create?: InputMaybe<WorkshopleadUnionCreateInput>;
+  /** Delete currently connected WorkshopleadUnion document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single WorkshopleadUnion document */
+  update?: InputMaybe<WorkshopleadUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single WorkshopleadUnion document */
+  upsert?: InputMaybe<WorkshopleadUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type WorkshopleadUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+  Person?: InputMaybe<PersonUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type WorkshopleadUnionUpdateWithNestedWhereUniqueInput = {
+  Person?: InputMaybe<PersonUpdateWithNestedWhereUniqueInput>;
+};
+
+export type WorkshopleadUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+  Person?: InputMaybe<PersonUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type WorkshopleadUnionUpsertWithNestedWhereUniqueInput = {
+  Person?: InputMaybe<PersonUpsertWithNestedWhereUniqueInput>;
+};
+
+export type WorkshopleadUnionWhereInput = {
+  Person?: InputMaybe<PersonWhereInput>;
+};
+
+export type WorkshopleadUnionWhereUniqueInput = {
+  Person?: InputMaybe<PersonWhereUniqueInput>;
+};
+
 export enum _FilterKind {
   And = 'AND',
   Not = 'NOT',
@@ -7782,6 +8829,21 @@ export type PartnersQueryQueryVariables = Exact<{
 
 export type PartnersQueryQuery = { __typename?: 'Query', partner?: { __typename?: 'Partner', title?: string | null, description: { __typename?: 'RichText', raw: any }, logos: Array<{ __typename?: 'Asset', id: string, height?: number | null, width?: number | null, url: string, fileName: string }> } | null };
 
+export type WorkshopsQueryQueryVariables = Exact<{
+  locale: Locale;
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type WorkshopsQueryQuery = { __typename?: 'Query', workshop?: { __typename?: 'Workshop', id: string, title: string, date?: any | null, location?: string | null, slug?: string | null, logo: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }, description?: { __typename?: 'RichText', raw: any } | null, lead?: { __typename?: 'Person', id: string, name: string, position: string, alternativePosition?: string | null, linkedIn?: string | null, photo?: { __typename?: 'Asset', fileName: string, width?: number | null, height?: number | null, url: string } | null } | null, gallery: Array<{ __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }> } | null };
+
+export type WorkshopsRoutesQueryVariables = Exact<{
+  locale: Locale;
+}>;
+
+
+export type WorkshopsRoutesQuery = { __typename?: 'Query', workshops: Array<{ __typename?: 'Workshop', id: string, slug?: string | null, title: string }> };
+
 export type AboutQueryQueryVariables = Exact<{
   locale: Locale;
 }>;
@@ -7802,5 +8864,7 @@ export const EventGalleryDocument = {"kind":"Document","definitions":[{"kind":"O
 export const NewEventQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"NewEventQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"events"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"new"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"edition"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"singUpLink"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"lead"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"speakers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<NewEventQueryQuery, NewEventQueryQueryVariables>;
 export const JoinUsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"JoinUsQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"join_us"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw7o3sj94j4007usyxtpzp1q","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"facebook_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"linkedin_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"youtube_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}}]}}]}}]} as unknown as DocumentNode<JoinUsQueryQuery, JoinUsQueryQueryVariables>;
 export const PartnersQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PartnersQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"partner"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw7sout213xu07w5n05dsj1z","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"logos"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<PartnersQueryQuery, PartnersQueryQueryVariables>;
+export const WorkshopsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"WorkshopsQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"workshop"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"logo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"lead"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fileName"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<WorkshopsQueryQuery, WorkshopsQueryQueryVariables>;
+export const WorkshopsRoutesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"WorkshopsRoutes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"workshops"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"stage"},"value":{"kind":"EnumValue","value":"PUBLISHED"}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<WorkshopsRoutesQuery, WorkshopsRoutesQueryVariables>;
 export const AboutQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AboutQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"about"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw6y1gcx6my207w6oxtppa4c","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"malgosia_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"malgosia_image"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<AboutQueryQuery, AboutQueryQueryVariables>;
 export const AssetsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AssetsQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assets"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fileName"},"value":{"kind":"StringValue","value":"attachment.jpeg","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]} as unknown as DocumentNode<AssetsQueryQuery, AssetsQueryQueryVariables>;

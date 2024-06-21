@@ -67,7 +67,7 @@ export default async function Home({
                 />
               </div>
               <div className="ml-auto relative right-4 flex">
-                <OpenNav />
+                <OpenNav locale={locale} />
               </div>
             </div>
           </div>

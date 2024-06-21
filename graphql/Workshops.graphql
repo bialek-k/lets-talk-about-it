@@ -1,0 +1,42 @@
+query WorkshopsQuery(
+  $locale: Locale!
+  $slug: String!
+) {
+  workshop(where: { slug: $slug }, locales: [$locale]) {
+    id
+    title
+    logo(locales: en) {
+        width
+        height
+        url
+        fileName
+    }
+    date
+    location
+    slug
+    description {
+        raw
+    }
+    lead {
+      ... on Person {
+        id
+        name
+        position
+        alternativePosition
+        linkedIn
+        photo(locales: en) {
+          fileName
+          width
+          height
+          url
+        }
+      }
+    }
+    gallery(first: 100, locales: en) {
+      width
+      height
+      url
+      fileName
+    }
+  }
+}

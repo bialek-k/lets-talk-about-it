@@ -1,0 +1,7 @@
+query WorkshopsRoutes($locale: Locale!) {
+  workshops(stage: PUBLISHED, locales: [$locale]) {
+    id
+    slug
+    title
+  }
+}

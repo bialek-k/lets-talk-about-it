@@ -14,6 +14,7 @@ interface TextHolderProps {
   additionalContent?: JSX.Element | string;
   customClass?: string;
   shortText?: boolean;
+  customHight?: string;
 }
 
 export const TextHolder = ({
@@ -24,6 +25,7 @@ export const TextHolder = ({
   small,
   additionalContent,
   shortText,
+  customHight,
 }: TextHolderProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -41,7 +43,7 @@ export const TextHolder = ({
   return (
     <div
       className={`bg-main-${theme === 'light' ? 'white' : 'black'} 
-      } p-[30px] h-max rounded-2xl border-4 border-[#E2FF00] `}
+      } p-[30px] h-max rounded-2xl border-4 border-[#E2FF00] flex flex-col items-center justify-center`}
     >
       <div
         className={`content flex prose ${
@@ -50,7 +52,7 @@ export const TextHolder = ({
         style={
           shortText
             ? { maxHeight: '100%' }
-            : { maxHeight: isExpanded ? '100%' : '333px' }
+            : { maxHeight: isExpanded ? '100%' : customHight || '333px' }
         }
       >
         <div
@@ -63,6 +65,16 @@ export const TextHolder = ({
           <RichText
             content={content}
             renderers={{
+              h3: ({ children }) => {
+                return (
+                  <h3
+                    className={`m-0 text-main-white font-semibold 
+                      text-[32px] leading-[42px]`}
+                  >
+                    {children}
+                  </h3>
+                );
+              },
               p: ({ children }) => {
                 return <p className={`m-0 ${customClass}`}>{children}</p>;
               },
