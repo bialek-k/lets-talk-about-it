@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import ImageGalleryItem from '../UI/ImageGalleryItem';
@@ -56,15 +56,24 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
     currentPage * imagesPerPage
   );
 
-  let lightbox: PhotoSwipeLightbox | null = null;
-  import('photoswipe').then((pswpModule) => {
-    lightbox = new PhotoSwipeLightbox({
-      gallery: '#' + 'gallery',
-      children: 'a',
-      pswpModule: pswpModule.default,
+  useEffect(() => {
+    let lightbox: PhotoSwipeLightbox | null = null;
+    import('photoswipe').then((pswpModule) => {
+      lightbox = new PhotoSwipeLightbox({
+        gallery: '#' + 'gallery',
+        children: 'a',
+        pswpModule: pswpModule.default,
+      });
+      lightbox.init();
     });
-    lightbox.init();
-  });
+
+    return () => {
+      if (lightbox) {
+        lightbox.destroy();
+        lightbox = null;
+      }
+    };
+  }, []);
 
   return (
     <div
