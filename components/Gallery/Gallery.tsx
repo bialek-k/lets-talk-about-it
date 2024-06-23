@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import ImageGalleryItem from '../UI/ImageGalleryItem';
@@ -56,24 +56,15 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
     currentPage * imagesPerPage
   );
 
-  useEffect(() => {
-    let lightbox: PhotoSwipeLightbox | null = null;
-    import('photoswipe').then((pswpModule) => {
-      lightbox = new PhotoSwipeLightbox({
-        gallery: '#' + 'gallery',
-        children: 'a',
-        pswpModule: pswpModule.default,
-      });
-      lightbox.init();
+  let lightbox: PhotoSwipeLightbox | null = null;
+  import('photoswipe').then((pswpModule) => {
+    lightbox = new PhotoSwipeLightbox({
+      gallery: '#' + 'gallery',
+      children: 'a',
+      pswpModule: pswpModule.default,
     });
-
-    return () => {
-      if (lightbox) {
-        lightbox.destroy();
-        lightbox = null;
-      }
-    };
-  }, []);
+    lightbox.init();
+  });
 
   return (
     <div
@@ -82,12 +73,12 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
       className="flex flex-col items-center justify-center w-full gap-5"
     >
       <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
-        {currentImages.map((image, index) => (
+        {currentImages.map((image) => (
           <a
             href={image.url as string}
             data-pswp-width={image.width}
             data-pswp-height={image.height}
-            key={image.fileName + '-' + index}
+            key={image.fileName}
             target="_blank"
             rel="noreferrer"
           >
