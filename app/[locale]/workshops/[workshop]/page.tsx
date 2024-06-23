@@ -16,8 +16,14 @@ const Workshop = async ({
 }) => {
   const i18nNamespaces = ['workshops'];
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
-  const { workshop } = await request(WorkshopsQueryDocument, { locale, slug });
-
+  const { workshop } = await request(WorkshopsQueryDocument, {
+    locale,
+    slug,
+  });
+  const { assetsConnection } = await request(WorkshopsQueryDocument, {
+    locale,
+    slug,
+  });
   return (
     <section className="bg-main-white w-screen flex flex-col justify-center">
       <div className="w-full bg-main-yellow flex justify-center">
@@ -39,7 +45,10 @@ const Workshop = async ({
             <h3 className=" font-semibold text-lg leading-6 lg:px-[100px] lg:mt-10 self-start mb-10">
               {t('galleryText')} {workshop?.title}
             </h3>
-            <Gallery gallery={workshop?.gallery} />
+            <Gallery
+              totalImages={assetsConnection.aggregate.count}
+              gallery={workshop?.gallery}
+            />
           </div>
         ) : (
           <div
