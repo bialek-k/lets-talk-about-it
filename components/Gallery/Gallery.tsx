@@ -51,31 +51,31 @@ const Gallery = ({ gallery }: GalleryProps) => {
     setTotalImages(gallery.length);
   }, [gallery]);
 
+  const currentImages = gallery.slice(
+    (currentPage - 1) * imagesPerPage,
+    currentPage * imagesPerPage
+  );
+
   return (
     <div className="flex flex-col items-center justify-center w-full gap-5">
       <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
         <FsLightbox
           toggler={open.toggler}
           sources={
-            gallery
-              .slice(
-                (currentPage - 1) * imagesPerPage,
-                currentPage * imagesPerPage
-              )
-              .map((image) => image.url)
-              .filter((url) => url) as (string | React.JSX.Element)[]
+            currentImages.map((image) => image.url).filter((url) => url) as (
+              | string
+              | React.JSX.Element
+            )[]
           }
           source={open.image}
         />
-        {gallery
-          .slice((currentPage - 1) * imagesPerPage, currentPage * imagesPerPage)
-          .map((image: any) => (
-            <ImageGalleryItem
-              onClick={() => openLargeImage(image.url)}
-              key={image.fileName}
-              image={image}
-            />
-          ))}
+        {currentImages.map((image: any) => (
+          <ImageGalleryItem
+            onClick={() => openLargeImage(image.url)}
+            key={image.fileName}
+            image={image}
+          />
+        ))}
       </div>
 
       <ThemeProvider theme={customTheme}>

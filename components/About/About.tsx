@@ -12,7 +12,7 @@ import Linkedin from '../Linkedin/Linkedin';
 export const About = ({ about }: AboutQueryQuery) => {
   const { t } = useTranslation();
   return (
-    <section id="about" className="px-6 md:px-24 h-min-screen">
+    <section id="about" className="px-6 md:px-24 h-min-screen pb-20 lg:pb-0">
       <PageTitle small title={t('aboutUs')} />
       <div className="content md:flex md:gap-24 justify-between ">
         <div className="description">

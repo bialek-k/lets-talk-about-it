@@ -97,7 +97,7 @@ export default async function Home({
         </>
       )}
       <JoinUs join_us={join_us} />
-      <div className="bg-main-black py-20 w-full mx-auto">
+      <div className="bg-main-black py-20 overflow-hidden">
         <PartnersCarousel locale={locale} isMain={true} translation={t} />
       </div>
     </TranslationsProvider>

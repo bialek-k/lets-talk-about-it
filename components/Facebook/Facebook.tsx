@@ -1,3 +1,4 @@
+'use client';
 import FacebookIcon from '@/IconsSVG/FacebookIcon';
 import Link from 'next/link';
 
@@ -6,16 +7,19 @@ interface FacebookProps {
   className?: string;
 }
 
-export const Facebook = ({ href, className }: FacebookProps) => {
+const Facebook = ({ href, className }: FacebookProps) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    window.open(href, '_blank', 'noopener,noreferrer');
+  };
+
   return (
-    <Link
-      className={className}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <Link className={className} href={href} onClick={handleClick}>
       <FacebookIcon />
     </Link>
   );
 };
+
 export default Facebook;

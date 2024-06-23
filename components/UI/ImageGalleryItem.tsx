@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 
 interface ImageGalleryItemProps {
@@ -19,7 +18,7 @@ const ImageGalleryItem = ({ image, onClick }: ImageGalleryItemProps) => {
     <div
       key={image.fileName}
       onClick={onClick}
-      className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] hover:scale-110"
+      className="max-w-[155px] lg:max-w-[394px] h-[155px] lg:h-[300px] hover:scale-110"
     >
       <Image
         alt={image.fileName}
@@ -27,6 +26,8 @@ const ImageGalleryItem = ({ image, onClick }: ImageGalleryItemProps) => {
         src={image.url}
         width={validWidth}
         height={validHeight}
+        placeholder="blur"
+        blurDataURL={image.url}
       />
     </div>
   );

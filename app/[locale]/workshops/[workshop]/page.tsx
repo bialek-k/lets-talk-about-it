@@ -8,7 +8,6 @@ import {
   WorkshopsQueryDocument,
 } from '@/graphql/generated';
 import { request } from '@/lib/request';
-import Image from 'next/image';
 
 const Workshop = async ({
   params: { locale, workshop: slug },
@@ -16,7 +15,6 @@ const Workshop = async ({
   params: { locale: string; workshop: string };
 }) => {
   const i18nNamespaces = ['workshops'];
-  const { assets } = await request(AssetsQueryDocument);
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
   const { workshop } = await request(WorkshopsQueryDocument, { locale, slug });
 
@@ -57,7 +55,7 @@ const Workshop = async ({
           </div>
         )}
       </div>
-      <div className="bg-main-white pt-20 w-full mx-auto">
+      <div className="bg-main-white pt-20 overflow-hidden">
         <PartnersCarousel locale={locale} isMain={true} translation={t} />
       </div>
     </section>
