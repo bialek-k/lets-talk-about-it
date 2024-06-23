@@ -5,7 +5,6 @@ import Pagination from '@mui/material/Pagination';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import ImageGalleryItem from '../UI/ImageGalleryItem';
 import { useMediaQuery } from '@mui/material';
-import FsLightbox from 'fslightbox-react';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 interface GalleryProps {
   totalImages: number;
@@ -14,6 +13,7 @@ interface GalleryProps {
     height?: number | null;
     url?: string | null;
     fileName?: string | null;
+    placeholder?: string | null;
   }[];
 }
 import 'photoswipe/style.css';
@@ -23,14 +23,6 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
   const imagesPerPage = isLargeScreen ? 6 : 8;
-
-  const [open, setOpen] = useState({
-    toggler: false,
-    image: '',
-  });
-  const openLargeImage = (image: string) => {
-    setOpen({ toggler: !open.toggler, image });
-  };
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -85,7 +77,10 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
             target="_blank"
             rel="noreferrer"
           >
-            <ImageGalleryItem image={image as any} key={image.fileName} />
+            <ImageGalleryItem
+              image={image as any}
+              key={image.fileName}
+            />
           </a>
         ))}
       </div>

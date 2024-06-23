@@ -5,6 +5,8 @@ import PartnersCarousel from '../PartnersCarousel/PartnersCarousel';
 import Gallery from '../Gallery/Gallery';
 import EditionHero from '../EditionHero/EditionHero';
 import LeadSection from '../LeadSection/LeadSection';
+import { url } from 'inspector';
+import { dynamicBlurDataUrl } from '../UI/ImagePlaceholder';
 
 const Edition = async ({
   locale,
@@ -21,6 +23,17 @@ const Edition = async ({
     locale,
     edition,
   });
+
+  const gallery = await Promise.all(
+    (event?.gallery ?? []).map(async (image) => ({
+      placeholder: await dynamicBlurDataUrl(image.url),
+      fileName: image.fileName,
+      url: image.url,
+      width: image.width,
+      height: image.height,
+    }))
+  );
+
   const { assetsConnection } = await request(EditionQueryDocument, {
     locale,
     edition,
@@ -53,7 +66,7 @@ const Edition = async ({
               </h3>
               <Gallery
                 totalImages={assetsConnection.aggregate.count}
-                gallery={event?.gallery}
+                gallery={gallery}
               />
             </div>
           ) : (

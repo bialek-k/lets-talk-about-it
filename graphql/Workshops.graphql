@@ -40,7 +40,7 @@ query WorkshopsQuery(
     }
   }
   assetsConnection(where:  {
-     galleryWorkshop_every: {}
+     galleryWorkshop_every: {slug: $slug}
   }) {
     aggregate {
       count
