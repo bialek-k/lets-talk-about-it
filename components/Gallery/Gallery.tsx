@@ -26,6 +26,8 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   const imagesPerPage = isLargeScreen ? 6 : 8;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [galleryData, setGalleryData] = useState([] as GalleryProps['gallery']);
 
   const pages = Math.ceil(totalImages / imagesPerPage);
 
@@ -51,7 +53,15 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
     }
   };
 
-  const currentImages = gallery.slice(
+  useEffect(() => {
+    setIsLoading(true);
+    setGalleryData(gallery);
+    return () => {
+      setIsLoading(false);
+    };
+  }, [gallery]);
+
+  const currentImages = galleryData.slice(
     (currentPage - 1) * imagesPerPage,
     currentPage * imagesPerPage
   );

@@ -22,6 +22,7 @@ const ibm = IBM_Plex_Sans({
   display: 'swap',
   subsets: ['latin'],
   weight: ['400', '500', '600'],
+  preload: false,
 });
 
 export function generateStaticParams() {
