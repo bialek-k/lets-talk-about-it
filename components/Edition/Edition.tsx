@@ -21,6 +21,10 @@ const Edition = async ({
     locale,
     edition,
   });
+  const { assetsConnection } = await request(EditionQueryDocument, {
+    locale,
+    edition,
+  });
 
   return (
     <section className="flex justify-center">
@@ -47,7 +51,10 @@ const Edition = async ({
                 {t('galleryText')} {toRoman(parseInt(event?.edition ?? ''))}{' '}
                 {t('galleryText2')}
               </h3>
-              <Gallery gallery={event?.gallery} />
+              <Gallery
+                totalImages={assetsConnection.aggregate.count}
+                gallery={event?.gallery}
+              />
             </div>
           ) : (
             <div

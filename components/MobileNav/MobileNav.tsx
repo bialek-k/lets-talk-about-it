@@ -41,7 +41,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
     if (path === 'events' && currentPath.includes('events')) {
       return true;
     }
-    return console.log(currentPath, path), currentPath === path;
+    return currentPath === path;
   };
 
   useEffect(() => {

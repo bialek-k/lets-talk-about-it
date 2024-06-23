@@ -6,7 +6,9 @@ import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import ImageGalleryItem from '../UI/ImageGalleryItem';
 import { useMediaQuery } from '@mui/material';
 import FsLightbox from 'fslightbox-react';
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
 interface GalleryProps {
+  totalImages: number;
   gallery: {
     width?: number | null;
     height?: number | null;
@@ -14,18 +16,18 @@ interface GalleryProps {
     fileName?: string | null;
   }[];
 }
+import 'photoswipe/style.css';
 
-const Gallery = ({ gallery }: GalleryProps) => {
+const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
   const imagesPerPage = isLargeScreen ? 6 : 8;
-  const [totalImages, setTotalImages] = useState(0);
+
   const [open, setOpen] = useState({
     toggler: false,
     image: '',
   });
-
   const openLargeImage = (image: string) => {
     setOpen({ toggler: !open.toggler, image });
   };
@@ -47,34 +49,44 @@ const Gallery = ({ gallery }: GalleryProps) => {
     setCurrentPage(page);
   };
 
-  useEffect(() => {
-    setTotalImages(gallery.length);
-  }, [gallery]);
-
   const currentImages = gallery.slice(
     (currentPage - 1) * imagesPerPage,
     currentPage * imagesPerPage
   );
 
+  useEffect(() => {
+    let lightbox: PhotoSwipeLightbox | null = null;
+    import('photoswipe').then((pswpModule) => {
+      lightbox = new PhotoSwipeLightbox({
+        gallery: '#' + 'gallery',
+        children: 'a',
+        pswpModule: pswpModule.default,
+      });
+      lightbox.init();
+    });
+
+    return () => {
+      if (lightbox) {
+        lightbox.destroy();
+        lightbox = null;
+      }
+    };
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center w-full gap-5">
       <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
-        <FsLightbox
-          toggler={open.toggler}
-          sources={
-            currentImages.map((image) => image.url).filter((url) => url) as (
-              | string
-              | React.JSX.Element
-            )[]
-          }
-          source={open.image}
-        />
-        {currentImages.map((image: any) => (
-          <ImageGalleryItem
-            onClick={() => openLargeImage(image.url)}
-            key={image.fileName}
-            image={image}
-          />
+        {currentImages.map((image, index) => (
+          <a
+            href={image.url as string}
+            data-pswp-width={image.width}
+            data-pswp-height={image.height}
+            key={image.fileName + '-' + index}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <ImageGalleryItem image={image as any} key={image.fileName} />
+          </a>
         ))}
       </div>
 

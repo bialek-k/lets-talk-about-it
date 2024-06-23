@@ -48,4 +48,11 @@ query EditionQuery(
       fileName
     }
   }
+  assetsConnection(where:  {
+     galleryEvent_every:  {slug: $edition}
+  }) {
+    aggregate {
+      count
+    }
+  }
 }
