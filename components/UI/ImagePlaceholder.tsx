@@ -1,7 +1,8 @@
 const baseUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000/'
-    : process.env.NEXT_PUBLIC_DOMAIN;
+    : 'https://lets-talk-about-it.vercel.app';
+// : process.env.NEXT_PUBLIC_DOMAIN;
 
 export const dynamicBlurDataUrl = async (url: string) => {
   const base64str = await fetch(

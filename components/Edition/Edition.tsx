@@ -5,7 +5,6 @@ import PartnersCarousel from '../PartnersCarousel/PartnersCarousel';
 import Gallery from '../Gallery/Gallery';
 import EditionHero from '../EditionHero/EditionHero';
 import LeadSection from '../LeadSection/LeadSection';
-import { url } from 'inspector';
 import { dynamicBlurDataUrl } from '../UI/ImagePlaceholder';
 
 const Edition = async ({
