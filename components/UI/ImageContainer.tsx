@@ -28,8 +28,8 @@ export const ImageContainer = ({
           <Image
             alt={alt}
             src={image?.url}
-            width={image.width ?? 300}
-            height={image.height ?? 300}
+            width={300}
+            height={300}
             className={`rounded absolute ${background}`}
           />
         )}

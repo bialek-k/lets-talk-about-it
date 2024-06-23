@@ -18,19 +18,21 @@ export const JoinUsItem = ({
   navigateDirection,
 }: JoinUsItemProps) => {
   return (
-    <div className="socialItem flex flex-col items-center">
-      <div className="icon mb-12 max-h-28 cursor-pointer">
+    <div className="socialItem flex flex-col items-center justify-end">
+      <div className="icon mt-10 lg:mt-0 max-h-40 cursor-pointer">
         <Link href={navigateDirection} target="_blank">
           {icon}
         </Link>
       </div>
-      <TextHolder
-        content={social}
-        readMore={longText}
-        theme="light"
-        small={small}
-        shortText={!longText}
-      />
+      <div className="mt-10">
+        <TextHolder
+          content={social}
+          readMore={longText}
+          theme="light"
+          small={small}
+          shortText={!longText}
+        />
+      </div>
     </div>
   );
 };
