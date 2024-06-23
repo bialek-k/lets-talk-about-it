@@ -1,6 +1,7 @@
 import initTranslations from '@/app/i18n';
 import Gallery from '@/components/Gallery/Gallery';
 import PartnersCarousel from '@/components/PartnersCarousel/PartnersCarousel';
+import { dynamicBlurDataUrl } from '@/components/UI/ImagePlaceholder';
 import WorkshopsHero from '@/components/WorkshopHero/WorkshopsHero';
 import WorkshopsLead from '@/components/WorkshopsLead/WorkshopsLead';
 import {
@@ -20,6 +21,17 @@ const Workshop = async ({
     locale,
     slug,
   });
+
+  const gallery = await Promise.all(
+    (workshop?.gallery ?? []).map(async (image) => ({
+      placeholder: await dynamicBlurDataUrl(image.url),
+      fileName: image.fileName,
+      url: image.url,
+      width: image.width,
+      height: image.height,
+    }))
+  );
+
   const { assetsConnection } = await request(WorkshopsQueryDocument, {
     locale,
     slug,
@@ -47,7 +59,7 @@ const Workshop = async ({
             </h3>
             <Gallery
               totalImages={assetsConnection.aggregate.count}
-              gallery={workshop?.gallery}
+              gallery={gallery}
             />
           </div>
         ) : (
