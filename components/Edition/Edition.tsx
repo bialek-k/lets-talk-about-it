@@ -64,7 +64,7 @@ const Edition = async ({
           )}
         </div>
         {/* PARTNERS */}
-        <div className="pt-20 w-full mx-auto">
+        <div className="pt-20">
           <PartnersCarousel locale={locale} translation={t} />
         </div>
       </div>

@@ -89,7 +89,7 @@ const Header = ({
         initial="hidden"
         animate={hidden ? 'hidden' : 'visible'}
         transition={{ duration: 0.3 }}
-        className="bg-main-black fixed w-full top-0 z-50
+        className="bg-main-black fixed w-screen top-0 z-50
       desktop-media-max:[--y-hidden:'0px']
       desktop-media-max:[--opacity-from:100%]
       desktop-media-max:[--y-visible:'-100%']
@@ -98,7 +98,7 @@ const Header = ({
       desktop-media-max:[--hidden-to:none]
       "
       >
-        <nav className=" bg-main-black w-full h-[70px] lg:h-[100px] lg:max-w-[1440px] my-0 mx-auto  px-4 lg:px-[100px] flex flex-row items-center gap-10 justify-between lg:text-lg">
+        <nav className=" bg-main-black h-[70px] lg:h-[100px] lg:max-w-[1440px] my-0 mx-auto  px-4 lg:px-[100px] flex flex-row items-center gap-10 justify-between lg:text-lg">
           {/* LOGO */}
 
           <MainLogo className="w-[70px] h-[70px] lg:w-[100px] lg:h-[100px]" />
