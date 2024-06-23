@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import ImageGalleryItem from '../UI/ImageGalleryItem';
@@ -19,6 +19,7 @@ interface GalleryProps {
 import 'photoswipe/style.css';
 
 const Gallery = ({ gallery, totalImages }: GalleryProps) => {
+  const galleryRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
@@ -39,6 +40,15 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
 
   const handlePaginate = (page: number) => {
     setCurrentPage(page);
+    if (galleryRef.current) {
+      window.scrollTo({
+        behavior: 'smooth',
+        top:
+          galleryRef.current.getBoundingClientRect().top -
+          document.body.getBoundingClientRect().top -
+          200,
+      });
+    }
   };
 
   const currentImages = gallery.slice(
@@ -66,7 +76,11 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full gap-5">
+    <div
+      id="gallery"
+      ref={galleryRef}
+      className="flex flex-col items-center justify-center w-full gap-5"
+    >
       <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
         {currentImages.map((image, index) => (
           <a
@@ -77,10 +91,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
             target="_blank"
             rel="noreferrer"
           >
-            <ImageGalleryItem
-              image={image as any}
-              key={image.fileName}
-            />
+            <ImageGalleryItem image={image as any} key={image.fileName} />
           </a>
         ))}
       </div>

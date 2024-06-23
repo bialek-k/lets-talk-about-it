@@ -23,6 +23,7 @@ const ImageGalleryItem = ({ image, onClick }: ImageGalleryItemProps) => {
     >
       <Image
         alt={image.fileName}
+        loading="lazy"
         className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
         src={image.url}
         width={validWidth}
