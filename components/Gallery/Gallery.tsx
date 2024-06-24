@@ -58,7 +58,12 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
     const fetchGalleryData = async () => {
       setIsLoading(true);
       try {
-        setGalleryData(gallery);
+        setGalleryData(
+          gallery.slice(
+            (currentPage - 1) * imagesPerPage,
+            currentPage * imagesPerPage
+          )
+        );
       } catch (error) {
         console.error('Failed to fetch gallery data:', error);
       } finally {
@@ -67,12 +72,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
     };
 
     fetchGalleryData();
-  }, [gallery]);
-
-  const currentImages = galleryData.slice(
-    (currentPage - 1) * imagesPerPage,
-    currentPage * imagesPerPage
-  );
+  }, [currentPage, gallery, imagesPerPage]);
 
   useEffect(() => {
     let lightbox: PhotoSwipeLightbox | null = null;
@@ -103,7 +103,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
         <Loader />
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
-          {currentImages.map((image) => (
+          {galleryData.map((image) => (
             <a
               href={image.url as string}
               data-pswp-width={image.width}
@@ -112,7 +112,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
               target="_blank"
               rel="noreferrer"
             >
-              <ImageGalleryItem image={image as any} key={image.fileName} />
+              <ImageGalleryItem image={image as any} />
             </a>
           ))}
         </div>
