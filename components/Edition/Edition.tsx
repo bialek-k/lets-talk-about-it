@@ -6,6 +6,8 @@ import Gallery from '../Gallery/Gallery';
 import EditionHero from '../EditionHero/EditionHero';
 import LeadSection from '../LeadSection/LeadSection';
 import { dynamicBlurDataUrl } from '../UI/ImagePlaceholder';
+import { Suspense } from 'react';
+import Loader from '../UI/Loader';
 
 const Edition = async ({
   locale,
@@ -59,11 +61,12 @@ const Edition = async ({
                 {t('galleryText')} {toRoman(parseInt(event?.edition ?? ''))}{' '}
                 {t('galleryText2')}
               </h3>
-
-              <Gallery
-                totalImages={assetsConnection.aggregate.count}
-                gallery={gallery}
-              />
+              <Suspense fallback={<Loader />}>
+                <Gallery
+                  totalImages={assetsConnection.aggregate.count}
+                  gallery={gallery}
+                />
+              </Suspense>
             </div>
           ) : (
             <div

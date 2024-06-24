@@ -61,7 +61,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
       lightbox = new PhotoSwipeLightbox({
         gallery: '#' + 'gallery',
         children: 'a',
-        pswpModule: pswpModule,
+        pswpModule: pswpModule.default,
       });
       lightbox.init();
     });
