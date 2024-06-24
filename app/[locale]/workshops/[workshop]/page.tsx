@@ -17,7 +17,7 @@ const Workshop = async ({
 }) => {
   const i18nNamespaces = ['workshops'];
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
-  const { workshop } = await request(WorkshopsQueryDocument, {
+  const { workshop, assetsConnection } = await request(WorkshopsQueryDocument, {
     locale,
     slug,
   });
@@ -32,10 +32,6 @@ const Workshop = async ({
     }))
   );
 
-  const { assetsConnection } = await request(WorkshopsQueryDocument, {
-    locale,
-    slug,
-  });
   return (
     <section className="bg-main-white w-screen flex flex-col justify-center">
       <div className="w-full bg-main-yellow flex justify-center">

@@ -18,7 +18,7 @@ const Edition = async ({
 }) => {
   const t = translation;
 
-  const { event } = await request(EditionQueryDocument, {
+  const { event, assetsConnection } = await request(EditionQueryDocument, {
     locale,
     edition,
   });
@@ -32,11 +32,6 @@ const Edition = async ({
       height: image.height,
     }))
   );
-
-  const { assetsConnection } = await request(EditionQueryDocument, {
-    locale,
-    edition,
-  });
 
   return (
     <section className="flex justify-center">
