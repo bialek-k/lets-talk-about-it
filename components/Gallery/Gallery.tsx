@@ -27,7 +27,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   const imagesPerPage = isLargeScreen ? 6 : 8;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [galleryData, setGalleryData] = useState([] as GalleryProps['gallery']);
 
   const pages = Math.ceil(totalImages / imagesPerPage);
