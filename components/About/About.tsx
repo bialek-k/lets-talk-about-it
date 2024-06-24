@@ -59,6 +59,7 @@ export const About = ({ about }: AboutQueryQuery) => {
             <TextHolder
               content={about?.malgosia_description.raw}
               customClass="mt-3 max-w-[325px]"
+              customHight="392px"
               theme="dark"
               readMore
             />
