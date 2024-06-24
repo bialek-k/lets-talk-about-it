@@ -7,6 +7,7 @@ import ImageGalleryItem from '../UI/ImageGalleryItem';
 import { useMediaQuery } from '@mui/material';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
+import Loader from '../UI/Loader';
 import Image from 'next/image';
 
 interface GalleryProps {
@@ -85,24 +86,34 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
       ref={galleryRef}
       className="flex flex-col items-center justify-center w-full gap-5"
     >
-      <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
-        {galleryData.map((image) => (
-          <a
-            href={image.url as string}
-            key={image.fileName}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              alt={image.fileName as string}
-              className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
-              src={image.url as string}
-              width={image.width as number}
-              height={image.height as number}
-            />
-          </a>
-        ))}
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
+          {galleryData.map((image) => (
+            <a
+              href={image.url as string}
+              data-pswp-width={image.width}
+              data-pswp-height={image.height}
+              key={image.fileName}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {/* <ImageGalleryItem image={image as any} /> */}
+              <Image
+                alt={image.fileName as string}
+                className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
+                src={image.url as string}
+                width={image.width as number}
+                height={image.height as number}
+                // placeholder="blur"
+                // blurDataURL={image.placeholder as string}
+              />
+            </a>
+          ))}
+        </div>
+      )}
+
       <ThemeProvider theme={customTheme}>
         <Pagination
           count={pages}
