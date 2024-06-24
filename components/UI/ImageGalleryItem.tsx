@@ -8,17 +8,15 @@ interface ImageGalleryItemProps {
     fileName: string;
     placeholder?: string | null;
   };
-  onClick?: () => void;
 }
 
-const ImageGalleryItem = ({ image, onClick }: ImageGalleryItemProps) => {
+const ImageGalleryItem = ({ image }: ImageGalleryItemProps) => {
   const validWidth = image?.width !== null ? image?.width : undefined;
   const validHeight = image?.height !== null ? image?.height : undefined;
 
   return (
     <div
       key={image.fileName}
-      onClick={onClick}
       className="max-w-[155px] lg:max-w-[394px] h-[155px] lg:h-[300px] hover:scale-110"
     >
       <Image
