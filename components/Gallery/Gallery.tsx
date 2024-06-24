@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import ImageGalleryItem from '../UI/ImageGalleryItem';
 import { useMediaQuery } from '@mui/material';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
@@ -28,7 +27,6 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   const imagesPerPage = isLargeScreen ? 6 : 8;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
 
   const pages = Math.ceil(totalImages / imagesPerPage);
 
@@ -55,7 +53,6 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   };
 
   useEffect(() => {
-    setIsLoading(false);
     let lightbox: PhotoSwipeLightbox | null = null;
     import('photoswipe').then((pswpModule) => {
       lightbox = new PhotoSwipeLightbox({
@@ -89,20 +86,26 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
         {galleryData.map((image) => (
           <a
             href={image.url as string}
+            data-pswp-width={image.width}
+            data-pswp-height={image.height}
             key={image.fileName}
             target="_blank"
             rel="noreferrer"
           >
+            {/* <ImageGalleryItem image={image as any} /> */}
             <Image
               alt={image.fileName as string}
               className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
               src={image.url as string}
               width={image.width as number}
               height={image.height as number}
+              // placeholder="blur"
+              // blurDataURL={image.placeholder as string}
             />
           </a>
         ))}
       </div>
+
       <ThemeProvider theme={customTheme}>
         <Pagination
           count={pages}
