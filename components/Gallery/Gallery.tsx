@@ -29,7 +29,6 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-  const [galleryData, setGalleryData] = useState([] as GalleryProps['gallery']);
 
   const pages = Math.ceil(totalImages / imagesPerPage);
 
@@ -56,26 +55,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   };
 
   useEffect(() => {
-    const fetchGalleryData = async () => {
-      setIsLoading(true);
-      try {
-        setGalleryData(
-          gallery.slice(
-            (currentPage - 1) * imagesPerPage,
-            currentPage * imagesPerPage
-          )
-        );
-      } catch (error) {
-        console.error('Failed to fetch gallery data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchGalleryData();
-  }, [currentPage, gallery, imagesPerPage]);
-
-  useEffect(() => {
+    setIsLoading(false);
     let lightbox: PhotoSwipeLightbox | null = null;
     import('photoswipe').then((pswpModule) => {
       lightbox = new PhotoSwipeLightbox({
@@ -93,6 +73,11 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
       }
     };
   }, []);
+
+  const galleryData = gallery.slice(
+    (currentPage - 1) * imagesPerPage,
+    currentPage * imagesPerPage
+  );
 
   return (
     <div
@@ -116,13 +101,12 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
               {/* <ImageGalleryItem image={image as any} /> */}
               <Image
                 alt={image.fileName as string}
-                loading="lazy"
                 className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
                 src={image.url as string}
                 width={image.width as number}
                 height={image.height as number}
-                placeholder="blur"
-                blurDataURL={image.placeholder as string}
+                // placeholder="blur"
+                // blurDataURL={image.placeholder as string}
               />
             </a>
           ))}
