@@ -36,7 +36,7 @@ export const About = ({ about }: AboutQueryQuery) => {
         </div>
         <div className="person md:flex md:flex-col md:max-w-lg md:items-center">
           <h2 className="text-[24px] font-semibold">Małgorzata Rycak</h2>
-          <div className="relative max-w-[325px] container mx-auto mt-4 mb-16">
+          <div className="relative max-w-[325px] container mx-auto mt-6 mb-16">
             <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded" />
             <div className="md:h-full  aspect-square realitve z-10 ">
               <Image
@@ -59,7 +59,7 @@ export const About = ({ about }: AboutQueryQuery) => {
             <TextHolder
               content={about?.malgosia_description.raw}
               customClass="mt-0 max-w-[325px]"
-              customHight="392px"
+              customHight="380px"
               theme="dark"
               readMore
             />
