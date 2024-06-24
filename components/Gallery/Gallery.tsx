@@ -17,6 +17,7 @@ interface GalleryProps {
   }[];
 }
 import 'photoswipe/style.css';
+import Loader from '../UI/Loader';
 
 const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -54,11 +55,18 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    setGalleryData(gallery);
-    return () => {
-      setIsLoading(false);
+    const fetchGalleryData = async () => {
+      setIsLoading(true);
+      try {
+        setGalleryData(gallery);
+      } catch (error) {
+        console.error('Failed to fetch gallery data:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+
+    fetchGalleryData();
   }, [gallery]);
 
   const currentImages = galleryData.slice(
@@ -91,20 +99,24 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
       ref={galleryRef}
       className="flex flex-col items-center justify-center w-full gap-5"
     >
-      <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
-        {currentImages.map((image) => (
-          <a
-            href={image.url as string}
-            data-pswp-width={image.width}
-            data-pswp-height={image.height}
-            key={image.fileName}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ImageGalleryItem image={image as any} key={image.fileName} />
-          </a>
-        ))}
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
+          {currentImages.map((image) => (
+            <a
+              href={image.url as string}
+              data-pswp-width={image.width}
+              data-pswp-height={image.height}
+              key={image.fileName}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <ImageGalleryItem image={image as any} key={image.fileName} />
+            </a>
+          ))}
+        </div>
+      )}
 
       <ThemeProvider theme={customTheme}>
         <Pagination
