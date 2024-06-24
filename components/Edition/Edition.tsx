@@ -32,12 +32,7 @@ const Edition = async ({
   //     height: image.height,
   //   }))
   // );
-  const gallery = event?.gallery.map((image) => ({
-    fileName: image.fileName,
-    url: image.url,
-    width: image.width,
-    height: image.height,
-  }));
+  const gallery = event?.gallery ?? [];
 
   return (
     <section className="flex justify-center">
@@ -64,9 +59,10 @@ const Edition = async ({
                 {t('galleryText')} {toRoman(parseInt(event?.edition ?? ''))}{' '}
                 {t('galleryText2')}
               </h3>
+
               <Gallery
                 totalImages={assetsConnection.aggregate.count}
-                gallery={gallery as any}
+                gallery={gallery}
               />
             </div>
           ) : (
