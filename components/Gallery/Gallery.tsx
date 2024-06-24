@@ -56,23 +56,27 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
 
   useEffect(() => {
     setIsLoading(false);
-    let lightbox: PhotoSwipeLightbox | null = null;
-    import('photoswipe').then((pswpModule) => {
-      lightbox = new PhotoSwipeLightbox({
-        gallery: '#' + 'gallery',
-        children: 'a',
-        pswpModule: pswpModule.default,
-      });
-      lightbox.init();
-    });
-
-    return () => {
-      if (lightbox) {
-        lightbox.destroy();
-        lightbox = null;
-      }
-    };
   }, []);
+
+  // useEffect(() => {
+  //   setIsLoading(false);
+  //   let lightbox: PhotoSwipeLightbox | null = null;
+  //   import('photoswipe').then((pswpModule) => {
+  //     lightbox = new PhotoSwipeLightbox({
+  //       gallery: '#' + 'gallery',
+  //       children: 'a',
+  //       pswpModule: pswpModule.default,
+  //     });
+  //     lightbox.init();
+  //   });
+
+  //   return () => {
+  //     if (lightbox) {
+  //       lightbox.destroy();
+  //       lightbox = null;
+  //     }
+  //   };
+  // }, []);
 
   const galleryData = gallery.slice(
     (currentPage - 1) * imagesPerPage,
@@ -90,25 +94,35 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
           {galleryData.map((image) => (
-            <a
-              href={image.url as string}
-              data-pswp-width={image.width}
-              data-pswp-height={image.height}
+            // <a
+            //   href={image.url as string}
+            //   data-pswp-width={image.width}
+            //   data-pswp-height={image.height}
+            //   key={image.fileName}
+            //   target="_blank"
+            //   rel="noreferrer"
+            // >
+            //   {/* <ImageGalleryItem image={image as any} /> */}
+            //   <Image
+            //     alt={image.fileName as string}
+            //     className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
+            //     src={image.url as string}
+            //     width={image.width as number}
+            //     height={image.height as number}
+            //     // placeholder="blur"
+            //     // blurDataURL={image.placeholder as string}
+            //   />
+            // </a>
+            <Image
               key={image.fileName}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {/* <ImageGalleryItem image={image as any} /> */}
-              <Image
-                alt={image.fileName as string}
-                className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
-                src={image.url as string}
-                width={image.width as number}
-                height={image.height as number}
-                // placeholder="blur"
-                // blurDataURL={image.placeholder as string}
-              />
-            </a>
+              alt={image.fileName as string}
+              className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
+              src={image.url as string}
+              width={image.width as number}
+              height={image.height as number}
+              // placeholder="blur"
+              // blurDataURL={image.placeholder as string}
+            />
           ))}
         </div>
       )}
