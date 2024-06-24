@@ -13,7 +13,7 @@ interface GalleryProps {
     height?: number | null;
     url?: string | null;
     fileName?: string | null;
-    placeholder?: string | null;
+    // placeholder?: string | null;
   }[];
 }
 import 'photoswipe/style.css';
@@ -74,10 +74,10 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
     };
   }, []);
 
-  const galleryData = gallery.slice(
-    (currentPage - 1) * imagesPerPage,
-    currentPage * imagesPerPage
-  );
+  // const galleryData = gallery.slice(
+  //   (currentPage - 1) * imagesPerPage,
+  //   currentPage * imagesPerPage
+  // );
 
   return (
     <div
@@ -89,7 +89,8 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
         <Loader />
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-3 justify-items-center w-full gap-5">
-          {galleryData.map((image) => (
+          {/* {galleryData.map((image) => ( */}
+          {gallery.map((image) => (
             <a
               href={image.url as string}
               data-pswp-width={image.width}

@@ -23,15 +23,21 @@ const Edition = async ({
     edition,
   });
 
-  const gallery = await Promise.all(
-    (event?.gallery ?? []).map(async (image) => ({
-      placeholder: await dynamicBlurDataUrl(image.url),
-      fileName: image.fileName,
-      url: image.url,
-      width: image.width,
-      height: image.height,
-    }))
-  );
+  // const gallery = await Promise.all(
+  //   (event?.gallery ?? []).map(async (image) => ({
+  //     placeholder: await dynamicBlurDataUrl(image.url),
+  //     fileName: image.fileName,
+  //     url: image.url,
+  //     width: image.width,
+  //     height: image.height,
+  //   }))
+  // );
+  const gallery = event?.gallery.map((image) => ({
+    fileName: image.fileName,
+    url: image.url,
+    width: image.width,
+    height: image.height,
+  }));
 
   return (
     <section className="flex justify-center">
@@ -60,7 +66,7 @@ const Edition = async ({
               </h3>
               <Gallery
                 totalImages={assetsConnection.aggregate.count}
-                gallery={gallery}
+                gallery={gallery as any}
               />
             </div>
           ) : (
