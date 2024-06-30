@@ -13,7 +13,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import MainLogo from '../MainLogo/MainLogo';
 import toRoman from '../UI/NumberToRoman';
 import { usePathname } from 'next/navigation';
-import { text } from 'stream/consumers';
 
 interface MobileNavProps {
   isOpen: boolean;

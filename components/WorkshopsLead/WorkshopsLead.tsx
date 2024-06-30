@@ -4,14 +4,36 @@ import MainLogoIcon from '@/IconsSVG/MainLogoIcon';
 import Image from 'next/image';
 import { TextHolder } from '../UI/TextHolder';
 import TextBorderLine from '@/IconsSVG/TextBorderLine';
-
+import { RichTextContent } from '@graphcms/rich-text-types';
 const WorkshopsLead = async ({
   locale,
   edition,
   translation,
 }: {
   locale: string;
-  edition?: any;
+  edition?: {
+    description: {
+      raw: RichTextContent;
+    };
+    logo: {
+      url: string;
+      width: number;
+      height: number;
+      fileName: string;
+    };
+    lead: {
+      name: string;
+      position: string;
+      alternativePosition: string;
+      photo: {
+        url: string;
+        width: number;
+        height: number;
+        fileName: string;
+      };
+      linkedIn: string;
+    }[];
+  } | null;
   translation: (key: string) => string;
 }) => {
   const t = translation;
@@ -31,10 +53,10 @@ const WorkshopsLead = async ({
         </div>
         <div>
           <Image
-            src={edition.logo.url}
-            width={edition.logo.width}
-            height={edition.logo.height}
-            alt={edition.logo.fileName}
+            src={edition?.logo.url as string}
+            width={edition?.logo.width}
+            height={edition?.logo.height}
+            alt={edition?.logo.fileName as string}
           />
         </div>
       </div>
@@ -42,7 +64,7 @@ const WorkshopsLead = async ({
         {/* OPIS */}
         <div className="w-full">
           <TextHolder
-            content={edition?.description.raw}
+            content={edition?.description.raw as RichTextContent}
             customClass="mt-0 text-base"
             theme="dark"
             readMore
@@ -55,7 +77,7 @@ const WorkshopsLead = async ({
             <h2 className="flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
               {t('lead')}
             </h2>
-            {edition.lead.map((leader: any) => {
+            {edition?.lead.map((leader) => {
               return (
                 <div
                   className="lg:flex lg:flex-col items-center lg:self-start gap-6 lg:mr-auto w-min lg:w-fit"

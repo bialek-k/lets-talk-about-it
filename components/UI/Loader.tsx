@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div className="spinner w-[96px] h-[96px]">
       <RotatingLines
-        visible={true}
+        visible
         width="96"
         strokeColor="#E2FF02"
         strokeWidth="3"

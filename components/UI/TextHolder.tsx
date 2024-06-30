@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { RichTextContent } from '@graphcms/rich-text-types';
+import { useTranslation } from 'react-i18next';
 
 interface TextHolderProps {
   content: RichTextContent;
@@ -28,7 +29,7 @@ export const TextHolder = ({
   customHight,
 }: TextHolderProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-
+  const { t } = useTranslation();
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
@@ -85,10 +86,10 @@ export const TextHolder = ({
       </div>
       {readMore && (
         <button
-          className={`${changeThemeTextColor()} w-full text-end `}
+          className={`${changeThemeTextColor()} w-full text-end mt-1`}
           onClick={toggleExpand}
         >
-          {isExpanded ? '...czytaj mniej' : '...czytaj więcej'}
+          {isExpanded ? t('readLess') : t('readMore')}
         </button>
       )}
     </div>

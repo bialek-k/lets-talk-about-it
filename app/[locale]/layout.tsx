@@ -25,17 +25,17 @@ const ibm = IBM_Plex_Sans({
   preload: false,
 });
 
-export function generateStaticParams() {
+export const generateStaticParams = () => {
   return i18nConfig.locales.map((locale) => ({ locale }));
-}
+};
 
-export default async function RootLayout({
+const RootLayout = async ({
   children,
   params: { locale },
 }: {
   children: ReactNode;
   params: { locale: string };
-}) {
+}) => {
   const { resources } = await initTranslations(locale, i18nNamespaces);
   const { doc } = await request(DocsQueryDocument, { locale });
 
@@ -47,11 +47,13 @@ export default async function RootLayout({
           locale={locale}
           resources={resources}
         >
-          <Header isMain={true} locale={locale} />
+          <Header isMain locale={locale} />
           {children}
           <Footer doc={doc} />
         </TranslationsProvider>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

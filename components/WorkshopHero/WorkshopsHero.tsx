@@ -13,7 +13,12 @@ const WorkshopsHero = async ({
   translation,
 }: {
   locale: string;
-  edition: any;
+  edition: {
+    title: string;
+    date: string;
+    location: string;
+  } | null;
+
   isMain?: boolean;
   translation: (key: string) => string;
 }) => {
@@ -59,12 +64,12 @@ const WorkshopsHero = async ({
           {edition?.title}
         </h2>
       </div>
-      <MainTitle fill="#0C0C0C" events={true} />
+      <MainTitle fill="#0C0C0C" events />
       <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-normal lg:mt-10 mb-2 text-center">
         {edition?.title}
       </h2>
       <Arrow />
-      {edition?.new ? (
+      {/* {edition?.new ? (
         <div className="mt-5">
           <Button
             target="_blank"
@@ -76,18 +81,18 @@ const WorkshopsHero = async ({
             backgroundHover="#F5F5F5"
           />
         </div>
-      ) : (
-        <div className="mt-5">
-          <Button
-            href={`#gallery`}
-            content={t('gallery')}
-            buttonColor="text-main-white"
-            backgroundColor="bg-main-black"
-            buttonHover="#0C0C0C"
-            backgroundHover="#F5F5F5"
-          />
-        </div>
-      )}
+      ) : ( */}
+      <div className="mt-5">
+        <Button
+          href={`#gallery`}
+          content={t('gallery')}
+          buttonColor="text-main-white"
+          backgroundColor="bg-main-black"
+          buttonHover="#0C0C0C"
+          backgroundHover="#F5F5F5"
+        />
+      </div>
+      {/* )} */}
       <div className="flex flex-row items-start lg:items-center justify-center w-full mt-6 lg:max-w-[936px] ">
         <div className="flex flex-col lg:flex-row  items-center justify-center lg:justify-end lg:w-[357px] lg:gap-10">
           <div className="w-[28px] lg:w-[68px] h-[32px] lg:h-[64px]">
@@ -101,7 +106,7 @@ const WorkshopsHero = async ({
         <div className="flex flex-col items-center justify-center lg:flex-row lg:w-[357px] lg:gap-10">
           <Location data={edition?.location} />
           <div className=" font-medium lg:text-[32px] lg:leading-[42px] lg:font-normal text-base text-center lg:text-start mt-6 lg:mt-0 w-min lg:w-[100%] ">
-            {formatLocation(edition?.location)}
+            {formatLocation(edition?.location as string)}
           </div>
         </div>
       </div>
