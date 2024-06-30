@@ -40,7 +40,7 @@
 
 @keyframes slide {
   from {
-    transform: translateX(110%);
+    transform: translateX(120%);
   }
   to {
     transform: translateX(-100%);
