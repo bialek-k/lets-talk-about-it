@@ -1,12 +1,12 @@
 import Header from '@/components/Header/Header';
 
-export default function EventLayout({
+const  EventLayout = ({
   children,
   params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
-}) {
+}) => {
   return (
     <section className="overflow-x-hidden flex flex-col items-center">
       <Header locale={locale} />
@@ -14,3 +14,5 @@ export default function EventLayout({
     </section>
   );
 }
+
+export default EventLayout;

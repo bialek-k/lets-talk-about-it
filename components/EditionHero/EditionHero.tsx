@@ -7,13 +7,21 @@ import Calendar from '@/IconsSVG/Calendar';
 import Location from '../Location/Location';
 
 const EditionHero = async ({
-  locale,
   edition,
   isMain,
   translation,
 }: {
   locale: string;
-  edition: any;
+  edition: {
+    date: string;
+    edition: string;
+    location: string;
+    new: boolean;
+    singUpLink: string;
+    slug: string;
+    title: string;
+  } | null;
+
   isMain?: boolean;
   translation: (key: string) => string;
 }) => {
@@ -66,7 +74,7 @@ const EditionHero = async ({
           </h2>
         )}
       </div>
-      <MainTitle fill="#0C0C0C" events={true} />
+      <MainTitle fill="#0C0C0C" events />
       <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-normal lg:mt-10 mb-2 text-center">
         {edition?.title}
       </h2>
@@ -86,7 +94,7 @@ const EditionHero = async ({
       ) : (
         <div className="mt-5">
           <Button
-            href={`/events/${edition.slug}#gallery`}
+            href={`/events/${edition?.slug}#gallery`}
             content={t('gallery')}
             buttonColor="text-main-white"
             backgroundColor="bg-main-black"
@@ -108,7 +116,7 @@ const EditionHero = async ({
         <div className="flex flex-col items-center justify-center lg:flex-row lg:w-[357px] lg:gap-10">
           <Location data={edition?.location} />
           <div className=" font-medium lg:text-[32px] lg:leading-[42px] lg:font-normal text-base text-center lg:text-start mt-6 lg:mt-0 w-min lg:w-[100%] ">
-            {formatLocation(edition?.location)}
+            {formatLocation(edition?.location as string)}
           </div>
         </div>
       </div>

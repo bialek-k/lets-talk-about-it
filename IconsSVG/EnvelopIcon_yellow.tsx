@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const EnvelopIconYellow = (props: any) => (
+const EnvelopIconYellow = (props: {}) => (
   <svg
     width={28}
     height={22}

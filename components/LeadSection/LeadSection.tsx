@@ -5,12 +5,37 @@ import Button from '../UI/Button';
 import { ImageContainer } from '../UI/ImageContainer';
 
 const LeadSection = async ({
-  locale,
   edition,
   translation,
 }: {
-  locale: string;
-  edition?: any;
+  edition: {
+    lead: {
+      name: string;
+      position: string;
+      alternativePosition: string;
+      photo: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      linkedIn: string;
+    }[];
+    speakers: {
+      name: string;
+      position: string;
+      alternativePosition: string;
+      photo: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      linkedIn: string;
+    }[];
+
+    singUpLink: string;
+    new: boolean;
+  };
+
   translation: (key: string) => string;
 }) => {
   const t = translation;
@@ -26,7 +51,7 @@ const LeadSection = async ({
         {t('lead')}
       </h2>
       <div className="w-full grid place-items-center lg:grid lg:grid-cols-2 lg:gap-10">
-        {edition.lead.map((leader: any) => {
+        {edition?.lead.map((leader) => {
           return (
             <div
               className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6 lg:mr-auto w-min lg:w-fit"
@@ -67,7 +92,7 @@ const LeadSection = async ({
         {t('speakers')}
       </h2>
       <div className="w-full grid place-items-center lg:grid lg:grid-cols-2 lg:gap-10">
-        {edition.speakers.map((speaker: any) => (
+        {edition?.speakers.map((speaker) => (
           <div
             className="lg:flex lg:flex-row-reverse items-center lg:self-start gap-6 lg:mr-auto w-min lg:w-fit"
             key={speaker.name}
@@ -99,7 +124,7 @@ const LeadSection = async ({
           </div>
         ))}
       </div>
-      {edition.new && (
+      {edition?.new && (
         <div className="flex flex-col items-center">
           <Arrow />
           <div className="mt-5">

@@ -25,11 +25,44 @@ import OpenNav from '@/components/OpenNav/OpenNav';
 
 const i18nNamespaces = ['home'];
 
-export default async function Home({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}) {
+type NewEventHero = {
+  date: string;
+  edition: string;
+  location: string;
+  new: boolean;
+  singUpLink: string;
+  slug: string;
+  title: string;
+};
+type NewEventLead = {
+  lead: {
+    name: string;
+    position: string;
+    alternativePosition: string;
+    photo: {
+      url: string;
+      width: number;
+      height: number;
+    };
+    linkedIn: string;
+  }[];
+  speakers: {
+    name: string;
+    position: string;
+    alternativePosition: string;
+    photo: {
+      url: string;
+      width: number;
+      height: number;
+    };
+    linkedIn: string;
+  }[];
+
+  singUpLink: string;
+  new: boolean;
+};
+
+const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 
   const { about } = await request(AboutQueryDocument, { locale });
@@ -88,18 +121,20 @@ export default async function Home({
           >
             <EditionHero
               locale={locale}
-              isMain={true}
-              edition={newEvent}
+              isMain
+              edition={newEvent as NewEventHero}
               translation={t}
             />
           </div>
-          <LeadSection locale={locale} edition={newEvent} translation={t} />
+          <LeadSection edition={newEvent as NewEventLead} translation={t} />
         </>
       )}
       <JoinUs join_us={join_us} />
       <div className="bg-main-black py-20 overflow-hidden">
-        <PartnersCarousel locale={locale} isMain={true} translation={t} />
+        <PartnersCarousel locale={locale} isMain translation={t} />
       </div>
     </TranslationsProvider>
   );
-}
+};
+
+export default Home;

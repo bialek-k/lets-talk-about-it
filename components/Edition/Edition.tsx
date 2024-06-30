@@ -5,9 +5,42 @@ import PartnersCarousel from '../PartnersCarousel/PartnersCarousel';
 import Gallery from '../Gallery/Gallery';
 import EditionHero from '../EditionHero/EditionHero';
 import LeadSection from '../LeadSection/LeadSection';
-import { dynamicBlurDataUrl } from '../UI/ImagePlaceholder';
 import { Suspense } from 'react';
 import Loader from '../UI/Loader';
+
+type Edition = {
+  date: string;
+  edition: string;
+  location: string;
+  slug: string;
+  title: string;
+  lead: {
+    name: string;
+    position: string;
+    alternativePosition: string;
+    photo: {
+      url: string;
+      width: number;
+      height: number;
+      fileName: string;
+    };
+    linkedIn: string;
+  }[];
+  speakers: {
+    name: string;
+    position: string;
+    alternativePosition: string;
+    photo: {
+      url: string;
+      width: number;
+      height: number;
+      fileName: string;
+    };
+    linkedIn: string;
+  }[];
+  singUpLink: string;
+  new: boolean;
+};
 
 const Edition = async ({
   locale,
@@ -25,15 +58,6 @@ const Edition = async ({
     edition,
   });
 
-  // const gallery = await Promise.all(
-  //   (event?.gallery ?? []).map(async (image) => ({
-  //     placeholder: await dynamicBlurDataUrl(image.url),
-  //     fileName: image.fileName,
-  //     url: image.url,
-  //     width: image.width,
-  //     height: image.height,
-  //   }))
-  // );
   const gallery = event?.gallery ?? [];
 
   return (
@@ -41,11 +65,15 @@ const Edition = async ({
       <div className="">
         {/* HERO SECTION */}
         <div className="w-full bg-main-yellow flex justify-center">
-          <EditionHero locale={locale} edition={event} translation={t} />
+          <EditionHero
+            locale={locale}
+            edition={event as Edition}
+            translation={t}
+          />
         </div>
         {/* LEAD SECTION */}
         <div className="w-full flex justify-center">
-          <LeadSection locale={locale} edition={event} translation={t} />
+          <LeadSection edition={event as Edition} translation={t} />
         </div>
         {/* GALERIA */}
         <div className="w-full flex justify-center bg-main-black">

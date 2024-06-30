@@ -4,12 +4,40 @@ import PartnersCarousel from '@/components/PartnersCarousel/PartnersCarousel';
 import { dynamicBlurDataUrl } from '@/components/UI/ImagePlaceholder';
 import WorkshopsHero from '@/components/WorkshopHero/WorkshopsHero';
 import WorkshopsLead from '@/components/WorkshopsLead/WorkshopsLead';
-import {
-  AssetsQueryDocument,
-  WorkshopsQueryDocument,
-} from '@/graphql/generated';
+import { WorkshopsQueryDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
+import { RichTextContent } from '@graphcms/rich-text-types';
 
+type Workshop = {
+  date: string;
+  edition: string;
+  location: string;
+  // new: boolean;
+  // singUpLink: string;
+  slug: string;
+  title: string;
+  description: {
+    raw: RichTextContent;
+  };
+  logo: {
+    url: string;
+    width: number;
+    height: number;
+    fileName: string;
+  };
+  lead: {
+    name: string;
+    position: string;
+    alternativePosition: string;
+    photo: {
+      url: string;
+      width: number;
+      height: number;
+      fileName: string;
+    };
+    linkedIn: string;
+  }[];
+} | null;
 const Workshop = async ({
   params: { locale, workshop: slug },
 }: {
@@ -35,10 +63,19 @@ const Workshop = async ({
   return (
     <section className="bg-main-white w-screen flex flex-col justify-center">
       <div className="w-full bg-main-yellow flex justify-center">
-        <WorkshopsHero locale={locale} edition={workshop} translation={t} />
+        <WorkshopsHero
+          locale={locale}
+          edition={workshop as Workshop}
+          translation={t}
+        />
       </div>
       <div>
-        <WorkshopsLead locale={locale} edition={workshop} translation={t} />
+        <WorkshopsLead
+          locale={locale}
+          edition={workshop as Workshop }
+          
+          translation={t}
+        />
       </div>
       {/* GALERIA */}
       <div className="w-full flex justify-center bg-main-black">
@@ -73,7 +110,7 @@ const Workshop = async ({
         )}
       </div>
       <div className="bg-main-white pt-20 overflow-hidden">
-        <PartnersCarousel locale={locale} isMain={true} translation={t} />
+        <PartnersCarousel locale={locale} isMain translation={t} />
       </div>
     </section>
   );

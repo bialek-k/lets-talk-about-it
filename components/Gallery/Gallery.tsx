@@ -15,7 +15,6 @@ interface GalleryProps {
     height?: number | null;
     url?: string | null;
     fileName?: string | null;
-    // placeholder?: string | null;
   }[];
 }
 
@@ -92,15 +91,12 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
             target="_blank"
             rel="noreferrer"
           >
-            {/* <ImageGalleryItem image={image as any} /> */}
             <Image
               alt={image.fileName as string}
               className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
               src={image.url as string}
               width={image.width as number}
               height={image.height as number}
-              // placeholder="blur"
-              // blurDataURL={image.placeholder as string}
             />
           </a>
         ))}
