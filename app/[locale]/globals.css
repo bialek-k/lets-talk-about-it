@@ -32,6 +32,19 @@
     .hamburger_active > span::after {
         @apply top-0 rotate-[-135deg] bg-main-black
     }
+    .slider {
+         animation: slide 30s linear infinite;
+         
+         }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(110%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 @layer utilities {
