@@ -1,12 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      'www.datocms-assets.com',
-      'another-domain.com',
-      'drive.google.com',
-      'https://drive.google.com/',
-      'eu-central-1-shared-euc1-02.graphassets.com',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.datocms-assets.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'eu-central-1-shared-euc1-02.graphassets.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'another-domain.com',
+      },
     ],
   },
 };
