@@ -61,7 +61,7 @@ const Footer = (doc: DocsQueryQuery) => {
           <BackToTop />
         </button>
       </div>
-      <section className=" flex flex-col items-center justify-center w-full px-4 gap-5 lg:flex-row lg:px-0 lg:gap-0 lg:justify-between ">
+      <section className=" flex flex-col items-start justify-center w-full px-4 gap-5 lg:flex-row lg:px-0 lg:gap-0 lg:justify-between ">
         <div className="flex flex-col items-start justify-center gap-5 max-w-[530px] mr-auto lg:mr-0 lg:py-4 lg:pr-[100px] lg:max-w-[390px] lg:w-full">
           <h4 className="font-medium text-2xl lg:mb-5">{t('followUs')}</h4>
           <p className="font-normal text-base">{t('socialMediaMessage')}</p>

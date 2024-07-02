@@ -93,7 +93,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
           >
             <Image
               alt={image.fileName as string}
-              className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain"
+              className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain hover:scale-110"
               src={image.url as string}
               width={image.width as number}
               height={image.height as number}
