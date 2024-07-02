@@ -65,7 +65,7 @@ const WorkshopsLead = async ({
         <div className="w-full">
           <TextHolder
             content={edition?.description.raw as RichTextContent}
-            customClass="mt-0 text-base"
+            customClass="mt-1 text-base"
             theme="dark"
             readMore
             customHight="360px"

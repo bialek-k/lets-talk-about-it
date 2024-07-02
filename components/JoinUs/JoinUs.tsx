@@ -33,6 +33,7 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             icon={<FacebookIcon_yellow />}
             small
             longText
+            customClass="lg:mt-1"
             navigateDirection="https://www.facebook.com/groups/letstalkitpoland"
           />
         )}

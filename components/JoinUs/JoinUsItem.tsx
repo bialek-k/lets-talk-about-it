@@ -8,6 +8,7 @@ interface JoinUsItemProps {
   small?: boolean;
   longText: boolean;
   navigateDirection: string;
+  customClass?: string;
 }
 
 export const JoinUsItem = ({
@@ -16,6 +17,7 @@ export const JoinUsItem = ({
   small,
   longText,
   navigateDirection,
+  customClass,
 }: JoinUsItemProps) => {
   return (
     <div className="socialItem flex flex-col items-center justify-start">
@@ -28,6 +30,7 @@ export const JoinUsItem = ({
         <TextHolder
           content={social}
           readMore={longText}
+          customClass={customClass}
           theme="light"
           small={small}
           shortText={!longText}
