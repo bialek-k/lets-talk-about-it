@@ -1,7 +1,6 @@
 import initTranslations from '@/app/i18n';
 import Gallery from '@/components/Gallery/Gallery';
 import PartnersCarousel from '@/components/PartnersCarousel/PartnersCarousel';
-import { dynamicBlurDataUrl } from '@/components/UI/ImagePlaceholder';
 import WorkshopsHero from '@/components/WorkshopHero/WorkshopsHero';
 import WorkshopsLead from '@/components/WorkshopsLead/WorkshopsLead';
 import { WorkshopsQueryDocument } from '@/graphql/generated';
@@ -50,15 +49,7 @@ const Workshop = async ({
     slug,
   });
 
-  const gallery = await Promise.all(
-    (workshop?.gallery ?? []).map(async (image) => ({
-      placeholder: await dynamicBlurDataUrl(image.url),
-      fileName: image.fileName,
-      url: image.url,
-      width: image.width,
-      height: image.height,
-    }))
-  );
+  const gallery = workshop?.gallery ?? [];
 
   return (
     <section className="bg-main-white w-screen flex flex-col justify-center">
@@ -72,8 +63,7 @@ const Workshop = async ({
       <div>
         <WorkshopsLead
           locale={locale}
-          edition={workshop as Workshop }
-          
+          edition={workshop as Workshop}
           translation={t}
         />
       </div>

@@ -38,14 +38,39 @@
          }
 }
 
+
 @keyframes slide {
+  /* Dla ekranów o szerokości mniejszej niż 1024px */
   from {
-    transform: translateX(120%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
+      transform: translateX(75%);
+    }
+    to {
+      transform: translateX(-75%);
+    }
+
 }
+
+@media (min-width: 700px) {
+    @keyframes slide {
+from {
+  transform: translateX(90%);
+}
+to {
+  transform: translateX(-90%);
+}}}
+
+@media (min-width: 1024px) {
+    @keyframes slide {
+from {
+  transform: translateX(110%);
+}
+to {
+  transform: translateX(-110%);
+}
+}
+}
+  
+
 
 @layer utilities {
     var(--main-black) {

@@ -13,7 +13,7 @@ const PartnersCarousel = async ({
   return (
     <div className="flex overflow-x-hidden w-screen max-w-1440px">
       <Marquee>
-        <h3 className=" text-[40px] leading-[52px] font-bold w-max flex-shrink-0">
+        <h3 className=" text-[40px] leading-[52px] font-bold w-max">
           {t('carousel')}
         </h3>
       </Marquee>
