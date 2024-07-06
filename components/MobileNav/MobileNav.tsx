@@ -109,6 +109,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                         }`}
                         onClick={() => setIsOpen(false)}
                         href={route.path ?? ''}
+                        rel="noopener noreferrer"
                       >
                         {t(route.name ?? '')}
                       </Link>
@@ -165,6 +166,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                                     : 'text-main-white'
                                 } `}
                                 href={subRoute.path ?? '#'}
+                                rel="noopener noreferrer"
                                 onClick={() => setIsOpen(false)}
                               >
                                 {subRoute.name.includes('event')

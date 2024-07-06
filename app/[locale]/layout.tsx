@@ -15,7 +15,68 @@ import { DocsQueryDocument } from '@/graphql/generated';
 
 export const metadata: Metadata = {
   title: `Let's Talk About IT`,
-  description: "Landing page for Let's Talk About IT project",
+  description: "Landing page for Let's Talk About IT Community",
+  keywords: [
+    'Next.js',
+    'React',
+    'JavaScript',
+    'TypeScript',
+    'TailwindCSS',
+    'GraphQL',
+    'i18n',
+    'SEO',
+    'IBM Plex Sans',
+    'Google Fonts',
+    'Next Font',
+  ],
+  authors: [
+    { name: 'Vincent Slominski', url: 'https://github.com/Okazaki92' },
+    { name: 'Krzysztof Białek', url: 'https://github.com/bialek-k' },
+  ],
+  applicationName: "Let's Talk About IT",
+  generator: 'Next.js',
+  openGraph: {
+    type: 'website',
+    locale: 'pl_PL',
+    url: 'https://letstalkaboutit.pl',
+    siteName: "Let's Talk About IT",
+    images: [
+      {
+        url: 'https://www.letstalkaboutit.pl/meta-image.png',
+        width: 1200,
+        height: 630,
+        alt: "Let's Talk About IT",
+      },
+    ],
+  },
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  twitter: {
+    creator: '@letstalkaboutit',
+    title: `Let's Talk About IT`,
+    description: "Landing page for Let's Talk About IT Community",
+    card: 'summary_large_image',
+    images: ['https://www.letstalkaboutit.pl/meta-image.png'],
+  },
+  verification: {
+    google: 'google',
+    yandex: 'yandex',
+    yahoo: 'yahoo',
+    other: {
+      me: ['my-email', 'my-link'],
+    },
+  },
 };
 
 const ibm = IBM_Plex_Sans({

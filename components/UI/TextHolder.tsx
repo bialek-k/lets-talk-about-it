@@ -79,6 +79,18 @@ export const TextHolder = ({
               p: ({ children }) => {
                 return <p className={`m-0 ${customClass}`}>{children}</p>;
               },
+              a: ({ children, href }) => {
+                return (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="break-words"
+                  >
+                    {children}
+                  </a>
+                );
+              },
             }}
           />
           {additionalContent}
