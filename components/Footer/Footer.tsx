@@ -107,7 +107,11 @@ const Footer = (doc: DocsQueryQuery) => {
             >
               {t('privacyPolicy')}
             </button>
-            <Link href="/#about" className="font-normal text-base">
+            <Link
+              href="/#about"
+              rel="noopener noreferrer"
+              className="font-normal text-base"
+            >
               {t('about')}
             </Link>
           </div>

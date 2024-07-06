@@ -13,6 +13,7 @@ const MainLogo = ({ className, setIsOpen }: MainLogoProps) => {
       className={className}
       href="/"
       onClick={() => setIsOpen && setIsOpen(false)}
+      rel="noopener noreferrer"
     >
       <MainLogoIcon />
     </Link>

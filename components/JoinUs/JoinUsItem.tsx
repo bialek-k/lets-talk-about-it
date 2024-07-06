@@ -22,7 +22,11 @@ export const JoinUsItem = ({
   return (
     <div className="socialItem flex flex-col items-center justify-start">
       <div className="icon mt-10 lg:mt-0 h-[125px] cursor-pointer">
-        <Link href={navigateDirection} target="_blank">
+        <Link
+          href={navigateDirection}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {icon}
         </Link>
       </div>

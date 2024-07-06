@@ -15,7 +15,7 @@ export const About = ({ about }: AboutQueryQuery) => {
     <section id="about" className="px-6 md:px-24 h-min-screen pb-20 lg:pb-0">
       <PageTitle small title={t('aboutUs')} />
       <div className="content md:flex md:gap-24 justify-between ">
-        <div className="description">
+        <div className="description pt-[10px] md:pt-0">
           <p className="text-[24px] mb-6 font-semibold">Let’s Talk About IT</p>
           <div className="hidden md:flex">
             <TextHolder
@@ -34,7 +34,7 @@ export const About = ({ about }: AboutQueryQuery) => {
             />
           </div>
         </div>
-        <div className="person md:flex md:flex-col md:max-w-lg md:items-center">
+        <div className="person md:flex md:flex-col mt-10 md:mt-0 md:max-w-lg md:items-center">
           <h2 className="text-[24px] font-semibold">Małgorzata Rycak</h2>
           <div className="relative max-w-[325px] container mx-auto mt-6 mb-16">
             <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded" />

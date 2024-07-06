@@ -120,6 +120,7 @@ const Header = ({
                         : 'text-main-white'
                     } `}
                     href={route.path ?? '#'}
+                    rel="noopener noreferrer"
                   >
                     {t(route.name ?? '')}
                   </Link>
@@ -177,6 +178,7 @@ const Header = ({
                                   : 'text-main-white'
                               }`}
                               href={subRoute.path ?? '#'}
+                              rel="noopener noreferrer"
                             >
                               {subRoute.name.includes('event')
                                 ? `${t(subRoute.name.split(' ')[0])} ${toRoman(
