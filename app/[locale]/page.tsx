@@ -129,7 +129,7 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
           <LeadSection edition={newEvent as NewEventLead} translation={t} />
         </>
       )}
-      <JoinUs join_us={join_us} />
+      <JoinUs join_us={join_us} locale={locale} />
       <div className="bg-main-black py-20 overflow-hidden">
         <PartnersCarousel locale={locale} isMain translation={t} />
       </div>
