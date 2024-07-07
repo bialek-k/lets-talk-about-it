@@ -8,7 +8,12 @@ import FacebookIcon_yellow from '@/IconsSVG/FacebookIcon_yellow';
 import YoutubeIcon_yellow from '@/IconsSVG/YoutubeIcon_yellow';
 import { useTranslation } from 'react-i18next';
 
-const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
+interface JoinUsProps {
+  join_us: JoinUsQueryQuery['join_us'];
+  locale: string;
+}
+
+const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
   const { t } = useTranslation();
 
   return (
@@ -24,6 +29,7 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             icon={<LinkedinIcon_yellow />}
             small
             longText
+            customClass={locale === 'en' ? 'lg:pb-[20px]' : ''}
             navigateDirection="https://www.linkedin.com/groups/14230011/"
           />
         )}
@@ -43,6 +49,7 @@ const JoinUs = ({ join_us }: JoinUsQueryQuery) => {
             icon={<YoutubeIcon_yellow />}
             small
             longText
+            customClass={locale === 'en' ? 'mt-1 lg:mt-0' : ''}
             navigateDirection="https://www.youtube.com/@LetstalkTPoland"
           />
         )}

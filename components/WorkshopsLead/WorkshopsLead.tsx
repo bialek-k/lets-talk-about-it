@@ -65,7 +65,9 @@ const WorkshopsLead = async ({
         <div className="w-full">
           <TextHolder
             content={edition?.description.raw as RichTextContent}
-            customClass="mt-1 text-base"
+            customClass={`text-base ${
+              locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
+            }`}
             theme="dark"
             readMore
             customHight="360px"

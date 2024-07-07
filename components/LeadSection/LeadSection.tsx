@@ -88,7 +88,7 @@ const LeadSection = async ({
 
       {/* PRELEGENCI */}
 
-      <h2 className="my-10 mr-auto flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
+      <h2 className="mb-10 mr-auto flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
         {t('speakers')}
       </h2>
       <div className="w-full grid place-items-center lg:grid lg:grid-cols-2 lg:gap-10">
