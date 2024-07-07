@@ -37,6 +37,7 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   openGraph: {
     type: 'website',
+    description: "Landing page for Let's Talk About IT Community",
     locale: 'pl_PL',
     url: 'https://letstalkaboutit.pl',
     siteName: "Let's Talk About IT",
