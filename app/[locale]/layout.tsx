@@ -15,7 +15,7 @@ import { DocsQueryDocument } from '@/graphql/generated';
 
 export const metadata: Metadata = {
   title: `Let's Talk About IT`,
-  description: "Landing page for Let's Talk About IT Community",
+  description: "Witaj na Let's talk about IT",
   keywords: [
     'Next.js',
     'React',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   openGraph: {
     type: 'website',
-    description: "Landing page for Let's Talk About IT Community",
+    description: "Witaj na Let's talk about IT",
     locale: 'pl_PL',
     url: 'https://letstalkaboutit.pl',
     siteName: "Let's Talk About IT",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   twitter: {
     creator: '@letstalkaboutit',
     title: `Let's Talk About IT`,
-    description: "Landing page for Let's Talk About IT Community",
+    description: "Witaj na Let's talk about IT",
     card: 'summary_large_image',
     images: ['https://www.letstalkaboutit.pl/meta-image.png'],
   },
