@@ -82,8 +82,8 @@ const Partners = async ({
 
         {/** DESKTOP LOGOS */}
 
-        <div className="hidden lg:flex bg-main-white md:flex-col px-24 py-12 mt-12">
-          <div className="partnersImages flex flex-row w-full justify-between">
+        <div className="hidden lg:flex bg-main-white md:flex-col px-20 py-12 mt-12">
+          <div className="partnersImages flex flex-row w-full justify-start flex-wrap gap-20">
             {partner?.logos.map((img) => {
               const validWidth = img?.width !== null ? img?.width : undefined;
               const validHeight =
