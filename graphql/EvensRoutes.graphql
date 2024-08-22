@@ -1,5 +1,5 @@
 query EventsRoutes {
-  events(stage: PUBLISHED, orderBy:slug_DESC) {
+  events(stage: PUBLISHED) {
     id
     slug
     edition
