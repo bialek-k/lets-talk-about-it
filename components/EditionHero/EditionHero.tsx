@@ -66,7 +66,7 @@ const EditionHero = async ({
         {edition?.new ? (
           <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
             {t('invite')} {toRoman(parseInt(edition?.edition ?? ''))}{' '}
-            {t('edition')} {t('Event')}:
+            {t('edition')} {t('Event')}
           </h2>
         ) : (
           <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
