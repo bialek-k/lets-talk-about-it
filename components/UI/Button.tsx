@@ -25,7 +25,7 @@ const Button = ({
     <div className="bg-main-white rounded-xl">
       <Link href={href} target={target} rel="noopener noreferrer">
         <motion.button
-          className={`font-semibold text-2xl px-[59.5px] py-[14.5px] rounded-xl ${buttonColor} ${backgroundColor}`}
+          className={`font-semibold text-2xl px-[59.5px] py-[14.5px] rounded-xl  ${buttonColor} ${backgroundColor}`}
           initial={{ y: '-6px', x: '6px' }}
           whileHover={{
             y: '0',
