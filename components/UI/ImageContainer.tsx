@@ -22,7 +22,7 @@ export const ImageContainer = ({
 }: ImageContainerProps) => {
   return (
     <div className="relative w-64 h-64 container mx-auto mt-4 mb-16">
-      <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded" />
+      <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded-xl" />
       <div className="w-full realitve z-10 ">
         {image && (
           <Image
@@ -30,7 +30,7 @@ export const ImageContainer = ({
             src={image?.url}
             width={300}
             height={300}
-            className={`rounded absolute ${background}`}
+            className={`rounded-xl absolute ${background}`}
           />
         )}
         {link && (
