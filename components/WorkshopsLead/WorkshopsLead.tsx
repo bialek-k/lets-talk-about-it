@@ -14,6 +14,7 @@ const WorkshopsLead = async ({
   edition?: {
     description: {
       raw: RichTextContent;
+      html: string;
     };
     logo: {
       url: string;
@@ -52,12 +53,14 @@ const WorkshopsLead = async ({
           <MainLogoIcon />
         </div>
         <div>
-          <Image
-            src={edition?.logo.url as string}
-            width={edition?.logo.width}
-            height={edition?.logo.height}
-            alt={edition?.logo.fileName as string}
-          />
+          {edition?.logo?.url && (
+            <Image
+              src={edition?.logo.url as string}
+              width={edition?.logo.width}
+              height={edition?.logo.height}
+              alt={edition?.logo.fileName as string}
+            />
+          )}
         </div>
       </div>
       <div className="w-full flex flex-col-reverse lg:flex-row lg:gap-[125px] items-start justify-center">
@@ -69,7 +72,11 @@ const WorkshopsLead = async ({
               locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
             }`}
             theme="dark"
-            readMore
+            readMore={
+              edition?.description.html && edition.description.html.length > 700
+                ? true
+                : false
+            }
             customHight="360px"
           />
         </div>

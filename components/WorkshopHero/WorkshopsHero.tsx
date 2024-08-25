@@ -17,6 +17,8 @@ const WorkshopsHero = async ({
     title: string;
     date: string;
     location: string;
+    new: boolean;
+    signUp: string;
   } | null;
 
   isMain?: boolean;
@@ -69,11 +71,11 @@ const WorkshopsHero = async ({
         {edition?.title}
       </h2>
       <Arrow />
-      {/* {edition?.new ? (
+      {edition?.new ? (
         <div className="mt-5">
           <Button
             target="_blank"
-            href={edition?.singUpLink ?? '#'}
+            href={edition?.signUp ?? '#'}
             content={t('sign')}
             buttonColor="text-main-white"
             backgroundColor="bg-main-black"
@@ -81,18 +83,18 @@ const WorkshopsHero = async ({
             backgroundHover="#F5F5F5"
           />
         </div>
-      ) : ( */}
-      <div className="mt-5">
-        <Button
-          href={`#gallery`}
-          content={t('gallery')}
-          buttonColor="text-main-white"
-          backgroundColor="bg-main-black"
-          buttonHover="#0C0C0C"
-          backgroundHover="#F5F5F5"
-        />
-      </div>
-      {/* )} */}
+      ) : (
+        <div className="mt-5">
+          <Button
+            href={`#gallery`}
+            content={t('gallery')}
+            buttonColor="text-main-white"
+            backgroundColor="bg-main-black"
+            buttonHover="#0C0C0C"
+            backgroundHover="#F5F5F5"
+          />
+        </div>
+      )}
       <div className="flex flex-row items-start lg:items-center justify-center w-full mt-6 lg:max-w-[936px] ">
         <div className="flex flex-col lg:flex-row  items-center justify-center lg:justify-end lg:w-[357px] lg:gap-10">
           <div className="w-[28px] lg:w-[68px] h-[32px] lg:h-[64px]">
