@@ -37,7 +37,7 @@ export const About = ({ about }: AboutQueryQuery) => {
         <div className="person md:flex md:flex-col mt-10 md:mt-0 md:max-w-lg md:items-center">
           <h2 className="text-[24px] font-semibold">Małgorzata Rycak</h2>
           <div className="relative max-w-[325px] container mx-auto mt-6 mb-16">
-            <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded" />
+            <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded-xl" />
             <div className="md:h-full  aspect-square realitve z-10 ">
               <Image
                 alt={'malgorzata_rycak'}
@@ -45,7 +45,7 @@ export const About = ({ about }: AboutQueryQuery) => {
                 width={about?.malgosia_image?.width ?? 300}
                 height={about?.malgosia_image?.height ?? 300}
                 priority
-                className=" rounded absolute "
+                className=" rounded-xl absolute "
               />
 
               <Linkedin
