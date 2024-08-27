@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { TextHolder } from '../UI/TextHolder';
 import TextBorderLine from '@/IconsSVG/TextBorderLine';
 import { RichTextContent } from '@graphcms/rich-text-types';
+
 const WorkshopsLead = async ({
   locale,
   edition,
@@ -65,7 +66,7 @@ const WorkshopsLead = async ({
       </div>
       <div className="w-full flex flex-col-reverse lg:flex-row lg:gap-[125px] items-start justify-center">
         {/* OPIS */}
-        <div className="w-full">
+        <div className="w-full hidden md:flex">
           <TextHolder
             content={edition?.description.raw as RichTextContent}
             customClass={`text-base ${
@@ -77,6 +78,17 @@ const WorkshopsLead = async ({
                 ? true
                 : false
             }
+            customHight="360px"
+          />
+        </div>
+        <div className="w-full md:hidden">
+          <TextHolder
+            content={edition?.description.raw as RichTextContent}
+            customClass={`text-base ${
+              locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
+            }`}
+            theme="dark"
+            readMore
             customHight="360px"
           />
         </div>
