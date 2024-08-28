@@ -66,7 +66,7 @@ const WorkshopsLead = async ({
       </div>
       <div className="w-full flex flex-col-reverse lg:flex-row lg:gap-[125px] items-start justify-center">
         {/* OPIS */}
-        <div className="w-full hidden md:flex">
+        <div className="w-full hidden lg:flex">
           <TextHolder
             content={edition?.description.raw as RichTextContent}
             customClass={`text-base ${
@@ -79,9 +79,14 @@ const WorkshopsLead = async ({
                 : false
             }
             customHight="360px"
+            shortText={
+              edition?.description.html && edition.description.html.length > 700
+                ? false
+                : true
+            }
           />
         </div>
-        <div className="w-full md:hidden">
+        <div className="w-full lg:hidden">
           <TextHolder
             content={edition?.description.raw as RichTextContent}
             customClass={`text-base ${
@@ -94,14 +99,14 @@ const WorkshopsLead = async ({
         </div>
         {/* PROWADZĄCA */}
         <div className="w-full lg:w-auto flex items-center justify-center">
-          <div className="flex flex-col">
-            <h2 className="flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
+          <div className="flex flex-col w-full">
+            <h2 className="flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px] mb-10 lg:mb-0">
               {t('lead')}
             </h2>
             {edition?.lead.map((leader) => {
               return (
                 <div
-                  className="lg:flex lg:flex-col items-center lg:self-start gap-6 lg:mr-auto w-min lg:w-fit"
+                  className="lg:flex lg:flex-col items-center lg:self-start gap-6 lg:mr-auto w-full lg:w-fit"
                   key={leader.name}
                 >
                   <div className="">
