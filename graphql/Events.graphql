@@ -1,5 +1,5 @@
 query NewEventQuery($locale: Locale!) {
-  events(first: 1, locales: [$locale]) {
+  events(last: 1, locales: [$locale]) {
     id
     title
     new

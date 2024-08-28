@@ -66,7 +66,8 @@ const EditionHero = async ({
         {edition?.new ? (
           <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
             {t('invite')} {toRoman(parseInt(edition?.edition ?? ''))}{' '}
-            {t('edition')} {t('Event')}:
+            {t('edition')}
+            {t('Event')}
           </h2>
         ) : (
           <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
@@ -75,7 +76,7 @@ const EditionHero = async ({
         )}
       </div>
       <MainTitle fill="#0C0C0C" events />
-      <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-normal lg:mt-10 mb-2 text-center">
+      <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-normal lg:mt-10 mb-4 text-center">
         {edition?.title}
       </h2>
       <Arrow />
