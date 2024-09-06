@@ -48,7 +48,9 @@ const WorkshopsLead = async ({
       <h2 className="my-10 mr-auto flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
         {t('organizer')}
       </h2>
+
       {/* LOGO PROWADZĄCEGO */}
+      
       <div className="flex flex-col lg:flex-row w-full justify-star items-center gap-[50px] lg:gap-[100px] mb-10 lg:mb-20">
         <div className="w-[150px] h-[135px]">
           <MainLogoIcon />
