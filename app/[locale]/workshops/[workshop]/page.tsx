@@ -11,12 +11,13 @@ type Workshop = {
   date: string;
   edition: string;
   location: string;
-  // new: boolean;
-  // singUpLink: string;
+  new: boolean;
+  signUp: string;
   slug: string;
   title: string;
   description: {
     raw: RichTextContent;
+    html: string;
   };
   logo: {
     url: string;

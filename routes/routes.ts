@@ -29,10 +29,10 @@ export const fetchEvents = async ({ locale = 'pl' }: { locale: string }) => {
         name: `${workshop.title}`,
       })),
     },
-    {
-      path: '/podcasts',
-      name: 'podcasts',
-    },
+    // {
+    //   path: '/podcasts',
+    //   name: 'podcasts',
+    // },
     {
       path: '/partners',
       name: 'partners',

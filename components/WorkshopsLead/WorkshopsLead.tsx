@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { TextHolder } from '../UI/TextHolder';
 import TextBorderLine from '@/IconsSVG/TextBorderLine';
 import { RichTextContent } from '@graphcms/rich-text-types';
+
 const WorkshopsLead = async ({
   locale,
   edition,
@@ -14,6 +15,7 @@ const WorkshopsLead = async ({
   edition?: {
     description: {
       raw: RichTextContent;
+      html: string;
     };
     logo: {
       url: string;
@@ -46,23 +48,47 @@ const WorkshopsLead = async ({
       <h2 className="my-10 mr-auto flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
         {t('organizer')}
       </h2>
+
       {/* LOGO PROWADZĄCEGO */}
+      
       <div className="flex flex-col lg:flex-row w-full justify-star items-center gap-[50px] lg:gap-[100px] mb-10 lg:mb-20">
         <div className="w-[150px] h-[135px]">
           <MainLogoIcon />
         </div>
         <div>
-          <Image
-            src={edition?.logo.url as string}
-            width={edition?.logo.width}
-            height={edition?.logo.height}
-            alt={edition?.logo.fileName as string}
-          />
+          {edition?.logo?.url && (
+            <Image
+              src={edition?.logo.url as string}
+              width={edition?.logo.width}
+              height={edition?.logo.height}
+              alt={edition?.logo.fileName as string}
+            />
+          )}
         </div>
       </div>
       <div className="w-full flex flex-col-reverse lg:flex-row lg:gap-[125px] items-start justify-center">
         {/* OPIS */}
-        <div className="w-full">
+        <div className="w-full hidden lg:flex">
+          <TextHolder
+            content={edition?.description.raw as RichTextContent}
+            customClass={`text-base ${
+              locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
+            }`}
+            theme="dark"
+            readMore={
+              edition?.description.html && edition.description.html.length > 700
+                ? true
+                : false
+            }
+            customHight="360px"
+            shortText={
+              edition?.description.html && edition.description.html.length > 700
+                ? false
+                : true
+            }
+          />
+        </div>
+        <div className="w-full lg:hidden">
           <TextHolder
             content={edition?.description.raw as RichTextContent}
             customClass={`text-base ${
@@ -75,14 +101,14 @@ const WorkshopsLead = async ({
         </div>
         {/* PROWADZĄCA */}
         <div className="w-full lg:w-auto flex items-center justify-center">
-          <div className="flex flex-col">
-            <h2 className="flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
+          <div className="flex flex-col w-full">
+            <h2 className="flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px] mb-10 lg:mb-0">
               {t('lead')}
             </h2>
             {edition?.lead.map((leader) => {
               return (
                 <div
-                  className="lg:flex lg:flex-col items-center lg:self-start gap-6 lg:mr-auto w-min lg:w-fit"
+                  className="lg:flex lg:flex-col items-center lg:self-start gap-6 lg:mr-auto w-full lg:w-fit"
                   key={leader.name}
                 >
                   <div className="">

@@ -5,6 +5,8 @@ query WorkshopsQuery(
   workshop(where: { slug: $slug }, locales: [$locale]) {
     id
     title
+    new
+    signUp
     logo(locales: en) {
         width
         height
@@ -16,6 +18,7 @@ query WorkshopsQuery(
     slug
     description {
         raw
+        html
     }
     lead {
       ... on Person {
