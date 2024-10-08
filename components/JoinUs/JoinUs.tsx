@@ -49,7 +49,7 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             icon={<YoutubeIcon_yellow />}
             small
             longText
-            customClass={locale === 'en' ? 'mt-1 lg:mt-1' : ''}
+            customClass={locale === 'en' ? 'mt-1 lg:mt-0' : ''}
             navigateDirection="https://www.youtube.com/@LetstalkTPoland"
           />
         )}
