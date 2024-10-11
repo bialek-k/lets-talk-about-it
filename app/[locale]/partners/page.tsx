@@ -67,7 +67,7 @@ const Partners = async ({
                 img?.height !== null ? img?.height : undefined;
 
               return (
-                <div key={`id:${img}`} className="py-4">
+                <div key={`id:${img}`} className="py-4 grayscale">
                   <Image
                     alt={img.fileName}
                     src={img.url}
@@ -90,7 +90,10 @@ const Partners = async ({
                 img?.height !== null ? img?.height : undefined;
 
               return (
-                <div key={`id:${img}`} className="py-4 flex items-center">
+                <div
+                  key={`id:${img}`}
+                  className="py-4 flex items-center grayscale"
+                >
                   <Image
                     alt={img.fileName}
                     src={img.url}
