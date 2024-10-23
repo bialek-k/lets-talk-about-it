@@ -47,7 +47,6 @@ export const About = ({ about }: AboutQueryQuery) => {
                 priority
                 className=" rounded-xl absolute "
               />
-
               <Linkedin
                 shouldAnimate
                 href={'https://www.linkedin.com/in/malgorzata-rycak/'}
