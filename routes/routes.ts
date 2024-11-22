@@ -3,6 +3,7 @@ import {
   WorkshopsRoutesDocument,
 } from '@/graphql/generated';
 import { request } from '@/lib/request';
+import path from 'path';
 
 export const fetchEvents = async ({ locale = 'pl' }: { locale: string }) => {
   // const results = await request(EventRoutesDocument);
@@ -33,6 +34,10 @@ export const fetchEvents = async ({ locale = 'pl' }: { locale: string }) => {
     //   path: '/podcasts',
     //   name: 'podcasts',
     // },
+    {
+      path: '/films',
+      name: 'films',
+    },
     {
       path: '/partners',
       name: 'partners',

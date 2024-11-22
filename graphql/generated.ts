@@ -2025,6 +2025,7 @@ export enum EntityTypeName {
   Asset = 'Asset',
   Doc = 'Doc',
   Event = 'Event',
+  Film = 'Film',
   JoinUs = 'Join_us',
   Partner = 'Partner',
   Person = 'Person',
@@ -2995,6 +2996,543 @@ export type EventspeakersUnionWhereUniqueInput = {
   Person?: InputMaybe<PersonWhereUniqueInput>;
 };
 
+export type Film = Entity & Node & {
+  __typename?: 'Film';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  description?: Maybe<RichText>;
+  /** Get the document in other stages */
+  documentInStages: Array<Film>;
+  /** List of Film versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  links: Array<Scalars['String']['output']>;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Film>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  title?: Maybe<Scalars['String']['output']>;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type FilmCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type FilmCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type FilmDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type FilmHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type FilmLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  locales?: Array<Locale>;
+};
+
+
+export type FilmPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type FilmPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type FilmScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type FilmUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type FilmUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type FilmConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: FilmWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type FilmConnection = {
+  __typename?: 'FilmConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<FilmEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type FilmCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  links?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<FilmCreateLocalizationsInput>;
+  /** title input for default locale (en) */
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type FilmCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type FilmCreateLocalizationInput = {
+  /** Localization input */
+  data: FilmCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type FilmCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<FilmCreateLocalizationInput>>;
+};
+
+export type FilmCreateManyInlineInput = {
+  /** Connect multiple existing Film documents */
+  connect?: InputMaybe<Array<FilmWhereUniqueInput>>;
+  /** Create and connect multiple existing Film documents */
+  create?: InputMaybe<Array<FilmCreateInput>>;
+};
+
+export type FilmCreateOneInlineInput = {
+  /** Connect one existing Film document */
+  connect?: InputMaybe<FilmWhereUniqueInput>;
+  /** Create and connect one Film document */
+  create?: InputMaybe<FilmCreateInput>;
+};
+
+/** An edge in a connection. */
+export type FilmEdge = {
+  __typename?: 'FilmEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Film;
+};
+
+/** Identifies documents */
+export type FilmManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FilmWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FilmWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FilmWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<FilmWhereStageInput>;
+  documentInStages_none?: InputMaybe<FilmWhereStageInput>;
+  documentInStages_some?: InputMaybe<FilmWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  links?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  links_contains_all?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  links_contains_none?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  links_contains_some?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  links_not?: InputMaybe<Array<Scalars['String']['input']>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum FilmOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  LinksAsc = 'links_ASC',
+  LinksDesc = 'links_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type FilmUpdateInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  links?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<FilmUpdateLocalizationsInput>;
+  /** title input for default locale (en) */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FilmUpdateLocalizationDataInput = {
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FilmUpdateLocalizationInput = {
+  data: FilmUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type FilmUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<FilmCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<FilmUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<FilmUpsertLocalizationInput>>;
+};
+
+export type FilmUpdateManyInlineInput = {
+  /** Connect multiple existing Film documents */
+  connect?: InputMaybe<Array<FilmConnectInput>>;
+  /** Create and connect multiple Film documents */
+  create?: InputMaybe<Array<FilmCreateInput>>;
+  /** Delete multiple Film documents */
+  delete?: InputMaybe<Array<FilmWhereUniqueInput>>;
+  /** Disconnect multiple Film documents */
+  disconnect?: InputMaybe<Array<FilmWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Film documents */
+  set?: InputMaybe<Array<FilmWhereUniqueInput>>;
+  /** Update multiple Film documents */
+  update?: InputMaybe<Array<FilmUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Film documents */
+  upsert?: InputMaybe<Array<FilmUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type FilmUpdateManyInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  links?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<FilmUpdateManyLocalizationsInput>;
+  /** title input for default locale (en) */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FilmUpdateManyLocalizationDataInput = {
+  description?: InputMaybe<Scalars['RichTextAST']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FilmUpdateManyLocalizationInput = {
+  data: FilmUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type FilmUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<FilmUpdateManyLocalizationInput>>;
+};
+
+export type FilmUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: FilmUpdateManyInput;
+  /** Document search */
+  where: FilmWhereInput;
+};
+
+export type FilmUpdateOneInlineInput = {
+  /** Connect existing Film document */
+  connect?: InputMaybe<FilmWhereUniqueInput>;
+  /** Create and connect one Film document */
+  create?: InputMaybe<FilmCreateInput>;
+  /** Delete currently connected Film document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected Film document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Film document */
+  update?: InputMaybe<FilmUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Film document */
+  upsert?: InputMaybe<FilmUpsertWithNestedWhereUniqueInput>;
+};
+
+export type FilmUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: FilmUpdateInput;
+  /** Unique document search */
+  where: FilmWhereUniqueInput;
+};
+
+export type FilmUpsertInput = {
+  /** Create document if it didn't exist */
+  create: FilmCreateInput;
+  /** Update document if it exists */
+  update: FilmUpdateInput;
+};
+
+export type FilmUpsertLocalizationInput = {
+  create: FilmCreateLocalizationDataInput;
+  locale: Locale;
+  update: FilmUpdateLocalizationDataInput;
+};
+
+export type FilmUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: FilmUpsertInput;
+  /** Unique document search */
+  where: FilmWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type FilmWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type FilmWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FilmWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FilmWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FilmWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<FilmWhereStageInput>;
+  documentInStages_none?: InputMaybe<FilmWhereStageInput>;
+  documentInStages_some?: InputMaybe<FilmWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  links?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  links_contains_all?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  links_contains_none?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  links_contains_some?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  links_not?: InputMaybe<Array<Scalars['String']['input']>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type FilmWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<FilmWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<FilmWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<FilmWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<FilmWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Film record uniquely */
+export type FilmWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 export type ImageBlurInput = {
   /** The amount of blurring to apply to the image. The value must be an integer from 1 to 20. */
   amount: Scalars['Int']['input'];
@@ -3620,6 +4158,8 @@ export type Mutation = {
   createDoc?: Maybe<Doc>;
   /** Create one event */
   createEvent?: Maybe<Event>;
+  /** Create one film */
+  createFilm?: Maybe<Film>;
   /** Create one join_us */
   createJoin_us?: Maybe<Join_Us>;
   /** Create one partner */
@@ -3636,6 +4176,8 @@ export type Mutation = {
   deleteDoc?: Maybe<Doc>;
   /** Delete one event from _all_ existing stages. Returns deleted document. */
   deleteEvent?: Maybe<Event>;
+  /** Delete one film from _all_ existing stages. Returns deleted document. */
+  deleteFilm?: Maybe<Film>;
   /** Delete one join_us from _all_ existing stages. Returns deleted document. */
   deleteJoin_us?: Maybe<Join_Us>;
   /**
@@ -3666,6 +4208,13 @@ export type Mutation = {
   deleteManyEvents: BatchPayload;
   /** Delete many Event documents, return deleted documents */
   deleteManyEventsConnection: EventConnection;
+  /**
+   * Delete many Film documents
+   * @deprecated Please use the new paginated many mutation (deleteManyFilmsConnection)
+   */
+  deleteManyFilms: BatchPayload;
+  /** Delete many Film documents, return deleted documents */
+  deleteManyFilmsConnection: FilmConnection;
   /**
    * Delete many Join_us documents
    * @deprecated Please use the new paginated many mutation (deleteManyJoin_ussConnection)
@@ -3703,6 +4252,8 @@ export type Mutation = {
   publishDoc?: Maybe<Doc>;
   /** Publish one event */
   publishEvent?: Maybe<Event>;
+  /** Publish one film */
+  publishFilm?: Maybe<Film>;
   /** Publish one join_us */
   publishJoin_us?: Maybe<Join_Us>;
   /**
@@ -3733,6 +4284,13 @@ export type Mutation = {
   publishManyEvents: BatchPayload;
   /** Publish many Event documents */
   publishManyEventsConnection: EventConnection;
+  /**
+   * Publish many Film documents
+   * @deprecated Please use the new paginated many mutation (publishManyFilmsConnection)
+   */
+  publishManyFilms: BatchPayload;
+  /** Publish many Film documents */
+  publishManyFilmsConnection: FilmConnection;
   /**
    * Publish many Join_us documents
    * @deprecated Please use the new paginated many mutation (publishManyJoin_ussConnection)
@@ -3766,6 +4324,8 @@ export type Mutation = {
   schedulePublishDoc?: Maybe<Doc>;
   /** Schedule to publish one event */
   schedulePublishEvent?: Maybe<Event>;
+  /** Schedule to publish one film */
+  schedulePublishFilm?: Maybe<Film>;
   /** Schedule to publish one join_us */
   schedulePublishJoin_us?: Maybe<Join_Us>;
   /** Schedule to publish one partner */
@@ -3780,6 +4340,8 @@ export type Mutation = {
   scheduleUnpublishDoc?: Maybe<Doc>;
   /** Unpublish one event from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishEvent?: Maybe<Event>;
+  /** Unpublish one film from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishFilm?: Maybe<Film>;
   /** Unpublish one join_us from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishJoin_us?: Maybe<Join_Us>;
   /** Unpublish one partner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -3794,6 +4356,8 @@ export type Mutation = {
   unpublishDoc?: Maybe<Doc>;
   /** Unpublish one event from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishEvent?: Maybe<Event>;
+  /** Unpublish one film from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishFilm?: Maybe<Film>;
   /** Unpublish one join_us from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishJoin_us?: Maybe<Join_Us>;
   /**
@@ -3824,6 +4388,13 @@ export type Mutation = {
   unpublishManyEvents: BatchPayload;
   /** Find many Event documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyEventsConnection: EventConnection;
+  /**
+   * Unpublish many Film documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyFilmsConnection)
+   */
+  unpublishManyFilms: BatchPayload;
+  /** Find many Film documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyFilmsConnection: FilmConnection;
   /**
    * Unpublish many Join_us documents
    * @deprecated Please use the new paginated many mutation (unpublishManyJoin_ussConnection)
@@ -3857,6 +4428,8 @@ export type Mutation = {
   updateDoc?: Maybe<Doc>;
   /** Update one event */
   updateEvent?: Maybe<Event>;
+  /** Update one film */
+  updateFilm?: Maybe<Film>;
   /** Update one join_us */
   updateJoin_us?: Maybe<Join_Us>;
   /**
@@ -3887,6 +4460,13 @@ export type Mutation = {
   updateManyEvents: BatchPayload;
   /** Update many Event documents */
   updateManyEventsConnection: EventConnection;
+  /**
+   * Update many films
+   * @deprecated Please use the new paginated many mutation (updateManyFilmsConnection)
+   */
+  updateManyFilms: BatchPayload;
+  /** Update many Film documents */
+  updateManyFilmsConnection: FilmConnection;
   /**
    * Update many join_uss
    * @deprecated Please use the new paginated many mutation (updateManyJoin_ussConnection)
@@ -3922,6 +4502,8 @@ export type Mutation = {
   upsertDoc?: Maybe<Doc>;
   /** Upsert one event */
   upsertEvent?: Maybe<Event>;
+  /** Upsert one film */
+  upsertFilm?: Maybe<Film>;
   /** Upsert one join_us */
   upsertJoin_us?: Maybe<Join_Us>;
   /** Upsert one partner */
@@ -3948,6 +4530,11 @@ export type MutationCreateDocArgs = {
 
 export type MutationCreateEventArgs = {
   data: EventCreateInput;
+};
+
+
+export type MutationCreateFilmArgs = {
+  data: FilmCreateInput;
 };
 
 
@@ -3988,6 +4575,11 @@ export type MutationDeleteDocArgs = {
 
 export type MutationDeleteEventArgs = {
   where: EventWhereUniqueInput;
+};
+
+
+export type MutationDeleteFilmArgs = {
+  where: FilmWhereUniqueInput;
 };
 
 
@@ -4053,6 +4645,21 @@ export type MutationDeleteManyEventsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<EventManyWhereInput>;
+};
+
+
+export type MutationDeleteManyFilmsArgs = {
+  where?: InputMaybe<FilmManyWhereInput>;
+};
+
+
+export type MutationDeleteManyFilmsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FilmManyWhereInput>;
 };
 
 
@@ -4153,6 +4760,15 @@ export type MutationPublishEventArgs = {
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
   to?: Array<Stage>;
   where: EventWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationPublishFilmArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  to?: Array<Stage>;
+  where: FilmWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -4258,6 +4874,30 @@ export type MutationPublishManyEventsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<EventManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationPublishManyFilmsArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<FilmManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationPublishManyFilmsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<FilmManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -4396,6 +5036,17 @@ export type MutationSchedulePublishEventArgs = {
 };
 
 
+export type MutationSchedulePublishFilmArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: FilmWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
 export type MutationSchedulePublishJoin_UsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -4469,6 +5120,16 @@ export type MutationScheduleUnpublishEventArgs = {
 };
 
 
+export type MutationScheduleUnpublishFilmArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where: FilmWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishJoin_UsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -4528,6 +5189,14 @@ export type MutationUnpublishEventArgs = {
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: EventWhereUniqueInput;
+};
+
+
+export type MutationUnpublishFilmArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where: FilmWhereUniqueInput;
 };
 
 
@@ -4624,6 +5293,28 @@ export type MutationUnpublishManyEventsConnectionArgs = {
   stage?: InputMaybe<Stage>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<EventManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyFilmsArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<FilmManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyFilmsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<FilmManyWhereInput>;
 };
 
 
@@ -4733,6 +5424,12 @@ export type MutationUpdateEventArgs = {
 };
 
 
+export type MutationUpdateFilmArgs = {
+  data: FilmUpdateInput;
+  where: FilmWhereUniqueInput;
+};
+
+
 export type MutationUpdateJoin_UsArgs = {
   data: Join_UsUpdateInput;
   where: Join_UsWhereUniqueInput;
@@ -4804,6 +5501,23 @@ export type MutationUpdateManyEventsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<EventManyWhereInput>;
+};
+
+
+export type MutationUpdateManyFilmsArgs = {
+  data: FilmUpdateManyInput;
+  where?: InputMaybe<FilmManyWhereInput>;
+};
+
+
+export type MutationUpdateManyFilmsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  data: FilmUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FilmManyWhereInput>;
 };
 
 
@@ -4897,6 +5611,12 @@ export type MutationUpsertDocArgs = {
 export type MutationUpsertEventArgs = {
   upsert: EventUpsertInput;
   where: EventWhereUniqueInput;
+};
+
+
+export type MutationUpsertFilmArgs = {
+  upsert: FilmUpsertInput;
+  where: FilmWhereUniqueInput;
 };
 
 
@@ -6033,6 +6753,14 @@ export type Query = {
   events: Array<Event>;
   /** Retrieve multiple events using the Relay connection interface */
   eventsConnection: EventConnection;
+  /** Retrieve a single film */
+  film?: Maybe<Film>;
+  /** Retrieve document version */
+  filmVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple films */
+  films: Array<Film>;
+  /** Retrieve multiple films using the Relay connection interface */
+  filmsConnection: FilmConnection;
   /** Retrieve a single join_us */
   join_us?: Maybe<Join_Us>;
   /** Retrieve document version */
@@ -6235,6 +6963,44 @@ export type QueryEventsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: Stage;
   where?: InputMaybe<EventWhereInput>;
+};
+
+
+export type QueryFilmArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: FilmWhereUniqueInput;
+};
+
+
+export type QueryFilmVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryFilmsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<FilmOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<FilmWhereInput>;
+};
+
+
+export type QueryFilmsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<FilmOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<FilmWhereInput>;
 };
 
 
@@ -6569,7 +7335,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = About | Asset | Doc | Event | Join_Us | Partner | Workshop;
+export type ScheduledOperationAffectedDocument = About | Asset | Doc | Event | Film | Join_Us | Partner | Workshop;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -8918,6 +9684,13 @@ export type AssetsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AssetsQueryQuery = { __typename?: 'Query', assets: Array<{ __typename?: 'Asset', id: string, url: string, width?: number | null, height?: number | null, fileName: string }> };
 
+export type FilmQueryQueryVariables = Exact<{
+  locale: Locale;
+}>;
+
+
+export type FilmQueryQuery = { __typename?: 'Query', film?: { __typename?: 'Film', title?: string | null, links: Array<string>, description?: { __typename?: 'RichText', raw: any } | null } | null };
+
 
 export const DocsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"DocsQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"doc"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clwchj88i4bkj07upbsdpxkds","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"coockies"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"private_policy"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"regulation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}}]}}]}}]} as unknown as DocumentNode<DocsQueryQuery, DocsQueryQueryVariables>;
 export const EditionQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"EditionQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"edition"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"edition"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"new"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"edition"}},{"kind":"Field","name":{"kind":"Name","value":"location"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"singUpLink"}},{"kind":"Field","name":{"kind":"Name","value":"lead"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fileName"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"speakers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"alternativePosition"}},{"kind":"Field","name":{"kind":"Name","value":"linkedIn"}},{"kind":"Field","name":{"kind":"Name","value":"photo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fileName"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"gallery"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"assetsConnection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"galleryEvent_every"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"edition"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aggregate"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]}}]} as unknown as DocumentNode<EditionQueryQuery, EditionQueryQueryVariables>;
@@ -8930,3 +9703,4 @@ export const WorkshopsQueryDocument = {"kind":"Document","definitions":[{"kind":
 export const WorkshopsRoutesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"WorkshopsRoutes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"workshops"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"stage"},"value":{"kind":"EnumValue","value":"PUBLISHED"}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"EnumValue","value":"createdAt_DESC"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<WorkshopsRoutesQuery, WorkshopsRoutesQueryVariables>;
 export const AboutQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AboutQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"about"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clw6y1gcx6my207w6oxtppa4c","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"malgosia_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"malgosia_image"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]}}]} as unknown as DocumentNode<AboutQueryQuery, AboutQueryQueryVariables>;
 export const AssetsQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AssetsQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assets"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fileName"},"value":{"kind":"StringValue","value":"attachment.jpeg","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]} as unknown as DocumentNode<AssetsQueryQuery, AssetsQueryQueryVariables>;
+export const FilmQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FilmQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locale"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"film"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"cm3syw0rr3eh907urd5rupbcm","block":false}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locales"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"locale"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"raw"}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"}}]}}]}}]} as unknown as DocumentNode<FilmQueryQuery, FilmQueryQueryVariables>;

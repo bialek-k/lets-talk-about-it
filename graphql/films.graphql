@@ -1,0 +1,9 @@
+query FilmQuery($locale: Locale!) {
+  film(where:  {id: "cm3syw0rr3eh907urd5rupbcm"} locales: [$locale]) {
+    title
+    description {
+      raw
+    }
+    links
+  }
+}
