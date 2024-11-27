@@ -5,7 +5,7 @@ import { FilmQueryDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
-const Partners = async ({
+const Films = async ({
   params: { locale },
 }: {
   params: { locale: string };
@@ -52,4 +52,4 @@ const Partners = async ({
   );
 };
 
-export default Partners;
+export default Films;

@@ -1,6 +1,6 @@
 import Header from '@/components/Header/Header';
 
-const PartnersLayout =({
+const FilmsLayout =({
   children,
   params: { locale },
 }: {
@@ -15,4 +15,4 @@ const PartnersLayout =({
   );
 }
 
-export default PartnersLayout;
+export default FilmsLayout;
