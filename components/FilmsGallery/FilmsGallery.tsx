@@ -1,19 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import 'photoswipe/style.css';
-import Image from 'next/image';
 
 interface GalleryProps {
   links?: string[];
 }
-[];
 
-const Gallery = ({ links }: GalleryProps) => {
+const FilmsGallery = ({ links }: GalleryProps) => {
   const galleryRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
@@ -60,16 +56,17 @@ const Gallery = ({ links }: GalleryProps) => {
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 justify-items-center w-full gap-5">
         {galleryData.map((link, index) => (
-          <iframe
-            className="h-[300px]"
-            key={index}
-            src={`https://www.youtube.com/embed/${link}`}
-            frameBorder="0"
-            // height="100%"
-            width="100%"
-            loading="lazy"
-            allowFullScreen
-          ></iframe>
+          <div key={index} className="relative w-full pb-[75%]">
+            <iframe
+              className="absolute w-full h-full"
+              src={`https://www.youtube.com/embed/${link}`}
+              frameBorder="0"
+              width={560}
+              height={315}
+              loading="lazy"
+              allowFullScreen
+            ></iframe>
+          </div>
         ))}
       </div>
 
@@ -95,4 +92,4 @@ const Gallery = ({ links }: GalleryProps) => {
   );
 };
 
-export default Gallery;
+export default FilmsGallery;
