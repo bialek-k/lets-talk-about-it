@@ -103,7 +103,7 @@ const RootLayout = async ({
 
   return (
     <html lang={locale} dir={dir(locale)} className={ibm.className}>
-      <body className={`${ibm} overflow-x-hidden flex flex-col items-center`}>
+      <body className={`overflow-x-hidden flex flex-col items-center`}>
         <TranslationsProvider
           namespaces={i18nNamespaces}
           locale={locale}
