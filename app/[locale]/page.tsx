@@ -95,7 +95,7 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
                 />
                 <Youtube
                   className="size-6"
-                  href="https://www.youtube.com/@LetstalkTPoland"
+                  href="https://www.youtube.com/@_Lets_talk_about_IT"
                 />
               </div>
               <div className="ml-auto relative right-4 flex">

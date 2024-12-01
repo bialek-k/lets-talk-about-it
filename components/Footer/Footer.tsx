@@ -70,12 +70,10 @@ const Footer = (doc: DocsQueryQuery) => {
               className="size-8"
               href="https://www.linkedin.com/groups/14230011/"
             />
-            <Facebook
-              className="size-8"
-            />
+            <Facebook className="size-8" />
             <Youtube
               className="size-8"
-              href="https://www.youtube.com/@LetstalkTPoland"
+              href="https://www.youtube.com/@_Lets_talk_about_IT"
             />
           </div>
         </div>

@@ -201,12 +201,10 @@ const Header = ({
               className="size-6"
               href="https://www.linkedin.com/groups/14230011/"
             />
-            <Facebook
-              className="size-6"
-            />
+            <Facebook className="size-6" />
             <Youtube
               className="size-6"
-              href="https://www.youtube.com/@LetstalkTPoland"
+              href="https://www.youtube.com/@_Lets_talk_about_IT"
             />
           </div>
           <div className="hidden xl:flex">
