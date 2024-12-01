@@ -92,7 +92,6 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
                 />
                 <Facebook
                   className="size-6"
-                  href="https://www.facebook.com/groups/letstalkitpoland"
                 />
                 <Youtube
                   className="size-6"

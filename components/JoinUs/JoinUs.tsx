@@ -40,7 +40,7 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             small
             longText
             customClass="lg:mt-1"
-            navigateDirection="https://www.facebook.com/groups/letstalkitpoland"
+            navigateDirection="/"
           />
         )}
         {join_us?.youtube_description && (

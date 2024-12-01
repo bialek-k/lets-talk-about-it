@@ -72,7 +72,6 @@ const Footer = (doc: DocsQueryQuery) => {
             />
             <Facebook
               className="size-8"
-              href="https://www.facebook.com/groups/letstalkitpoland"
             />
             <Youtube
               className="size-8"

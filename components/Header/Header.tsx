@@ -203,7 +203,6 @@ const Header = ({
             />
             <Facebook
               className="size-6"
-              href="https://www.facebook.com/groups/letstalkitpoland"
             />
             <Youtube
               className="size-6"

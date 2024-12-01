@@ -192,10 +192,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                 className="size-8"
                 href="https://www.linkedin.com/groups/14230011/"
               />
-              <Facebook
-                className="size-8"
-                href="https://www.facebook.com/groups/letstalkitpoland"
-              />
+              <Facebook className="size-8" />
               <Youtube
                 className="size-8"
                 href="https://www.youtube.com/@LetstalkTPoland"
