@@ -50,7 +50,7 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             small
             longText
             customClass={locale === 'en' ? 'mt-1 lg:mt-1' : 'mt-[6px] lg:mt-0'}
-            navigateDirection="https://www.youtube.com/@LetstalkTPoland"
+            navigateDirection="https://www.youtube.com/@_Lets_talk_about_IT"
           />
         )}
       </div>
