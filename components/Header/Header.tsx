@@ -13,7 +13,6 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import ChevronIcon from '@/IconsSVG/ChevronIcon';
 import Linkedin from '../Linkedin/Linkedin';
-import Facebook from '../Facebook/Facebook';
 import Youtube from '../Youtube/Youtube';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import toRoman from '../UI/NumberToRoman';
@@ -201,7 +200,6 @@ const Header = ({
               className="size-6"
               href="https://www.linkedin.com/groups/14230011/"
             />
-            <Facebook className="size-6" />
             <Youtube
               className="size-6"
               href="https://www.youtube.com/@_Lets_talk_about_IT"

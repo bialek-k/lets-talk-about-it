@@ -1,7 +1,6 @@
 'use client';
 
 import MainLogoIcon from '@/IconsSVG/MainLogoIcon';
-import Facebook from '../Facebook/Facebook';
 import Linkedin from '../Linkedin/Linkedin';
 import Youtube from '../Youtube/Youtube';
 import Link from 'next/link';
@@ -70,7 +69,6 @@ const Footer = (doc: DocsQueryQuery) => {
               className="size-8"
               href="https://www.linkedin.com/groups/14230011/"
             />
-            <Facebook className="size-8" />
             <Youtube
               className="size-8"
               href="https://www.youtube.com/@_Lets_talk_about_IT"

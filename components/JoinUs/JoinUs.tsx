@@ -4,7 +4,6 @@ import { PageTitle } from '../UI/PageTitle';
 import { JoinUsQueryQuery } from '@/graphql/generated';
 import { JoinUsItem } from './JoinUsItem';
 import LinkedinIcon_yellow from '@/IconsSVG/LinkedinIcon_yellow';
-import FacebookIcon_yellow from '@/IconsSVG/FacebookIcon_yellow';
 import YoutubeIcon_yellow from '@/IconsSVG/YoutubeIcon_yellow';
 import { useTranslation } from 'react-i18next';
 
@@ -31,16 +30,6 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             longText
             customClass={locale === 'en' ? 'lg:pb-[20px]' : ''}
             navigateDirection="https://www.linkedin.com/groups/14230011/"
-          />
-        )}
-        {join_us?.facebook_description && (
-          <JoinUsItem
-            social={join_us.facebook_description.raw}
-            icon={<FacebookIcon_yellow />}
-            small
-            longText
-            customClass="lg:mt-1"
-            navigateDirection="/"
           />
         )}
         {join_us?.youtube_description && (
