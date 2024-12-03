@@ -6,7 +6,6 @@ import Link from 'next/link';
 import ChevronIcon from '@/IconsSVG/ChevronIcon';
 import { fetchEvents } from '@/routes/routes';
 import Linkedin from '../Linkedin/Linkedin';
-import Facebook from '../Facebook/Facebook';
 import Youtube from '../Youtube/Youtube';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -192,7 +191,6 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                 className="size-8"
                 href="https://www.linkedin.com/groups/14230011/"
               />
-              <Facebook className="size-8" />
               <Youtube
                 className="size-8"
                 href="https://www.youtube.com/@_Lets_talk_about_IT"

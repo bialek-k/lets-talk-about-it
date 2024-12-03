@@ -1,6 +1,5 @@
 import initTranslations from '@/app/i18n';
 import TranslationsProvider from '@/components/TranslationsProvider/TranslationProvider';
-import Facebook from '@/components/Facebook/Facebook';
 import Youtube from '@/components/Youtube/Youtube';
 import Linkedin from '@/components/Linkedin/Linkedin';
 import MainLogo from '@/components/MainLogo/MainLogo';
@@ -89,9 +88,6 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
                 <Linkedin
                   className="size-6"
                   href="https://www.linkedin.com/groups/14230011/"
-                />
-                <Facebook
-                  className="size-6"
                 />
                 <Youtube
                   className="size-6"
