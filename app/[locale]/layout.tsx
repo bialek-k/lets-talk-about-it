@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     images: [
       {
-        url: '/meta-image.png',
+        url: 'https://www.letstalkaboutit.pl/meta-image.png',
         width: 1200,
         height: 630,
         alt: "Let's Talk About IT",
