@@ -1,0 +1,17 @@
+# Block access to the .next directory
+User-agent: *
+Disallow: /.next/
+
+# Allow all web crawlers access to all content
+User-agent: *
+Disallow:
+
+# Block access to specific language directories
+User-agent: *
+Disallow: /en/private/
+Disallow: /pl/private/
+
+# Allow all web crawlers access to specific language directories
+User-agent: *
+Allow: /en/
+Allow: /pl/
