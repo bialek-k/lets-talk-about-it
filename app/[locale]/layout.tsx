@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "Let's Talk About IT",
   description: "Witaj na Let's talk about IT",
   keywords: [
+    'letstalkaboutit',
+    "let's talk about it",
+    "let's talk about it blog",
+    "let's talk about it artykuły",
     'IT',
     'programowanie',
     'technologia',
