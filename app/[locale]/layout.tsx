@@ -63,6 +63,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  verification: {
+    google: 'WC6CBGcV2Xyo5_E5rhAAr-PxT0kRm9PPvjh-jBdnW8E',
+  },
 };
 
 const ibm = IBM_Plex_Sans({
