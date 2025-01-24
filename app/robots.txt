@@ -15,3 +15,5 @@ Disallow: /pl/private/
 User-agent: *
 Allow: /en/
 Allow: /pl/
+
+Sitemap: https://www.letstalkaboutit.pl/sitemap.xml
