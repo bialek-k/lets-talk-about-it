@@ -39,17 +39,6 @@ const sitemap = async ({
       priority: 1,
     },
     {
-      url: 'https://www.letstalkaboutit.pl/#about',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      alternates: {
-        languages: {
-          en: 'https://www.letstalkaboutit.pl/en',
-        },
-      },
-      priority: 0.8,
-    },
-    {
       url: 'https://www.letstalkaboutit.pl/films',
       lastModified: new Date(),
       changeFrequency: 'weekly',
