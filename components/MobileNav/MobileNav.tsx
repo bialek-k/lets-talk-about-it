@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import MainLogo from '../MainLogo/MainLogo';
 import toRoman from '../UI/NumberToRoman';
 import { usePathname } from 'next/navigation';
+import Instagram from '../Instagram/Instagram';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -108,7 +109,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                         }`}
                         onClick={() => setIsOpen(false)}
                         href={route.path ?? ''}
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer canonical"
                       >
                         {t(route.name ?? '')}
                       </Link>
@@ -165,7 +166,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                                     : 'text-main-white'
                                 } `}
                                 href={subRoute.path ?? '#'}
-                                rel="noopener noreferrer"
+                                rel="noopener noreferrer canonical"
                                 onClick={() => setIsOpen(false)}
                               >
                                 {subRoute.name.includes('event')
@@ -194,6 +195,10 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
               <Youtube
                 className="size-8"
                 href="https://www.youtube.com/@_Lets_talk_about_IT"
+              />
+              <Instagram
+                className="size-8"
+                href="https://www.instagram.com/lets_talk_about_it__"
               />
             </div>
             {/* LANGUAGE SWITCHER */}

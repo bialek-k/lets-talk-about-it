@@ -21,6 +21,7 @@ import {
 } from '@/graphql/generated';
 import { request } from '@/lib/request';
 import OpenNav from '@/components/OpenNav/OpenNav';
+import Instagram from '@/components/Instagram/Instagram';
 
 const i18nNamespaces = ['home'];
 
@@ -92,6 +93,10 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
                 <Youtube
                   className="size-6"
                   href="https://www.youtube.com/@_Lets_talk_about_IT"
+                />
+                <Instagram
+                  className="size-6"
+                  href="https://www.instagram.com/lets_talk_about_it__"
                 />
               </div>
               <div className="ml-auto relative right-4 flex">

@@ -9,7 +9,7 @@ const MainTitle = ({
 }) => {
   return (
     <div className="flex justify-center flex-col items-center mx-auto w-full mb-5">
-      <h2
+      <h1
         className={`font-medium text-[32px] leading-[43px] mt-5 text-center ${
           events
             ? 'lg:leading-[83px] lg:text-[64px] '
@@ -17,7 +17,7 @@ const MainTitle = ({
         }`}
       >
         LET’S TALK ABOUT IT
-      </h2>
+      </h1>
       <div className="relative flex justify-center">
         <div
           className={`absolute top-[-5px] left-[-10px] w-[13px] lg:h-[38px] h-[15px] ${

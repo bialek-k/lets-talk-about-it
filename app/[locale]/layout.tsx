@@ -14,9 +14,9 @@ import { request } from '@/lib/request';
 import { DocsQueryDocument } from '@/graphql/generated';
 
 export const metadata: Metadata = {
-  title: "Let's Talk About IT",
+  title: 'LET’S TALK ABOUT IT - www.letstalkaboutit.pl',
   description:
-    'Najlepsza społeczność i ogólnopolskie konferencje na żywo dla IT',
+    'Najlepsza społeczność i ogólnopolskie konferencje na żywo dla IT. Join us to rock IT!',
   keywords: [
     'letstalkaboutit',
     'lets talk about it',
@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     'grupa IT',
     'relacje IT',
     'networking IT',
+    'wydarzenia dla IT',
+    'IT community',
+    'Największe konferencje IT w Polsce',
+    'Największe wydarzenia IT w Polsce',
+    'Największa społeczność IT w Polsce',
   ],
   robots: 'index, follow',
   authors: [

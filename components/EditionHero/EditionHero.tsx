@@ -60,9 +60,9 @@ const EditionHero = async ({
         <LinesPattern fill="#0C0C0C" />
       </div>
       <div className="self-start flex flex-col lg:flex-row justify-center lg:items-center mt-10 mb-5 lg:mt-20 lg:mb-10 lg:gap-5">
-        <h1 className="text-[32px] lg:text-[48px] lg:leading-[62px] leading-[42px] font-semibold">
+        <h2 className="text-[32px] lg:text-[48px] lg:leading-[62px] leading-[42px] font-semibold">
           {t('Events')}
-        </h1>
+        </h2>
         {edition?.new ? (
           <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
             {t('invite')} {toRoman(parseInt(edition?.edition ?? ''))}{' '}
