@@ -45,8 +45,8 @@ const Partners = async ({
               <div className="pt-8 flex gap-2">
                 <EnvelopIconYellow />
                 <strong className="text-main-yellow">
-                  <a href="mailto:etstalkitpoland@gmail.com">
-                    letstalkitpoland@gmail.com
+                  <a href="mailto:contact@letstalkaboutit.pl">
+                    contact@letstalkaboutit.pl
                   </a>
                 </strong>
               </div>
@@ -90,10 +90,7 @@ const Partners = async ({
                 img?.height !== null ? img?.height : undefined;
 
               return (
-                <div
-                  key={`id:${img}`}
-                  className="py-4 flex items-center"
-                >
+                <div key={`id:${img}`} className="py-4 flex items-center">
                   <Image
                     alt={img.fileName}
                     src={img.url}

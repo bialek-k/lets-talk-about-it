@@ -15,7 +15,7 @@ export const PageTitle = ({
 }: PageTitleProps) => {
   return (
     <div className="pt-6">
-      <h1
+      <h2
         className={`${
           small ? '' : 'md:uppercase'
         } text-[40px] lg:text-[48px] leading-[52px] lg:leading-[62px] font-semibold lg:font-bold mb-6 ${
@@ -23,7 +23,7 @@ export const PageTitle = ({
         }`}
       >
         {title}
-      </h1>
+      </h2>
       <p className="text-[24px] font-semibold">{subtitle}</p>
     </div>
   );

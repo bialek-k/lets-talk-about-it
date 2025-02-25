@@ -13,6 +13,7 @@ import { useState } from 'react';
 
 import { Data } from '@/components/Modal/Modal';
 import BackToTop from '@/IconsSVG/BackToTop';
+import Instagram from '../Instagram/Instagram';
 
 const Footer = (doc: DocsQueryQuery) => {
   const { t } = useTranslation();
@@ -73,6 +74,10 @@ const Footer = (doc: DocsQueryQuery) => {
               className="size-8"
               href="https://www.youtube.com/@_Lets_talk_about_IT"
             />
+            <Instagram
+              className="size-8"
+              href="https://www.instagram.com/lets_talk_about_it__"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-center max-w-[530px] mr-auto lg:mr-0 lg:border-r lg:border-l desktop-media-max:border-b border-solid border-main-black py-4 desktop-media-max:border-t lg:px-[100px]">
@@ -81,10 +86,10 @@ const Footer = (doc: DocsQueryQuery) => {
           <p className="font-normal text-base">{t('contactUs')}</p>
           <a
             className="font-normal text-base flex items-center gap-4 flex-wrap sm:flex-nowrap mt-6"
-            href="mailto:letstalkitpoland@gmail.com"
+            href="mailto:contact@letstalkaboutit.pl"
           >
             <EnvelopeIcon />
-            letstalkitpoland@gmail.com
+            contact@letstalkaboutit.pl
           </a>
         </div>
         <div className="flex flex-col lg:items-start lg:pl-[100px] justify-center mr-auto lg:mr-0  lg:pt-4 lg:max-w-[390px] lg:w-full">

@@ -23,7 +23,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <div className="bg-main-white rounded-xl">
-      <Link href={href} target={target} rel="noopener noreferrer">
+      <Link href={href} target={target} rel="noopener noreferrer canonical">
         <motion.button
           className={`font-semibold text-2xl px-[59.5px] py-[14.5px] rounded-xl ${buttonColor} ${backgroundColor}`}
           initial={{ y: '-6px', x: '6px' }}

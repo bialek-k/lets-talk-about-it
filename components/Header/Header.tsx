@@ -18,6 +18,7 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import toRoman from '../UI/NumberToRoman';
 import { usePathname } from 'next/navigation';
 import OpenNav from '../OpenNav/OpenNav';
+import Instagram from '../Instagram/Instagram';
 
 interface Route {
   path?: string;
@@ -203,6 +204,10 @@ const Header = ({
             <Youtube
               className="size-6"
               href="https://www.youtube.com/@_Lets_talk_about_IT"
+            />
+            <Instagram
+              className="size-6"
+              href="https://www.instagram.com/lets_talk_about_it__"
             />
           </div>
           <div className="hidden xl:flex">
