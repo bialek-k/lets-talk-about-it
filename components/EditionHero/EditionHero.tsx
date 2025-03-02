@@ -80,7 +80,7 @@ const EditionHero = async ({
         {edition?.title}
       </h2>
       <Arrow />
-      {edition?.new ? (
+      {edition?.singUpLink ? (
         <div className="mt-5">
           <Button
             target="_blank"

@@ -45,7 +45,7 @@ const LeadSection = async ({
       <div className="self-end invisible lg:visible absolute top-0 right-0">
         <LinesPattern fill="#0C0C0C" />
       </div>
-      
+
       {/* PROWADZĄCA */}
 
       <h2 className="my-10 mr-auto flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px]">
@@ -125,7 +125,7 @@ const LeadSection = async ({
           </div>
         ))}
       </div>
-      {edition?.new && (
+      {edition?.singUpLink && (
         <div className="flex flex-col items-center">
           <Arrow />
           <div className="mt-5">
