@@ -24,6 +24,7 @@ const config: Config = {
       },
       screens: {
         'desktop-media-max': { max: '1023px' }, // => @media (max-width: 1023px)
+        desktop: '1280px',
       },
     },
   },
