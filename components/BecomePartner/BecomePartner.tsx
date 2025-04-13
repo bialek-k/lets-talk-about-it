@@ -1,10 +1,10 @@
 import { type PartnersQueryQuery } from '@/graphql/generated';
-import EnvelopIconYellow from '@/IconsSVG/EnvelopIcon_yellow';
+import EnvelopeIcon from '@/IconsSVG/EnvelopeIcon';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
 export const BecomePartner = (partner: PartnersQueryQuery) => {
   return (
-    <div className="border-b border-black border-solid pb-5 flex flex-col gap-5 desktop:border-b-0 desktop:border-r desktop:pb-0 desktop:pr-12">
+    <div className="border-b border-black border-solid pb-5 flex flex-col gap-5 desktop:border-b-0 desktop:pb-0 desktop:col-span-2">
       {partner?.partner?.title && (
         <h4 className="font-medium text-xl lg:mb-5">
           {partner?.partner?.title}
@@ -23,8 +23,8 @@ export const BecomePartner = (partner: PartnersQueryQuery) => {
               }}
             />
             <div className="flex gap-2 pt-5">
-              <EnvelopIconYellow />
-              <strong className="text-main-yellow">
+              <EnvelopeIcon />
+              <strong className="text-black font-normal">
                 <a href="mailto:contact@letstalkaboutit.pl">
                   contact@letstalkaboutit.pl
                 </a>

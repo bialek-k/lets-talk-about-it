@@ -43,11 +43,11 @@ const Footer = ({ doc, partner }: Props) => {
           <BackToTop />
         </button>
       </div>
-      <section className="flex flex-col items-start justify-center w-full px-4 gap-5 desktop:flex-row lg:px-0 desktop:gap-12 desktop:justify-between desktop:items-stretch">
+      <section className="grid gap-5 pl-4 self-start lg:pl-0 desktop:grid-cols-7 desktop:gap-">
         <BecomePartner partner={partner} />
         <div
           id="followUs"
-          className="border-b border-black border-solid pb-5 flex flex-col gap-5 desktop:border-b-0 desktop:border-r desktop:pb-0 desktop:pr-12"
+          className="border-b border-black border-solid pb-5 flex flex-col gap-5 desktop:border-b-0 desktop:border-l desktop:pb-0 desktop:pl-10 desktop:col-span-2"
         >
           <h4 className="font-medium text-xl lg:mb-5">{t('followUs')}</h4>
           <p className="font-normal text-base">{t('socialMediaMessage')}</p>
@@ -66,19 +66,20 @@ const Footer = ({ doc, partner }: Props) => {
             />
           </div>
         </div>
-        <div className="border-b border-black border-solid pb-5 desktop:border-b-0 desktop:border-r desktop:pb-0 desktop:pr-12 ">
+        <div className="border-b border-black border-solid pb-5 desktop:border-b-0 desktop:border-x desktop:pb-0 desktop:pl-10 desktop:col-span-2">
           <h4 className="font-medium text-xl mb-5 ">{t('contact')}</h4>
           <p className="font-normal text-base">{t('haveQuestions')}</p>
           <p className="font-normal text-base">{t('contactUs')}</p>
-          <a
-            className="font-normal text-base flex items-center gap-4 flex-wrap sm:flex-nowrap mt-6"
-            href="mailto:contact@letstalkaboutit.pl"
-          >
+          <div className="flex gap-2 pt-5">
             <EnvelopeIcon />
-            contact@letstalkaboutit.pl
-          </a>
+            <strong className="text-black font-normal">
+              <a href="mailto:contact@letstalkaboutit.pl">
+                contact@letstalkaboutit.pl
+              </a>
+            </strong>
+          </div>
         </div>
-        <div className="">
+        <div className="border-black border-solid desktop:border- desktop:pl-5">
           <h4 className="font-medium text-xl mb-5 ">{t('links')}</h4>
           <div className="flex flex-col gap-5 justify-center">
             <PrivacyPolicy doc={doc} />
