@@ -148,7 +148,7 @@ const Header = ({
                       setSubMenuOpen(true);
                       setActiveMenu(route.name ?? '');
                     }}
-                    // onBlur={() => setSubMenuOpen(false)}
+                    onBlur={() => setSubMenuOpen(false)}
                   >
                     {t(route.name ?? '')}
                     <ChevronIcon
