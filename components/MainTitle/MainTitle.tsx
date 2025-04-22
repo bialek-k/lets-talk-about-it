@@ -28,7 +28,7 @@ const MainTitle = ({
         >
           <Pattern fill={fill} />
         </div>
-        <h3
+        <h2
           className={`font-normal text-base text-center leading-5 lg:text-5xl lg:leading-[62px] ${
             events
               ? 'lg:text-[32px] lg:leading-[42px]'
@@ -36,7 +36,7 @@ const MainTitle = ({
           }`}
         >
           Join us to rock IT
-        </h3>
+        </h2>
       </div>
     </div>
   );

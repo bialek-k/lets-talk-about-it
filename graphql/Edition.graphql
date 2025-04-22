@@ -16,7 +16,6 @@ query EditionQuery(
         id
         name
         position
-        alternativePosition
         linkedIn
         photo(locales: en) {
           fileName
@@ -31,7 +30,6 @@ query EditionQuery(
         id
         name
         position
-        alternativePosition
         linkedIn
         photo(locales: en) {
           fileName

@@ -27,8 +27,7 @@ type Workshop = {
   };
   lead: {
     name: string;
-    position: string;
-    alternativePosition: string;
+    position: string[];
     photo: {
       url: string;
       width: number;

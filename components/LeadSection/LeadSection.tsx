@@ -11,8 +11,7 @@ const LeadSection = async ({
   edition: {
     lead: {
       name: string;
-      position: string;
-      alternativePosition: string;
+      position: string[];
       photo: {
         url: string;
         width: number;
@@ -22,8 +21,7 @@ const LeadSection = async ({
     }[];
     speakers: {
       name: string;
-      position: string;
-      alternativePosition: string;
+      position: string[];
       photo: {
         url: string;
         width: number;
@@ -68,12 +66,12 @@ const LeadSection = async ({
                   -bottom-[2px] z-1 w-full"
                   />
                 </div>
-                <p className=" font-normal text-lg leading-6">
-                  {leader.position}
-                </p>
-                <p className=" font-normal text-lg leading-6">
-                  {leader.alternativePosition}
-                </p>
+
+                {leader.position.map((pos, index) => (
+                  <p key={index} className="font-normal text-lg leading-6">
+                    {pos}
+                  </p>
+                ))}
               </div>
               <div>
                 <ImageContainer
@@ -108,12 +106,14 @@ const LeadSection = async ({
                 -bottom-[2px] z-1 w-full"
                 />
               </div>
-              <p className=" font-normal text-lg leading-6 break-words">
-                {speaker.position}
-              </p>
-              <p className=" font-normal text-lg leading-6">
-                {speaker.alternativePosition}
-              </p>
+              {speaker.position.map((pos, index) => (
+                <p
+                  key={index}
+                  className=" font-normal text-lg leading-6 break-words"
+                >
+                  {pos}
+                </p>
+              ))}
             </div>
             <div>
               <ImageContainer

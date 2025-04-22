@@ -16,8 +16,7 @@ type Edition = {
   title: string;
   lead: {
     name: string;
-    position: string;
-    alternativePosition: string;
+    position: string[];
     photo: {
       url: string;
       width: number;
@@ -28,8 +27,7 @@ type Edition = {
   }[];
   speakers: {
     name: string;
-    position: string;
-    alternativePosition: string;
+    position: string[];
     photo: {
       url: string;
       width: number;

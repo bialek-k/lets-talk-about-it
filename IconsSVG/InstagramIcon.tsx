@@ -10,18 +10,18 @@ const InstagramIcon = () => (
     <g transform="translate(-44.8,-44.8) scale(1.35,1.35)">
       <g
         fill="none"
-        fill-rule="nonzero"
+        fillRule="nonzero"
         stroke="none"
         strokeWidth="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        stroke-miterlimit="10"
-        stroke-dasharray=""
-        stroke-dashoffset="0"
-        font-family="none"
-        font-weight="none"
-        font-size="none"
-        text-anchor="none"
+        strokeMiterlimit="10"
+        strokeDasharray=""
+        strokeDashoffset="0"
+        fontFamily="none"
+        fontWeight="none"
+        fontSize="none"
+        textAnchor="none"
       >
         <g transform="scale(5.33333,5.33333)">
           <path

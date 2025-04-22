@@ -25,8 +25,7 @@ const WorkshopsLead = async ({
     };
     lead: {
       name: string;
-      position: string;
-      alternativePosition: string;
+      position: string[];
       photo: {
         url: string;
         width: number;
@@ -121,12 +120,11 @@ const WorkshopsLead = async ({
                   -bottom-[2px] z-1 w-full"
                       />
                     </div>
-                    <p className=" font-normal text-lg leading-6">
-                      {leader.position}
-                    </p>
-                    <p className=" font-normal text-lg leading-6">
-                      {leader.alternativePosition}
-                    </p>
+                    {leader.position.map((pos, index) => (
+                      <p key={index} className="font-normal text-lg leading-6">
+                        {pos}
+                      </p>
+                    ))}
                   </div>
                   <div className="w-full">
                     <ImageContainer

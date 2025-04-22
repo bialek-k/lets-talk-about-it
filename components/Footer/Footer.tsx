@@ -6,37 +6,19 @@ import Youtube from '../Youtube/Youtube';
 import Link from 'next/link';
 import EnvelopeIcon from '@/IconsSVG/EnvelopeIcon';
 import { useTranslation } from 'react-i18next';
-import { DocsQueryQuery } from '@/graphql/generated';
-
-import { MapWindow } from '@/components/Modal/Modal';
-import { useState } from 'react';
-
-import { Data } from '@/components/Modal/Modal';
+import { DocsQueryQuery, type PartnersQueryQuery } from '@/graphql/generated';
 import BackToTop from '@/IconsSVG/BackToTop';
 import Instagram from '../Instagram/Instagram';
+import { BecomePartner } from '@/components/BecomePartner/BecomePartner';
+import { PrivacyPolicy } from '@/components/PrivacyPolicy/PrivacyPolicy';
 
-const Footer = (doc: DocsQueryQuery) => {
+interface Props {
+  doc?: DocsQueryQuery['doc'] | null;
+  partner?: PartnersQueryQuery['partner'] | null;
+}
+
+const Footer = ({ doc, partner }: Props) => {
   const { t } = useTranslation();
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [modalData, setModalData] = useState<Data | undefined>();
-
-  const modalOpenHandler = (title: string) => {
-    if (title === 'regulations') {
-      setModalData({
-        title: 'Regulamin',
-        content: doc?.doc?.regulation.raw,
-      });
-      setIsOpen(true);
-    }
-    if (title === 'privacyPolicy') {
-      setModalData({
-        title: 'Polityka Prywatności',
-        content: doc?.doc?.private_policy.raw,
-      });
-      setIsOpen(true);
-    }
-  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -61,9 +43,13 @@ const Footer = (doc: DocsQueryQuery) => {
           <BackToTop />
         </button>
       </div>
-      <section className=" flex flex-col items-start justify-center w-full px-4 gap-5 lg:flex-row lg:px-0 lg:gap-0 lg:justify-between ">
-        <div className="flex flex-col items-start justify-center gap-5 max-w-[530px] mr-auto lg:mr-0 lg:py-4 lg:pr-[100px] lg:max-w-[390px] lg:w-full">
-          <h4 className="font-medium text-2xl lg:mb-5">{t('followUs')}</h4>
+      <section className="grid gap-5 pl-4 self-start lg:pl-0 desktop:grid-cols-7 desktop:gap-">
+        <BecomePartner partner={partner} />
+        <div
+          id="followUs"
+          className="border-b border-black border-solid pb-5 flex flex-col gap-5 desktop:border-b-0 desktop:border-l desktop:pb-0 desktop:pl-10 desktop:col-span-2"
+        >
+          <h4 className="font-medium text-xl lg:mb-5">{t('followUs')}</h4>
           <p className="font-normal text-base">{t('socialMediaMessage')}</p>
           <div className="flex gap-6">
             <Linkedin
@@ -80,33 +66,23 @@ const Footer = (doc: DocsQueryQuery) => {
             />
           </div>
         </div>
-        <div className="flex flex-col items-start justify-center max-w-[530px] mr-auto lg:mr-0 lg:border-r lg:border-l desktop-media-max:border-b border-solid border-main-black py-4 desktop-media-max:border-t lg:px-[100px]">
-          <h4 className="font-medium text-2xl mb-5 lg:mb-10">{t('contact')}</h4>
+        <div className="border-b border-black border-solid pb-5 desktop:border-b-0 desktop:border-x desktop:pb-0 desktop:pl-10 desktop:col-span-2">
+          <h4 className="font-medium text-xl mb-5 ">{t('contact')}</h4>
           <p className="font-normal text-base">{t('haveQuestions')}</p>
           <p className="font-normal text-base">{t('contactUs')}</p>
-          <a
-            className="font-normal text-base flex items-center gap-4 flex-wrap sm:flex-nowrap mt-6"
-            href="mailto:contact@letstalkaboutit.pl"
-          >
+          <div className="flex gap-2 pt-5">
             <EnvelopeIcon />
-            contact@letstalkaboutit.pl
-          </a>
+            <strong className="text-black font-normal">
+              <a href="mailto:contact@letstalkaboutit.pl">
+                contact@letstalkaboutit.pl
+              </a>
+            </strong>
+          </div>
         </div>
-        <div className="flex flex-col lg:items-start lg:pl-[100px] justify-center mr-auto lg:mr-0  lg:pt-4 lg:max-w-[390px] lg:w-full">
-          <h4 className="font-medium text-2xl lg:mb-10 mb-5 ">{t('links')}</h4>
+        <div className="border-black border-solid desktop:border- desktop:pl-5">
+          <h4 className="font-medium text-xl mb-5 ">{t('links')}</h4>
           <div className="flex flex-col gap-5 justify-center">
-            <button
-              onClick={() => modalOpenHandler('regulations')}
-              className="text-left"
-            >
-              {t('regulations')}
-            </button>
-            <button
-              onClick={() => modalOpenHandler('privacyPolicy')}
-              className="text-left"
-            >
-              {t('privacyPolicy')}
-            </button>
+            <PrivacyPolicy doc={doc} />
             <Link
               href="/#about"
               rel="noopener noreferrer"
@@ -129,9 +105,6 @@ const Footer = (doc: DocsQueryQuery) => {
           <p className="font-normal text-base text-center">Vincent Słomiński</p>
         </div>
       </div>
-      {isOpen && (
-        <MapWindow isOpen={isOpen} setIsOpen={setIsOpen} data={modalData} />
-      )}
     </footer>
   );
 };

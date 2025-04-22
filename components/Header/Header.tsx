@@ -121,23 +121,36 @@ const Header = ({
                     } `}
                     href={route.path ?? '#'}
                     rel="noopener noreferrer"
+                    aria-label={t(route.name ?? '')}
                   >
                     {t(route.name ?? '')}
                   </Link>
                 ) : (
                   <div
-                    className={`flex flex-row items-center justify-between gap-2 ${
+                    className={`flex flex-row items-center justify-center gap-2 relative ${
                       currentPath.includes(route.name ?? '')
                         ? 'text-main-yellow'
                         : 'text-main-white'
                     }`}
+                    tabIndex={0}
+                    role="heading"
+                    aria-label={t(route.name ?? '')}
+                    aria-level={1}
                     onMouseEnter={() => {
                       setSubMenuOpen(true);
                       setActiveMenu(route.name ?? '');
                     }}
                     onMouseLeave={() => setSubMenuOpen(false)}
+                    onClick={() => {
+                      setSubMenuOpen(true);
+                    }}
+                    onFocus={() => {
+                      setSubMenuOpen(true);
+                      setActiveMenu(route.name ?? '');
+                    }}
+                    onBlur={() => setSubMenuOpen(false)}
                   >
-                    <p>{t(route.name ?? '')}</p>
+                    {t(route.name ?? '')}
                     <ChevronIcon
                       className={`transition-all duration-300 ${
                         isSubMenuOpen &&
@@ -145,52 +158,55 @@ const Header = ({
                         'rotate-180'
                       }`}
                     />
-                  </div>
-                )}
-                {/* SUBROUTE EVENTS */}
-                {route.content && activeMenu === route.name && (
-                  <AnimatePresence>
-                    {isSubMenuOpen && (
-                      <motion.div
-                        onMouseEnter={() => setSubMenuOpen(true)}
-                        onMouseLeave={() => setSubMenuOpen(false)}
-                        initial={{ opacity: 0, y: '-100%' }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: '-100%' }}
-                        transition={{ duration: 0.3 }}
-                        className="text-base font-normal flex flex-col items-center justify-center w-auto absolute top-9 border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
-                      >
-                        {route.content.map((subRoute, index) => (
+
+                    {/* SUBROUTE EVENTS */}
+                    {route.content && activeMenu === route.name && (
+                      <AnimatePresence>
+                        {isSubMenuOpen && (
                           <motion.div
+                            onMouseEnter={() => setSubMenuOpen(true)}
+                            onMouseLeave={() => setSubMenuOpen(false)}
                             initial={{ opacity: 0, y: '-100%' }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: '-100%' }}
-                            transition={{
-                              duration: 0.3,
-                              delay: index * 0.1,
-                            }}
-                            key={index}
+                            transition={{ duration: 0.3 }}
+                            className="text-base font-normal flex flex-col items-center justify-center w-max absolute top-10 border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
                           >
-                            <Link
-                              className={`border-b bg-main-black border-solid border-white h-[50px] w-max flex items-center ${
-                                currentPath.includes(subRoute.path)
-                                  ? 'text-main-yellow'
-                                  : 'text-main-white'
-                              }`}
-                              href={subRoute.path ?? '#'}
-                              rel="noopener noreferrer"
-                            >
-                              {subRoute.name.includes('event')
-                                ? `${t(subRoute.name.split(' ')[0])} ${toRoman(
-                                    parseInt(subRoute.name.split(' ')[1])
-                                  )}`
-                                : t(subRoute.name)}
-                            </Link>
+                            {route.content.map((subRoute, index) => (
+                              <motion.div
+                                initial={{ opacity: 0, y: '-100%' }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: '-100%' }}
+                                transition={{
+                                  duration: 0.3,
+                                  delay: index * 0.1,
+                                }}
+                                key={index}
+                              >
+                                <Link
+                                  className={`border-b bg-main-black border-solid border-white h-[50px] w-max flex items-center ${
+                                    currentPath.includes(subRoute.path)
+                                      ? 'text-main-yellow'
+                                      : 'text-main-white'
+                                  }`}
+                                  href={subRoute.path ?? '#'}
+                                  rel="noopener noreferrer"
+                                >
+                                  {subRoute.name.includes('event')
+                                    ? `${t(
+                                        subRoute.name.split(' ')[0]
+                                      )} ${toRoman(
+                                        parseInt(subRoute.name.split(' ')[1])
+                                      )}`
+                                    : t(subRoute.name)}
+                                </Link>
+                              </motion.div>
+                            ))}
                           </motion.div>
-                        ))}
-                      </motion.div>
+                        )}
+                      </AnimatePresence>
                     )}
-                  </AnimatePresence>
+                  </div>
                 )}
               </li>
             ))}

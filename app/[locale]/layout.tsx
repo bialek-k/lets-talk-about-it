@@ -11,7 +11,7 @@ const i18nNamespaces = ['home'];
 import { IBM_Plex_Sans } from 'next/font/google';
 
 import { request } from '@/lib/request';
-import { DocsQueryDocument } from '@/graphql/generated';
+import { DocsQueryDocument, PartnersQueryDocument } from '@/graphql/generated';
 
 export const metadata: Metadata = {
   title: 'LET’S TALK ABOUT IT - www.letstalkaboutit.pl',
@@ -82,6 +82,7 @@ const RootLayout = async ({
 }) => {
   const { resources } = await initTranslations(locale, i18nNamespaces);
   const { doc } = await request(DocsQueryDocument, { locale });
+  const { partner } = await request(PartnersQueryDocument, { locale });
 
   return (
     <html lang={locale} dir={dir(locale)} className={ibm.className}>
@@ -93,7 +94,7 @@ const RootLayout = async ({
         >
           <Header isMain locale={locale} />
           {children}
-          <Footer doc={doc} />
+          <Footer partner={partner} doc={doc} />
         </TranslationsProvider>
       </body>
     </html>

@@ -1,9 +1,7 @@
-import EnvelopIconYellow from '@/IconsSVG/EnvelopIcon_yellow';
 import LinesPattern from '@/IconsSVG/LinesPattern';
 import initTranslations from '@/app/i18n';
 import { PartnersQueryDocument } from '@/graphql/generated';
 import { request } from '@/lib/request';
-import { RichText } from '@graphcms/rich-text-react-renderer';
 import Image from 'next/image';
 
 const Partners = async ({
@@ -20,38 +18,6 @@ const Partners = async ({
       <div className="bg-main-black flex flex-col h-full md:px-24 justify-center md:pb-12 w-full max-w-[1440px]">
         <div className="hidden md:flex justify-end w-full top-24 right-0">
           <LinesPattern fill="white" />
-        </div>
-        <div className="px-6 md:px-0">
-          {partner?.title && (
-            <h1 className="text-main-white text-[32px] leading-[42px] font-semibold mb-5 mt-[30px]">
-              {partner?.title}
-            </h1>
-          )}
-        </div>
-
-        <div className="flex">
-          {partner?.description && (
-            <div className="md:max-w-full px-6 lg:px-0">
-              <RichText
-                content={partner?.description.raw}
-                renderers={{
-                  p: ({ children }) => (
-                    <p className="m-0 lg:text-2xl text-main-white">
-                      {children}
-                    </p>
-                  ),
-                }}
-              />
-              <div className="pt-8 flex gap-2">
-                <EnvelopIconYellow />
-                <strong className="text-main-yellow">
-                  <a href="mailto:contact@letstalkaboutit.pl">
-                    contact@letstalkaboutit.pl
-                  </a>
-                </strong>
-              </div>
-            </div>
-          )}
         </div>
 
         {/** MOBILE LOGOS */}

@@ -37,8 +37,7 @@ type NewEventHero = {
 type NewEventLead = {
   lead: {
     name: string;
-    position: string;
-    alternativePosition: string;
+    position: string[];
     photo: {
       url: string;
       width: number;
@@ -48,8 +47,7 @@ type NewEventLead = {
   }[];
   speakers: {
     name: string;
-    position: string;
-    alternativePosition: string;
+    position: string[];
     photo: {
       url: string;
       width: number;
