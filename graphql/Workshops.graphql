@@ -25,7 +25,6 @@ query WorkshopsQuery(
         id
         name
         position
-        alternativePosition
         linkedIn
         photo(locales: en) {
           fileName

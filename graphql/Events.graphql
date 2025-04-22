@@ -12,8 +12,7 @@ query NewEventQuery($locale: Locale!) {
       ... on Person {
         id
         name
-        position
-        alternativePosition
+        position      
         linkedIn
         photo(locales: en) {
           width
@@ -27,7 +26,6 @@ query NewEventQuery($locale: Locale!) {
         id
         name
         position
-        alternativePosition
         linkedIn
         photo(locales: en) {
           width
