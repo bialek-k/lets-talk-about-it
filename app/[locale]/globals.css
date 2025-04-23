@@ -8,6 +8,7 @@ html {
   font-size: 16px
 }
 
+
 @layer components {
     .hamburger > span {
         @apply bg-white w-5 h-[2px] relative inline-block rounded-full
