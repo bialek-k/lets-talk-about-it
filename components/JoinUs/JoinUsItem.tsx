@@ -9,6 +9,7 @@ interface JoinUsItemProps {
   longText: boolean;
   navigateDirection: string;
   customClass?: string;
+  label?: string;
 }
 
 export const JoinUsItem = ({
@@ -17,6 +18,7 @@ export const JoinUsItem = ({
   small,
   longText,
   navigateDirection,
+  label,
   customClass,
 }: JoinUsItemProps) => {
   return (
@@ -26,6 +28,7 @@ export const JoinUsItem = ({
           href={navigateDirection}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`Link do strony ${label}`}
         >
           {icon}
         </Link>

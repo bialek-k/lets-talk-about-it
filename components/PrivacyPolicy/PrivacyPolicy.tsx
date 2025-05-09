@@ -31,12 +31,14 @@ export const PrivacyPolicy = (doc: DocsQueryQuery) => {
     <>
       <>
         <button
+          aria-label="Otwórz regulamin"
           onClick={() => modalOpenHandler('regulations')}
           className="text-left"
         >
           {t('regulations')}
         </button>
         <button
+          aria-label="Otwórz politykę prywatności"
           onClick={() => modalOpenHandler('privacyPolicy')}
           className="text-left"
         >

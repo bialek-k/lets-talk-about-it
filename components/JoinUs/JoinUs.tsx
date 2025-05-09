@@ -24,6 +24,7 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
       <div className="flex flex-wrap md:flex-col-3 justify-center gap-6 lg:gap-20">
         {join_us?.linkedin_description && (
           <JoinUsItem
+            label="LinkedIn"
             social={join_us.linkedin_description.raw}
             icon={<LinkedinIcon_yellow />}
             small
@@ -34,6 +35,7 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
         )}
         {join_us?.youtube_description && (
           <JoinUsItem
+            label="YouTube"
             social={join_us.youtube_description.raw}
             icon={<YoutubeIcon_yellow />}
             small

@@ -39,8 +39,8 @@ const WorkshopsHero = async ({
     const remainingWords = wordsArray.join(' ');
     return (
       <>
-        <p>{remainingWords}</p>
-        <p>{lastWord}</p>
+        {remainingWords.length > 1 && <h2>{remainingWords}</h2>}
+        <h2>{lastWord}</h2>
       </>
     );
   };

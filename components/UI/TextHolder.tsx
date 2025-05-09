@@ -99,6 +99,8 @@ export const TextHolder = ({
       {readMore && (
         <button
           className={`${changeThemeTextColor()} w-full text-end mt-1`}
+          type="button"
+          aria-label={isExpanded ? t('readLess') : t('readMore')}
           onClick={toggleExpand}
         >
           {isExpanded ? t('readLess') : t('readMore')}

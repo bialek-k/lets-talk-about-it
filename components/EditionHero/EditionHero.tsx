@@ -40,8 +40,8 @@ const EditionHero = async ({
     const remainingWords = wordsArray.join(' ');
     return (
       <>
-        <p>{remainingWords}</p>
-        <p>{lastWord}</p>
+        {remainingWords.length > 1 && <h2>{remainingWords}</h2>}
+        <h2>{lastWord}</h2>
       </>
     );
   };
@@ -75,7 +75,7 @@ const EditionHero = async ({
           </h2>
         )}
       </div>
-      <MainTitle fill="#0C0C0C" events />
+      <MainTitle fill="#0C0C0C" events {...(isMain ? { isMain } : {})} />
       <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-normal lg:mt-10 mb-4 text-center">
         {edition?.title}
       </h2>

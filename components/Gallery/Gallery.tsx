@@ -118,6 +118,10 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
               backgroundColor: '#F3FF99',
               color: '#0C0C0C',
             },
+            '& .MuiPaginationItem-root:focus': {
+              outline: '2px solid #F3FF99',
+              outlineOffset: '2px',
+            },
           }}
         />
       </ThemeProvider>

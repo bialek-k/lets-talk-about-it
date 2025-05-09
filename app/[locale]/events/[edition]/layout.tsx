@@ -1,6 +1,6 @@
 import Header from '@/components/Header/Header';
 
-const  EventLayout = ({
+const EventLayout = ({
   children,
   params: { locale },
 }: {
@@ -13,6 +13,6 @@ const  EventLayout = ({
       {children}
     </section>
   );
-}
+};
 
 export default EventLayout;

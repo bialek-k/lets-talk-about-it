@@ -83,7 +83,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
               className={`absolute w-7 h-7 z-30 top-4 right-4 flex items-center justify-center hamburger ${
                 isOpen ? 'hamburger_active' : ''
               }`}
-              aria-label="Close Mobile Menu"
+              aria-label="Zamknij menu"
             >
               <span />
             </button>
@@ -108,6 +108,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                             : 'text-white'
                         }`}
                         onClick={() => setIsOpen(false)}
+                        aria-label={t(route.name ?? '')}
                         href={route.path ?? ''}
                         rel="noopener noreferrer canonical"
                       >
@@ -121,6 +122,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                             : 'text-main-white'
                         }`}
                         type="button"
+                        aria-label={t(route.name ?? '')}
                         onClick={() => toggleSubMenu(route.name ?? '')}
                       >
                         {t(route.name ?? '')}
@@ -166,6 +168,15 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                                     : 'text-main-white'
                                 } `}
                                 href={subRoute.path ?? '#'}
+                                aria-label={
+                                  subRoute.name.includes('event')
+                                    ? `${t(
+                                        subRoute.name.split(' ')[0]
+                                      )} ${toRoman(
+                                        parseInt(subRoute.name.split(' ')[1])
+                                      )}`
+                                    : t(subRoute.name)
+                                }
                                 rel="noopener noreferrer canonical"
                                 onClick={() => setIsOpen(false)}
                               >
@@ -189,14 +200,17 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
             {/* SOCIALS */}
             <div className="flex justify-center gap-5">
               <Linkedin
+                aria-label="Let's talk about IT LinkedIn"
                 className="size-8"
                 href="https://www.linkedin.com/groups/14230011/"
               />
               <Youtube
+                aria-label="Let's talk about IT YouTube"
                 className="size-8"
                 href="https://www.youtube.com/@_Lets_talk_about_IT"
               />
               <Instagram
+                aria-label="Let's talk about IT Instagram"
                 className="size-8"
                 href="https://www.instagram.com/lets_talk_about_it__"
               />

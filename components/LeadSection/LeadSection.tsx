@@ -75,7 +75,8 @@ const LeadSection = async ({
               </div>
               <div>
                 <ImageContainer
-                  alt={leader.name}
+                  linkedin={leader.name}
+                  alt={`zdjęcie ${leader.name}`}
                   image={leader.photo}
                   link={leader.linkedIn}
                 />
@@ -117,7 +118,8 @@ const LeadSection = async ({
             </div>
             <div>
               <ImageContainer
-                alt={speaker.name}
+                linkedin={speaker.name}
+                alt={`zdjęcie ${speaker.name}`}
                 image={speaker.photo}
                 link={speaker.linkedIn}
               />

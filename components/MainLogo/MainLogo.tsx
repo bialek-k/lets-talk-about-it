@@ -14,7 +14,7 @@ const MainLogo = ({ className, setIsOpen }: MainLogoProps) => {
       href="/"
       onClick={() => setIsOpen && setIsOpen(false)}
       rel="noopener noreferrer"
-      aria-label="Lets talk about IT logo"
+      aria-label="Powrót do strony głównej"
     >
       <MainLogoIcon />
     </Link>

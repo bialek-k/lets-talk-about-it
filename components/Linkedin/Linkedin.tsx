@@ -6,9 +6,10 @@ interface LinkedinProps {
   href: string;
   className?: string;
   shouldAnimate?: boolean;
+  label?: string;
 }
 
-const Linkedin = ({ href, className, shouldAnimate }: LinkedinProps) => {
+const Linkedin = ({ href, className, shouldAnimate, label }: LinkedinProps) => {
   const handleClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
@@ -17,7 +18,12 @@ const Linkedin = ({ href, className, shouldAnimate }: LinkedinProps) => {
   };
 
   return (
-    <Link className={className} href={href} onClick={handleClick}>
+    <Link
+      aria-label={label}
+      className={className}
+      href={href}
+      onClick={handleClick}
+    >
       <LinkedinIcon shouldAnimate={shouldAnimate} />
     </Link>
   );

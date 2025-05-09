@@ -59,12 +59,14 @@ const FilmsGallery = ({ links }: GalleryProps) => {
           <div key={index} className="relative w-full pb-[75%]">
             <iframe
               className="absolute w-full h-full"
-              src={`https://www.youtube.com/embed/${link}`}
-              frameBorder="0"
+              src={`https://www.youtube.com/embed/${link}?cc_load_policy=1`}
               width={560}
               height={315}
               loading="lazy"
+              allow="autoplay; encrypted-media"
               allowFullScreen
+              title={`YouTube video ${index + 1}`}
+              aria-label={`YouTube video ${index + 1}`}
             ></iframe>
           </div>
         ))}
@@ -84,6 +86,10 @@ const FilmsGallery = ({ links }: GalleryProps) => {
             '& .MuiPaginationItem-page.Mui-selected': {
               backgroundColor: '#F3FF99',
               color: '#0C0C0C',
+            },
+            '& .MuiPaginationItem-root:focus': {
+              outline: '2px solid #F3FF99',
+              outlineOffset: '2px',
             },
           }}
         />
