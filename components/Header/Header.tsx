@@ -214,14 +214,17 @@ const Header = ({
           {/* SOCIALS */}
           <div className="justify-center gap-5 hidden xl:flex">
             <Linkedin
+              label="Lets Talk About IT LinkedIn"
               className="size-6"
               href="https://www.linkedin.com/groups/14230011/"
             />
             <Youtube
+              label="Lets Talk About IT Youtube"
               className="size-6"
               href="https://www.youtube.com/@_Lets_talk_about_IT"
             />
             <Instagram
+              label="Lets Talk About IT Instagram"
               className="size-6"
               href="https://www.instagram.com/lets_talk_about_it__"
             />

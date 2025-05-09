@@ -36,6 +36,7 @@ const LanguageSwitcher = ({ customClass }: LanguageSwitcherProps) => {
     <button
       className={`border-white border-solid border rounded-full flex text-sm overflow-hidden transition-all duration-300 self-center ${customClass}`}
       onClick={toggleLanguage}
+      aria-label="Zmień język"
     >
       <span
         className={`px-[7px] py-1 w-full h-full ${

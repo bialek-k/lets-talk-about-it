@@ -10,6 +10,7 @@ const Location = ({ data }: { data?: string | null }) => {
   return (
     <>
       <motion.button
+        aria-label="Otwórz mapę"
         animate={{ scale: [1, 1.2, 1] }}
         transition={{ duration: 1, repeat: Infinity }}
         className="w-[25px] lg:w-[48px] h-[32px] lg:h-[64px]"

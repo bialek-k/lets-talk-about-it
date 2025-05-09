@@ -3,21 +3,35 @@ import Pattern from '@/IconsSVG/Pattern';
 const MainTitle = ({
   fill,
   events = false,
+  isMain = false,
 }: {
   fill: string;
   events?: boolean;
+  isMain?: boolean;
 }) => {
   return (
     <div className="flex justify-center flex-col items-center mx-auto w-full mb-5">
-      <h1
-        className={`font-medium text-[32px] leading-[43px] mt-5 text-center ${
-          events
-            ? 'lg:leading-[83px] lg:text-[64px] '
-            : 'lg:leading-[130px] lg:text-[100px] '
-        }`}
-      >
-        LET’S TALK ABOUT IT
-      </h1>
+      {isMain ? (
+        <h2
+          className={`font-medium text-[32px] leading-[43px] mt-5 text-center ${
+            events
+              ? 'lg:leading-[83px] lg:text-[64px] '
+              : 'lg:leading-[130px] lg:text-[100px] '
+          }`}
+        >
+          LET’S TALK ABOUT IT
+        </h2>
+      ) : (
+        <h1
+          className={`font-medium text-[32px] leading-[43px] mt-5 text-center ${
+            events
+              ? 'lg:leading-[83px] lg:text-[64px] '
+              : 'lg:leading-[130px] lg:text-[100px] '
+          }`}
+        >
+          LET’S TALK ABOUT IT
+        </h1>
+      )}
       <div className="relative flex justify-center">
         <div
           className={`absolute top-[-5px] left-[-10px] w-[13px] lg:h-[38px] h-[15px] ${

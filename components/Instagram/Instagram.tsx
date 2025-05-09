@@ -5,11 +5,13 @@ import Link from 'next/link';
 interface InstagramProps {
   href: string;
   className?: string;
+  label?: string;
 }
 
-const Instagram = ({ href, className }: InstagramProps) => {
+const Instagram = ({ href, className, label }: InstagramProps) => {
   return (
     <Link
+      aria-label={label}
       className={clsx('flex items-center', className)}
       href={href}
       target="_blank"

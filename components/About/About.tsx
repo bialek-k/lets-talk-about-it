@@ -16,7 +16,9 @@ export const About = ({ about }: AboutQueryQuery) => {
       <PageTitle small title={t('aboutUs')} />
       <div className="content md:flex md:gap-24 justify-between ">
         <div className="description pt-[10px] md:pt-0">
-          <p className="text-[24px] mb-6 font-semibold">Let’s Talk About IT</p>
+          <h2 className="text-[24px] mb-6 font-semibold">
+            Let’s Talk About IT
+          </h2>
           <div className="hidden md:flex">
             <TextHolder
               content={about?.description.raw}
@@ -40,7 +42,7 @@ export const About = ({ about }: AboutQueryQuery) => {
             <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded-xl" />
             <div className="md:h-full  aspect-square realitve z-10 ">
               <Image
-                alt={'malgorzata_rycak'}
+                alt={'zdjęcie Małgorzaty Rycak'}
                 src={about?.malgosia_image?.url!}
                 width={about?.malgosia_image?.width ?? 300}
                 height={about?.malgosia_image?.height ?? 300}
@@ -48,6 +50,7 @@ export const About = ({ about }: AboutQueryQuery) => {
                 className=" rounded-xl absolute "
               />
               <Linkedin
+                label="Linkedin Małgorzaty Rycak"
                 shouldAnimate
                 href={'https://www.linkedin.com/in/malgorzata-rycak/'}
                 className="absolute z-30 w-6 h-6 bottom-3 right-3"

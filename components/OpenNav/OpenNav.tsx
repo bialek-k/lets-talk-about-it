@@ -14,13 +14,13 @@ const OpenNav = ({ locale }: { locale: string }) => {
   }, [isMenuOpen]);
 
   return (
-    <div className="xl:hidden relative ml-auto flex items-center ">
+    <div aria-hidden className="xl:hidden relative ml-auto flex items-center">
       <button
         onClick={() => setOpenMenu(true)}
         className={`absolute right-0 border-none w-7 h-7 z-30 flex items-center justify-center hamburger ${
           isMenuOpen ? 'hamburger_active' : ''
         }`}
-        aria-label="Open Mobile Menu"
+        aria-label="Otwórz menu"
       >
         <span />
       </button>

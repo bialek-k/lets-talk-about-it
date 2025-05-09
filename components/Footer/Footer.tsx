@@ -37,6 +37,8 @@ const Footer = ({ doc, partner }: Props) => {
           <MainLogoIcon />
         </div>
         <button
+          aria-label="Powrót na górę strony"
+          type="button"
           onClick={scrollToTop}
           className="hidden lg:flex ml-auto hover:scale-125"
         >
@@ -53,14 +55,17 @@ const Footer = ({ doc, partner }: Props) => {
           <p className="font-normal text-base">{t('socialMediaMessage')}</p>
           <div className="flex gap-6">
             <Linkedin
+              label={`Linkedin grupy "Let's Talk About IT"`}
               className="size-8"
               href="https://www.linkedin.com/groups/14230011/"
             />
             <Youtube
+              label={`Youtube grupy "Let's Talk About IT"`}
               className="size-8"
               href="https://www.youtube.com/@_Lets_talk_about_IT"
             />
             <Instagram
+              label={`Instagram grupy "Let's Talk About IT"`}
               className="size-8"
               href="https://www.instagram.com/lets_talk_about_it__"
             />
@@ -87,6 +92,7 @@ const Footer = ({ doc, partner }: Props) => {
               href="/#about"
               rel="noopener noreferrer"
               className="font-normal text-base"
+              aria-label='Powrót na stronę "O nas"'
             >
               {t('about')}
             </Link>
