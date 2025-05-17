@@ -107,7 +107,7 @@ export const Header = ({
           {/* MOBILE NAVIGATION BUTTON */}
           <OpenNav locale={locale} />
           {/* NAVIGATION DESKTOP */}
-          <ul className=" hidden lg:flex text-white text-lg leading-7 gap-6">
+          <ul className=" hidden lg:flex text-white text-lg desktop:text-xl leading-7 gap-6">
             {routes.map((route, index) => (
               <li
                 key={index}
