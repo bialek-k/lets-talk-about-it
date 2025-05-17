@@ -14,7 +14,7 @@ const Partners = async ({
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 
   return (
-    <section className="mt-16 md:mt-24 w-full bg-main-black flex justify-center">
+    <section className="pt-10 md:pt-20 lg:pt-24 w-full bg-main-black flex justify-center">
       <div className="bg-main-black flex flex-col h-full md:px-24 justify-center md:pb-12 w-full max-w-[1440px]">
         <div className="hidden md:flex justify-end w-full top-24 right-0">
           <LinesPattern fill="white" />
@@ -33,7 +33,7 @@ const Partners = async ({
                 img?.height !== null ? img?.height : undefined;
 
               return (
-                <div key={`id:${img}`} className="py-4">
+                <div key={`id:${img.fileName}`} className="py-4">
                   <Image
                     alt={img.fileName}
                     src={img.url}
@@ -48,15 +48,18 @@ const Partners = async ({
 
         {/** DESKTOP LOGOS */}
 
-        <div className="hidden lg:flex bg-main-white md:flex-col px-20 py-12 mt-12">
-          <div className="partnersImages flex flex-row w-full justify-start gap-20 flex-wrap">
+        <div className="hidden lg:flex bg-main-white md:flex-col  py-12 mt-12">
+          <div className="partnersImages grid grid-cols-4 items-center gap-4 w-full justify-start">
             {partner?.logos.map((img) => {
               const validWidth = img?.width !== null ? img?.width : undefined;
               const validHeight =
                 img?.height !== null ? img?.height : undefined;
 
               return (
-                <div key={`id:${img}`} className="py-4 flex items-center">
+                <div
+                  key={`id:${img.fileName}`}
+                  className="py-4 flex items-center justify-center"
+                >
                   <Image
                     alt={img.fileName}
                     src={img.url}

@@ -14,7 +14,7 @@ const OpenNav = ({ locale }: { locale: string }) => {
   }, [isMenuOpen]);
 
   return (
-    <div aria-hidden className="xl:hidden relative ml-auto flex items-center">
+    <div aria-hidden className="lg:hidden relative ml-auto flex items-center">
       <button
         onClick={() => setOpenMenu(true)}
         className={`absolute right-0 border-none w-7 h-7 z-30 flex items-center justify-center hamburger ${
