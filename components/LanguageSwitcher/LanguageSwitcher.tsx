@@ -39,7 +39,7 @@ const LanguageSwitcher = ({ customClass }: LanguageSwitcherProps) => {
       aria-label="Zmień język"
     >
       <span
-        className={`px-[7px] py-1 w-full h-full ${
+        className={`px-[7px] lg:px-1 py-1 w-full h-full ${
           currentLocale === 'pl'
             ? 'bg-white text-black'
             : 'bg-main-black text-white'
@@ -48,7 +48,7 @@ const LanguageSwitcher = ({ customClass }: LanguageSwitcherProps) => {
         PL
       </span>
       <span
-        className={`px-[7px] py-1 w-full h-full ${
+        className={`px-[7px] lg:px-1 py-1 w-full h-full ${
           currentLocale === 'pl'
             ? 'bg-main-black text-white'
             : 'bg-white text-black'

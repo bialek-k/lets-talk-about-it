@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import React, { ReactNode } from 'react';
 import { dir } from 'i18next';
-import Header from '@/components/Header/Header';
+import { Header } from '@/components/Header/Header';
 import TranslationsProvider from '@/components/TranslationsProvider/TranslationProvider';
 import initTranslations from '../i18n';
 import Footer from '@/components/Footer/Footer';
@@ -92,7 +92,7 @@ const RootLayout = async ({
           locale={locale}
           resources={resources}
         >
-          <Header isMain locale={locale} />
+          {/* <Header isMain locale={locale} /> */}
           {children}
           <Footer partner={partner} doc={doc} />
         </TranslationsProvider>

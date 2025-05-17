@@ -2,6 +2,7 @@
   "name": "lets-talk-about-it",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -21,6 +22,7 @@
     "@graphql-typed-document-node/core": "^3.2.0",
     "@mui/material": "^5.15.16",
     "@svgr/webpack": "^8.1.0",
+    "axios": "^1.9.0",
     "clsx": "^2.1.1",
     "datocms-structured-text-utils": "^4.0.0",
     "dotenv-yaml": "^0.1.4",
@@ -41,6 +43,7 @@
     "react-fast-marquee": "^1.6.4",
     "react-i18next": "^14.1.0",
     "react-loader-spinner": "^6.1.6",
+    "replicate": "^1.0.1",
     "sharp": "^0.33.4"
   },
   "devDependencies": {

@@ -22,6 +22,7 @@ import {
 import { request } from '@/lib/request';
 import OpenNav from '@/components/OpenNav/OpenNav';
 import Instagram from '@/components/Instagram/Instagram';
+import { Header } from '@/components/Header/Header';
 
 const i18nNamespaces = ['home'];
 
@@ -75,6 +76,7 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
       locale={locale}
       resources={resources}
     >
+      <Header isMain locale={locale} />
       <main
         id="main"
         className="flex bg-main-black flex-col items-center justify-between  text-[#F5F5F5] w-full"
@@ -87,14 +89,17 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
                 <Linkedin
                   className="size-6"
                   href="https://www.linkedin.com/groups/14230011/"
+                  label="Lets Talk About IT Linkedin"
                 />
                 <Youtube
                   className="size-6"
                   href="https://www.youtube.com/@_Lets_talk_about_IT"
+                  label="Lets Talk About IT Youtube"
                 />
                 <Instagram
                   className="size-6"
                   href="https://www.instagram.com/lets_talk_about_it__"
+                  label="Lets Talk About IT Instagram"
                 />
               </div>
               <div className="ml-auto relative right-4 flex">

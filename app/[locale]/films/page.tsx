@@ -15,7 +15,7 @@ const Films = async ({
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 
   return (
-    <section className="mt-16 md:mt-24 w-full bg-main-black flex justify-center">
+    <section className="pt-10 md:pt-20 lg:pt-24 w-full bg-main-black flex justify-center">
       <div className="bg-main-black flex flex-col h-full md:px-24 justify-center md:pb-12 w-full max-w-[1440px]">
         <div className="hidden md:flex justify-end w-full top-24 right-0">
           <LinesPattern fill="white" />

@@ -26,7 +26,7 @@ interface Route {
   content?: { path: string; name: string }[];
 }
 
-const Header = ({
+export const Header = ({
   isMain = false,
   locale,
 }: {
@@ -40,6 +40,7 @@ const Header = ({
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState('');
   const currentPath = usePathname();
+  const [activeSubIndex, setActiveSubIndex] = useState<number | null>(null);
 
   const isActive = (path?: string) => {
     if (path === '/#about') {
@@ -98,15 +99,15 @@ const Header = ({
       desktop-media-max:[--hidden-to:none]
       "
       >
-        <nav className=" bg-main-black h-[70px] lg:h-[100px] lg:max-w-[1440px] my-0 mx-auto  px-4 lg:px-[100px] flex flex-row items-center gap-10 justify-between lg:text-lg">
+        <nav className=" bg-main-black h-[70px] lg:h-[100px] lg:max-w-[1440px] my-0 mx-auto  px-4 lg:px-[100px] flex flex-row items-center gap-4 justify-between lg:text-lg">
           {/* LOGO */}
 
-          <MainLogo className="w-[70px] h-[70px] lg:w-[100px] lg:h-[100px]" />
+          <MainLogo className="w-[70px] h-[70px] lg:w-[85px] lg:h-[100px] desktop:w-[100px] flex" />
 
           {/* MOBILE NAVIGATION BUTTON */}
           <OpenNav locale={locale} />
           {/* NAVIGATION DESKTOP */}
-          <ul className=" hidden xl:flex text-white text-[22px] leading-7 gap-6">
+          <ul className=" hidden lg:flex text-white text-lg leading-7 gap-6">
             {routes.map((route, index) => (
               <li
                 key={index}
@@ -118,7 +119,7 @@ const Header = ({
                       isActive(route.path)
                         ? 'text-main-yellow'
                         : 'text-main-white'
-                    } `}
+                    } text-center`}
                     href={route.path ?? '#'}
                     rel="noopener noreferrer"
                     aria-label={t(route.name ?? '')}
@@ -133,9 +134,11 @@ const Header = ({
                         : 'text-main-white'
                     }`}
                     tabIndex={0}
-                    role="heading"
+                    role="menuitem"
+                    aria-haspopup="true"
+                    aria-expanded={isSubMenuOpen && activeMenu === route.name}
+                    aria-controls={`submenu-${index}`}
                     aria-label={t(route.name ?? '')}
-                    aria-level={1}
                     onMouseEnter={() => {
                       setSubMenuOpen(true);
                       setActiveMenu(route.name ?? '');
@@ -143,12 +146,81 @@ const Header = ({
                     onMouseLeave={() => setSubMenuOpen(false)}
                     onClick={() => {
                       setSubMenuOpen(true);
-                    }}
-                    onFocus={() => {
-                      setSubMenuOpen(true);
                       setActiveMenu(route.name ?? '');
                     }}
-                    onBlur={() => setSubMenuOpen(false)}
+                    onKeyDown={(event) => {
+                      const handleOpenSubMenu = () => {
+                        setSubMenuOpen(true);
+                        setActiveMenu(route.name ?? '');
+                        // Ustawienie focusa po opóźnieniu, aby submenu było już w DOM
+                        setTimeout(() => {
+                          const items = document.querySelectorAll(
+                            `#submenu-${index} a`
+                          );
+                          if (items.length > 0) {
+                            (items[0] as HTMLElement).focus();
+                            setActiveSubIndex(0);
+                          }
+                        }, 0);
+                      };
+
+                      if (
+                        event.key === ' ' ||
+                        event.key === 'Spacebar' ||
+                        event.key === 'Enter'
+                      ) {
+                        event.preventDefault();
+                        handleOpenSubMenu();
+                      }
+
+                      if (event.key === 'Escape') {
+                        setSubMenuOpen(false);
+                        setActiveSubIndex(null);
+                      }
+
+                      if (event.key === 'ArrowDown') {
+                        event.preventDefault();
+                        if (!isSubMenuOpen) {
+                          handleOpenSubMenu();
+                        } else {
+                          const items = document.querySelectorAll(
+                            `#submenu-${index} a`
+                          );
+                          if (items.length > 0) {
+                            const nextIndex =
+                              activeSubIndex === null ||
+                              activeSubIndex >= items.length - 1
+                                ? 0
+                                : activeSubIndex + 1;
+                            const item = items[nextIndex] as HTMLElement;
+                            item.focus();
+                            setActiveSubIndex(nextIndex);
+                          }
+                        }
+                      }
+
+                      if (event.key === 'ArrowUp') {
+                        event.preventDefault();
+                        const items = document.querySelectorAll(
+                          `#submenu-${index} a`
+                        );
+                        if (items.length > 0) {
+                          const nextIndex =
+                            activeSubIndex === null || activeSubIndex <= 0
+                              ? items.length - 1
+                              : activeSubIndex - 1;
+                          const item = items[nextIndex] as HTMLElement;
+                          item.focus();
+                          setActiveSubIndex(nextIndex);
+                        }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      // Zamknij submenu tylko jeśli focus wyszedł poza menu
+                      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                        setSubMenuOpen(false);
+                      }
+                    }}
                   >
                     {t(route.name ?? '')}
                     <ChevronIcon
@@ -164,24 +236,25 @@ const Header = ({
                       <AnimatePresence>
                         {isSubMenuOpen && (
                           <motion.div
-                            onMouseEnter={() => setSubMenuOpen(true)}
-                            onMouseLeave={() => setSubMenuOpen(false)}
+                            id={`submenu-${index}`}
+                            role="menu"
+                            aria-label={t(route.name ?? '')}
                             initial={{ opacity: 0, y: '-100%' }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: '-100%' }}
-                            transition={{ duration: 0.3 }}
-                            className="text-base font-normal flex flex-col items-center justify-center w-max absolute top-10 border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
+                            transition={{ duration: 0.5 }}
+                            className="text-base font-normal flex flex-col items-center justify-center w-max absolute top-7 border-solid border-main-yellow border-x-2 border-b-2  rounded-b-xl px-4 pb-5 bg-main-black"
                           >
-                            {route.content.map((subRoute, index) => (
+                            {route.content.map((subRoute, subIdx) => (
                               <motion.div
                                 initial={{ opacity: 0, y: '-100%' }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: '-100%' }}
                                 transition={{
                                   duration: 0.3,
-                                  delay: index * 0.1,
+                                  delay: subIdx * 0.1,
                                 }}
-                                key={index}
+                                key={subIdx}
                               >
                                 <Link
                                   className={`border-b bg-main-black border-solid border-white h-[50px] w-max flex items-center ${
@@ -191,6 +264,36 @@ const Header = ({
                                   }`}
                                   href={subRoute.path ?? '#'}
                                   rel="noopener noreferrer"
+                                  aria-label={
+                                    subRoute.name.includes('event')
+                                      ? `${t(
+                                          subRoute.name.split(' ')[0]
+                                        )} ${toRoman(
+                                          parseInt(subRoute.name.split(' ')[1])
+                                        )}`
+                                      : t(subRoute.name)
+                                  }
+                                  role="menuitem"
+                                  tabIndex={-1}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'ArrowDown') {
+                                      e.preventDefault();
+                                      const next =
+                                        e.currentTarget.parentElement?.nextElementSibling?.querySelector(
+                                          'a'
+                                        );
+                                      next?.focus();
+                                    } else if (e.key === 'ArrowUp') {
+                                      e.preventDefault();
+                                      const prev =
+                                        e.currentTarget.parentElement?.previousElementSibling?.querySelector(
+                                          'a'
+                                        );
+                                      prev?.focus();
+                                    } else if (e.key === 'Enter') {
+                                      window.location.href = subRoute.path;
+                                    }
+                                  }}
                                 >
                                   {subRoute.name.includes('event')
                                     ? `${t(
@@ -212,7 +315,7 @@ const Header = ({
             ))}
           </ul>
           {/* SOCIALS */}
-          <div className="justify-center gap-5 hidden xl:flex">
+          <div className="justify-center gap-5 hidden lg:flex">
             <Linkedin
               label="Lets Talk About IT LinkedIn"
               className="size-6"
@@ -229,7 +332,7 @@ const Header = ({
               href="https://www.instagram.com/lets_talk_about_it__"
             />
           </div>
-          <div className="hidden xl:flex">
+          <div className="hidden lg:flex">
             <LanguageSwitcher />
           </div>
         </nav>
@@ -237,5 +340,3 @@ const Header = ({
     </AnimatePresence>
   );
 };
-
-export default Header;
