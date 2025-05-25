@@ -92,6 +92,7 @@ const WorkshopsHero = async ({
             backgroundColor="bg-main-black"
             buttonHover="#0C0C0C"
             backgroundHover="#F5F5F5"
+            description={t('galleryDescription')}
           />
         </div>
       )}
