@@ -74,7 +74,10 @@ const Edition = async ({
           <LeadSection edition={event as Edition} translation={t} />
         </div>
         {/* GALERIA */}
-        <div className="w-full flex justify-center bg-main-black">
+        <div
+          className="w-full flex justify-center bg-main-black"
+          aria-description={t('opisGalerii')}
+        >
           {event?.gallery.length ? (
             <div
               id="gallery"
@@ -91,6 +94,7 @@ const Edition = async ({
                 <Gallery
                   totalImages={assetsConnection.aggregate.count}
                   gallery={gallery}
+                  label={t('kliknijAbyZobaczyc')}
                 />
               </Suspense>
             </div>

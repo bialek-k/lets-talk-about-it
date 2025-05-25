@@ -1,7 +1,7 @@
 import {Header} from '@/components/Header/Header';
 
 export const metadata = {
-  title: 'LET’S TALK ABOUT IT - www.letstalkaboutit.pl/partners',
+  title: 'LET’S TALK ABOUT IT - Partnerzy',
   openGraph: {
     url: 'https://letstalkaboutit.pl/partners',
     title: "Partnerzy Let's Talk About IT",

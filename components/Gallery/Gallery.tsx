@@ -10,6 +10,7 @@ import Image from 'next/image';
 
 interface GalleryProps {
   totalImages: number;
+  label?: string;
   gallery: {
     width?: number | null;
     height?: number | null;
@@ -18,7 +19,7 @@ interface GalleryProps {
   }[];
 }
 
-const Gallery = ({ gallery, totalImages }: GalleryProps) => {
+const Gallery = ({ gallery, totalImages, label }: GalleryProps) => {
   const galleryRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
@@ -93,6 +94,7 @@ const Gallery = ({ gallery, totalImages }: GalleryProps) => {
             rel="noreferrer"
           >
             <Image
+              aria-label={label}
               alt={image.fileName as string}
               className="w-[155px] lg:w-[394px] h-[155px] lg:h-[300px] cursor-pointer object-contain hover:scale-110"
               src={image.url as string}
