@@ -28,17 +28,13 @@ const Partners = async ({
           </h1>
           <div className="partnersImages grid grid-cols-2 gap-x-5 justify-center items-center">
             {partner?.logos.map((img) => {
-              const validWidth = img?.width !== null ? img?.width : undefined;
-              const validHeight =
-                img?.height !== null ? img?.height : undefined;
-
               return (
                 <div key={`id:${img.fileName}`} className="py-4">
                   <Image
                     alt={img.fileName}
                     src={img.url}
-                    width={validWidth}
-                    height={validHeight}
+                    width={img?.width ?? 300}
+                    height={img?.height ?? 300}
                   />
                 </div>
               );
@@ -49,22 +45,18 @@ const Partners = async ({
         {/** DESKTOP LOGOS */}
 
         <div className="hidden lg:flex bg-main-white md:flex-col  py-12 mt-12">
-          <div className="partnersImages grid grid-cols-4 items-center gap-4 w-full justify-start">
+          <div className="partnersImages grid grid-cols-6 items-center gap-4 w-full justify-start">
             {partner?.logos.map((img) => {
-              const validWidth = img?.width !== null ? img?.width : undefined;
-              const validHeight =
-                img?.height !== null ? img?.height : undefined;
-
               return (
                 <div
                   key={`id:${img.fileName}`}
-                  className="py-4 flex items-center justify-center"
+                  className="py-4 flex items-center justify-center relative aspect-square"
                 >
                   <Image
                     alt={img.fileName}
                     src={img.url}
-                    width={validWidth}
-                    height={validHeight}
+                    width={img?.width ?? 300}
+                    height={img?.height ?? 300}
                   />
                 </div>
               );

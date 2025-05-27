@@ -16,7 +16,7 @@ import { DocsQueryDocument, PartnersQueryDocument } from '@/graphql/generated';
 export const metadata: Metadata = {
   title: 'LET’S TALK ABOUT IT - Wydarzenia | Networking | Power skills',
   description:
-    'LET’S TALK ABOUT IT – Największa społeczność IT w Polsce. Dołącz do naszych ogólnopolskich konferencji na żywo, poznaj ekspertów, rozwijaj swoje umiejętności i buduj relacje w branży IT.',
+    'LET’S TALK ABOUT IT - Największa społeczność IT w Polsce. Dołącz do naszych ogólnopolskich konferencji na żywo, poznaj ekspertów, rozwijaj swoje umiejętności i buduj relacje w branży IT.',
   keywords: [
     'letstalkaboutit',
     'lets talk about it',
