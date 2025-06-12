@@ -29,7 +29,10 @@ const Partners = async ({
           <div className="partnersImages grid grid-cols-2 gap-x-5 justify-center items-center">
             {partner?.logos.map((img) => {
               return (
-                <div key={`id:${img.fileName}`} className="py-4 relative">
+                <div
+                  key={`id:${img.fileName}`}
+                  className="py-4 relative flex items-center justify-center"
+                >
                   <Image
                     alt={img.fileName}
                     src={img.url}
