@@ -29,7 +29,10 @@ const Partners = async ({
           <div className="partnersImages grid grid-cols-2 gap-x-5 justify-center items-center">
             {partner?.logos.map((img) => {
               return (
-                <div key={`id:${img.fileName}`} className="py-4">
+                <div
+                  key={`id:${img.fileName}`}
+                  className="py-4 relative flex items-center justify-center"
+                >
                   <Image
                     alt={img.fileName}
                     src={img.url}
@@ -45,7 +48,7 @@ const Partners = async ({
         {/** DESKTOP LOGOS */}
 
         <div className="hidden lg:flex bg-main-white md:flex-col  py-12 mt-12">
-          <div className="partnersImages grid grid-cols-6 items-center gap-4 w-full justify-start">
+          <div className="partnersImages px-10 grid grid-cols-6 items-center gap-10 w-full justify-start">
             {partner?.logos.map((img) => {
               return (
                 <div
