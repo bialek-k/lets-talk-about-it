@@ -35,6 +35,10 @@ export const fetchEvents = async ({ locale = 'pl' }: { locale: string }) => {
       name: 'films',
     },
     {
+      path: '/podcasts',
+      name: 'podcasts',
+    },
+    {
       path: '/partners',
       name: 'partners',
     },

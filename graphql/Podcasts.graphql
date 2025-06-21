@@ -1,0 +1,9 @@
+query PodcastsQuery($locale: Locale!) {
+  podcast(where:  {id: "cmc60qvice0n007w6myx03dtt"} locales: [$locale]) {
+    title
+    description {
+      raw
+    }
+    links
+  }
+}
