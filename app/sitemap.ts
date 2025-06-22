@@ -45,6 +45,12 @@ const sitemap = async ({
       priority: 0.5,
     },
     {
+      url: 'https://www.letstalkaboutit.pl/podcasts',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    },
+    {
       url: 'https://www.letstalkaboutit.pl/partners',
       lastModified: new Date(),
       changeFrequency: 'weekly',

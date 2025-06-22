@@ -7,7 +7,7 @@ query WorkshopsQuery(
     title
     new
     signUp
-    logo(locales: en) {
+    logo(locales: en, first: 10) {
         width
         height
         url

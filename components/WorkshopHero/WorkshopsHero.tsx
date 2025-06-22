@@ -19,6 +19,9 @@ const WorkshopsHero = async ({
     location: string;
     new: boolean;
     signUp: string;
+    lead: {
+      name: string;
+    }[];
   } | null;
 
   isMain?: boolean;
@@ -58,16 +61,21 @@ const WorkshopsHero = async ({
       >
         <LinesPattern fill="#0C0C0C" />
       </div>
-      <div className="self-start flex flex-col lg:flex-row justify-center lg:items-center mt-10 mb-5 lg:mt-20 lg:mb-10 lg:gap-5">
-        <h2 className="text-[32px] lg:text-[48px] lg:leading-[62px] leading-[42px] font-semibold">
+      <div className="self-start flex flex-col lg:flex-row justify-center lg:items-center mt-10 mb-5 lg:mt-20 lg:mb-10 lg:gap-5 w-full">
+        <h2 className="text-lg lg:text-[48px] lg:leading-[62px] leading-[42px] font-normal">
           {t('workshops')}
         </h2>
-        <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
-          {edition?.title}
+        <h2 className="text-lg font-medium lg:text-[48px] leading-[52px] lg:font-bold lg:text-center uppercase lg:normal-case tracking-tight">
+          {edition?.lead?.map((lead, index) => (
+            <span key={index}>
+              {lead.name}
+              {index < edition.lead.length - 1 ? ' & ' : ''}
+            </span>
+          ))}
         </h2>
       </div>
       <MainTitle fill="#0C0C0C" events />
-      <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-normal lg:mt-10 mb-4 text-center">
+      <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-bold lg:mt-10 mb-4 text-center">
         {edition?.title}
       </h2>
       <Arrow />

@@ -49,7 +49,7 @@ export const TextHolder = ({
       <div
         className={`content flex prose ${
           small ? 'max-w-[260px] lg:max-w-[292px]' : ''
-        } dark:text-main-white dark:prose-strong:text-main-white dark:prose-li:marker:text-main-black  overflow-hidden transition-max-height duration-300 ease-in-out`}
+        } dark:text-main-white dark:prose-strong:text-main-white   overflow-hidden transition-max-height duration-300 ease-in-out`}
         style={
           shortText
             ? { maxHeight: '100%' }
@@ -90,6 +90,9 @@ export const TextHolder = ({
                     {children}
                   </a>
                 );
+              },
+              li: ({ children }) => {
+                return <li className={customClass}>{children}</li>;
               },
             }}
           />

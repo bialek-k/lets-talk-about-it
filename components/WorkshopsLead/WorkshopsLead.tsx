@@ -22,7 +22,7 @@ const WorkshopsLead = async ({
       width: number;
       height: number;
       fileName: string;
-    };
+    }[];
     lead: {
       name: string;
       position: string[];
@@ -49,25 +49,29 @@ const WorkshopsLead = async ({
       </h2>
 
       {/* LOGO PROWADZĄCEGO */}
-      
-      <div className="flex flex-col lg:flex-row w-full justify-star items-center gap-[50px] lg:gap-[100px] mb-10 lg:mb-20">
+
+      <div className="flex flex-col lg:flex-row w-full justify-star items-center gap-6 lg:gap-10 mb-10 lg:mb-20">
         <div className="w-[150px] h-[135px]">
           <MainLogoIcon />
         </div>
-        <div>
-          {edition?.logo?.url && (
+        <div className="flex flex-col items-center justify-center gap-6 lg:gap-10 w-full lg:w-auto lg:flex-row">
+          {edition?.logo?.map((logo) => (
             <Image
-              src={edition?.logo.url as string}
-              width={edition?.logo.width}
-              height={edition?.logo.height}
-              alt={edition?.logo.fileName as string}
+              key={logo.fileName}
+              src={logo.url}
+              width={logo.width}
+              height={logo.height}
+              alt={logo.fileName}
             />
-          )}
+          ))}
         </div>
       </div>
       <div className="w-full flex flex-col-reverse lg:flex-row lg:gap-[125px] items-start justify-center">
         {/* OPIS */}
-        <div className="w-full hidden lg:flex">
+        <div
+          className="w-full hidden lg:flex tracking-tight
+"
+        >
           <TextHolder
             content={edition?.description.raw as RichTextContent}
             customClass={`text-base ${
@@ -75,13 +79,15 @@ const WorkshopsLead = async ({
             }`}
             theme="dark"
             readMore={
-              edition?.description.html && edition.description.html.length > 700
+              edition?.description.html &&
+              edition.description.html.length > 5000
                 ? true
                 : false
             }
             customHight="360px"
             shortText={
-              edition?.description.html && edition.description.html.length > 700
+              edition?.description.html &&
+              edition.description.html.length > 5000
                 ? false
                 : true
             }
@@ -131,6 +137,7 @@ const WorkshopsLead = async ({
                       alt={leader.name}
                       image={leader.photo}
                       link={leader.linkedIn}
+                      linkedin={leader.name}
                       background="bg-main-black"
                     />
                   </div>
