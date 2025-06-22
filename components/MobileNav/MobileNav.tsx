@@ -148,7 +148,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="text-base font-normal flex flex-col w-full "
+                          className="text-base font-normal flex flex-col w-full h-full"
                         >
                           {route.content.map((subRoute, index) => (
                             <motion.div
@@ -162,7 +162,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                               key={index}
                             >
                               <Link
-                                className={`border-b border-solid border-white h-[50px] flex items-center ${
+                                className={`border-b border-solid border-white h-full py-2 flex items-center ${
                                   currentPath.includes(subRoute.path)
                                     ? 'text-main-yellow'
                                     : 'text-main-white'

@@ -29,7 +29,11 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             icon={<LinkedinIcon_yellow />}
             small
             longText
-            customClass={locale === 'en' ? 'lg:pb-[20px]' : ''}
+            customClass={
+              locale === 'en'
+                ? 'lg:pb-[20px] marker:text-black'
+                : 'marker:text-black'
+            }
             navigateDirection="https://www.linkedin.com/groups/14230011/"
           />
         )}
@@ -40,7 +44,11 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             icon={<YoutubeIcon_yellow />}
             small
             longText
-            customClass={locale === 'en' ? 'mt-1 lg:mt-1' : 'mt-[6px] lg:mt-0'}
+            customClass={
+              locale === 'en'
+                ? 'mt-1 lg:mt-1 marker:text-black'
+                : 'mt-[6px] lg:mt-0 marker:text-black'
+            }
             navigateDirection="https://www.youtube.com/@_Lets_talk_about_IT"
           />
         )}

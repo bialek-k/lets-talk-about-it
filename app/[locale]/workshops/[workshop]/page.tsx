@@ -24,7 +24,7 @@ type Workshop = {
     width: number;
     height: number;
     fileName: string;
-  };
+  }[];
   lead: {
     name: string;
     position: string[];
