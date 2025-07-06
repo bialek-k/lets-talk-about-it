@@ -217,7 +217,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
               />
               <Facebook
                 label="Lets Talk About IT Facebook"
-                className="size-6"
+                className="size-8"
                 href="https://www.facebook.com/share/1CTbxm5ZMe/"
               />
             </div>
