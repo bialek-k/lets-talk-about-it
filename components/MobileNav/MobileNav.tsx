@@ -13,6 +13,7 @@ import MainLogo from '../MainLogo/MainLogo';
 import toRoman from '../UI/NumberToRoman';
 import { usePathname } from 'next/navigation';
 import Instagram from '../Instagram/Instagram';
+import Facebook from '@/components/Facebook/Facebook';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -213,6 +214,11 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                 aria-label="Let's talk about IT Instagram"
                 className="size-8"
                 href="https://www.instagram.com/lets_talk_about_it__"
+              />
+              <Facebook
+                label="Lets Talk About IT Facebook"
+                className="size-6"
+                href="https://www.facebook.com/share/1CTbxm5ZMe/"
               />
             </div>
             {/* LANGUAGE SWITCHER */}

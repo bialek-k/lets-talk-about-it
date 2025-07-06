@@ -11,6 +11,7 @@ import BackToTop from '@/IconsSVG/BackToTop';
 import Instagram from '../Instagram/Instagram';
 import { BecomePartner } from '@/components/BecomePartner/BecomePartner';
 import { PrivacyPolicy } from '@/components/PrivacyPolicy/PrivacyPolicy';
+import Facebook from '@/components/Facebook/Facebook';
 
 interface Props {
   doc?: DocsQueryQuery['doc'] | null;
@@ -68,6 +69,11 @@ const Footer = ({ doc, partner }: Props) => {
               label={`Instagram grupy "Let's Talk About IT"`}
               className="size-8"
               href="https://www.instagram.com/lets_talk_about_it__"
+            />
+            <Facebook
+              label={`Facebook grupy "Let's Talk About IT"`}
+              className="size-8"
+              href="https://www.facebook.com/share/1CTbxm5ZMe/"
             />
           </div>
         </div>

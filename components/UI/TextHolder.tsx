@@ -91,6 +91,9 @@ export const TextHolder = ({
                   </a>
                 );
               },
+              ul: ({ children }) => {
+                return <ul className="pt-4 my-0">{children}</ul>;
+              },
               li: ({ children }) => {
                 return <li className={customClass}>{children}</li>;
               },
