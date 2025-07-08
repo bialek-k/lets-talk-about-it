@@ -19,6 +19,7 @@ import toRoman from '../UI/NumberToRoman';
 import { usePathname } from 'next/navigation';
 import OpenNav from '../OpenNav/OpenNav';
 import Instagram from '../Instagram/Instagram';
+import Facebook from '@/components/Facebook/Facebook';
 
 interface Route {
   path?: string;
@@ -330,6 +331,11 @@ export const Header = ({
               label="Lets Talk About IT Instagram"
               className="size-6"
               href="https://www.instagram.com/lets_talk_about_it__"
+            />
+            <Facebook
+              label="Lets Talk About IT Facebook"
+              className="size-6"
+              href="https://www.facebook.com/share/1CTbxm5ZMe/"
             />
           </div>
           <div className="hidden lg:flex">

@@ -81,7 +81,7 @@ const Workshop = async ({
               {t('gallery')}
             </h2>
             <h3 className=" font-semibold text-lg leading-6 lg:px-[100px] lg:mt-10 self-start mb-10">
-              {t('galleryText')} {workshop?.title}
+              {t('galleryText')} {workshop?.title}.
             </h3>
             <Gallery
               totalImages={assetsConnection.aggregate.count}

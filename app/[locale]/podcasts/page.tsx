@@ -30,7 +30,7 @@ const Podcasts = async ({
 
         <div className="flex">
           {podcast?.description && (
-            <div className="md:max-w-full px-6 lg:px-0">
+            <div className="md:max-w-full flex flex-col gap-4 px-6 lg:px-0">
               <RichText
                 content={podcast?.description.raw}
                 renderers={{

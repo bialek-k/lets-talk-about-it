@@ -23,6 +23,7 @@ import { request } from '@/lib/request';
 import OpenNav from '@/components/OpenNav/OpenNav';
 import Instagram from '@/components/Instagram/Instagram';
 import { Header } from '@/components/Header/Header';
+import Facebook from '@/components/Facebook/Facebook';
 
 const i18nNamespaces = ['home'];
 
@@ -100,6 +101,11 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
                   className="size-6"
                   href="https://www.instagram.com/lets_talk_about_it__"
                   label="Lets Talk About IT Instagram"
+                />
+                <Facebook
+                  className="size-6"
+                  href="https://www.facebook.com/LetsTalkAboutIT"
+                  label="Lets Talk About IT Facebook"
                 />
               </div>
               <div className="ml-auto relative right-4 flex">

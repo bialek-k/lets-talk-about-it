@@ -34,10 +34,10 @@ export const fetchEvents = async ({ locale = 'pl' }: { locale: string }) => {
       path: '/films',
       name: 'films',
     },
-    // {
-    //   path: '/podcasts',
-    //   name: 'podcasts',
-    // },
+    {
+      path: '/podcasts',
+      name: 'podcasts',
+    },
     {
       path: '/partners',
       name: 'partners',

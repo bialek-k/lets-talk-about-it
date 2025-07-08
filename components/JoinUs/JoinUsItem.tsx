@@ -41,6 +41,7 @@ export const JoinUsItem = ({
           theme="light"
           small={small}
           shortText={!longText}
+          customHight="315px"
         />
       </div>
     </div>
