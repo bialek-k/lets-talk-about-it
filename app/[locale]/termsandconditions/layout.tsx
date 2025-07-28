@@ -1,14 +1,15 @@
 import { Header } from '@/components/Header/Header';
 
 export const metadata = {
-  title: 'LET’S TALK ABOUT IT - Podcasty',
+  title: 'LET’S TALK ABOUT IT - Regulamin Konkursu',
   openGraph: {
-    url: 'https://letstalkaboutit.pl/podcasts',
-    title: "Podcasty z udziałem Let's Talk About IT",
+    url: 'https://letstalkaboutit.pl/termsnndconditions',
+    title:
+      "Regulamin uczestniczenia w konkursie organizowanym przez LET'S TALK ABOUT IT",
   },
 };
 
-const FilmsLayout = ({
+const TermsAndConditionsLayout = ({
   children,
   params: { locale },
 }: {
@@ -23,4 +24,4 @@ const FilmsLayout = ({
   );
 };
 
-export default FilmsLayout;
+export default TermsAndConditionsLayout;

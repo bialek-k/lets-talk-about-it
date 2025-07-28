@@ -31,5 +31,13 @@
   "carousel": "The next edition of Let's talk about IT will take place on November 6th in Rzeszów. We invite you! Join us to rock IT!",
   "readMore": "...read more",
   "readLess": "...read less",
-  "films": "Films"
+  "films": "Films",
+  "termsandconditions": "Terms and conditions of the competition",
+  "acceptterms": "I accept the terms and conditions and confirm my participation in the contest",
+  "sendForm": "Send form",
+  "name": "Name and Surname",
+  "email": "Email address",
+  "fillform": "To participate in the competition, please fill out the form below",
+  "namePlaceholder": "Enter your name and surname",
+  "emailPlaceholder": "Enter your email address"
 }
