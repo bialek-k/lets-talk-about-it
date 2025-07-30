@@ -5,7 +5,6 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { name, email } = body;
-    console.log('Received form data:', body);
 
     const transporter = nodemailer.createTransport({
       host: 'najlepszy.email',
