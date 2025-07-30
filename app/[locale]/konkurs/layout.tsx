@@ -3,7 +3,7 @@ import { Header } from '@/components/Header/Header';
 export const metadata = {
   title: 'LET’S TALK ABOUT IT - Regulamin Konkursu',
   openGraph: {
-    url: 'https://letstalkaboutit.pl/termsnndconditions',
+    url: 'https://letstalkaboutit.pl/konkurs',
     title:
       "Regulamin uczestniczenia w konkursie organizowanym przez LET'S TALK ABOUT IT",
   },

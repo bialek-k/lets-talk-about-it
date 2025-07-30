@@ -95,7 +95,7 @@ const Footer = ({ doc, partner }: Props) => {
           <div className="flex flex-col gap-5 justify-center">
             <PrivacyPolicy doc={doc} />
             <Link
-              href="/termsandconditions"
+              href="/konkurs"
               rel="noopener noreferrer"
               className="font-normal text-base"
               aria-label='Powrót na stronę "Regulamin Konkursu"'
