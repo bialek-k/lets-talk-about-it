@@ -15,7 +15,44 @@ export const Form = () => {
   const { t } = useTranslation();
 
   const validateName = (name: string) => {
-    const trimmedName = name.trim();
+    let trimmedName = name.trim();
+
+    // Sprawdzenie długości
+    if (trimmedName.length > 254) {
+      setNameError('Imię i nazwisko jest za długie (maksymalnie 254 znaki)');
+      return false;
+    }
+
+    // Normalizacja spacji (usuwanie wielokrotnych spacji)
+    trimmedName = trimmedName.replace(/\s+/g, ' ');
+
+    // Sprawdzenie czy nie zaczyna się lub kończy myślnikiem
+    if (trimmedName.startsWith('-') || trimmedName.endsWith('-')) {
+      setNameError(
+        'Imię i nazwisko nie może zaczynać się ani kończyć myślnikiem'
+      );
+      return false;
+    }
+
+    // Sprawdzenie czy nie ma wielokrotnych myślników
+    if (trimmedName.includes('--')) {
+      setNameError('Imię i nazwisko nie może zawierać wielokrotnych myślników');
+      return false;
+    }
+
+    // Sprawdzenie czy nazwa zawiera tylko litery, spacje i myślniki
+    const nameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-]+$/;
+    if (!nameRegex.test(trimmedName)) {
+      setNameError('Imię i nazwisko może zawierać tylko litery');
+      return false;
+    }
+
+    // Sprawdzenie czy nie zawiera cyfr
+    if (/\d/.test(trimmedName)) {
+      setNameError('Imię i nazwisko nie może zawierać cyfr');
+      return false;
+    }
+
     const nameParts = trimmedName.split(' ').filter((part) => part.length > 0);
 
     if (nameParts.length < 2) {
@@ -81,13 +118,23 @@ export const Form = () => {
       return;
     }
 
+    // Sanityzacja danych przed wysłaniem
+    const sanitizedData = {
+      name: formData.name
+        .trim()
+        .replace(/\s+/g, ' ') // normalizacja spacji
+        .replace(/[<>]/g, ''), // usuwanie potencjalnie niebezpiecznych znaków
+      email: formData.email.trim().toLowerCase(),
+      checkbox: formData.checkbox,
+    };
+
     setIsSubmitting(true);
 
     try {
       const res = await fetch('/api/send-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(sanitizedData),
       });
 
       if (res.ok) {
@@ -122,6 +169,8 @@ export const Form = () => {
       <form
         onSubmit={submitForm}
         className="flex flex-col gap-4 px-6 lg:px-0 mt-8 text-main-white lg:text-2xl"
+        role="form"
+        aria-label="Formularz konkursowy"
       >
         <label htmlFor="name">{t('name')}</label>
         <input
@@ -136,9 +185,19 @@ export const Form = () => {
           value={formData.name}
           onChange={handleNameChange}
           required
+          aria-required="true"
+          aria-invalid={nameError ? 'true' : 'false'}
+          aria-describedby={nameError ? 'name-error' : undefined}
         />
         {nameError && (
-          <span className="text-red-400 text-sm -mt-2">{nameError}</span>
+          <span
+            id="name-error"
+            className="text-red-400 text-sm -mt-2"
+            role="alert"
+            aria-live="polite"
+          >
+            {nameError}
+          </span>
         )}
 
         <label htmlFor="email">{t('email')}</label>
@@ -154,9 +213,19 @@ export const Form = () => {
           value={formData.email}
           onChange={handleEmailChange}
           required
+          aria-required="true"
+          aria-invalid={emailError ? 'true' : 'false'}
+          aria-describedby={emailError ? 'email-error' : undefined}
         />
         {emailError && (
-          <span className="text-red-400 text-sm -mt-2">{emailError}</span>
+          <span
+            id="email-error"
+            className="text-red-400 text-sm -mt-2"
+            role="alert"
+            aria-live="polite"
+          >
+            {emailError}
+          </span>
         )}
 
         <div className="flex items-center gap-3 mt-5">
@@ -169,6 +238,8 @@ export const Form = () => {
                 setFormData({ ...formData, checkbox: e.target.checked })
               }
               required
+              aria-required="true"
+              aria-describedby="checkbox-description"
               className="sr-only peer"
             />
             <div
@@ -177,12 +248,15 @@ export const Form = () => {
                   ? 'bg-main-yellow border-main-yellow'
                   : 'border-white bg-transparent hover:border-main-yellow'
               }`}
+              role="presentation"
+              aria-hidden="true"
             >
               {formData.checkbox && (
                 <svg
                   className="w-3 h-3 text-black"
                   fill="currentColor"
                   viewBox="0 0 20 20"
+                  aria-hidden="true"
                 >
                   <path
                     fillRule="evenodd"
@@ -193,17 +267,32 @@ export const Form = () => {
               )}
             </div>
           </label>
-          <label htmlFor="checkbox" className="cursor-pointer leading-tight">
+          <label
+            htmlFor="checkbox"
+            className="cursor-pointer leading-tight"
+            id="checkbox-description"
+          >
             {t('acceptterms')}
           </label>
         </div>
 
         <input
           type="submit"
-          className="bg-main-yellow self-center text-black py-2 px-4 rounded w-min disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-main-yellow self-center text-black py-2 px-4 rounded w-min disabled:opacity-50 disabled:cursor-not-allowed mt-5 transition-transform duration-200 hover:scale-105 hover:shadow-lg disabled:hover:scale-100 cursor-pointer"
           value={isSubmitting ? 'Wysyłanie...' : t('sendForm')}
           disabled={isSubmitting}
+          aria-describedby="submit-status"
         />
+
+        {/* Screen reader only status for form submission */}
+        <div
+          id="submit-status"
+          className="sr-only"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {isSubmitting ? 'Formularz jest wysyłany...' : ''}
+        </div>
       </form>
     </>
   );
