@@ -7,6 +7,7 @@ import { Header } from '@/components/Header/Header';
 import TranslationsProvider from '@/components/TranslationsProvider/TranslationProvider';
 import initTranslations from '../i18n';
 import Footer from '@/components/Footer/Footer';
+import { Toaster } from 'react-hot-toast';
 const i18nNamespaces = ['home'];
 import { IBM_Plex_Sans } from 'next/font/google';
 
@@ -95,6 +96,30 @@ const RootLayout = async ({
           {/* <Header isMain locale={locale} /> */}
           {children}
           <Footer partner={partner} doc={doc} />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#333',
+                color: '#fff',
+              },
+              success: {
+                duration: 4000,
+                iconTheme: {
+                  primary: '#10B981',
+                  secondary: '#fff',
+                },
+              },
+              error: {
+                duration: 4000,
+                iconTheme: {
+                  primary: '#EF4444',
+                  secondary: '#fff',
+                },
+              },
+            }}
+          />
         </TranslationsProvider>
       </body>
     </html>

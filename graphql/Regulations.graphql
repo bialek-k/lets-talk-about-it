@@ -1,0 +1,8 @@
+query RegulationsQuery($locale: Locale!) {
+  regulation(where:  {id: "cmdh7hcc2osl807uw46bmgvbh"} locales: [$locale]) {
+  title
+  regulamin {
+      raw
+    }
+  }
+}

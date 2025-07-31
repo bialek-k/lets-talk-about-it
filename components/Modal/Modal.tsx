@@ -5,17 +5,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { RichTextContent } from '@graphcms/rich-text-types';
 
-export interface Data {
-  title: string;
-  content: RichTextContent;
-}
-
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  data?: Data;
+  children?: React.ReactNode;
 }
-export const MapWindow = ({ isOpen, setIsOpen, data }: ModalProps) => {
+export const MapWindow = ({ isOpen, setIsOpen, children }: ModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -43,18 +38,7 @@ export const MapWindow = ({ isOpen, setIsOpen, data }: ModalProps) => {
             >
               <span />
             </button>
-            <div className="pt-6">
-              {data && (
-                <RichText
-                  content={data.content}
-                  renderers={{
-                    p: ({ children }) => {
-                      return <p className="m-0 mt-6">{children}</p>;
-                    },
-                  }}
-                />
-              )}
-            </div>
+            <div className="pt-6">{children}</div>
           </motion.div>
         </motion.div>
       )}
