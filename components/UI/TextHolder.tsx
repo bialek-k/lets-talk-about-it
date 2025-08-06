@@ -92,7 +92,7 @@ export const TextHolder = ({
                 );
               },
               ul: ({ children }) => {
-                return <ul className="pt-4 my-0">{children}</ul>;
+                return <ul className="pt-0 my-0">{children}</ul>;
               },
               li: ({ children }) => {
                 return <li className={customClass}>{children}</li>;

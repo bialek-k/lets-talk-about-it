@@ -6,7 +6,6 @@ import { JoinUsItem } from './JoinUsItem';
 import LinkedinIcon_yellow from '@/IconsSVG/LinkedinIcon_yellow';
 import YoutubeIcon_yellow from '@/IconsSVG/YoutubeIcon_yellow';
 import { useTranslation } from 'react-i18next';
-import FacebookIcon_yellow from '@/IconsSVG/FacebookIcon_yellow';
 import InstagramIcon_yellow from '@/IconsSVG/InstagramIcon_yellow';
 
 interface JoinUsProps {
@@ -33,8 +32,8 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             longText
             customClass={
               locale === 'en'
-                ? 'mt-1 lg:mt-0 marker:text-black'
-                : 'mt-0 md:mt-1 marker:text-black'
+                ? 'mt-0 md:mt-1 marker:text-black'
+                : 'mt-0 lg:mt-1 marker:text-black'
             }
             navigateDirection="https://www.linkedin.com/groups/14230011/"
           />
@@ -46,7 +45,11 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             icon={<YoutubeIcon_yellow />}
             small
             longText
-            customClass={'mt-1 md:mt-0 marker:text-black'}
+            customClass={
+              locale === 'en'
+                ? 'mt-0 md:mt-1 marker:text-black'
+                : 'mt-0 lg:mt-1 marker:text-black'
+            }
             navigateDirection="https://www.youtube.com/@_Lets_talk_about_IT"
           />
         )}
@@ -59,8 +62,8 @@ const JoinUs: React.FC<JoinUsProps> = ({ join_us, locale }) => {
             longText
             customClass={
               locale === 'en'
-                ? 'mt-0 md:mt-1 marker:text-black'
-                : 'mt-0 lg:mt-1 marker:text-black'
+                ? 'mt-0 marker:text-black'
+                : 'mt-1 lg:mt-0 marker:text-black'
             }
             navigateDirection="https://www.facebook.com/share/1CTbxm5ZMe/"
           />

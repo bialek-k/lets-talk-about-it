@@ -10,6 +10,7 @@ import Footer from '@/components/Footer/Footer';
 import { Toaster } from 'react-hot-toast';
 const i18nNamespaces = ['home'];
 import { IBM_Plex_Sans } from 'next/font/google';
+import Script from 'next/script';
 
 import { request } from '@/lib/request';
 import { DocsQueryDocument, PartnersQueryDocument } from '@/graphql/generated';
@@ -88,6 +89,18 @@ const RootLayout = async ({
   return (
     <html lang={locale} dir={dir(locale)} className={ibm.className}>
       <body className={`overflow-x-hidden flex flex-col items-center`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZEKQ915TXL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZEKQ915TXL');
+          `}
+        </Script>
         <TranslationsProvider
           namespaces={i18nNamespaces}
           locale={locale}
