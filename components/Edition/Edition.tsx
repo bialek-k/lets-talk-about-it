@@ -13,7 +13,7 @@ type Edition = {
   edition: string;
   location: string;
   slug: string;
-  title: string;
+  title: string[];
   lead: {
     name: string;
     position: string[];
