@@ -19,7 +19,7 @@ const EditionHero = async ({
     new: boolean;
     singUpLink: string;
     slug: string;
-    title: string;
+    title: string[];
   } | null;
 
   isMain?: boolean;
@@ -76,10 +76,20 @@ const EditionHero = async ({
         )}
       </div>
       <MainTitle fill="#0C0C0C" events {...(isMain ? { isMain } : {})} />
-      <h2 className="font-semibold text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] lg:font-normal lg:mt-10 mb-4 text-center">
-        {edition?.title}
-      </h2>
-      <Arrow />
+      {edition?.title &&
+        edition.title.map((line, index) => (
+          <h2
+            key={index}
+            className={`${
+              index === 0 ? 'font-bold' : 'font-semibold lg:font-normal'
+            } text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] mb-1 text-center`}
+          >
+            {line}
+          </h2>
+        ))}
+      <div className="">
+        <Arrow />
+      </div>
       {edition?.singUpLink ? (
         <div className="mt-5">
           <Button

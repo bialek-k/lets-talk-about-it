@@ -34,7 +34,7 @@ type NewEventHero = {
   new: boolean;
   singUpLink: string;
   slug: string;
-  title: string;
+  title: string[];
 };
 type NewEventLead = {
   lead: {

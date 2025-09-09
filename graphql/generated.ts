@@ -2103,7 +2103,7 @@ export type Event = Entity & Node & {
   date?: Maybe<Scalars['Date']['output']>;
   /** Get the document in other stages */
   documentInStages: Array<Event>;
-  edition: Scalars['String']['output'];
+  edition?: Maybe<Scalars['String']['output']>;
   gallery: Array<Asset>;
   /** List of Event versions */
   history: Array<Version>;
@@ -2127,7 +2127,7 @@ export type Event = Entity & Node & {
   speakers: Array<EventspeakersUnion>;
   /** System stage field */
   stage: Stage;
-  title: Scalars['String']['output'];
+  title: Array<Scalars['String']['output']>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime']['output'];
   /** User that last updated this document */
@@ -2254,7 +2254,7 @@ export type EventConnection = {
 export type EventCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   date?: InputMaybe<Scalars['Date']['input']>;
-  edition: Scalars['String']['input'];
+  edition?: InputMaybe<Scalars['String']['input']>;
   gallery?: InputMaybe<AssetCreateManyInlineInput>;
   lead?: InputMaybe<EventleadUnionCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
@@ -2265,13 +2265,13 @@ export type EventCreateInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
   speakers?: InputMaybe<EventspeakersUnionCreateManyInlineInput>;
   /** title input for default locale (en) */
-  title: Scalars['String']['input'];
+  title?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type EventCreateLocalizationDataInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  title: Scalars['String']['input'];
+  title?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -2537,11 +2537,11 @@ export type EventUpdateInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
   speakers?: InputMaybe<EventspeakersUnionUpdateManyInlineInput>;
   /** title input for default locale (en) */
-  title?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type EventUpdateLocalizationDataInput = {
-  title?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type EventUpdateLocalizationInput = {
@@ -2585,11 +2585,11 @@ export type EventUpdateManyInput = {
   new?: InputMaybe<Scalars['Boolean']['input']>;
   singUpLink?: InputMaybe<Scalars['String']['input']>;
   /** title input for default locale (en) */
-  title?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type EventUpdateManyLocalizationDataInput = {
-  title?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type EventUpdateManyLocalizationInput = {
@@ -2829,25 +2829,16 @@ export type EventWhereInput = {
   speakers_empty?: InputMaybe<Scalars['Boolean']['input']>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
   speakers_some?: InputMaybe<EventspeakersUnionWhereInput>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  title_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  title?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  title_contains_all?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  title_contains_none?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  title_contains_some?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  title_not?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -6617,6 +6608,8 @@ export type Person = Entity & {
   position: Array<Scalars['String']['output']>;
   /** System stage field */
   stage: Stage;
+  /** System updatedAt field */
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 
@@ -6630,6 +6623,11 @@ export type PersonPhotoArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
   where?: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+
+export type PersonUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 export type PersonConnectInput = {
@@ -6657,10 +6655,12 @@ export type PersonCreateInput = {
   photo?: InputMaybe<AssetCreateOneInlineInput>;
   /** position input for default locale (en) */
   position?: InputMaybe<Array<Scalars['String']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonCreateLocalizationDataInput = {
   position?: InputMaybe<Array<Scalars['String']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonCreateLocalizationInput = {
@@ -6768,6 +6768,21 @@ export type PersonManyWhereInput = {
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']['input']>;
   photo?: InputMaybe<AssetWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
 };
 
 export enum PersonOrderByInput {
@@ -6778,7 +6793,9 @@ export enum PersonOrderByInput {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   PositionAsc = 'position_ASC',
-  PositionDesc = 'position_DESC'
+  PositionDesc = 'position_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
 }
 
 export type PersonParent = Event | Workshop;
@@ -7073,6 +7090,21 @@ export type PersonWhereInput = {
   position_contains_some?: InputMaybe<Array<Scalars['String']['input']>>;
   /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
   position_not?: InputMaybe<Array<Scalars['String']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
 };
 
 /** References Person record uniquely */
@@ -11141,12 +11173,12 @@ export type EditionQueryQueryVariables = Exact<{
 }>;
 
 
-export type EditionQueryQuery = { __typename?: 'Query', event?: { __typename?: 'Event', id: string, title: string, new?: boolean | null, date?: any | null, edition: string, location?: string | null, slug?: string | null, singUpLink?: string | null, lead: Array<{ __typename?: 'Person', id: string, name: string, position: Array<string>, linkedIn?: string | null, photo?: { __typename?: 'Asset', fileName: string, width?: number | null, height?: number | null, url: string } | null }>, speakers: Array<{ __typename?: 'Person', id: string, name: string, position: Array<string>, linkedIn?: string | null, photo?: { __typename?: 'Asset', fileName: string, width?: number | null, height?: number | null, url: string } | null }>, gallery: Array<{ __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }> } | null, assetsConnection: { __typename?: 'AssetConnection', aggregate: { __typename?: 'Aggregate', count: number } } };
+export type EditionQueryQuery = { __typename?: 'Query', event?: { __typename?: 'Event', id: string, title: Array<string>, new?: boolean | null, date?: any | null, edition?: string | null, location?: string | null, slug?: string | null, singUpLink?: string | null, lead: Array<{ __typename?: 'Person', id: string, name: string, position: Array<string>, linkedIn?: string | null, photo?: { __typename?: 'Asset', fileName: string, width?: number | null, height?: number | null, url: string } | null }>, speakers: Array<{ __typename?: 'Person', id: string, name: string, position: Array<string>, linkedIn?: string | null, photo?: { __typename?: 'Asset', fileName: string, width?: number | null, height?: number | null, url: string } | null }>, gallery: Array<{ __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }> } | null, assetsConnection: { __typename?: 'AssetConnection', aggregate: { __typename?: 'Aggregate', count: number } } };
 
 export type EventsRoutesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type EventsRoutesQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Event', id: string, slug?: string | null, edition: string }> };
+export type EventsRoutesQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Event', id: string, slug?: string | null, edition?: string | null }> };
 
 export type EventGalleryQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -11162,7 +11194,7 @@ export type NewEventQueryQueryVariables = Exact<{
 }>;
 
 
-export type NewEventQueryQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Event', id: string, title: string, new?: boolean | null, date?: any | null, edition: string, location?: string | null, singUpLink?: string | null, slug?: string | null, lead: Array<{ __typename?: 'Person', id: string, name: string, position: Array<string>, linkedIn?: string | null, photo?: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } | null }>, speakers: Array<{ __typename?: 'Person', id: string, name: string, position: Array<string>, linkedIn?: string | null, photo?: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } | null }>, gallery: Array<{ __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }> }> };
+export type NewEventQueryQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Event', id: string, title: Array<string>, new?: boolean | null, date?: any | null, edition?: string | null, location?: string | null, singUpLink?: string | null, slug?: string | null, lead: Array<{ __typename?: 'Person', id: string, name: string, position: Array<string>, linkedIn?: string | null, photo?: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } | null }>, speakers: Array<{ __typename?: 'Person', id: string, name: string, position: Array<string>, linkedIn?: string | null, photo?: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } | null }>, gallery: Array<{ __typename?: 'Asset', width?: number | null, height?: number | null, url: string, fileName: string }> }> };
 
 export type JoinUsQueryQueryVariables = Exact<{
   locale: Locale;
