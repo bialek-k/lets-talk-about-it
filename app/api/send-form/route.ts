@@ -4,6 +4,7 @@ import nodemailer from 'nodemailer';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+
     const { name, email } = body;
 
     const transporter = nodemailer.createTransport({
