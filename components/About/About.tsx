@@ -27,6 +27,7 @@ export const About = ({ about }: AboutQueryQuery) => {
               shortText
             />
           </div>
+          
           <div className="md:hidden">
             <TextHolder
               content={about?.description.raw}
