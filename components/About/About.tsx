@@ -57,11 +57,20 @@ export const About = ({ about }: AboutQueryQuery) => {
               />
             </div>
           </div>
-          <div className="content bg-red-40">
+          <div className="content bg-red-40 hidden md:flex">
             <TextHolder
               content={about?.malgosia_description.raw}
               customClass="mt-0 lg:mt-1 max-w-[325px]"
               customHight="567px"
+              theme="dark"
+              readMore
+            />
+          </div>
+          <div className="content bg-red-40 md:hidden">
+            <TextHolder
+              content={about?.malgosia_description.raw}
+              customClass="mt-0 lg:mt-1 max-w-[325px]"
+              customHight="352px"
               theme="dark"
               readMore
             />
