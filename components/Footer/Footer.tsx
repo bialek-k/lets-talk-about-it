@@ -94,14 +94,14 @@ const Footer = ({ doc, partner }: Props) => {
           <h4 className="font-medium text-xl mb-5 ">{t('links')}</h4>
           <div className="flex flex-col gap-5 justify-center">
             <PrivacyPolicy doc={doc} />
-            {/* <Link
+            <Link
               href="/konkurs"
               rel="noopener noreferrer"
               className="font-normal text-base"
               aria-label='Powrót na stronę "Regulamin Konkursu"'
             >
               {t('termsandconditions')}
-            </Link> */}
+            </Link>
             <Link
               href="/#about"
               rel="noopener noreferrer"
