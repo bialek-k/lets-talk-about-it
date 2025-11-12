@@ -94,14 +94,14 @@ const Footer = ({ doc, partner }: Props) => {
           <h4 className="font-medium text-xl mb-5 ">{t('links')}</h4>
           <div className="flex flex-col gap-5 justify-center">
             <PrivacyPolicy doc={doc} />
-            <Link
+            {/* <Link
               href="/konkurs"
               rel="noopener noreferrer"
               className="font-normal text-base"
               aria-label='Powrót na stronę "Regulamin Konkursu"'
             >
               {t('termsandconditions')}
-            </Link>
+            </Link> */}
             <Link
               href="/#about"
               rel="noopener noreferrer"
@@ -120,9 +120,11 @@ const Footer = ({ doc, partner }: Props) => {
         </div>
         <div className="flex flex-col lg:flex-row lg:gap-1">
           <p className="font-normal text-base text-center">
-            Karolina Bożemska, Krzysztof Białek,
+            Karolina Bożemska, Edyta Malicka,
           </p>
-          <p className="font-normal text-base text-center">Vincent Słomiński</p>
+          <p className="font-normal text-base text-center">
+            Krzysztof Białek, Vincent Słomiński
+          </p>
         </div>
       </div>
     </footer>
