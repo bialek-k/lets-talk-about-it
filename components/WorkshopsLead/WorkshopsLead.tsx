@@ -100,7 +100,11 @@ const WorkshopsLead = async ({
               locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
             }`}
             theme="dark"
-            readMore
+            readMore={
+              edition?.description.html && edition.description.html.length > 500
+                ? true
+                : false
+            }
             customHight="360px"
           />
         </div>
