@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { TextHolder } from '../UI/TextHolder';
 import TextBorderLine from '@/IconsSVG/TextBorderLine';
 import { RichTextContent } from '@graphcms/rich-text-types';
+import type { Gender } from '@/graphql/generated';
 
 const WorkshopsLead = async ({
   locale,
@@ -25,6 +26,7 @@ const WorkshopsLead = async ({
     }[];
     lead: {
       name: string;
+      gender: Gender;
       position: string[];
       photo: {
         url: string;
@@ -38,6 +40,17 @@ const WorkshopsLead = async ({
   translation: (key: string) => string;
 }) => {
   const t = translation;
+
+  const checkLeadGender = () => {
+    if (edition?.lead.length === 1) {
+      return edition.lead[0].gender === 'male' ? t('maleLead') : t('lead');
+    }
+    if (edition?.lead.length !== 1) {
+      return t('maleLead');
+    } else {
+      return t('lead');
+    }
+  };
 
   return (
     <div className="w-full mx-auto flex flex-col px-4 lg:px-[100px] justify-center items-center relative pb-10 max-w-[1440px]">
@@ -112,7 +125,7 @@ const WorkshopsLead = async ({
         <div className="w-full lg:w-auto flex items-center justify-center">
           <div className="flex flex-col w-full">
             <h2 className="flex font-semibold text-lg lg:font-medium lg:text-5xl lg:leading-[62px] mb-10 lg:mb-0">
-              {t('lead')}
+              {checkLeadGender()}
             </h2>
             {edition?.lead.map((leader) => {
               return (
