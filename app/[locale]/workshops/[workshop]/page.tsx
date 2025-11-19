@@ -3,7 +3,7 @@ import Gallery from '@/components/Gallery/Gallery';
 import PartnersCarousel from '@/components/PartnersCarousel/PartnersCarousel';
 import WorkshopsHero from '@/components/WorkshopHero/WorkshopsHero';
 import WorkshopsLead from '@/components/WorkshopsLead/WorkshopsLead';
-import { WorkshopsQueryDocument } from '@/graphql/generated';
+import { WorkshopsQueryDocument, type Gender } from '@/graphql/generated';
 import { request } from '@/lib/request';
 import { RichTextContent } from '@graphcms/rich-text-types';
 
@@ -27,6 +27,7 @@ type Workshop = {
   }[];
   lead: {
     name: string;
+    gender: Gender;
     position: string[];
     photo: {
       url: string;
