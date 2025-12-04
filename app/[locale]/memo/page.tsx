@@ -31,9 +31,10 @@ export default function MemoPage() {
   const [matched, setMatched] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
   const [pairs, setPairs] = useState(0);
-  const [time, setTime] = useState<number>(0);
+  const [time, setTime] = useState(0);
   const [win, setWin] = useState(false);
-  const timer = useRef(null);
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+
 
   const startGame = () => {
     const duplicated = [...items, ...items];
