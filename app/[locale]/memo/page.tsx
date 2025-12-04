@@ -2,7 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const items = [
+type CardItem = {
+  emoji: string;
+  text: string;
+};
+
+const items: CardItem[] = [
   { emoji: "🔗", text: "Connect IT dots" },
   { emoji: "🌱", text: "Let’s grow together" },
   { emoji: "💛", text: "Power skills" },
@@ -21,9 +26,9 @@ const items = [
 ];
 
 export default function MemoPage() {
-  const [cards, setCards] = useState([]);
-  const [flipped, setFlipped] = useState([]);
-  const [matched, setMatched] = useState([]);
+  const [cards, setCards] = useState<CardItem[]>([]);
+  const [flipped, setFlipped] = useState<number[]>([]);
+  const [matched, setMatched] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
   const [pairs, setPairs] = useState(0);
   const [time, setTime] = useState(0);
