@@ -108,7 +108,7 @@ const Footer = ({ doc, partner }: Props) => {
               className="font-normal text-base"
               aria-label='Zagraj w memo'
             >
-              {t('about')}
+              Zagraj w memo
             </Link>
             <Link
               href="/#about"
