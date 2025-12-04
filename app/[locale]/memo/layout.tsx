@@ -5,7 +5,8 @@ export const metadata = {
   openGraph: {
     url: 'https://letstalkaboutit.pl/memo',
     title: "Gra Memo w Let's Talk About IT",
-    description: 'Baw się z nami i zagraj w naszą grę memo w let's talkowym stylu',
+    description: description: "Baw się z nami i zagraj w naszą grę memo w let's talkowym stylu",
+,
   },
 };
 
