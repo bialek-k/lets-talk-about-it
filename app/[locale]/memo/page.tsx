@@ -161,7 +161,7 @@ export default function MemoPage(): JSX.Element {
         <div
           className="
             grid gap-4
-            grid-cols-4 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6
+            grid-cols-3 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-6
             justify-center items-center
           "
           style={{ width: "100%" }}
