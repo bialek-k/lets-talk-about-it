@@ -200,23 +200,27 @@ export default function MemoPage(): JSX.Element {
 
                 {/* content */}
                 {isFlipped ? (
-                  item.emoji === "linkedin" ? (
-                    <div className="card-content text-center px-3">
-                      <div className="mb-2 flex justify-center">
-                        {/* use your LinkedinIcon component */}
-                        <LinkedinIcon />
-                      </div>
-                      <div className="text-sm font-semibold leading-tight">{item.text}</div>
-                    </div>
-                  ) : (
-                    <div className="card-content text-center px-2">
-                      <div className="text-[32px] mb-1 filter drop-shadow-sm">{item.emoji}</div>
-                      <div className="text-sm font-semibold leading-tight">{item.text}</div>
-                    </div>
-                  )
-                ) : (
-                  <div className="card-back text-[40px] text-[#0c0c0c] drop-shadow-md">💻</div>
-                )}
+  item.emoji === "linkedin" ? (
+    <div className="card-content text-center px-1 sm:px-2 md:px-3">
+      <div className="mb-1 flex justify-center">
+        <LinkedinIcon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
+      </div>
+      <div className="text-[10px] sm:text-[12px] md:text-sm font-semibold leading-tight">
+        {item.text}
+      </div>
+    </div>
+  ) : (
+    <div className="card-content text-center px-1 sm:px-2 md:px-3">
+      <div className="text-[24px] sm:text-[28px] md:text-[32px] mb-1 filter drop-shadow-sm">{item.emoji}</div>
+      <div className="text-[10px] sm:text-[12px] md:text-sm font-semibold leading-tight">
+        {item.text}
+      </div>
+    </div>
+  )
+) : (
+  <div className="card-back text-[32px] sm:text-[36px] md:text-[40px] text-[#0c0c0c] drop-shadow-md">💻</div>
+)}
+
               </button>
             );
           })}
