@@ -102,6 +102,14 @@ const Footer = ({ doc, partner }: Props) => {
             >
               {t('termsandconditions')}
             </Link> */}
+<Link
+              href="/memo"
+              rel="noopener noreferrer"
+              className="font-normal text-base"
+              aria-label='Zagraj w memo'
+            >
+              Zagraj w memo
+            </Link>
             <Link
               href="/#about"
               rel="noopener noreferrer"
