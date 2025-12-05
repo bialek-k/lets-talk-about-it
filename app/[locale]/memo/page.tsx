@@ -202,7 +202,7 @@ export default function MemoPage(): JSX.Element {
                 {isFlipped ? (
   item.emoji === "linkedin" ? (
     <div className="card-content flex items-center justify-center text-center px-1 sm:px-2 md:px-3">
-      <div className="mb-1 flex justify-center items-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12">
+      <div className="mb-1 flex flex-col justify-center items-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12">
         <LinkedinIcon/>
       </div>
       <div className="text-[10px] sm:text-[12px] md:text-sm font-semibold leading-tight">
