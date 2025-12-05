@@ -172,17 +172,18 @@ export default function MemoPage(): JSX.Element {
 
             return (
               <button
-                key={i}
-                onClick={() => flipCard(i)}
-                aria-pressed={isFlipped}
-                className={`relative overflow-hidden rounded-[20px] flex items-center justify-center
-                  transition-transform duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
-                  ${isFlipped ? "bg-gradient-to-br from-[#000000] to-[#434343] border-white text-white" : "bg-gradient-to-br from-[#434343] to-[#ffffff] text-black"}
-                  ${isMatched ? "bg-gradient-to-br from-[#daf501] to-[#626360] text-white border-[#daf501]" : ""}
-                  border-2 shadow-[0_8px_32px_rgba(218,245,1,0.2)] cursor-pointer
-                  hover:translate-y-[-8px] hover:scale-[1.05]`}
-                style={{ width: "120px", height: "120px", minWidth: 0 }}
-              >
+  key={i}
+  onClick={() => flipCard(i)}
+  aria-pressed={isFlipped}
+  className={`relative overflow-hidden rounded-[20px] flex items-center justify-center
+    transition-transform duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
+    ${isFlipped ? "bg-gradient-to-br from-[#000000] to-[#434343] border-white text-white" : "bg-gradient-to-br from-[#434343] to-[#ffffff] text-black"}
+    ${isMatched ? "bg-gradient-to-br from-[#daf501] to-[#626360] text-white border-[#daf501]" : ""}
+    border-2 shadow-[0_8px_32px_rgba(218,245,1,0.2)] cursor-pointer
+    hover:translate-y-[-8px] hover:scale-[1.05]
+    w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[120px] md:h-[120px]`}
+>
+
                 {/* shine effect (mimics ::before from original) */}
                 <span
                   className="absolute top-0 left-[-120%] w-[120%] h-full pointer-events-none
