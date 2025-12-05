@@ -136,7 +136,7 @@ export default function MemoPage(): JSX.Element {
 
   return (
     <div className="min-h-screen p-5 md:p-8 bg-gradient-to-br from-[#0c0c0c] via-[#2a2a2a] to-[#0c0c0c] flex flex-col items-center">
-      <h1 className="text-3xl md:text-4xl font-extrabold mb-2 text-center leading-tight
+      <h1 className="text-3xl md:text-4xl pt-20 font-extrabold mb-2 text-center leading-tight
           bg-gradient-to-r from-white to-[#daf501] bg-clip-text text-transparent drop-shadow-md">
         ! IT Gra Memo !
       </h1>
