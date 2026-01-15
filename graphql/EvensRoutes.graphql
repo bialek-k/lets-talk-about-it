@@ -1,7 +1,10 @@
-query EventsRoutes {
-  events(stage: PUBLISHED, orderBy:slug_DESC) {
+query EventsRoutes($locale: Locale!) {
+  events(stage: PUBLISHED, locales: [$locale], orderBy:slug_DESC) {
     id
     slug
     edition
+    location
+    date
+    title
   }
 }

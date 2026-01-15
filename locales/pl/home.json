@@ -39,5 +39,7 @@
   "email": "Adres e-mail",
   "fillform": "Aby wziąć udział w konkursie wypełnij poniższy formularz",
   "namePlaceholder": "Wpisz swoje imię i nazwisko",
-  "emailPlaceholder": "Wpisz swój adres e-mail"
+  "emailPlaceholder": "Wpisz swój adres e-mail",
+  "multimedia": "Multimedia",
+  "mainEvents": "Wydarzenia"
 }
