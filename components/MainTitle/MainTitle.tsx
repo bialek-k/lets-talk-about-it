@@ -1,4 +1,6 @@
+'use client';
 import Pattern from '@/IconsSVG/Pattern';
+import { useTranslation } from 'react-i18next';
 
 const MainTitle = ({
   fill,
@@ -9,6 +11,7 @@ const MainTitle = ({
   events?: boolean;
   isMain?: boolean;
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="flex justify-center flex-col items-center mx-auto w-full mb-5">
       {isMain ? (
@@ -49,7 +52,7 @@ const MainTitle = ({
               : 'lg:text-5xl lg:leading-[62px]'
           }`}
         >
-          Join us to rock IT
+          {t('logoTitle')}
         </h2>
       </div>
     </div>

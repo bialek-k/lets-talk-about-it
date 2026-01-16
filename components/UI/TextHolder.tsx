@@ -43,8 +43,8 @@ export const TextHolder = ({
 
   return (
     <div
-      className={`bg-main-${theme === 'light' ? 'white' : 'black'} 
-      } p-[30px] h-max rounded-2xl border-4 border-[#E2FF00] flex flex-col items-center justify-center`}
+      className={`${theme === 'light' ? '' : 'bg-main-black'} 
+      } p-[30px] h-max rounded-2xl  flex flex-col items-center justify-center`}
     >
       <div
         className={`content flex prose ${
@@ -60,7 +60,7 @@ export const TextHolder = ({
           className={`w-full h-full font-normal prose-p:py-[10px] text-base leading-5 lg:text-lg lg:leading-6 ${
             theme === 'dark'
               ? 'text-main-white bg-main-black'
-              : 'text-main-black bg-main-white'
+              : 'text-main-black '
           }`}
         >
           <RichText
