@@ -24,9 +24,13 @@ export type NavSection =
       content: (NavLink | NavGroup)[];
     };
 
-export const fetchEvents = async () => {
-  const { events = [] } = await request(EventsRoutesDocument);
-  const { workshops = [] } = await request(WorkshopsRoutesDocument);
+export const fetchEvents = async (locale: 'pl' | 'en') => {
+  const { events = [] } = await request(EventsRoutesDocument, {
+    locale: locale as 'pl' | 'en',
+  });
+  const { workshops = [] } = await request(WorkshopsRoutesDocument, {
+    locale: locale as 'pl' | 'en',
+  });
 
   return [
     {

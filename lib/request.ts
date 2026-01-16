@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 import { request as graphqlRequest, Variables } from 'graphql-request';
 import { RequestDocument } from 'graphql-request';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
@@ -9,12 +7,15 @@ const URI = process.env.NEXT_PUBLIC_HYGRAPH_URI as string;
 type Locale = 'pl' | 'en';
 
 export function request<TDocument = any>(
-  document: RequestDocument | TypedDocumentNode<TDocument, { locale: Locale }>,
-  variables?: { locale?: Locale }
+  document: RequestDocument | TypedDocumentNode<TDocument, Variables>,
+  variables?: Variables & { locale?: Locale }
 ) {
-  const locale: Locale = variables?.locale ?? 'pl';
+  // fallback na locale
+  const mergedVariables = { ...variables, locale: variables?.locale ?? 'pl' };
 
-  return graphqlRequest<TDocument, { locale: Locale }>(URI, document, {
-    locale,
-  });
+  return graphqlRequest<TDocument, typeof mergedVariables>(
+    URI,
+    document,
+    mergedVariables
+  );
 }

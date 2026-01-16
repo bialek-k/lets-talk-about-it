@@ -45,7 +45,10 @@ const Workshop = async ({
 }) => {
   const i18nNamespaces = ['workshops'];
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
-  const { workshop, assetsConnection } = await request(WorkshopsQueryDocument);
+  const { workshop, assetsConnection } = await request(WorkshopsQueryDocument, {
+    locale: locale as 'pl' | 'en',
+    slug,
+  });
 
   const gallery = workshop?.gallery ?? [];
 

@@ -28,7 +28,7 @@ export const Header = ({
   locale,
 }: {
   isMain?: boolean;
-  locale: string;
+  locale: 'pl' | 'en';
 }) => {
   const [routes, setRoutes] = useState<NavSection[]>([]);
   const { scrollY } = useScroll();
@@ -51,7 +51,7 @@ export const Header = ({
 
   useEffect(() => {
     const fetchRoutes = async () => {
-      const fetchedRoutes = (await fetchEvents()) as NavSection[];
+      const fetchedRoutes = (await fetchEvents(locale)) as NavSection[];
       setRoutes(fetchedRoutes);
     };
     fetchRoutes();

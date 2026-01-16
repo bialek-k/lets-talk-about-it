@@ -10,9 +10,9 @@ const Films = async ({
 }: {
   params: { locale: string };
 }) => {
-  const { film } = await request(FilmQueryDocument);
-  const i18nNamespaces = ['partners'];
-  const { t, resources } = await initTranslations(locale, i18nNamespaces);
+  const { film } = await request(FilmQueryDocument, {
+    locale: locale as 'pl' | 'en',
+  });
 
   return (
     <section className="pt-10 md:pt-20 lg:pt-24 w-full bg-main-black flex justify-center">

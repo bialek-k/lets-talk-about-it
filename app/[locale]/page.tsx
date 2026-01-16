@@ -65,11 +65,15 @@ type NewEventLead = {
 const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 
-  const { about } = await request(AboutQueryDocument, { locale });
-  const { join_us } = await request(JoinUsQueryDocument, { locale });
+  const { about } = await request(AboutQueryDocument, {
+    locale: locale as 'pl' | 'en',
+  });
+  const { join_us } = await request(JoinUsQueryDocument, {
+    locale: locale as 'pl' | 'en',
+  });
   const {
     events: [newEvent],
-  } = await request(NewEventQueryDocument, { locale });
+  } = await request(NewEventQueryDocument, { locale: locale as 'pl' | 'en' });
 
   return (
     <TranslationsProvider
