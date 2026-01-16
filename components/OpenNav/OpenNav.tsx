@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import MobileNav from '../MobileNav/MobileNav';
 
-const OpenNav = ({ locale }: { locale: string }) => {
+const OpenNav = ({ locale }: { locale: 'pl' | 'en' }) => {
   const [isMenuOpen, setOpenMenu] = useState(false);
 
   useEffect(() => {
