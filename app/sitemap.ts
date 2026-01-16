@@ -10,11 +10,12 @@ const sitemap = async ({
 }: {
   locale: string;
 }): Promise<MetadataRoute.Sitemap> => {
-  const { events } = await request(EventsRoutesDocument);
+  const { events } = await request(EventsRoutesDocument, { locale });
   const { workshops } = await request(WorkshopsRoutesDocument, { locale });
 
   const eventsRoutes = events.filter(Boolean).map((event) => ({
     url: `https://www.letstalkaboutit.pl/events/${event.slug}`,
+
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     alternates: {
