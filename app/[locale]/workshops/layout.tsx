@@ -14,7 +14,7 @@ const WorkshopsLayout = ({
   params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: 'pl' | 'en' };
 }) => {
   return (
     <section className="overflow-x-hidden flex flex-col items-center">

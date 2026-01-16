@@ -14,7 +14,7 @@ const PartnersLayout = ({
   params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: 'pl' | 'en' };
 }) => {
   return (
     <section className="overflow-x-hidden w-full flex flex-col items-center">

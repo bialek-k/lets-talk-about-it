@@ -14,7 +14,7 @@ const EventLayout = ({
   params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: 'pl' | 'en' };
 }) => {
   return (
     <>
