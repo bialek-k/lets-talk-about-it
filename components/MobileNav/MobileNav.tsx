@@ -45,7 +45,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
 
   useEffect(() => {
     const fetchRoutes = async () => {
-      const fetchedRoutes = (await fetchEvents({ locale })) as NavSection[];
+      const fetchedRoutes = (await fetchEvents()) as NavSection[];
       setRoutes(fetchedRoutes);
     };
     fetchRoutes();
