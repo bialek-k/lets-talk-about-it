@@ -10,8 +10,8 @@ const sitemap = async ({
 }: {
   locale: string;
 }): Promise<MetadataRoute.Sitemap> => {
-  const { events } = await request(EventsRoutesDocument, { locale });
-  const { workshops } = await request(WorkshopsRoutesDocument, { locale });
+  const { events } = await request(EventsRoutesDocument);
+  const { workshops } = await request(WorkshopsRoutesDocument);
 
   const eventsRoutes = events.filter(Boolean).map((event) => ({
     url: `https://www.letstalkaboutit.pl/events/${event.slug}`,
