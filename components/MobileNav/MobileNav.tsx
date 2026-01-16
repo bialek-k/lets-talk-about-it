@@ -19,7 +19,7 @@ import { NavItem } from '@/components/Navbar/NavItem';
 interface MobileNavProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  locale: string;
+  locale: 'pl' | 'en';
 }
 
 const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
@@ -45,7 +45,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
 
   useEffect(() => {
     const fetchRoutes = async () => {
-      const fetchedRoutes = (await fetchEvents()) as NavSection[];
+      const fetchedRoutes = (await fetchEvents(locale)) as NavSection[];
       setRoutes(fetchedRoutes);
     };
     fetchRoutes();
