@@ -10,7 +10,7 @@ const Podcasts = async ({
 }: {
   params: { locale: string };
 }) => {
-  const { podcast } = await request(PodcastsQueryDocument, { locale });
+  const { podcast } = await request(PodcastsQueryDocument);
   const i18nNamespaces = ['partners'];
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 

@@ -10,7 +10,7 @@ const TermsAndConditions = async ({
 }: {
   params: { locale: string };
 }) => {
-  const { regulation } = await request(RegulationsQueryDocument, { locale });
+  const { regulation } = await request(RegulationsQueryDocument);
   const i18nNamespaces = ['home'];
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 

@@ -24,9 +24,9 @@ export type NavSection =
       content: (NavLink | NavGroup)[];
     };
 
-export const fetchEvents = async ({ locale = 'pl' }: { locale: string }) => {
+export const fetchEvents = async () => {
   const { events = [] } = await request(EventsRoutesDocument);
-  const { workshops = [] } = await request(WorkshopsRoutesDocument, { locale });
+  const { workshops = [] } = await request(WorkshopsRoutesDocument);
 
   return [
     {

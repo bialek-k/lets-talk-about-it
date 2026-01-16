@@ -10,7 +10,7 @@ const Films = async ({
 }: {
   params: { locale: string };
 }) => {
-  const { film } = await request(FilmQueryDocument, { locale });
+  const { film } = await request(FilmQueryDocument);
   const i18nNamespaces = ['partners'];
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 

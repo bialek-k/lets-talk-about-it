@@ -9,7 +9,7 @@ const Partners = async ({
 }: {
   params: { locale: string };
 }) => {
-  const { partner } = await request(PartnersQueryDocument, { locale });
+  const { partner } = await request(PartnersQueryDocument);
   const i18nNamespaces = ['partners'];
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 

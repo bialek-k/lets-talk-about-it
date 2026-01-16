@@ -51,10 +51,7 @@ const Edition = async ({
 }) => {
   const t = translation;
 
-  const { event, assetsConnection } = await request(EditionQueryDocument, {
-    locale,
-    edition,
-  });
+  const { event, assetsConnection } = await request(EditionQueryDocument);
 
   const gallery = event?.gallery ?? [];
 
