@@ -31,7 +31,6 @@ export const Header = ({
   locale: string;
 }) => {
   const [routes, setRoutes] = useState<NavSection[]>([]);
-  const { t } = useTranslation();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const currentPath = usePathname();
