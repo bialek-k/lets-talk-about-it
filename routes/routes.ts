@@ -25,8 +25,8 @@ export type NavSection =
     };
 
 export const fetchEvents = async ({ locale = 'pl' }: { locale: string }) => {
-  const { events } = await request(EventsRoutesDocument, { locale });
-  const { workshops } = await request(WorkshopsRoutesDocument, { locale });
+  const { events = [] } = await request(EventsRoutesDocument);
+  const { workshops = [] } = await request(WorkshopsRoutesDocument, { locale });
 
   return [
     {
