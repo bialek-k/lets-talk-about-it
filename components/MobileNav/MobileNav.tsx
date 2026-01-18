@@ -26,7 +26,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
   const currentPath = usePathname();
   const { t } = useTranslation();
   const [routes, setRoutes] = useState<NavSection[]>([]);
-  const [isSubMenuOpen, setSubMenuOpen] = useState(false);
+  const [openSubMenuIndex, setOpenSubMenuIndex] = useState<number | null>(null);
 
   const isActive = (path?: string) => {
     if (!path) return false;
@@ -60,7 +60,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
           exit={{ opacity: 0 }}
           onClick={() => {
             setIsOpen(false);
-            setSubMenuOpen(false);
+            setOpenSubMenuIndex(null);
           }}
           className="bg-slate-900/20 backdrop-blur  fixed h-screen inset-0 z-50 grid items-baseline overflow-y-scroll cursor-pointer"
         >
@@ -95,9 +95,14 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
                 ) : (
                   <SubMenu
                     key={index}
+                    index={index}
                     route={route}
                     setIsOpen={setIsOpen}
                     isActive={isActive}
+                    isOpen={openSubMenuIndex === index}
+                    setOpen={(isOpen) =>
+                      setOpenSubMenuIndex(isOpen ? index : null)
+                    }
                   />
                 )
               )}
@@ -137,15 +142,23 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
 export default MobileNav;
 
 interface SubMenuProps {
+  index: number;
   route: Exclude<NavSection, NavLink>;
   setIsOpen: (isOpen: boolean) => void;
   isActive: (path?: string) => boolean;
+  isOpen: boolean;
+  setOpen: (isOpen: boolean) => void;
 }
 
-const SubMenu = ({ route, setIsOpen, isActive }: SubMenuProps) => {
-  const [subMenuOpen, setSubMenuOpen] = useState(false);
-  const currentPath = usePathname();
+const SubMenu = ({
+  route,
+  setIsOpen,
+  isActive,
+  isOpen,
+  setOpen,
+}: SubMenuProps) => {
   const { t } = useTranslation();
+  const [openNestedIndex, setOpenNestedIndex] = useState<number | null>(null);
 
   // Check if any child route is active
   const hasActiveChild = route.content.some((sub) => {
@@ -158,23 +171,23 @@ const SubMenu = ({ route, setIsOpen, isActive }: SubMenuProps) => {
   return (
     <div className="w-full">
       <button
-        onClick={() => setSubMenuOpen(!subMenuOpen)}
+        onClick={() => setOpen(!isOpen)}
         className={`flex flex-row items-center gap-2 transition-colors duration-200 py-2 px-3 rounded hover:bg-main-yellow/10 ${
           hasActiveChild ? 'text-main-yellow' : 'text-main-white'
         }`}
-        aria-expanded={subMenuOpen}
+        aria-expanded={isOpen}
         aria-haspopup="true"
       >
         {t(route.name)}
         <ChevronIcon
           className={`transition-all duration-300 ${
-            subMenuOpen ? '-rotate-180 ' : ''
+            isOpen ? '-rotate-180 ' : ''
           } ${hasActiveChild ? 'stroke-main-yellow' : 'stroke-main-white'}`}
           aria-hidden="true"
         />
       </button>
       <AnimatePresence>
-        {subMenuOpen && (
+        {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
@@ -194,9 +207,12 @@ const SubMenu = ({ route, setIsOpen, isActive }: SubMenuProps) => {
               ) : (
                 <SubMenu
                   key={i}
+                  index={i}
                   route={sub}
                   setIsOpen={setIsOpen}
                   isActive={isActive}
+                  isOpen={openNestedIndex === i}
+                  setOpen={(isOpen) => setOpenNestedIndex(isOpen ? i : null)}
                 />
               )
             )}

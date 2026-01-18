@@ -127,20 +127,17 @@ const Home = async ({ params: { locale } }: { params: { locale: Locale } }) => {
       </main>
       <About about={about} />
       {newEvent.new && (
-        <>
-          <div
-            id="mainEvent"
-            className="w-full  flex justify-center bg-main-yellow"
-          >
-            <EditionHero
-              locale={locale}
-              isMain
-              edition={newEvent as NewEventHero}
-              translation={t}
-            />
-          </div>
-          <LeadSection edition={newEvent as NewEventLead} translation={t} />
-        </>
+        <div
+          id="mainEvent"
+          className="w-full  flex justify-center bg-main-yellow"
+        >
+          <EditionHero
+            locale={locale}
+            isMain
+            edition={newEvent as NewEventHero}
+            translation={t}
+          />
+        </div>
       )}
       <JoinUs join_us={join_us} locale={locale} />
       <div className="bg-main-black py-20 overflow-hidden">

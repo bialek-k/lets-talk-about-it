@@ -44,12 +44,12 @@ export const TextHolder = ({
   return (
     <div
       className={`${theme === 'light' ? '' : 'bg-main-black'} 
-      } p-[30px] h-max rounded-2xl  flex flex-col items-center justify-center`}
+      } h-max rounded-2xl w-full flex flex-col items-center justify-center`}
     >
       <div
-        className={`content flex prose ${
+        className={`content flex  ${
           small ? 'max-w-[260px] lg:max-w-[292px]' : ''
-        } dark:text-main-white dark:prose-strong:text-main-white   overflow-hidden transition-max-height duration-300 ease-in-out`}
+        } dark:text-main-white dark:prose-strong:text-main-white overflow-hidden transition-max-height duration-300 ease-in-out`}
         style={
           shortText
             ? { maxHeight: '100%' }

@@ -15,7 +15,7 @@
   "regulations": "Terms&Conditions",
   "privacyPolicy": "Privacy Policy",
   "rights": "© All rights reserved",
-  "owner": "Let’s talk about IT 2025",
+  "owner": "Let’s talk about IT 2026",
   "invite": "We invite you for the",
   "edition": "edition",
   "Event": " of:",
@@ -42,5 +42,7 @@
   "emailPlaceholder": "Enter your email address",
   "multimedia": "Multimedia",
   "mainEvents": "Events",
-  "logoTitle": "Community | Relationships | Events"
+  "logoTitle": "Community | Relationships | Events",
+  "seeMore": "Learn more",
+  "signSoon": "Sign-ups opening soon"
 }

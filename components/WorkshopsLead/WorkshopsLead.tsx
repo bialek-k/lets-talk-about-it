@@ -90,7 +90,7 @@ const WorkshopsLead = async ({
             customClass={`text-base ${
               locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
             }`}
-            theme="dark"
+            theme="light"
             readMore={
               edition?.description.html &&
               edition.description.html.length > 5000
@@ -112,7 +112,7 @@ const WorkshopsLead = async ({
             customClass={`text-base ${
               locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
             }`}
-            theme="dark"
+            theme="light"
             readMore={
               edition?.description.html && edition.description.html.length > 500
                 ? true
@@ -133,7 +133,7 @@ const WorkshopsLead = async ({
                   className="lg:flex lg:flex-col items-center lg:self-start gap-6 lg:mr-auto w-full lg:w-fit"
                   key={leader.name}
                 >
-                  <div className="">
+                  <div className="self-start">
                     <div className="relative w-fit">
                       <h3 className=" font-semibold text-lg z-40 relative">
                         {leader.name}

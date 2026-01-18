@@ -13,14 +13,17 @@ export const About = ({ about }: AboutQueryQuery) => {
   const { t } = useTranslation();
   return (
     <>
-      <section id="about" className="px-6 md:px-24 h-min-screen pb-20 lg:pb-0">
+      <section
+        id="about"
+        className="w-full max-w-screen-large_desktop px-4 md:px-24 h-min-screen pb-20 lg:pb-20"
+      >
         <PageTitle small title={t('aboutUs')} />
-        <div className="content md:flex md:gap-24 justify-between ">
-          <div className="description pt-[10px] md:pt-0">
+        <div className="content md:flex md:gap-8 justify-between ">
+          <div className="description w-full pt-[10px] md:pt-0">
             <h2 className="text-[24px] mb-6 font-semibold">
               Let’s Talk About IT
             </h2>
-            <div className="hidden md:flex">
+            <div className="hidden md:flex w-full">
               <TextHolder
                 content={about?.description.raw}
                 customClass="mt-1"
@@ -38,7 +41,7 @@ export const About = ({ about }: AboutQueryQuery) => {
               />
             </div>
           </div>
-          <div className="person md:flex md:flex-col mt-10 md:mt-0 md:max-w-lg md:items-left">
+          <div className="person md:flex md:flex-col w-full lg:px-24 mt-10 md:mt-0 md:max-w-lg md:items-left">
             <h2 className="text-[24px] font-semibold">Gosia Rycak</h2>
             <div className="relative max-w-[325px] container mx-auto mt-6 mb-16">
               <div className="absolute inset-6 bg-[#E2FF00] -left-6 -bottom-6 rounded-xl" />
@@ -63,7 +66,7 @@ export const About = ({ about }: AboutQueryQuery) => {
               <TextHolder
                 content={about?.malgosia_description.raw}
                 customClass="mt-0 lg:mt-1 max-w-[325px]"
-                customHight="208px"
+                customHight="205px"
                 theme="light"
                 readMore
               />
@@ -84,7 +87,7 @@ export const About = ({ about }: AboutQueryQuery) => {
         <div className="flex -mt-4 w-[33px] h-[38px]">
           <Pattern fill="yellow" />
         </div>
-        <h3 className="font-bold text-[64px] text-main-yellow text-center leading-5 lg:text-5xl lg:leading-[62px]">
+        <h3 className="font-bold text-4xl md:text-6xl text-main-yellow text-center leading-5 lg:text-5xl lg:leading-[62px]">
           Join us to rock IT
         </h3>
       </div>
