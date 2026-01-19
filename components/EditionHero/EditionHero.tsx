@@ -13,8 +13,8 @@ const EditionHero = async ({
 }: {
   locale: string;
   edition: {
-    date: string;
-    edition: string;
+    date: number | string;
+    edition: number;
     location: string;
     new: boolean;
     singUpLink: string;
@@ -63,11 +63,11 @@ const EditionHero = async ({
         </h2>
         {edition?.new ? (
           <h2 className="text-2xl font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
-            {toRoman(parseInt(edition?.edition ?? ''))} {t('edition')}
+            {toRoman(edition?.edition ?? 0)} {t('edition')}
           </h2>
         ) : (
           <h2 className="text-2xl font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
-            {toRoman(parseInt(edition?.edition ?? ''))} {t('Edition')}
+            {toRoman(edition?.edition ?? 0)} {t('Edition')}
           </h2>
         )}
       </div>

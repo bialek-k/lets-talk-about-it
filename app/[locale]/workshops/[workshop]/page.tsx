@@ -8,8 +8,8 @@ import { request } from '@/lib/request';
 import { RichTextContent } from '@graphcms/rich-text-types';
 
 type Workshop = {
-  date: string;
-  edition: string;
+  date: string | number;
+  edition: number;
   location: string;
   new: boolean;
   signUp: string;

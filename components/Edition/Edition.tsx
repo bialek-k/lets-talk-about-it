@@ -9,8 +9,8 @@ import { Suspense } from 'react';
 import Loader from '../UI/Loader';
 
 type Edition = {
-  date: string;
-  edition: string;
+  date: number | string;
+  edition: number;
   location: string;
   slug: string;
   title: string[];
@@ -46,7 +46,7 @@ const Edition = async ({
   translation,
 }: {
   locale: string;
-  edition: string;
+  edition: number;
   translation: (key: string) => string;
 }) => {
   const t = translation;
@@ -87,7 +87,7 @@ const Edition = async ({
                 {t('gallery')}
               </h2>
               <h3 className=" font-semibold text-lg leading-6 lg:px-[100px] lg:mt-10 self-start mb-10">
-                {t('galleryText')} {toRoman(parseInt(event?.edition ?? ''))}{' '}
+                {t('galleryText')} {toRoman(event?.edition ?? 0)}{' '}
                 {t('galleryText2')}
               </h3>
               <Suspense fallback={<Loader />}>

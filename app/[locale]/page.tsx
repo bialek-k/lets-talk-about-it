@@ -28,8 +28,8 @@ import Facebook from '@/components/Facebook/Facebook';
 const i18nNamespaces = ['home'];
 
 type NewEventHero = {
-  date: string;
-  edition: string;
+  date: number | string;
+  edition: number;
   location: string;
   new: boolean;
   singUpLink: string;

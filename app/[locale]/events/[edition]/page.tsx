@@ -5,7 +5,7 @@ import TranslationsProvider from '@/components/TranslationsProvider/TranslationP
 const EventPage = async ({
   params: { locale, edition },
 }: {
-  params: { locale: string; edition: string };
+  params: { locale: string; edition: number };
 }) => {
   const i18nNamespaces = ['edition'];
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
