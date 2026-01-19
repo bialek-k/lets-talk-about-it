@@ -28,6 +28,9 @@ const EditionHero = async ({
   const t = translation;
 
   const eventDate = edition?.date ? new Date(edition.date) : null;
+  if (eventDate) {
+    eventDate.setHours(eventDate.getHours() + 1);
+  }
   const formattedDate = eventDate
     ? `${eventDate.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${eventDate.toLocaleTimeString('pl-PL')}`
     : '';
