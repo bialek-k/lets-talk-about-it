@@ -1,5 +1,5 @@
 query EventsRoutes($locale: Locale!) {
-  events(stage: PUBLISHED, locales: [$locale], orderBy:slug_DESC) {
+  events(stage: PUBLISHED, locales: [$locale], orderBy:edition_DESC) {
     id
     slug
     edition

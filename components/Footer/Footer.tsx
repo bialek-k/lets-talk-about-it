@@ -84,8 +84,8 @@ const Footer = ({ doc, partner }: Props) => {
           <div className="flex gap-2 pt-5">
             <EnvelopeIcon />
             <strong className="text-black font-normal">
-              <a href="mailto:contact@letstalkaboutit.pl">
-                contact@letstalkaboutit.pl
+              <a href="mailto:kontakt@letstalkaboutit.pl">
+                kontakt@letstalkaboutit.pl
               </a>
             </strong>
           </div>
@@ -102,11 +102,11 @@ const Footer = ({ doc, partner }: Props) => {
             >
               {t('termsandconditions')}
             </Link> */}
-<Link
+            <Link
               href="/memo"
               rel="noopener noreferrer"
               className="font-normal text-base"
-              aria-label='Zagraj w memo'
+              aria-label="Zagraj w memo"
             >
               Zagraj w memo
             </Link>
