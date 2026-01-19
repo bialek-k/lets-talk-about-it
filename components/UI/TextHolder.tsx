@@ -69,7 +69,7 @@ export const TextHolder = ({
               h3: ({ children }) => {
                 return (
                   <h3
-                    className={`m-0 text-main-white font-semibold 
+                    className={`m-0 text-main-black font-semibold 
                       text-[32px] leading-[42px]`}
                   >
                     {children}
