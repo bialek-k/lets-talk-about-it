@@ -122,6 +122,7 @@ const LeadSection = async ({
                 alt={`zdjęcie ${speaker.name}`}
                 image={speaker.photo}
                 link={speaker.linkedIn}
+                background="bg-main-black"
               />
             </div>
           </div>

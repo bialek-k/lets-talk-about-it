@@ -9,7 +9,7 @@ export type NavLink = {
   name: string;
   location?: string;
   date?: string;
-  title?: string;
+  title?: string[];
 };
 
 export type NavGroup = {

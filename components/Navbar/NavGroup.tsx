@@ -228,7 +228,13 @@ const SubMenu = ({ group, isActive }: NavGroupProps) => {
                                 `${new Date(item.date).toLocaleDateString()}`}
                             </p>
                           </div>
-                          <p className="w-max font-bold">{item.title}</p>
+                          <div className="flex flex-row gap-1">
+                            {item.title?.map((part, index) => (
+                              <p className="w-max font-bold" key={index}>
+                                {part}
+                              </p>
+                            ))}
+                          </div>
                         </div>
                       ) : (
                         <div>

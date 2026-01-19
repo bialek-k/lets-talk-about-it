@@ -30,7 +30,11 @@ export const NavItem = ({ route, isActive }: NavItemProps) => {
               {route.date && `${new Date(route.date).toLocaleDateString()}`}
             </p>
           </div>
-          <p className="w-full font-bold">{route.title}</p>
+          {route.title?.map((part, index) => (
+            <p className="w-max font-bold" key={index}>
+              {part}
+            </p>
+          ))}
         </div>
       ) : route.path.includes('workshops') ? (
         <div className="w-full">

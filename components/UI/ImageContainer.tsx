@@ -32,7 +32,7 @@ export const ImageContainer = ({
             src={image?.url}
             width={300}
             height={300}
-            className={`rounded-xl absolute object-contain aspect-square ${background}`}
+            className={`rounded-xl absolute object-cover aspect-square ${background}`}
           />
         )}
         {link && (
