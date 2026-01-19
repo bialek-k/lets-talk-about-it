@@ -3,5 +3,7 @@ query WorkshopsRoutes($locale: Locale!) {
     id
     slug
     title
+    location
+    date
   }
 }

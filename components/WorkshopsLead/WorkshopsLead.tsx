@@ -81,16 +81,13 @@ const WorkshopsLead = async ({
       </div>
       <div className="w-full flex flex-col-reverse lg:flex-row lg:gap-[125px] items-start justify-center">
         {/* OPIS */}
-        <div
-          className="w-full hidden lg:flex tracking-tight
-"
-        >
+        <div className="w-full hidden lg:flex tracking-tight text-main-black">
           <TextHolder
             content={edition?.description.raw as RichTextContent}
             customClass={`text-base ${
               locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
             }`}
-            theme="dark"
+            theme="light"
             readMore={
               edition?.description.html &&
               edition.description.html.length > 5000
@@ -110,9 +107,9 @@ const WorkshopsLead = async ({
           <TextHolder
             content={edition?.description.raw as RichTextContent}
             customClass={`text-base ${
-              locale === 'en' ? 'mt-0 md:mb-1' : 'mt-1'
+              locale === 'en' ? 'mt-0 md:mb-1' : 'mb-2'
             }`}
-            theme="dark"
+            theme="light"
             readMore={
               edition?.description.html && edition.description.html.length > 500
                 ? true
@@ -133,7 +130,7 @@ const WorkshopsLead = async ({
                   className="lg:flex lg:flex-col items-center lg:self-start gap-6 lg:mr-auto w-full lg:w-fit"
                   key={leader.name}
                 >
-                  <div className="">
+                  <div className="self-start">
                     <div className="relative w-fit">
                       <h3 className=" font-semibold text-lg z-40 relative">
                         {leader.name}

@@ -10,9 +10,9 @@ const TermsAndConditions = async ({
 }: {
   params: { locale: string };
 }) => {
-  const { regulation } = await request(RegulationsQueryDocument, { locale });
-  const i18nNamespaces = ['home'];
-  const { t, resources } = await initTranslations(locale, i18nNamespaces);
+  const { regulation } = await request(RegulationsQueryDocument, {
+    locale: locale as 'pl' | 'en',
+  });
 
   return (
     <section className="pt-10 md:pt-20 lg:pt-24 w-full bg-main-black flex justify-center">

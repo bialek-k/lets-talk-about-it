@@ -15,7 +15,7 @@ const WorkshopsHero = async ({
   locale: string;
   edition: {
     title: string;
-    date: string;
+    date: string | number;
     location: string;
     new: boolean;
     signUp: string;

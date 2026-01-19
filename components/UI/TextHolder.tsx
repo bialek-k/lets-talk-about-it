@@ -43,13 +43,13 @@ export const TextHolder = ({
 
   return (
     <div
-      className={`bg-main-${theme === 'light' ? 'white' : 'black'} 
-      } p-[30px] h-max rounded-2xl border-4 border-[#E2FF00] flex flex-col items-center justify-center`}
+      className={`${theme === 'light' ? '' : 'bg-main-black'} 
+      } h-max rounded-2xl w-full flex flex-col items-center justify-center`}
     >
       <div
-        className={`content flex prose ${
+        className={`content flex  ${
           small ? 'max-w-[260px] lg:max-w-[292px]' : ''
-        } dark:text-main-white dark:prose-strong:text-main-white   overflow-hidden transition-max-height duration-300 ease-in-out`}
+        } dark:text-main-white dark:prose-strong:text-main-white overflow-hidden transition-max-height duration-300 ease-in-out`}
         style={
           shortText
             ? { maxHeight: '100%' }
@@ -60,7 +60,7 @@ export const TextHolder = ({
           className={`w-full h-full font-normal prose-p:py-[10px] text-base leading-5 lg:text-lg lg:leading-6 ${
             theme === 'dark'
               ? 'text-main-white bg-main-black'
-              : 'text-main-black bg-main-white'
+              : 'text-main-black '
           }`}
         >
           <RichText
@@ -69,7 +69,7 @@ export const TextHolder = ({
               h3: ({ children }) => {
                 return (
                   <h3
-                    className={`m-0 text-main-white font-semibold 
+                    className={`m-0 text-main-black font-semibold 
                       text-[32px] leading-[42px]`}
                   >
                     {children}

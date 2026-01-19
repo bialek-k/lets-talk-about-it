@@ -13,8 +13,8 @@ const EditionHero = async ({
 }: {
   locale: string;
   edition: {
-    date: string;
-    edition: string;
+    date: number | string;
+    edition: number;
     location: string;
     new: boolean;
     singUpLink: string;
@@ -27,12 +27,13 @@ const EditionHero = async ({
 }) => {
   const t = translation;
 
-  const eventDate = new Date(edition?.date ?? '');
-  const formattedDate = `${eventDate.getDate().toString().padStart(2, '0')}.${(
-    eventDate.getMonth() + 1
-  )
-    .toString()
-    .padStart(2, '0')}.${eventDate.getFullYear()}`;
+  const eventDate = edition?.date ? new Date(edition.date) : null;
+  if (eventDate) {
+    eventDate.setHours(eventDate.getHours() + 1);
+  }
+  const formattedDate = eventDate
+    ? `${eventDate.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${eventDate.toLocaleTimeString('pl-PL')}`
+    : '';
 
   const formatLocation = (location: string) => {
     const wordsArray = location.split(' ');
@@ -60,18 +61,16 @@ const EditionHero = async ({
         <LinesPattern fill="#0C0C0C" />
       </div>
       <div className="self-start flex flex-col lg:flex-row justify-center lg:items-center mt-10 mb-5 lg:mt-20 lg:mb-10 lg:gap-5">
-        <h2 className="text-[32px] lg:text-[48px] lg:leading-[62px] leading-[42px] font-semibold">
+        <h2 className="text-[32px] lg:text-[40px] lg:leading-[62px] leading-[42px] font-semibold">
           {t('Events')}
         </h2>
         {edition?.new ? (
-          <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
-            {t('invite')} {toRoman(parseInt(edition?.edition ?? ''))}{' '}
-            {t('edition')}
-            {t('Event')}
+          <h2 className="text-2xl font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
+            {toRoman(edition?.edition ?? 0)} {t('edition')}
           </h2>
         ) : (
-          <h2 className="text-lg font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
-            {toRoman(parseInt(edition?.edition ?? ''))} {t('Edition')}
+          <h2 className="text-2xl font-medium lg:text-[40px] leading-[52px] lg:font-normal lg:text-center uppercase lg:normal-case">
+            {toRoman(edition?.edition ?? 0)} {t('Edition')}
           </h2>
         )}
       </div>
@@ -81,7 +80,7 @@ const EditionHero = async ({
           <h2
             key={index}
             className={`${
-              index === 0 ? 'font-bold' : 'font-semibold lg:font-normal'
+              index === 0 ? 'font-bold' : 'font-semibold'
             } text-[18px] leading-[23px] lg:text-[40px] lg:leading-[52px] mb-1 text-center`}
           >
             {line}
@@ -90,42 +89,80 @@ const EditionHero = async ({
       <div className="">
         <Arrow />
       </div>
-      {edition?.singUpLink ? (
-        <div className="mt-5">
-          <Button
-            target="_blank"
-            href={edition?.singUpLink ?? '#'}
-            content={t('sign')}
-            buttonColor="text-main-white"
-            backgroundColor="bg-main-black"
-            buttonHover="#0C0C0C"
-            backgroundHover="#F5F5F5"
-          />
-        </div>
-      ) : (
-        <div className="mt-5">
-          <Button
-            href={`/events/${edition?.slug}#gallery`}
-            content={t('gallery')}
-            buttonColor="text-main-white"
-            backgroundColor="bg-main-black"
-            buttonHover="#0C0C0C"
-            backgroundHover="#F5F5F5"
-            description={t('galleryDescription')}
-          />
-        </div>
-      )}
+      <div className="flex flex-col gap-8">
+        {isMain ? (
+          <div className="mt-5 flex flex-col gap-8">
+            {edition?.singUpLink ? (
+              <Button
+                target="_blank"
+                href={edition?.singUpLink ?? '#'}
+                content={t('sign')}
+                buttonColor="text-main-white"
+                backgroundColor="bg-main-black"
+                buttonHover="#0C0C0C"
+                backgroundHover="#F5F5F5"
+              />
+            ) : (
+              <Button
+                target="_blank"
+                disabled
+                href={`#`}
+                content={t('signSoon')}
+                buttonColor="text-main-white"
+                backgroundColor="bg-main-black"
+                buttonHover="#0C0C0C"
+                backgroundHover="#F5F5F5"
+              />
+            )}
+            <div>
+              <Button
+                href={`/events/${edition?.slug}`}
+                content={t('seeMore')}
+                buttonColor="text-main-black"
+                backgroundColor="bg-main-white"
+                buttonHover="#F5F5F5"
+                isMain
+                backgroundHover="#0C0C0C"
+              />
+            </div>
+          </div>
+        ) : edition?.singUpLink ? (
+          <div className="mt-5">
+            <Button
+              target="_blank"
+              href={edition?.singUpLink ?? '#'}
+              content={t('sign')}
+              buttonColor="text-main-white"
+              backgroundColor="bg-main-black"
+              buttonHover="#0C0C0C"
+              backgroundHover="#F5F5F5"
+            />
+          </div>
+        ) : (
+          <div className="mt-5">
+            <Button
+              href={`/events/${edition?.slug}#gallery`}
+              content={t('gallery')}
+              buttonColor="text-main-white"
+              backgroundColor="bg-main-black"
+              buttonHover="#0C0C0C"
+              backgroundHover="#F5F5F5"
+              description={t('galleryDescription')}
+            />
+          </div>
+        )}
+      </div>
       <div className="flex flex-row items-start lg:items-center justify-center w-full mt-6 lg:max-w-[936px] ">
         <div className="flex flex-col lg:flex-row  items-center justify-center lg:justify-end lg:w-[357px] lg:gap-10">
           <div className="w-[28px] lg:w-[68px] h-[32px] lg:h-[64px]">
             <Calendar width="100%" height="100%" />
           </div>
-          <h3 className=" font-medium text-base mt-6 lg:mt-0  lg:text-[32px] lg:leading-[42px] lg:font-normal ">
+          <h3 className="max-w-[50%] font-medium text-base mt-6 lg:mt-0 text-center lg:text-[32px] lg:leading-[42px] lg:font-normal ">
             {formattedDate}
           </h3>
         </div>
-        <div className="border-r-2 border-solid border-main-black bg-main-black  h-[79px] mx-[35px]"></div>
-        <div className="flex flex-col items-center justify-center lg:flex-row lg:w-[357px] lg:gap-10">
+        <div className="border-r-2 border-solid border-main-black bg-main-black  h-[104px] mx-[35px]"></div>
+        <div className="flex flex-col items-center justify-center w-[140px] lg:flex-row lg:w-[357px] lg:gap-10">
           <Location data={edition?.location} />
           <div className=" font-medium lg:text-[32px] lg:leading-[42px] lg:font-normal text-base text-center lg:text-start mt-6 lg:mt-0 w-min lg:w-[100%] ">
             {formatLocation(edition?.location as string)}

@@ -83,8 +83,8 @@ const RootLayout = async ({
   params: { locale: string };
 }) => {
   const { resources } = await initTranslations(locale, i18nNamespaces);
-  const { doc } = await request(DocsQueryDocument, { locale });
-  const { partner } = await request(PartnersQueryDocument, { locale });
+  const { doc } = await request(DocsQueryDocument, { locale: locale as 'pl' | 'en' });
+  const { partner } = await request(PartnersQueryDocument, { locale: locale as 'pl' | 'en' });
 
   return (
     <html lang={locale} dir={dir(locale)} className={ibm.className}>

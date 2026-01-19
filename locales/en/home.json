@@ -39,5 +39,10 @@
   "email": "Email address",
   "fillform": "To participate in the competition, please fill out the form below",
   "namePlaceholder": "Enter your name and surname",
-  "emailPlaceholder": "Enter your email address"
+  "emailPlaceholder": "Enter your email address",
+  "multimedia": "Multimedia",
+  "mainEvents": "Events",
+  "logoTitle": "Community | Relationships | Events",
+  "seeMore": "Learn more",
+  "signSoon": "Sign-ups opening soon"
 }

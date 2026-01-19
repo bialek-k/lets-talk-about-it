@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ChevronIcon from '@/IconsSVG/ChevronIcon';
-import { fetchEvents } from '@/routes/routes';
+import { fetchEvents, type NavLink, type NavSection } from '@/routes/routes';
 import Linkedin from '../Linkedin/Linkedin';
 import Youtube from '../Youtube/Youtube';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
@@ -14,31 +14,30 @@ import toRoman from '../UI/NumberToRoman';
 import { usePathname } from 'next/navigation';
 import Instagram from '../Instagram/Instagram';
 import Facebook from '@/components/Facebook/Facebook';
+import { NavItem } from '@/components/Navbar/NavItem';
 
 interface MobileNavProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  locale: string;
-}
-interface Route {
-  path?: string;
-  name?: string;
-  content?: { path: string; name: string }[];
+  locale: 'pl' | 'en';
 }
 
 const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
-  const { t } = useTranslation();
-  const [routes, setRoutes] = useState<Route[]>([]);
-  const [isSubMenuOpen, setSubMenuOpen] = useState(false);
   const currentPath = usePathname();
-  const [activeMenu, setActiveMenu] = useState('');
+  const { t } = useTranslation();
+  const [routes, setRoutes] = useState<NavSection[]>([]);
+  const [openSubMenuIndex, setOpenSubMenuIndex] = useState<number | null>(null);
 
   const isActive = (path?: string) => {
+    if (!path) return false;
     if (path === '/#about') {
       if (currentPath === '/' || currentPath === '/en') return true;
     }
-    if (currentPath.endsWith(path ?? '')) return true;
+    if (currentPath.endsWith(path)) return true;
     if (path === 'events' && currentPath.includes('events')) {
+      return true;
+    }
+    if (path === 'workshops' && currentPath.includes('workshops')) {
       return true;
     }
     return currentPath === path;
@@ -46,16 +45,11 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
 
   useEffect(() => {
     const fetchRoutes = async () => {
-      const fetchedRoutes = await fetchEvents({ locale });
+      const fetchedRoutes = (await fetchEvents(locale)) as NavSection[];
       setRoutes(fetchedRoutes);
     };
     fetchRoutes();
   }, [locale]);
-
-  const toggleSubMenu = (name: string) => {
-    setSubMenuOpen(!isSubMenuOpen);
-    setActiveMenu(name);
-  };
 
   return (
     <AnimatePresence>
@@ -66,7 +60,7 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
           exit={{ opacity: 0 }}
           onClick={() => {
             setIsOpen(false);
-            setSubMenuOpen(false);
+            setOpenSubMenuIndex(null);
           }}
           className="bg-slate-900/20 backdrop-blur  fixed h-screen inset-0 z-50 grid items-baseline overflow-y-scroll cursor-pointer"
         >
@@ -94,109 +88,24 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
               setIsOpen={() => setIsOpen(false)}
             />
             {/* NAVIGATION */}
-            <div className="flex flex-col items-start gap-5 self-start pl-[13px] pr-[49px] w-full text-base font-normal">
-              {routes.map((route, index) => (
-                <div
-                  key={index}
-                  className=" flex flex-col justify-center w-full pl-[3px]"
-                >
-                  <div className="flex flex-row items-center justify-between border-b border-solid border-white relative">
-                    {route.path ? (
-                      <Link
-                        className={`pb-5 ${
-                          isActive(route.path)
-                            ? 'text-main-yellow'
-                            : 'text-white'
-                        }`}
-                        onClick={() => setIsOpen(false)}
-                        aria-label={t(route.name ?? '')}
-                        href={route.path ?? ''}
-                        rel="noopener noreferrer canonical"
-                      >
-                        {t(route.name ?? '')}
-                      </Link>
-                    ) : (
-                      <button
-                        className={`w-full flex pb-5 items-center z-10 relative ${
-                          currentPath.includes(route.name ?? '')
-                            ? 'text-main-yellow'
-                            : 'text-main-white'
-                        }`}
-                        type="button"
-                        aria-label={t(route.name ?? '')}
-                        onClick={() => toggleSubMenu(route.name ?? '')}
-                      >
-                        {t(route.name ?? '')}
-                        {route.content && (
-                          <ChevronIcon
-                            className={`transition-all duration-300 absolute right-5 top-2 ${
-                              isSubMenuOpen &&
-                              activeMenu === route.name &&
-                              'rotate-180'
-                            }`}
-                          />
-                        )}
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Submenu */}
-                  {route.content && activeMenu === route.name && (
-                    <AnimatePresence>
-                      {isSubMenuOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: '-100%' }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="text-base font-normal flex flex-col w-full h-full"
-                        >
-                          {route.content.map((subRoute, index) => (
-                            <motion.div
-                              initial={{ opacity: 0, y: '-100%' }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, transition: { duration: 0 } }}
-                              transition={{
-                                duration: 0.3,
-                                delay: index * 0.1,
-                              }}
-                              key={index}
-                            >
-                              <Link
-                                className={`border-b border-solid border-white h-full py-2 flex items-center ${
-                                  currentPath.includes(subRoute.path)
-                                    ? 'text-main-yellow'
-                                    : 'text-main-white'
-                                } `}
-                                href={subRoute.path ?? '#'}
-                                aria-label={
-                                  subRoute.name.includes('event')
-                                    ? `${t(
-                                        subRoute.name.split(' ')[0]
-                                      )} ${toRoman(
-                                        parseInt(subRoute.name.split(' ')[1])
-                                      )}`
-                                    : t(subRoute.name)
-                                }
-                                rel="noopener noreferrer canonical"
-                                onClick={() => setIsOpen(false)}
-                              >
-                                {subRoute.name.includes('event')
-                                  ? `${t(
-                                      subRoute.name.split(' ')[0]
-                                    )} ${toRoman(
-                                      parseInt(subRoute.name.split(' ')[1])
-                                    )}`
-                                  : t(subRoute.name)}
-                              </Link>
-                            </motion.div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  )}
-                </div>
-              ))}
+            <div className="flex flex-col items-start gap-5 self-start pl-[13px] w-full text-base font-normal">
+              {routes.map((route, index) =>
+                'path' in route ? (
+                  <NavItem key={index} route={route} isActive={isActive} />
+                ) : (
+                  <SubMenu
+                    key={index}
+                    index={index}
+                    route={route}
+                    setIsOpen={setIsOpen}
+                    isActive={isActive}
+                    isOpen={openSubMenuIndex === index}
+                    setOpen={(isOpen) =>
+                      setOpenSubMenuIndex(isOpen ? index : null)
+                    }
+                  />
+                )
+              )}
             </div>
             {/* SOCIALS */}
             <div className="flex justify-center gap-5">
@@ -231,3 +140,85 @@ const MobileNav = ({ isOpen, setIsOpen, locale }: MobileNavProps) => {
 };
 
 export default MobileNav;
+
+interface SubMenuProps {
+  index: number;
+  route: Exclude<NavSection, NavLink>;
+  setIsOpen: (isOpen: boolean) => void;
+  isActive: (path?: string) => boolean;
+  isOpen: boolean;
+  setOpen: (isOpen: boolean) => void;
+}
+
+const SubMenu = ({
+  route,
+  setIsOpen,
+  isActive,
+  isOpen,
+  setOpen,
+}: SubMenuProps) => {
+  const { t } = useTranslation();
+  const [openNestedIndex, setOpenNestedIndex] = useState<number | null>(null);
+
+  // Check if any child route is active
+  const hasActiveChild = route.content.some((sub) => {
+    if ('path' in sub) {
+      return isActive(sub.path);
+    }
+    return false;
+  });
+
+  return (
+    <div className="w-full">
+      <button
+        onClick={() => setOpen(!isOpen)}
+        className={`flex flex-row items-center gap-2 transition-colors duration-200 py-2 px-3 rounded hover:bg-main-yellow/10 ${
+          hasActiveChild ? 'text-main-yellow' : 'text-main-white'
+        }`}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+      >
+        {t(route.name)}
+        <ChevronIcon
+          className={`transition-all duration-300 ${
+            isOpen ? '-rotate-180 ' : ''
+          } ${hasActiveChild ? 'stroke-main-yellow' : 'stroke-main-white'}`}
+          aria-hidden="true"
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className={`pl-4 mt-2 flex flex-col w-full items-start gap-3 overflow-hidden`}
+          >
+            {route.content.map((sub, i) =>
+              'path' in sub ? (
+                <button
+                  onClick={() => setIsOpen(false)}
+                  key={i}
+                  className="w-full text-left"
+                >
+                  <NavItem key={i} route={sub} isActive={isActive} />
+                </button>
+              ) : (
+                <SubMenu
+                  key={i}
+                  index={i}
+                  route={sub}
+                  setIsOpen={setIsOpen}
+                  isActive={isActive}
+                  isOpen={openNestedIndex === i}
+                  setOpen={(isOpen) => setOpenNestedIndex(isOpen ? i : null)}
+                />
+              )
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};

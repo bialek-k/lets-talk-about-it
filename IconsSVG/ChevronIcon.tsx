@@ -11,9 +11,9 @@ const ChevronIcon = ({ className }: ChevronIconProps) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M1.5 1.25L7 6.75L12.5 1.25" stroke="#F5F5F5" strokeWidth="2" />
+      <path d="M1.5 1.25L7 6.75L12.5 1.25" strokeWidth="2" />
     </svg>
   );
-}
+};
 
 export default ChevronIcon;
