@@ -29,7 +29,7 @@ const EditionHero = async ({
 
   const eventDate = edition?.date ? new Date(edition.date) : null;
   const formattedDate = eventDate
-    ? `${eventDate.toLocaleDateString()} ${eventDate.toLocaleTimeString('pl-PL')}`
+    ? `${eventDate.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${eventDate.toLocaleTimeString('pl-PL')}`
     : '';
 
   const formatLocation = (location: string) => {
