@@ -54,7 +54,7 @@ export const NavGroup = ({ group, isActive }: NavGroupProps) => {
         aria-expanded={open}
         aria-haspopup="true"
         aria-label={`${t(group.name)} menu`}
-        className="flex flex-row items-center gap-2 hover:text-main-yellow transition-colors duration-200 py-2 px-3 rounded hover:bg-main-yellow/10"
+        className="flex flex-row items-center gap-2 hover:text-main-yellow transition-colors duration-200 py-2 px-3 rounded"
       >
         {t(group.name)}
         <ChevronIcon
@@ -134,7 +134,7 @@ const SubMenu = ({ group, isActive }: NavGroupProps) => {
 
   return (
     <div
-      className="flex flex-row w-max gap-4 text-base"
+      className="flex flex-row w-full gap-4 text-base"
       onMouseEnter={() => setSubOpen(true)}
       onMouseLeave={() => setSubOpen(false)}
       role="none"
@@ -165,7 +165,13 @@ const SubMenu = ({ group, isActive }: NavGroupProps) => {
           <motion.nav
             role="menu"
             aria-label={`${t(group.name)} items`}
-            initial={{ opacity: 0, x: '-100%', pointerEvents: 'none' }}
+            initial={{
+              opacity: 0,
+              x: subButtonRef.current
+                ? -subButtonRef.current.offsetWidth / 2
+                : 0,
+              pointerEvents: 'none',
+            }}
             animate={{ opacity: 1, x: 1, pointerEvents: 'auto' }}
             exit={{ opacity: 0, x: 0, transition: { duration: 0.2 } }}
             transition={{ duration: 0.5 }}
