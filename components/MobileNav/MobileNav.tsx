@@ -172,7 +172,7 @@ const SubMenu = ({
     <div className="w-full">
       <button
         onClick={() => setOpen(!isOpen)}
-        className={`flex flex-row items-center gap-2 transition-colors duration-200 py-2 px-3 rounded hover:bg-main-yellow/10 ${
+        className={`flex flex-row items-center gap-2 transition-colors duration-200 py-2 px-3 rounded ${
           hasActiveChild ? 'text-main-yellow' : 'text-main-white'
         }`}
         aria-expanded={isOpen}

@@ -14,7 +14,7 @@ export const NavItem = ({ route, isActive }: NavItemProps) => {
     <Link
       className={`${
         isActive?.(route.path) ? 'text-main-yellow' : 'text-main-white'
-      } block w-full hover:text-main-yellow transition-colors duration-200 py-2 px-3 rounded hover:bg-main-yellow/10`}
+      } block w-full hover:text-main-yellow transition-colors duration-200 py-2 px-3 rounded`}
       href={route.path ?? '#'}
       rel="noopener noreferrer"
       aria-label={t(route.name)}
