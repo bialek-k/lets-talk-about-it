@@ -69,11 +69,9 @@ const Edition = async ({
             translation={t}
           />
         </div>
-        {/* LEAD SECTION */}
         <div className="w-full flex justify-center">
           <LeadSection edition={event as Edition} translation={t} />
         </div>
-        {/* GALERIA */}
         <div
           className="w-full flex justify-center bg-main-black"
           aria-description={t('opisGalerii')}
@@ -112,7 +110,6 @@ const Edition = async ({
             </div>
           )}
         </div>
-        {/* PARTNERS */}
         <div className="pt-20">
           <PartnersCarousel locale={locale} translation={t} />
         </div>
