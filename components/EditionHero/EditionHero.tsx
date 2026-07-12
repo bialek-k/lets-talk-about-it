@@ -32,7 +32,7 @@ const EditionHero = async ({
     eventDate.setHours(eventDate.getHours());
   }
   const formattedDate = eventDate
-    ? `${eventDate.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${eventDate.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' })}`
+    ? `${eventDate.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'Europe/Warsaw' })} ${eventDate.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Warsaw' })}`
     : '';
 
   const formatLocation = (location: string) => {
