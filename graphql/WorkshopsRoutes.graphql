@@ -1,5 +1,5 @@
 query WorkshopsRoutes($locale: Locale!) {
-  workshops(stage: PUBLISHED, locales: [$locale], orderBy: createdAt_DESC) {
+  workshops(stage: PUBLISHED, locales: [$locale], orderBy: createdAt_DESC, first: 100) {
     id
     slug
     title

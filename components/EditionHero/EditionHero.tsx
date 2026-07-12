@@ -29,10 +29,10 @@ const EditionHero = async ({
 
   const eventDate = edition?.date ? new Date(edition.date) : null;
   if (eventDate) {
-    eventDate.setHours(eventDate.getHours() + 1);
+    eventDate.setHours(eventDate.getHours());
   }
   const formattedDate = eventDate
-    ? `${eventDate.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${eventDate.toLocaleTimeString('pl-PL')}`
+    ? `${eventDate.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${eventDate.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' })}`
     : '';
 
   const formatLocation = (location: string) => {

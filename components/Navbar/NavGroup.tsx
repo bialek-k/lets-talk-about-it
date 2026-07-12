@@ -175,7 +175,7 @@ const SubMenu = ({ group, isActive }: NavGroupProps) => {
             animate={{ opacity: 1, x: 1, pointerEvents: 'auto' }}
             exit={{ opacity: 0, x: 0, transition: { duration: 0.2 } }}
             transition={{ duration: 0.5 }}
-            className="p-4 grid gap-6 mt-1 text-base overflow-y-auto absolute -top-1 left-32 border-main-yellow border-x-2 border-b-2 rounded-b-xl bg-main-black z-50 max-h-[600px] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-black-100 [&::-webkit-scrollbar-thumb]:bg-main-yellow/50 [&::-webkit-scrollbar-thumb]:rounded"
+            className="p-4 grid gap-6 mt-1 text-base overflow-y-auto absolute -top-1 left-32 border-main-yellow border-x-2 border-b-2 rounded-b-xl bg-main-black z-50 max-h-[580px] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-black-100 [&::-webkit-scrollbar-thumb]:bg-main-yellow/50 [&::-webkit-scrollbar-thumb]:rounded"
           >
             {group.content.map(
               (item, j) =>
