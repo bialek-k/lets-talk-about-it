@@ -31,7 +31,7 @@ export const NavItem = ({ route, isActive }: NavItemProps) => {
             </p>
           </div>
           {route.title?.map((part, index) => (
-            <p className="w-max font-bold" key={index}>
+            <p className="w-full font-bold" key={index}>
               {part}
             </p>
           ))}
