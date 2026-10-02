@@ -16,6 +16,17 @@ const nextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/mentoring',
+        destination:
+          'https://script.google.com/macros/s/AKfycbyxARPB5eYJFN16GgRr5MtbyPaqevFrI9ra3fz-qjRjCl7muc3qUSEZ6XFk8S27hAOd/exec',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
