@@ -14,11 +14,14 @@ import Script from 'next/script';
 
 import { request } from '@/lib/request';
 import { DocsQueryDocument, PartnersQueryDocument } from '@/graphql/generated';
+import { getDefaultMetadata, getSeoLocale } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'LET’S TALK ABOUT IT - Wydarzenia | Networking | Power skills',
-  description:
-    'LET’S TALK ABOUT IT - Największa społeczność IT w Polsce. Dołącz do naszych ogólnopolskich konferencji na żywo, poznaj ekspertów, rozwijaj swoje umiejętności i buduj relacje w branży IT.',
+export const generateMetadata = ({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Metadata => ({
+  ...getDefaultMetadata(getSeoLocale(locale)),
   keywords: [
     'letstalkaboutit',
     'lets talk about it',
@@ -42,27 +45,10 @@ export const metadata: Metadata = {
     { name: 'Vincent Slominski', url: 'https://github.com/Okazaki92' },
     { name: 'Krzysztof Białek', url: 'https://github.com/bialek-k' },
   ],
-  openGraph: {
-    type: 'website',
-    url: 'https://letstalkaboutit.pl',
-    title: "Let's Talk About IT",
-    description:
-      'LET’S TALK ABOUT IT – Największa społeczność IT w Polsce. Dołącz do naszych ogólnopolskich konferencji na żywo, poznaj ekspertów, rozwijaj swoje umiejętności i buduj relacje w branży IT.',
-    siteName: "Let's Talk About IT",
-    locale: 'pl_PL',
-    images: [
-      {
-        url: 'https://www.letstalkaboutit.pl/meta-image.png',
-        width: 1200,
-        height: 630,
-        alt: "Let's Talk About IT",
-      },
-    ],
-  },
   verification: {
     google: 'WC6CBGcV2Xyo5_E5rhAAr-PxT0kRm9PPvjh-jBdnW8E',
   },
-};
+});
 
 const ibm = IBM_Plex_Sans({
   display: 'swap',

@@ -1,6 +1,7 @@
 import toRoman from '../UI/NumberToRoman';
-import { request } from '@/lib/request';
-import { EditionQueryDocument } from '@/graphql/generated';
+import { getEvent } from '@/lib/content';
+import type { SeoLocale } from '@/lib/seo';
+import { notFound } from 'next/navigation';
 import PartnersCarousel from '../PartnersCarousel/PartnersCarousel';
 import Gallery from '../Gallery/Gallery';
 import EditionHero from '../EditionHero/EditionHero';
@@ -45,16 +46,14 @@ const Edition = async ({
   edition,
   translation,
 }: {
-  locale: string;
-  edition: number;
+  locale: SeoLocale;
+  edition: string;
   translation: (key: string) => string;
 }) => {
   const t = translation;
 
-  const { event, assetsConnection } = await request(EditionQueryDocument, {
-    edition,
-    locale: locale as 'pl' | 'en',
-  });
+  const { event, assetsConnection } = await getEvent(locale, edition);
+  if (!event) notFound();
 
   const gallery = event?.gallery ?? [];
 

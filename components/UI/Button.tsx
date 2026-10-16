@@ -29,7 +29,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <div className={`${isMain ? 'bg-main-black' : 'bg-main-white'} rounded-xl`}>
-      <Link href={href} target={target} rel="noopener noreferrer canonical">
+      <Link href={href} target={target} rel="noopener noreferrer">
         <motion.button
           aria-label={content}
           disabled={disabled}

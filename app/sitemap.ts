@@ -4,71 +4,82 @@ import {
   WorkshopsRoutesDocument,
 } from '@/graphql/generated';
 import { request } from '@/lib/request';
+import {
+  getLanguageAlternates,
+  getLocalizedUrl,
+  SEO_LOCALES,
+  type SeoLocale,
+} from '@/lib/seo';
 
-const sitemap = async ({
-  locale = 'pl',
-}: {
-  locale: string;
-}): Promise<MetadataRoute.Sitemap> => {
-  const { events } = await request(EventsRoutesDocument, {
-    locale: locale as 'pl' | 'en',
+type LocalizedRecords = {
+  locale: SeoLocale;
+  records: { id: string; slug?: string | null }[];
+};
+
+const getContentRoutes = (
+  section: 'events' | 'workshops',
+  localizedRecords: LocalizedRecords[]
+): MetadataRoute.Sitemap => {
+  const translations = new Map<string, Partial<Record<SeoLocale, string>>>();
+
+  localizedRecords.forEach(({ locale, records }) => {
+    records.forEach(({ id, slug }) => {
+      if (!slug?.trim()) return;
+
+      const languages = translations.get(id) ?? {};
+      languages[locale] = getLocalizedUrl(`/${section}/${slug}`, locale);
+      translations.set(id, languages);
+    });
   });
-  const { workshops } = await request(WorkshopsRoutesDocument, {
-    locale: locale as 'pl' | 'en',
-  });
 
-  const eventsRoutes = events.filter(Boolean).map((event) => ({
-    url: `https://www.letstalkaboutit.pl/events/${event.slug}`,
+  return Array.from(translations.values()).flatMap((languages) =>
+    SEO_LOCALES.flatMap((locale) => {
+      const url = languages[locale];
+      return url
+        ? [{ url, changeFrequency: 'weekly' as const, alternates: { languages } }]
+        : [];
+    })
+  );
+};
 
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    alternates: {
-      languages: {
-        en: `https://.../en/events/${event.slug}`,
-        pl: `https://.../events/${event.slug}`,
-      },
-    },
-  }));
+const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  const localizedContent = await Promise.all(
+    SEO_LOCALES.map(async (locale) => {
+      const [{ events }, { workshops }] = await Promise.all([
+        request(EventsRoutesDocument, { locale }),
+        request(WorkshopsRoutesDocument, { locale }),
+      ]);
 
-  const workshopsRoutes = workshops.map((workshop) => ({
-    url: `https://www.letstalkaboutit.pl/workshops/${workshop.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    alternates: {
-      languages: {
-        en: `https://.../en/workshops/${workshop.slug}`,
-        pl: `https://.../workshops/${workshop.slug}`,
-      },
-    },
-  }));
+      return { locale, events, workshops };
+    })
+  );
+
+  const staticRoutes: MetadataRoute.Sitemap = [
+    '/',
+    '/films',
+    '/podcasts',
+    '/partners',
+  ].flatMap((path) =>
+    SEO_LOCALES.map((locale) => ({
+      url: getLocalizedUrl(path, locale),
+      changeFrequency: path === '/' ? ('yearly' as const) : ('weekly' as const),
+      alternates: { languages: getLanguageAlternates(path) },
+    }))
+  );
+
   return [
-    {
-      url: 'https://www.letstalkaboutit.pl',
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      alternates: {
-        languages: {
-          en: 'https://www.letstalkaboutit.pl/en',
-        },
-      },
-    },
-    {
-      url: 'https://www.letstalkaboutit.pl/films',
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-    },
-    {
-      url: 'https://www.letstalkaboutit.pl/podcasts',
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-    },
-    {
-      url: 'https://www.letstalkaboutit.pl/partners',
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-    },
-    ...eventsRoutes,
-    ...workshopsRoutes,
+    ...staticRoutes,
+    ...getContentRoutes(
+      'events',
+      localizedContent.map(({ locale, events }) => ({ locale, records: events }))
+    ),
+    ...getContentRoutes(
+      'workshops',
+      localizedContent.map(({ locale, workshops }) => ({
+        locale,
+        records: workshops,
+      }))
+    ),
   ];
 };
 
