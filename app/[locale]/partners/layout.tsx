@@ -1,13 +1,11 @@
-import {Header} from '@/components/Header/Header';
+import { Header } from '@/components/Header/Header';
+import { getSeoLocale, getStaticPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'LET’S TALK ABOUT IT - Partnerzy',
-  openGraph: {
-    url: 'https://letstalkaboutit.pl/partners',
-    title: "Partnerzy Let's Talk About IT",
-    description: 'Zobacz naszych partnerów i sponsorów',
-  },
-};
+export const generateMetadata = ({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) => getStaticPageMetadata('partners', getSeoLocale(locale));
 
 const PartnersLayout = ({
   children,

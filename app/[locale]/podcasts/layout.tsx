@@ -1,12 +1,11 @@
 import { Header } from '@/components/Header/Header';
+import { getSeoLocale, getStaticPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: 'LET’S TALK ABOUT IT - Podcasty',
-  openGraph: {
-    url: 'https://letstalkaboutit.pl/podcasts',
-    title: "Podcasty z udziałem Let's Talk About IT",
-  },
-};
+export const generateMetadata = ({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) => getStaticPageMetadata('podcasts', getSeoLocale(locale));
 
 const FilmsLayout = ({
   children,

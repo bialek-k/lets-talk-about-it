@@ -3,13 +3,51 @@ import Gallery from '@/components/Gallery/Gallery';
 import PartnersCarousel from '@/components/PartnersCarousel/PartnersCarousel';
 import WorkshopsHero from '@/components/WorkshopHero/WorkshopsHero';
 import WorkshopsLead from '@/components/WorkshopsLead/WorkshopsLead';
-import { WorkshopsQueryDocument, type Gender } from '@/graphql/generated';
-import { request } from '@/lib/request';
+import type { Gender } from '@/graphql/generated';
+import { formatContentDate, getWorkshop } from '@/lib/content';
+import { createPageMetadata, getSeoLocale } from '@/lib/seo';
 import { RichTextContent } from '@graphcms/rich-text-types';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+type WorkshopPageProps = {
+  params: { locale: string; workshop: string };
+};
+
+export async function generateMetadata({
+  params: { locale, workshop: slug },
+}: WorkshopPageProps): Promise<Metadata> {
+  const seoLocale = getSeoLocale(locale);
+  const { workshop } = await getWorkshop(seoLocale, slug);
+  if (!workshop) notFound();
+
+  const workshopLabel = seoLocale === 'pl' ? 'Warsztaty' : 'Workshop';
+  const workshopTitle = workshop.title.trim();
+  const details = [workshop.location, formatContentDate(workshop.date, seoLocale)]
+    .filter(Boolean)
+    .join(' · ');
+  const description = [
+    `${workshopLabel} LET’S TALK ABOUT IT${workshopTitle ? `: ${workshopTitle}` : ''}.`,
+    details ? `${details}.` : '',
+    seoLocale === 'pl'
+      ? 'Opis warsztatu i prowadzący ze społeczności IT.'
+      : 'Explore the workshop and its IT community instructors.',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return createPageMetadata({
+    locale: seoLocale,
+    path: `/workshops/${workshop.slug || slug}`,
+    title: [workshopTitle, workshopLabel, 'LET’S TALK ABOUT IT']
+      .filter(Boolean)
+      .join(' | '),
+    description,
+  });
+}
 
 type Workshop = {
   date: string | number;
-  edition: number;
   location: string;
   new: boolean;
   signUp: string;
@@ -40,15 +78,14 @@ type Workshop = {
 } | null;
 const Workshop = async ({
   params: { locale, workshop: slug },
-}: {
-  params: { locale: string; workshop: string };
-}) => {
+}: WorkshopPageProps) => {
   const i18nNamespaces = ['workshops'];
-  const { t, resources } = await initTranslations(locale, i18nNamespaces);
-  const { workshop, assetsConnection } = await request(WorkshopsQueryDocument, {
-    locale: locale as 'pl' | 'en',
-    slug,
-  });
+  const { t } = await initTranslations(locale, i18nNamespaces);
+  const { workshop, assetsConnection } = await getWorkshop(
+    getSeoLocale(locale),
+    slug
+  );
+  if (!workshop) notFound();
 
   const gallery = workshop?.gallery ?? [];
 

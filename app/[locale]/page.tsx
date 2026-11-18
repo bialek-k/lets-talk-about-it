@@ -24,8 +24,15 @@ import OpenNav from '@/components/OpenNav/OpenNav';
 import Instagram from '@/components/Instagram/Instagram';
 import { Header } from '@/components/Header/Header';
 import Facebook from '@/components/Facebook/Facebook';
+import { getSeoLocale, getStaticPageMetadata } from '@/lib/seo';
 
 const i18nNamespaces = ['home'];
+
+export const generateMetadata = ({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) => getStaticPageMetadata('home', getSeoLocale(locale));
 
 type NewEventHero = {
   date: number | string;
